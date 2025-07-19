@@ -1,0 +1,227 @@
+:root {
+    
+    /* Dark Theme (default) */
+    --dk-ctrl: #222;
+    --dk-btn: #333;
+    --dk-hvr: #555;
+    --dk-txt: white;
+    
+    /* Light Theme */
+    --lt-ctrl: #dddd22;
+    --lt-btn: #cccccc;
+    --lt-hvr: #dad9db;
+    --lt-txt: black;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    padding: 0px;
+    margin: 0px;
+}
+
+canvas#game {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+div#log {
+    background: var(--dk-btn);
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    color: var(--dk-txt);
+    text-align: left;
+    padding: 5px 9px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+#touch-controls {
+  position: fixed;
+  bottom: 30px;
+  left: 12%;
+  transform: translateX(-50%);
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#touch-controls > div {
+  display: flex;
+  justify-content: center;
+}
+
+.dpad-btn {
+  width: 80px;
+  height: 80px;
+  margin: 6px;
+  font-size: 3em;
+  opacity: 0.8;
+  background: var(--dk-ctrl);
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 18px;
+  touch-action: none;
+}
+
+#act-controls {
+  position: fixed;      
+  bottom: 2vw;              
+  right: 4vw;
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  width: 200px;          
+  height: 200px;
+}
+
+#btn-a, #btn-b {
+  position: absolute;     
+  width: 100px;
+  height: 100px;
+  margin: 6px;
+  font-size: 3em;
+  opacity: 0.8;
+  background: var(--dk-ctrl);
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 100%;
+  touch-action: none;
+}
+
+#btn-a {
+  right: 0;
+  bottom: 40;
+}
+
+#btn-b {
+  right: 80px;   
+  bottom: 0px;  
+}
+
+.menu-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+  font-size: 1.6em;
+  background: var(--dk-btn);
+  opacity: 0.8;
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 18px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.player-menu.hidden {
+  display: none;
+}
+
+.player-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.60);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-menu-content {
+  background: var(--dk-ctrl);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  padding: 32px 24px 24px 24px;
+  width: 500px;
+  height: 300px;
+  color: var(--dk-txt);
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.player-menu-inner {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.h1 {
+  font-size: 1.4em; 
+  margin-top: 1px;
+  padding: none;
+}
+
+.menu-left {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-right: 24px;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.menu-nav-btn {
+  padding: 12px 0;
+  margin-bottom: 4px;
+  font-size: 1.1em;
+  background: var(--dk-btn);
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.menu-nav-btn:hover, .menu-nav-btn.active {
+  background: var(--dk-hvr);
+}
+
+.menu-right {
+  flex: 1;
+  display: flex;
+}
+
+#player-sprite-preview {
+  width: 128px;
+  height: 128px;
+  background: transparent;
+  border-radius: 10px;
+  bottom: 30%;
+  right: 12%;
+  display: fixed;
+  position: absolute;
+  overflow: hidden;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--dk-text);
+  font-size: 1.6em;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.menu-page {
+  display: none;
+}
+
+.menu-page.active {
+  display: block;
+}

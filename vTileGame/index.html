@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2D Game</title>
+    <link type="text/css" href="assets/css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <canvas id="game"></canvas>
+
+    <div id="log">
+        <div id="fps"></div>
+        <div id="coords"></div>
+    </div>
+    
+    <div id="touch-controls">
+      <button id="btn-up" class="dpad-btn">▲</button>
+      <div>
+        <button id="btn-left" class="dpad-btn">◀</button>
+        <button id="btn-down" class="dpad-btn">▼</button>
+        <button id="btn-right" class="dpad-btn">▶</button>
+      </div>
+    </div>
+    <div id="act-controls">
+      <button id="btn-a" class="act-btn">A</button>
+      <button id="btn-b" class="act-btn">B</button>
+    </div>
+    
+    <button id="menu-btn" class="menu-btn">Menu</button>
+    <div id="player-menu" class="player-menu hidden">
+      <div class="player-menu-content">
+      <h1>Player Menu</h1>
+        <button id="close-menu" class="close-btn">✕</button>
+        <div class="player-menu-inner">
+          <div class="menu-left">
+            <button class="menu-nav-btn" id="btn-inventory">Inventory</button>
+            <button class="menu-nav-btn" id="btn-skills">Skills</button>
+            <button class="menu-nav-btn" id="btn-save">Save Game</button>
+            <button class="menu-nav-btn" id="btn-settings">Settings</button>
+          </div>
+          <div class="menu-right">
+            <div id="player-sprite-preview"></div>
+            <!-- Player states/stats will go here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="assets/js/viewport.js"></script>
+    <script src="assets/js/player.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/menu.js"></script>
+</body>
+</html>
