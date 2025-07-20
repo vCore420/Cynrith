@@ -7,6 +7,7 @@ const Map = function(title) {
     this.load(title);
 };
 
+let currentMapIndex = 0; 
 
 Map.prototype = {
     load: function(title) {
@@ -76,3 +77,19 @@ Map.prototype = {
         this.data.frame = (this.data.frame == 0) ? 1 : 0;
     }
 };
+
+// Warp to a map by index, placing player at a given location
+function warpToMap(mapIndex, spawnType = "spawn") {
+    currentMapIndex = mapIndex;
+    map.load("map" + mapIndex);
+    // Wait for map to load, then set player position
+    setTimeout(() => {
+        const spawn = map.data[spawnType];
+        if (spawn) {
+            player.pos.x = spawn.x * config.size.tile;
+            player.pos.y = spawn.y * config.size.tile;
+            player.tile.x = spawn.x;
+            player.tile.y = spawn.y;
+        }
+    }, 100); // delay of loading between maps
+}

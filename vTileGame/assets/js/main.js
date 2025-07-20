@@ -61,6 +61,17 @@ var fps = {
     last:  0
 };
 
+let actionButtonBPressed = false;
+
+document.getElementById('btn-b').addEventListener('click', function() {
+    actionButtonBPressed = true;
+});
+
+let actionButtonAPressed = false;
+
+document.getElementById('btn-a').addEventListener('click', function() {
+    actionButtonAPressed = true;
+});
 
 // setup game:
 function Setup() {
@@ -124,6 +135,39 @@ function LoadURL(url, callback) {
     http.send(null);
 }
 
+function warpToMap(mapIndex, spawnType = "spawn") {
+    currentMapIndex = mapIndex;
+    map.load("map" + mapIndex);
+    setTimeout(() => {
+        const spawn = map.data[spawnType];
+        if (spawn) {
+            player.pos.x = spawn.x * config.size.tile;
+            player.pos.y = spawn.y * config.size.tile;
+            player.tile.x = spawn.x;
+            player.tile.y = spawn.y;
+        }
+    }, 100);
+}
+
+function checkTeleport() {
+    if (!map.data.teleport) return;
+    const t = map.data.teleport;
+    if (player.tile.x === t.x && player.tile.y === t.y && actionButtonBPressed) {
+        if (player.xp >= (t.xpRequired || 0)) {
+            warpToMap(currentMapIndex + 1, "spawn");
+        } else {
+            Log("coords", "You need " + t.xpRequired + " XP to enter the next Floor!");
+        }
+    }
+}
+
+function checkBackTeleport() {
+    if (!map.data.spawn) return;
+    const s = map.data.spawn;
+    if (player.tile.x === s.x && player.tile.y === s.y && actionButtonBPressed && currentMapIndex > 0) {
+        warpToMap(currentMapIndex - 1, "teleport");
+    }
+}
 
 // game loop:
 function Loop() {
@@ -136,6 +180,11 @@ function Loop() {
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
+
+    checkTeleport();
+    checkBackTeleport();
+    actionButtonAPressed = false;
+    actionButtonBPressed = false;
 
     if (!fps.last) {
         fps.last = Date.now();
