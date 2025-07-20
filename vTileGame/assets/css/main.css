@@ -206,7 +206,16 @@ div#log {
   overflow: hidden;
 }
 
-.close-btn {
+#player-stats-preview {
+  color: var(--dk-txt);
+  padding: 2px;
+  position: absolute;
+  bottom: 16px;
+  right: 15%;
+  font-size: 1.2em;
+}
+
+.close-btn { 
   position: absolute;
   top: 16px;
   right: 16px;

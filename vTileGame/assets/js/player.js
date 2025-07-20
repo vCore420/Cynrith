@@ -6,6 +6,13 @@ const Player = function(tile_x, tile_y) {
     this.sprite = new Image();
     this.sprite.src = "assets/img/char/hero.png";
 
+    // Base Player stats
+    this.maxHealth = 100;
+    this.health = 100;
+    this.xp = 0;
+    this.attack = 1;
+    this.defence = 1;
+
     this.movement = {
         moving: false,
         key: 40,
@@ -120,7 +127,25 @@ Player.prototype = {
         player = this;
 
         Log("coords", "Coords: " + this.tile.x + ", " + this.tile.y);
-    }
+    },
+    getHealth: function() { return this.health; },
+    setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); },
+    addHealth: function(val) { this.setHealth(this.health + val); },
+
+    getMaxHealth: function() { return this.maxHealth; },
+    setMaxHealth: function(val) { this.maxHealth = Math.max(1, val); },
+    addMaxHealth: function(val) { this.setMaxHealth(this.maxHealth + val); },
+
+    getXP: function() { return this.xp; },
+    addXP: function(val) { this.xp += val; },
+
+    getAttack: function() { return this.attack; },
+    setAttack: function(val) { this.attack = val; },
+    addAttack: function(val) { this.attack += val; },
+
+    getDefence: function() { return this.defence; },
+    setDefence: function(val) { this.defence = val; },
+    addDefence: function(val) { this.defence += val; }
 };
 
 // Touch Controls 
@@ -144,7 +169,7 @@ document.addEventListener("keydown", function(event) {
     }
     else {
         switch (event.keyCode) {
-            case 84: // t
+            case 84: 
                 player.torch.lit = (player.torch.lit) ? false : true;
                 break;
         }

@@ -133,6 +133,8 @@ function Loop() {
 
     viewport.center();
     map.draw();
+    if (typeof updateCharacters === "function") updateCharacters(); 
+    if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
 
     if (!fps.last) {
