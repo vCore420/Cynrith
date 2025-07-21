@@ -138,3 +138,44 @@ function drawCharacters() {
         );
     });
 }
+
+function spawnCharactersForMap(mapIndex) {
+    characters.length = 0; // Clear previous characters
+
+    // Spawn NPCs
+    Object.values(NPC_DEFINITIONS).forEach(def => {
+        if (def.spawns) {
+            def.spawns.forEach(spawn => {
+                if (spawn.map === mapIndex) {
+                    const npc = new NPC(
+                        spawn.x,
+                        spawn.y,
+                        def.sprite,
+                        def
+                    );
+                    npc.wanderArea = spawn.wanderArea;
+                    characters.push(npc);
+                }
+            });
+        }
+    });
+
+    // Spawn Enemies
+    Object.values(ENEMY_TYPES).forEach(def => {
+        if (def.spawns) {
+            def.spawns.forEach(spawn => {
+                if (spawn.map === mapIndex) {
+                    const enemy = new Enemy(
+                        spawn.x,
+                        spawn.y,
+                        def.sprite,
+                        def
+                    );
+                    enemy.wanderArea = spawn.wanderArea;
+                    enemy.health = def.maxHealth;
+                    characters.push(enemy);
+                }
+            });
+        }
+    });
+}
