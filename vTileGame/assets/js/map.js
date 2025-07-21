@@ -1,6 +1,8 @@
 // map:
 let mapFrameInterval = null;
 let currentMapIndex = 0; 
+let lastTeleportTile = { x: null, y: null };
+let teleportNotifShown = false;
 
 const Map = function(title) {
     this.data = {};
@@ -109,19 +111,47 @@ function warpToMap(mapIndex, spawnType = "spawn") {
 }
 
 // Teleport forward if on teleport tile and XP is enough
+// ...existing code...
+
 function checkTeleport() {
     if (!map.data.teleport) return;
     const t = map.data.teleport;
-    if (player.tile.x === t.x && player.tile.y === t.y && actionButtonBPressed) {
-        tryWarpToMap(currentMapIndex + 1, "spawn", t.xpRequired || 0);
+    const onTile = player.tile.x === t.x && player.tile.y === t.y;
+
+    if (onTile) {
+        if (!teleportNotifShown) {
+            const nextFloor = currentMapIndex + 2;
+            const xpRequired = t.xpRequired || 0;
+            notify(`Press the B button to move to Floor ${nextFloor} (requires ${xpRequired} XP)`, 3500);
+            teleportNotifShown = true;
+        }
+        if (actionButtonBPressed) {
+            const xpRequired = t.xpRequired || 0;
+            if (player.xp >= xpRequired) {
+                tryWarpToMap(currentMapIndex + 1, "spawn", xpRequired);
+            } else {
+                notify(`You need ${xpRequired} XP to move to this Floor!`, 3000);
+            }
+        }
+    } else {
+        teleportNotifShown = false;
     }
 }
 
-// Teleport back if on spawn tile and not on first map
 function checkBackTeleport() {
     if (!map.data.spawn) return;
     const s = map.data.spawn;
-    if (player.tile.x === s.x && player.tile.y === s.y && actionButtonBPressed && currentMapIndex > 0) {
-        warpToMap(currentMapIndex - 1, "teleport");
+    const onTile = player.tile.x === s.x && player.tile.y === s.y && currentMapIndex > 0;
+
+    if (onTile) {
+        if (!backTeleportNotifShown) {
+            notify(`Press the B button to move to Floor ${currentMapIndex}`, 3000);
+            backTeleportNotifShown = true;
+        }
+        if (actionButtonBPressed) {
+            warpToMap(currentMapIndex - 1, "teleport");
+        }
+    } else {
+        backTeleportNotifShown = false;
     }
 }

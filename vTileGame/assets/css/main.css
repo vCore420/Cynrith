@@ -141,7 +141,7 @@ div#log {
   box-shadow: 0 4px 24px rgba(0,0,0,0.45);
   padding: 32px 24px 24px 24px;
   width: 500px;
-  height: 300px;
+  height: 400px;
   color: var(--dk-txt);
   position: relative;
   text-align: center;
@@ -199,7 +199,7 @@ div#log {
   height: 128px;
   background: transparent;
   border-radius: 10px;
-  bottom: 30%;
+  bottom: 40%;
   right: 12%;
   display: fixed;
   position: absolute;
@@ -210,7 +210,7 @@ div#log {
   color: var(--dk-txt);
   padding: 2px;
   position: absolute;
-  bottom: 16px;
+  bottom: 20%;
   right: 15%;
   font-size: 1.2em;
 }
@@ -233,4 +233,53 @@ div#log {
 
 .menu-page.active {
   display: block;
+}
+
+/* Notification styles */
+.notification {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(40,40,40,0.95);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-size: 1.2em;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+/* Show notification */
+.notification.show {
+  opacity: 1;
+}
+
+/* Dialogue block styles */
+.dialogue-block {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.98);
+  color: #fff;
+  padding: 28px 40px;
+  border-radius: 18px;
+  font-size: 1.3em;
+  z-index: 1002;
+  min-width: 320px;
+  max-width: 80vw;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+}
+
+.dialogue-block.hidden {
+  display: none;
 }

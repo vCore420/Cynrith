@@ -79,6 +79,7 @@ function Setup() {
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
     player = new Player(4, 3);
 
+    // Ensure NPCs/enemies spawn on first map load
     map = new Map("map0");
     map.onLoad = function() {
         if (typeof spawnCharactersForMap === "function") {
@@ -93,6 +94,7 @@ function Setup() {
         fps.shown = fps.count;
     }, 1000);
 }
+
 
 // window and canvas sizing:
 function Sizing() {
@@ -120,10 +122,12 @@ function Sizing() {
     context.canvas.height = config.win.height;
 }
 
+
 // log data to screen:
 function Log(type, text) {
     document.getElementById(type).innerHTML = text;
 }
+
 
 // AJAX call:
 function LoadURL(url, callback) {
@@ -153,6 +157,8 @@ function Loop() {
 
     checkTeleport();
     checkBackTeleport();
+    checkNpcInteraction()
+    
     actionButtonAPressed = false;
     actionButtonBPressed = false;
 

@@ -41,6 +41,18 @@ function randomDirection() {
     return dirs[Math.floor(Math.random() * dirs.length)];
 }
 
+// Helper to get direction key to face the player
+function getDirectionToFace(npc, player) {
+    const dx = player.tile.x - npc.x;
+    const dy = player.tile.y - npc.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+        return dx > 0 ? 39 : 37; // right : left
+    } else if (dy !== 0) {
+        return dy > 0 ? 40 : 38; // down : up
+    }
+    return 40; // default down
+}
+
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
     if (
@@ -53,6 +65,7 @@ function isWalkable(tileX, tileY) {
 
 // AI: Wander within a defined area
 function wanderAI(char) {
+    if (char.isInteracting) return;
     if (!char.wanderArea) return;
 
     if (typeof char.stepsRemaining !== "number") char.stepsRemaining = 0;
@@ -177,5 +190,42 @@ function spawnCharactersForMap(mapIndex) {
                 }
             });
         }
+    });
+}
+
+function checkNpcInteraction() {
+    characters.forEach(char => {
+        if (char.type === "npc" && char.interactive) {
+            const inRange =
+                Math.abs(player.tile.x - char.x) <= 1 &&
+                Math.abs(player.tile.y - char.y) <= 1;
+
+            if (inRange) {
+                if (!char.notifShown) {
+                    notify(`Press the B button to talk to ${char.name}`, 2500);
+                    char.notifShown = true;
+                }
+                if (actionButtonBPressed && char.dialogue && char.dialogue.default) {
+                    // Stop wandering and face player
+                    char.isInteracting = true;
+                    char.movement.key = getDirectionToFace(char, player);
+
+                    // Start dialogue and resume wandering after
+                    dialogue(...char.dialogue.default);
+                    // Wait for dialogue to finish, then resume wandering
+                    const block = document.getElementById('dialogue-block');
+                    const resumeWander = () => {
+                        char.isInteracting = false;
+                        block.removeEventListener('transitionend', resumeWander);
+                    };
+                    // Listen for dialogue block hiding (when interaction ends)
+                    block.addEventListener('transitionend', resumeWander);
+                }
+            } else {
+                char.notifShown = false;
+                char.isInteracting = false;
+            }
+        }
+        // Add more interaction logic here next for quests, etc.
     });
 }

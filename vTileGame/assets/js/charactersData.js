@@ -4,6 +4,7 @@ const NPC_DEFINITIONS = {
         id: "villager_bob",
         name: "Villager Bob",
         sprite: "assets/img/char/hero.png",
+        interactive: true, 
         spawns: [
             {
                 map: 0, 
@@ -17,14 +18,14 @@ const NPC_DEFINITIONS = {
                 "Hello, traveler!",
                 "The forest is dangerous at night."
             ],
-            questGiven: [
-                "Can you bring me 3 mushrooms?",
-                "They're in the forest nearby."
-            ],
-            questComplete: [
-                "Thank you for the mushrooms!",
-                "Here is your reward."
-            ]
+            //questGiven: [
+            //    "Can you bring me 3 mushrooms?",
+            //    "They're in the forest nearby."
+            //],
+            //questComplete: [
+            //    "Thank you for the mushrooms!",
+            //    "Here is your reward."
+            //]
         },
         questId: "mushroom_quest"
     },
