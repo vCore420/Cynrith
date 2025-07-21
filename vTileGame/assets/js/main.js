@@ -78,15 +78,21 @@ function Setup() {
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
     player = new Player(4, 3);
-    map = new Map("Map");
-    
+
+    map = new Map("map0");
+    map.onLoad = function() {
+        if (typeof spawnCharactersForMap === "function") {
+            spawnCharactersForMap(0);
+        }
+    };
+
+    Loop();
     Sizing();
 
     setInterval(function() {
         fps.shown = fps.count;
     }, 1000);
 }
-
 
 // window and canvas sizing:
 function Sizing() {
@@ -114,12 +120,10 @@ function Sizing() {
     context.canvas.height = config.win.height;
 }
 
-
 // log data to screen:
 function Log(type, text) {
     document.getElementById(type).innerHTML = text;
 }
-
 
 // AJAX call:
 function LoadURL(url, callback) {
@@ -133,40 +137,6 @@ function LoadURL(url, callback) {
         }
     }
     http.send(null);
-}
-
-function warpToMap(mapIndex, spawnType = "spawn") {
-    currentMapIndex = mapIndex;
-    map.load("map" + mapIndex);
-    setTimeout(() => {
-        const spawn = map.data[spawnType];
-        if (spawn) {
-            player.pos.x = spawn.x * config.size.tile;
-            player.pos.y = spawn.y * config.size.tile;
-            player.tile.x = spawn.x;
-            player.tile.y = spawn.y;
-        }
-    }, 100);
-}
-
-function checkTeleport() {
-    if (!map.data.teleport) return;
-    const t = map.data.teleport;
-    if (player.tile.x === t.x && player.tile.y === t.y && actionButtonBPressed) {
-        if (player.xp >= (t.xpRequired || 0)) {
-            warpToMap(currentMapIndex + 1, "spawn");
-        } else {
-            Log("coords", "You need " + t.xpRequired + " XP to enter the next Floor!");
-        }
-    }
-}
-
-function checkBackTeleport() {
-    if (!map.data.spawn) return;
-    const s = map.data.spawn;
-    if (player.tile.x === s.x && player.tile.y === s.y && actionButtonBPressed && currentMapIndex > 0) {
-        warpToMap(currentMapIndex - 1, "teleport");
-    }
 }
 
 // game loop:
@@ -186,18 +156,16 @@ function Loop() {
     actionButtonAPressed = false;
     actionButtonBPressed = false;
 
-    if (!fps.last) {
-        fps.last = Date.now();
-        fps.count = 0;
-    }
-
-    let delta = (Date.now() - fps.last) / 1000;
-    fps.last  = Date.now();
+    let now = Date.now();
+    let delta = (now - fps.last) / 1000;
+    fps.last = now;
     fps.count = Math.round(1 / delta);
 
-    Log("fps", "FPS: " + fps.shown);
 }
 
+setInterval(function() {
+    Log("fps", "FPS: " + fps.count);
+}, 1000);
 
 // on window load:
 window.onload = function() {

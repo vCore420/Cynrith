@@ -98,6 +98,9 @@ Player.prototype = {
         player.torch = this.torch;
     },
     move: function(x, y) {
+        let layout = map.data.layout;
+        if (!layout || !layout[0]) return; // Prevents error if map not loaded
+
         let pos = {
             x: Math.ceil(this.pos.x / config.size.tile),
             y: Math.ceil(this.pos.y / config.size.tile)
@@ -108,18 +111,30 @@ Player.prototype = {
             y: Math.ceil((this.pos.y + y) / config.size.tile)
         };
 
-        for (let i = 0; i <= 1; i++) {
-            let tile = ((i == 0) ? map.data.layout[pos.y][new_pos.x] : map.data.layout[new_pos.y][pos.x]) - 1;
-            let collision = map.data.assets[tile].collision;
+        // Bounds check
+        let assets = map.data.assets;
+        let maxY = layout.length - 1;
+        let maxX = layout[0].length - 1;
 
-            if (!collision) {
-                if (i == 0) {
-                    this.pos.x += x;
-                    this.tile.x = new_pos.x;
-                }
-                else {
-                    this.pos.y += y;
-                    this.tile.y = new_pos.y;
+        for (let i = 0; i <= 1; i++) {
+            let checkY = (i == 0) ? pos.y : new_pos.y;
+            let checkX = (i == 0) ? new_pos.x : pos.x;
+
+            if (
+                checkY >= 0 && checkY <= maxY &&
+                checkX >= 0 && checkX <= maxX
+            ) {
+                let tileIndex = layout[checkY][checkX] - 1;
+                let collision = assets[tileIndex] && assets[tileIndex].collision;
+
+                if (!collision) {
+                    if (i == 0) {
+                        this.pos.x += x;
+                        this.tile.x = new_pos.x;
+                    } else {
+                        this.pos.y += y;
+                        this.tile.y = new_pos.y;
+                    }
                 }
             }
         }

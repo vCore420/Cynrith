@@ -5,13 +5,13 @@ let characterIdCounter = 1;
 
 // Base class for both NPC and Enemy
 function Character(x, y, spriteSrc, type = "npc", customData = {}) {
-    this.uid = characterIdCounter++; // unique runtime id
-    this.id = customData.id || null; // story/game id
+    this.uid = characterIdCounter++; 
+    this.id = customData.id || null; 
     this.x = x;
     this.y = y;
     this.type = type;
     this.sprite = new Image();
-    this.sprite.src = spriteSrc || customData.sprite; // Use provided path
+    this.sprite.src = spriteSrc || customData.sprite; 
     this.frame = 0;
     this.state = "wander";
     this.movement = { moving: false, key: 40, frame: 1 };
@@ -34,27 +34,6 @@ function Enemy(x, y, spriteSrc, customData = {}) {
     Character.call(this, x, y, spriteSrc, "enemy", customData);
 }
 Enemy.prototype = Object.create(Character.prototype);
-
-// Helper to spawn an NPC by id
-function spawnNPC(npcId, x, y) {
-    const def = NPC_DEFINITIONS[npcId];
-    if (!def) return null;
-    const npc = new NPC(x ?? def.wanderArea.x1, y ?? def.wanderArea.y1, def.sprite, def);
-    npc.wanderArea = def.wanderArea;
-    characters.push(npc);
-    return npc;
-}
-
-// Helper to spawn an enemy by type id
-function spawnEnemy(typeId, x, y) {
-    const def = ENEMY_TYPES[typeId];
-    if (!def) return null;
-    const enemy = new Enemy(x ?? def.wanderArea.x1, y ?? def.wanderArea.y1, def.sprite, def);
-    enemy.wanderArea = def.wanderArea;
-    enemy.health = def.maxHealth;
-    characters.push(enemy);
-    return enemy;
-}
 
 // Get random direction
 function randomDirection() {
@@ -159,7 +138,3 @@ function drawCharacters() {
         );
     });
 }
-
-// Example: Spawn from data
-spawnNPC("villager_bob");
-spawnEnemy("slime");

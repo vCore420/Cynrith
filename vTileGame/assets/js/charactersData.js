@@ -4,7 +4,14 @@ const NPC_DEFINITIONS = {
         id: "villager_bob",
         name: "Villager Bob",
         sprite: "assets/img/char/hero.png",
-        wanderArea: { x1: 5, y1: 3, x2: 8, y2: 4 },
+        spawns: [
+            {
+                map: 0, 
+                x: 6,
+                y: 3,
+                wanderArea: { x1: 5, y1: 3, x2: 8, y2: 4 }
+            }
+        ],
         dialogue: {
             default: [
                 "Hello, traveler!",
@@ -33,7 +40,20 @@ const ENEMY_TYPES = {
         maxHealth: 10,
         attack: 2,
         defense: 1,
-        wanderArea: { x1: 3, y1: 10, x2: 5, y2: 13 }
+        spawns: [
+            {
+                map: 0, 
+                x: 4,
+                y: 11,
+                wanderArea: { x1: 3, y1: 10, x2: 5, y2: 13 }
+            },
+            {
+                map: 1, 
+                x: 7,
+                y: 8,
+                wanderArea: { x1: 6, y1: 7, x2: 9, y2: 10 }
+            }
+        ]
     },
     // Add more enemy types here...
 };

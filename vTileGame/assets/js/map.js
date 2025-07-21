@@ -1,40 +1,42 @@
 // map:
+let mapFrameInterval = null;
+let currentMapIndex = 0; 
+
 const Map = function(title) {
     this.data = {};
     this.tiles = [];
-    this.timer = setInterval("map.frame()", 750);
+
+    // Clear any previous interval before starting a new one
+    if (mapFrameInterval) clearInterval(mapFrameInterval);
+    mapFrameInterval = setInterval(() => this.frame(), 750);
 
     this.load(title);
 };
 
-let currentMapIndex = 0; 
-
 Map.prototype = {
     load: function(title) {
-        LoadURL("assets/json/" + title.toString().toLowerCase() + ".json", function(result) {
-            map.data = JSON.parse(result);
-            map.data.frame = 0;
-            
-            let init = false;
-            let loaded = 0;
-            
-            for (let i = 0; i < map.data.assets.length; i++) {
-                map.tiles.push(new Image());
-                map.tiles[i].src = "assets/img/tile/" + map.data.assets[i].file_name + ".png?v=" + new Date().getTime();
-                
-                map.tiles[i].onload = function() {
-                    loaded++;
-                    
-                    if (!init && loaded == map.data.assets.length) {
-                        init = true;
+        LoadURL("assets/json/" + title.toString().toLowerCase() + ".json", (result) => {
+            this.data = JSON.parse(result);
+            this.data.frame = 0;
+            this.tiles = []; // Clear previous tiles
 
-                        Loop();
+            let loaded = 0;
+            for (let i = 0; i < this.data.assets.length; i++) {
+                this.tiles.push(new Image());
+                this.tiles[i].src = "assets/img/tile/" + this.data.assets[i].file_name + ".png?v=" + new Date().getTime();
+                this.tiles[i].onload = () => {
+                    loaded++;
+                    // Only call the callback when all tiles are loaded
+                    if (loaded === this.data.assets.length && typeof this.onLoad === "function") {
+                        this.onLoad();
                     }
                 };
             }
         });
     },
     draw: function() {
+        if (!this.data.layout || !this.data.layout[0]) return;
+
         let x_min = Math.floor(viewport.x / config.size.tile);
         let y_min = Math.floor(viewport.y / config.size.tile);
         let x_max = Math.ceil((viewport.x + viewport.w) / config.size.tile);
@@ -78,12 +80,19 @@ Map.prototype = {
     }
 };
 
+// Helper: Try to warp to a map if player has enough XP
+function tryWarpToMap(targetMapIndex, spawnType, requiredXP) {
+    if (player.xp >= (requiredXP || 0)) {
+        warpToMap(targetMapIndex, spawnType);
+    } else {
+        Log("coords", "You need " + requiredXP + " XP to enter this area!");
+    }
+}
+
 // Warp to a map by index, placing player at a given location
 function warpToMap(mapIndex, spawnType = "spawn") {
     currentMapIndex = mapIndex;
-    map.load("map" + mapIndex);
-    // Wait for map to load, then set player position
-    setTimeout(() => {
+    map.onLoad = function() {
         const spawn = map.data[spawnType];
         if (spawn) {
             player.pos.x = spawn.x * config.size.tile;
@@ -91,5 +100,28 @@ function warpToMap(mapIndex, spawnType = "spawn") {
             player.tile.x = spawn.x;
             player.tile.y = spawn.y;
         }
-    }, 100); // delay of loading between maps
+        // Spawn NPCs and Enemies for this map
+        if (typeof spawnCharactersForMap === "function") {
+            spawnCharactersForMap(currentMapIndex);
+        }
+    };
+    map.load("map" + mapIndex);
+}
+
+// Teleport forward if on teleport tile and XP is enough
+function checkTeleport() {
+    if (!map.data.teleport) return;
+    const t = map.data.teleport;
+    if (player.tile.x === t.x && player.tile.y === t.y && actionButtonBPressed) {
+        tryWarpToMap(currentMapIndex + 1, "spawn", t.xpRequired || 0);
+    }
+}
+
+// Teleport back if on spawn tile and not on first map
+function checkBackTeleport() {
+    if (!map.data.spawn) return;
+    const s = map.data.spawn;
+    if (player.tile.x === s.x && player.tile.y === s.y && actionButtonBPressed && currentMapIndex > 0) {
+        warpToMap(currentMapIndex - 1, "teleport");
+    }
 }
