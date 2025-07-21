@@ -61,3 +61,17 @@ function updatePlayerMenuStats() {
         </div>
     `;
 }
+
+function showInventoryMenu() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    document.getElementById('inventory-menu').classList.add('active');
+    updateInventoryUI && updateInventoryUI();
+}
+
+function showPlayerMenuMain() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    document.querySelector('.player-menu-inner').classList.add('active');
+}
+
+// Attach event listeners
+document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);

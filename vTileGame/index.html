@@ -28,20 +28,28 @@
     <button id="menu-btn" class="menu-btn">Menu</button>
     <div id="player-menu" class="player-menu hidden">
       <div class="player-menu-content">
-      <h1>Player Menu</h1>
+        <h1>Player Menu</h1>
         <button id="close-menu" class="close-btn">✕</button>
-        <div class="player-menu-inner">
-          <div class="menu-left">
-            <button class="menu-nav-btn" id="btn-inventory">Inventory</button>
-            <button class="menu-nav-btn" id="btn-skills">Skills</button>
-            <button class="menu-nav-btn" id="btn-quests">Quests</button>
-            <button class="menu-nav-btn" id="btn-save">Save Game</button>
-            <button class="menu-nav-btn" id="btn-settings">Settings</button>
+        <div class="player-menu-pages">
+          <div class="player-menu-inner menu-page active">
+            <div class="menu-left">
+              <button class="menu-nav-btn" id="btn-inventory">Inventory</button>
+              <button class="menu-nav-btn" id="btn-skills">Skills</button>
+              <button class="menu-nav-btn" id="btn-quests">Quests</button>
+              <button class="menu-nav-btn" id="btn-save">Save Game</button>
+              <button class="menu-nav-btn" id="btn-settings">Settings</button>
+            </div>
+            <div class="menu-right">
+              <div id="player-sprite-preview"></div>
+              <div id="player-stats-preview"></div>
+            </div>
           </div>
-          <div class="menu-right">
-            <div id="player-sprite-preview"></div>
-            <div id="player-stats-preview"></div>
+          <div id="inventory-menu" class="menu-page">
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Inventory</h2>
+            <div id="inventory-grid" class="inventory-grid"></div>
           </div>
+          <!-- Add other menus here (skills, quests, etc.) -->
         </div>
       </div>
     </div>
@@ -58,6 +66,8 @@
     <script src="assets/js/charactersData.js"></script>
     <script src="assets/js/npc.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/items.js"></script>
+    <script src="assets/js/inventory.js"></script>
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/notify.js"></script>
 </body>
