@@ -1,4 +1,4 @@
-# 2D Tile-Based JavaScript Game
+# Tile-Based Game - by vCore
 
 A browser-based 2D tile game built with JavaScript, HTML5, and Canvas.  
 This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with new features, UI enhancements, and gameplay improvements.
