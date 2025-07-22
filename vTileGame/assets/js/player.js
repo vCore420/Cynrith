@@ -1,3 +1,25 @@
+// Helper to check collision at a tile (for all layers)
+function isTileBlocked(x, y) {
+    if (map.data._layers) {
+        // Check all layers at this tile
+        for (let l = 0; l < map.data._layers.length; l++) {
+            let gid = map.data._layers[l][y][x];
+            if (gid > 0) {
+                let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
+                if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    } else {
+        // Legacy
+        let tileGid = map.data.layout[y][x];
+        let tileIndex = tileGid > 0 ? tileGid - 1 : null;
+        return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
+    }
+}
+
 // player:
 const Player = function(tile_x, tile_y) {
     this.timer = setInterval(() => player.frame(), 125);
@@ -101,41 +123,28 @@ Player.prototype = {
         let layout = map.data.layout;
         if (!layout || !layout[0]) return; // Prevents error if map not loaded
 
-        let pos = {
-            x: Math.ceil(this.pos.x / config.size.tile),
-            y: Math.ceil(this.pos.y / config.size.tile)
-        };
-
-        let new_pos = {
-            x: Math.ceil((this.pos.x + x) / config.size.tile),
-            y: Math.ceil((this.pos.y + y) / config.size.tile)
-        };
-
-        // Bounds check
-        let assets = map.data.assets;
         let maxY = layout.length - 1;
         let maxX = layout[0].length - 1;
 
-        for (let i = 0; i <= 1; i++) {
-            let checkY = (i == 0) ? pos.y : new_pos.y;
-            let checkX = (i == 0) ? new_pos.x : pos.x;
+        // X movement
+        let posX = Math.ceil(this.pos.x / config.size.tile);
+        let newX = Math.ceil((this.pos.x + x) / config.size.tile);
+        let tileY = this.tile.y;
+        if (newX >= 0 && newX <= maxX && tileY >= 0 && tileY <= maxY) {
+            if (!isTileBlocked(newX, tileY)) {
+                this.pos.x += x;
+                this.tile.x = newX;
+            }
+        }
 
-            if (
-                checkY >= 0 && checkY <= maxY &&
-                checkX >= 0 && checkX <= maxX
-            ) {
-                let tileIndex = layout[checkY][checkX] - 1;
-                let collision = assets[tileIndex] && assets[tileIndex].collision;
-
-                if (!collision) {
-                    if (i == 0) {
-                        this.pos.x += x;
-                        this.tile.x = new_pos.x;
-                    } else {
-                        this.pos.y += y;
-                        this.tile.y = new_pos.y;
-                    }
-                }
+        // Y movement
+        let posY = Math.ceil(this.pos.y / config.size.tile);
+        let newY = Math.ceil((this.pos.y + y) / config.size.tile);
+        let tileX = this.tile.x;
+        if (newY >= 0 && newY <= maxY && tileX >= 0 && tileX <= maxX) {
+            if (!isTileBlocked(tileX, newY)) {
+                this.pos.y += y;
+                this.tile.y = newY;
             }
         }
 

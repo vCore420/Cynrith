@@ -55,12 +55,24 @@ function getDirectionToFace(npc, player) {
 
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
-    if (
-        tileY < 0 || tileY >= map.data.layout.length ||
-        tileX < 0 || tileX >= map.data.layout[0].length
-    ) return false;
-    const tileIndex = map.data.layout[tileY][tileX] - 1;
-    return !map.data.assets[tileIndex].collision;
+    if (map.data._layers) {
+        // Check all layers for collision
+        for (let l = 0; l < map.data._layers.length; l++) {
+            let gid = map.data._layers[l][tileY][tileX];
+            if (gid > 0) {
+                let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
+                if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    } else {
+        // Legacy
+        const tileGid = map.data.layout[tileY][tileX];
+        let tileIndex = tileGid > 0 ? tileGid - 1 : null;
+        return tileIndex === null || !map.data.assets[tileIndex].collision;
+    }
 }
 
 // AI: Wander within a defined area
