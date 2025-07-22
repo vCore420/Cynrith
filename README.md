@@ -12,13 +12,14 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 **vCore Expansion:**
 - **Modular:** extensible codebase for easy expansion
-- **NPC and Enemy system**: Modular spawning, wandering AI, and dialogue
-- **Notification system**: Top-of-screen notifications for tips, events, and interactions
-- **Dialogue system**: Bottom-of-screen dialogue blocks for story and NPC interaction, disables player movement during dialogue
-- **Inventory system**: 3x3 grid, item stacking, add/remove/use items, modular item definitions.
-- **Menus and navigation**: With sprite preview and stats. Seamless switching between player menu, inventory, and future menus (skills, quests, etc.)
-- **Teleportation and map warping**: Multi Level (Floor) Game With XP requirements and contextual notifications, allowing the player to travel the world as they please as they gain xp.
-- **Touch/mouse/keyboard controls**: For both desktop and mobile.
+- **Touch/mouse/keyboard controls:** For both desktop and mobile.
+- **Map Loading:** Loads maps created in programs like Tiled, allowing for multi layer maps.
+- **NPC and Enemy system:** Modular spawning, wandering AI, and dialogue
+- **Notification system:** Top-of-screen notifications for tips, events, and interactions
+- **Dialogue system:** Bottom-of-screen dialogue blocks for story and NPC interaction, disables player movement during dialogue
+- **Menus and navigation:** With sprite preview and stats. Seamless switching between player menu, inventory, and future menus (skills, quests, etc.)
+- **Inventory system:** 3x3 grid, item stacking, add/remove/use items, modular item definitions.
+- **Teleportation and map warping:** Multi Level (Floor) Game With XP requirements and contextual notifications, allowing the player to travel the world as they please as they gain xp.
 - **All assets are placeholders or in beta**
 
 ## Getting Started
