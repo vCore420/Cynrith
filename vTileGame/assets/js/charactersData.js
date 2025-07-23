@@ -8,9 +8,9 @@ const NPC_DEFINITIONS = {
         spawns: [
             {
                 map: 0, 
-                x: 6,
-                y: 3,
-                wanderArea: { x1: 5, y1: 3, x2: 8, y2: 4 }
+                x: 2,
+                y: 6,
+                wanderArea: { x1: 2, y1: 6, x2: 4, y2: 9 }
             }
         ],
         dialogue: {
@@ -44,15 +44,15 @@ const ENEMY_TYPES = {
         spawns: [
             {
                 map: 0, 
-                x: 4,
-                y: 11,
-                wanderArea: { x1: 3, y1: 10, x2: 5, y2: 13 }
+                x: 2,
+                y: 16,
+                wanderArea: { x1: 2, y1: 16, x2: 6, y2: 19 }
             },
             {
                 map: 1, 
-                x: 7,
+                x: 3,
                 y: 8,
-                wanderArea: { x1: 6, y1: 7, x2: 9, y2: 10 }
+                wanderArea: { x1: 3, y1: 8, x2: 5, y2: 13 }
             }
         ]
     },
