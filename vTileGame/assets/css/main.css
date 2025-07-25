@@ -321,3 +321,11 @@ div#log {
 .dialogue-block.hidden {
   display: none;
 }
+
+@media (orientation: portrait) {
+        
+  #touch-controls {
+    left: 20%;
+  }
+  
+}
