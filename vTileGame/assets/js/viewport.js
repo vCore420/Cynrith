@@ -1,3 +1,6 @@
+let frozenViewportX = null;
+let frozenViewportY = null;
+
 // viewport:
 const Viewport = function(x, y, w, h) {
     this.x = x;
@@ -9,6 +12,15 @@ const Viewport = function(x, y, w, h) {
 
 Viewport.prototype = {
     center: function() {
+        if (typeof playerAnimating !== "undefined" && playerAnimating) {
+            // Keep viewport at frozen position, used for player animations
+            if (frozenViewportX !== null && frozenViewportY !== null) {
+                viewport.x = frozenViewportX;
+                viewport.y = frozenViewportY;
+            }
+            return;
+        }
+        
         let move_x = 0;
         let move_y = 0;
 

@@ -322,6 +322,22 @@ div#log {
   display: none;
 }
 
+/* Player Death/Respawn Screen */
+#death-overlay h1 {
+    text-shadow: 0 0 10px #000, 0 0 20px #900;
+}
+#death-overlay button {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #222;
+    transition: background 0.2s;
+}
+#death-overlay button:hover {
+    background: #eee;
+}
+
 @media (orientation: portrait) {
         
   #touch-controls {

@@ -113,8 +113,10 @@ function Sizing() {
         y: Math.round(config.tiles.y / 2)
     }
 
-    viewport.x = 0;
-    viewport.y = 0;
+    if (!playerAnimating) {
+        viewport.x = 0;
+        viewport.y = 0;
+    }
     viewport.w = config.win.width;
     viewport.h = config.win.height;
 
@@ -155,10 +157,14 @@ function Loop() {
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
 
+    if (actionButtonAPressed && typeof player.attackEnemy === "function") {
+        player.attackEnemy();
+    }
+    
     checkTeleport();
     checkBackTeleport();
-    checkNpcInteraction()
-    
+    checkNpcInteraction();
+
     actionButtonAPressed = false;
     actionButtonBPressed = false;
 

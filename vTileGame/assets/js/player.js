@@ -1,3 +1,5 @@
+let playerAnimating = false;
+
 // Helper to check collision at a tile (for all layers)
 function isTileBlocked(x, y) {
     if (map.data._layers) {
@@ -151,6 +153,85 @@ Player.prototype = {
         player = this;
 
         Log("coords", "Coords: " + this.tile.x + ", " + this.tile.y);
+    },
+    attackEnemy: function() {
+        // Only allow attack if player has a sword
+        if (!hasItem("sword", 1)) return;
+
+        // Play attack animation (jump forward and back)
+        this.quickAttackAnim();
+
+        // Determine attack direction
+        let dir = this.movement.key;
+        let dx = keys[dir]?.x ? Math.sign(keys[dir].x) : 0;
+        let dy = keys[dir]?.y ? Math.sign(keys[dir].y) : 0;
+
+        // Target tile: ahead of player, Potentially add targeting line to show a 'lock on' to the enemy
+        let targetX = this.tile.x + dx;
+        let targetY = this.tile.y + dy;
+
+        // Attack any enemy on target tile or same tile
+        characters.forEach(char => {
+            if (char.type === "enemy" && char.health > 0) {
+                let isTarget = 
+                    (Math.round(char.x) === targetX && Math.round(char.y) === targetY) ||
+                    (Math.round(char.x) === this.tile.x && Math.round(char.y) === this.tile.y);
+
+                if (isTarget) {
+                    let dmg = Math.max(1, this.attack - char.defense);
+                    char.health -= dmg;
+                    showDamagePopup(Math.round(char.x), Math.round(char.y), dmg, "enemy");
+                    if (char.health <= 0) {
+                        handleEnemyDeath(char);
+                    }
+                }
+            }
+        });
+    },
+    quickAttackAnim: function() {
+        playerAnimating = true;
+        // there got to be a better way to freeze the viewport while the player animations play
+        frozenViewportX = viewport.x; 
+        frozenViewportY = viewport.y;
+        let dir = this.movement.key;
+        let dx = keys[dir]?.x ? Math.sign(keys[dir].x) : 0;
+        let dy = keys[dir]?.y ? Math.sign(keys[dir].y) : 0;
+        let origX = this.pos.x;
+        let origY = this.pos.y;
+        let jumpDist = 16;
+
+        this.pos.x += dx * jumpDist;
+        this.pos.y += dy * jumpDist;
+        setTimeout(() => {
+            this.pos.x = origX;
+            this.pos.y = origY;
+            playerAnimating = false;
+            frozenViewportX = null;
+            frozenViewportY = null;
+        }, 80);
+    },
+    knockbackAnim: function() {
+        playerAnimating = true;
+        frozenViewportX = viewport.x;
+        frozenViewportY = viewport.y;
+        let dir = this.movement.key;
+        let dx = keys[dir]?.x ? Math.sign(keys[dir].x) : 0;
+        let dy = keys[dir]?.y ? Math.sign(keys[dir].y) : 0;
+        let origX = this.pos.x;
+        let origY = this.pos.y;
+        let knockDist = 16;
+
+        // Move backward
+        this.pos.x -= dx * knockDist;
+        this.pos.y -= dy * knockDist;
+        setTimeout(() => {
+            // Move forward to original
+            this.pos.x = origX;
+            this.pos.y = origY;
+            playerAnimating = false;
+            frozenViewportX = null;
+            frozenViewportY = null;
+        }, 80);
     },
     getHealth: function() { return this.health; },
     setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); },

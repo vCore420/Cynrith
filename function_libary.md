@@ -1,3 +1,15 @@
+## Combat System
+
+- showDamagePopup(x, y, dmg, type) — Displays a damage popup above the target (enemy or player) with animated slide and fade.
+- handleEnemyDeath(enemy) — Handles enemy defeat, fade-out animation, loot/XP drop, and respawn logic.
+- handlePlayerDeath() — Triggers player death sequence, fade-out, and shows respawn menu.
+- respawnPlayer() — Respawns the player at the map’s spawn position with half health and resets death screen.
+- getDirectionToFace(npc, player) — Returns the direction key for an NPC/enemy to face the player.
+- moveEnemyTowardPlayer(char) — Moves an enemy toward the player, sets facing direction, and triggers hostile state.
+- drawDamagePopups() — Renders all active damage popups above characters.
+- drawCharacters() — Draws all NPCs and enemies, including health bars, names, and animation frames.
+
+
 ## Stat Getters/Setters:
 - getHealth(), setHealth(val), addHealth(val)
 - getMaxHealth(), setMaxHealth(val), addMaxHealth(val)

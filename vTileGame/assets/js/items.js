@@ -14,6 +14,14 @@ const ITEM_DEFINITIONS = {
         image: "assets/img/items/mushroom.png",
         stackable: true,
         useable: false
+    },
+    sword: {
+        id: "sword",
+        name: "Sword",
+        description: "A sharp blade. Deals extra damage.",
+        image: "assets/img/items/sword.png",
+        stackable: false,
+        useable: false
     }
     // Add more items here...
 };
