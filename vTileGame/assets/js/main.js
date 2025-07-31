@@ -77,7 +77,7 @@ document.getElementById('btn-a').addEventListener('click', function() {
 function Setup() {
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
-    player = new Player(4, 3);
+    player = new Player(45, 47);
 
     // Ensure NPCs/enemies spawn on first map load
     map = new Map("map0");

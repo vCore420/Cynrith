@@ -86,6 +86,7 @@ function isWalkable(tileX, tileY) {
 }
 
 // AI: Wander within a defined area
+// currently doesnt play frames for walking when wondering, sprite just faces the direction they are moving
 function wanderAI(char) {
     if (char.isInteracting) return;
     if (!char.wanderArea) return;
