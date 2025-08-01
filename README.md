@@ -21,6 +21,11 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
   - Player death and respawn menu  
 - **Notification system**: Top-of-screen notifications for tips, events, and interactions
 - **Dialogue system**: Bottom-of-screen dialogue blocks for story and NPC interaction, disables player movement during dialogue
+- **Quest system:**  
+  - NPCs can offer quests with different types (item collection, enemy defeat, gift quests, etc. to be expanded)
+  - Quest progress and completion logic, including inventory checks and reward distribution (items, XP)
+  - Gift quests allow instant rewards for engaging with NPCs
+  - Quest menu with tabs for active and completed quests, updated dynamically
 - **Inventory system**: 3x3 grid, item stacking, add/remove/use items, modular item definitions.
 - **Menus and navigation**: With sprite preview and stats. Seamless switching between player menu, inventory, and future menus (skills, quests, etc.)
 - **Teleportation and map warping**: Multi Level (Floor) Game With XP requirements and contextual notifications, allowing the player to travel the world as they please as they gain xp.
@@ -39,11 +44,11 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 ## Roadmap
 
-- Quest system and quest menu
+- Quest system and quest menu (expanding quest types, save/load quest progress)
 - Item usage and effects
-- Expand NPC/Enemy behaviors
-- Combat System
+- Expand NPC/Enemy behaviors (advace on movement animation)
 - Save/load system
+- Skil System
 - Storyline
 - Expand Floors to Expand Story and Npcs
 - Improved assets and polish

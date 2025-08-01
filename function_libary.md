@@ -74,3 +74,28 @@
 - Log(type, text) — Log data to screen (e.g. FPS, coords).
 - LoadURL(url, callback) — AJAX call for loading map and other data.
 
+## Quest System
+- startQuest(questId) — Adds a quest to the player's active quests (except for gift quests).
+- completeQuest(questId) — Moves a quest from active to completed and updates quest state.
+- tryCompleteQuest(questId) — Checks quest requirements and, if met, completes the quest and gives rewards.
+- giveQuestRewards(rewards) — Gives items and XP to the player based on the quest's rewards array.
+- updateQuestsUI(tab) — Updates the quest menu UI for active/completed quests.
+
+## Dialogue & Quest Integration
+- dialogue(...lines) — Shows a dialogue block at the bottom of the screen, disables player movement, advances on B/A button.
+- showDialogueLine(idx) — Advances dialogue lines and updates footer hints based on quest/dialogue type.
+
+## Inventory & XP Helpers (for quests)
+- hasItem(itemId, amount) — Returns true if player has at least `amount` of the item (used for itemCollect quests).
+- addItem(itemId, amount) — Adds an item to the inventory (used for quest rewards).
+- removeItem(itemId, amount) — Removes an item from the inventory (used for quest completion).
+- player.addXP(amount) — Adds XP to the player (used for quest rewards).
+
+## NPC Quest Data
+- NPC_DEFINITIONS — NPCs can have questId, quest type, dialogue for quest start/incomplete/complete, and questRedo flag.
+
+## Quest Menu Navigation
+- showQuestsMenu() — Opens the quest menu with tabs for active/completed quests.
+- updateQuestsUI(tab) — Renders the quest list and updates on quest changes.
+
+---
