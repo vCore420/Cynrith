@@ -16,18 +16,18 @@ const NPC_DEFINITIONS = {
         dialogue: {
             default: [
                 "Hello, traveler!",
-                "The forest is dangerous at night."
-            ],
-            questGiven: [
-                "Can you bring me 3 mushrooms?",
-                "They're in the forest nearby."
+                "Welcome to the world of .......",
+                "Here you can find many adventures and wonders.",
+                "However it can be a dangerous out there!"
             ],
             questComplete: [
-                "Thank you for the mushrooms!",
-                "Here is your reward."
+                "Please Take this on your adventure",
+                "Press the Action Button A to defend yourself",
+                "Don't lose it!"
             ]
         },
-        questId: "mushroom_quest"
+        questId: "bobs_gift",
+        questRedo: false
     },
     
     villager_jim: {
@@ -45,18 +45,21 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Here you can use the Teleport stone to move to the next floor!"
+                "Carefull out there! Theres Slimes up Ahead!"
             ],
             questGiven: [
-                "Can you bring me 3 mushrooms?",
-                "They're in the forest nearby."
+                "Can you bring me 3 potions?",
+                "you can get them from the Slimes nearby."
+            ],
+            questIncomplete: [
+                "You dont have the items I want yet?"
             ],
             questComplete: [
-                "Thank you for the mushrooms!",
+                "Thank you for the potions!",
                 "Here is your reward."
             ]
         },
-        questId: "first_floor"
+        questId: "slime_quest"
     },
     // Add more NPCs here...
 };

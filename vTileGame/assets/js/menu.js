@@ -73,5 +73,70 @@ function showPlayerMenuMain() {
     document.querySelector('.player-menu-inner').classList.add('active');
 }
 
-// Attach event listeners
+function showQuestsMenu() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    let questsPage = document.getElementById('quests-menu');
+    if (!questsPage) {
+        questsPage = document.createElement('div');
+        questsPage.id = "quests-menu";
+        questsPage.className = "menu-page active";
+        questsPage.innerHTML = `
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Quests</h2>
+            <div id="quests-tabs" style="display:flex;gap:12px;justify-content:center;margin-bottom:12px;">
+                <button id="tab-active" class="quest-tab active">Active Quests</button>
+                <button id="tab-completed" class="quest-tab">Completed Quests</button>
+            </div>
+            <div id="quests-list" class="quests-list"></div>
+        `;
+        document.querySelector('.player-menu-pages').appendChild(questsPage);
+
+        // Tab switching logic
+        document.getElementById('tab-active').onclick = function() {
+            document.getElementById('tab-active').classList.add('active');
+            document.getElementById('tab-completed').classList.remove('active');
+            updateQuestsUI("active");
+        };
+        document.getElementById('tab-completed').onclick = function() {
+            document.getElementById('tab-completed').classList.add('active');
+            document.getElementById('tab-active').classList.remove('active');
+            updateQuestsUI("completed");
+        };
+    } else {
+        questsPage.classList.add('active');
+    }
+    updateQuestsUI("active");
+}
+
+function updateQuestsUI(tab = "active") {
+    const list = document.getElementById('quests-list');
+    if (!list) return;
+    list.innerHTML = "";
+    let questsArr = tab === "active" ? playerQuests.active : playerQuests.completed;
+    if (questsArr.length === 0) {
+        list.innerHTML = `<div style="color:#aaa;text-align:center;margin-top:24px;">No quests found.</div>`;
+        return;
+    }
+    questsArr.forEach((qid, i) => {
+        const quest = QUEST_DEFINITIONS[qid];
+        if (!quest) return;
+        const div = document.createElement('div');
+        div.className = "quest-list-item";
+        div.innerHTML = `
+            <div><b>${quest.name}</b></div>
+            <div style="font-size:0.95em;color:#ccc;margin-bottom:4px;">${quest.description}</div>
+            ${tab === "completed" ? `<div style="font-size:0.85em;color:#6f6;">(Completed)</div>` : ""}
+        `;
+        list.appendChild(div);
+        // Divider except after last item
+        if (i < questsArr.length - 1) {
+            const hr = document.createElement('hr');
+            hr.className = "quest-divider";
+            list.appendChild(hr);
+        }
+    });
+}
+
+// Attach event listener
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
+document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);

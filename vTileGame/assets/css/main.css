@@ -273,6 +273,62 @@ div#log {
   border-radius: 8px;
 }
 
+#quests-menu.menu-page {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+.quests-list {
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+}
+
+.quest-list-item {
+    padding: 12px 0 8px 0;
+    text-align: left;
+}
+
+.quests-list {
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.quest-list-item {
+    padding: 12px 0 8px 0;
+    text-align: left;
+}
+
+.quest-divider {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 0 0 0 0;
+}
+.quest-tab {
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: background 0.2s;
+}
+.quest-tab.active {
+    background: #444;
+    opacity: 1;
+}
+
 /* Notification styles */
 .notification {
   position: fixed;

@@ -157,6 +157,99 @@ function Loop() {
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
 
+    if (_dialogueActive) {
+        const block = document.getElementById('dialogue-block');
+        let idx = parseInt(block.dataset.dialogueIdx || "0", 10);
+
+        // If we're showing questGiven dialogue, only allow B to close
+        if (block.dataset.dialogueType === "questGiven") {
+            if (actionButtonBPressed) {
+                showDialogueLine(idx + 1);
+                actionButtonBPressed = false;
+            }
+            // On last line, close dialogue
+            if (idx === _dialogueQueue.length - 1 && actionButtonBPressed) {
+                let npc = characters.find(c => c.isInteracting);
+                
+                block.classList.add('hidden');
+                _dialogueActive = false;
+                controlsEnabled = true;
+                actionButtonBPressed = false;
+                block.dataset.dialogueType = "";
+            }
+            return;
+        }
+
+        if (block.dataset.dialogueType === "questComplete") {
+            if (actionButtonBPressed) {
+                showDialogueLine(idx + 1);
+                actionButtonBPressed = false;
+            }
+            if (idx === _dialogueQueue.length - 1 && actionButtonBPressed) {
+                block.classList.add('hidden');
+                _dialogueActive = false;
+                controlsEnabled = true;
+                actionButtonBPressed = false;
+                block.dataset.dialogueType = "";
+            }
+            return;
+        }
+
+        // Normal dialogue logic
+        if (actionButtonBPressed) {
+            showDialogueLine(idx + 1);
+            actionButtonBPressed = false;
+        }
+        if (actionButtonAPressed && idx === _dialogueQueue.length - 1) {
+            let npc = characters.find(c => c.isInteracting);
+            if (npc && npc.questId) {
+                const questDef = QUEST_DEFINITIONS[npc.questId];
+                if (questDef) {
+                    // If quest is active, check completion
+                    if (playerQuests.active.includes(npc.questId)) {
+                        let result = tryCompleteQuest(npc.questId);
+                        if (result === "complete") {
+                            dialogue(...npc.dialogue.questComplete);
+                            notify(`Quest complete! Rewards added.`, 2000);
+                        } else if (result === "incomplete") {
+                            dialogue(...npc.dialogue.questIncomplete);
+                            notify(`Quest not complete. Collect required items.`, 2000);
+                        }
+                        actionButtonAPressed = false;
+                        return;
+                    }
+                    // ...existing start quest logic...
+                    if (!isQuestCompleted(npc.questId) || questDef.redoable) {
+                        if (questDef.type === "gift") {
+                            // Instantly complete the quest and give rewards
+                            let result = tryCompleteQuest(npc.questId);
+                            dialogue(...npc.dialogue.questComplete);
+                            block.dataset.dialogueType = "questComplete";
+                            if (result === "complete") {
+                                notify(`Quest complete! Rewards added.`, 2000);
+                                if (typeof updateQuestsUI === "function") updateQuestsUI("completed");
+                            }
+                            actionButtonAPressed = false;
+                            return;
+                        } else {
+                            startQuest(npc.questId);
+                            notify(`Quest started: ${questDef.name}`, 2000);
+                            dialogue(...npc.dialogue.questGiven);
+                            block.dataset.dialogueType = "questGiven";
+                            actionButtonAPressed = false;
+                            return;
+                        }
+                    }
+                }
+            }
+            // Only close if not starting/completing a quest
+            block.classList.add('hidden');
+            _dialogueActive = false;
+            controlsEnabled = true;
+            actionButtonAPressed = false;
+        }
+    }
+
     if (actionButtonAPressed && typeof player.attackEnemy === "function") {
         player.attackEnemy();
     }

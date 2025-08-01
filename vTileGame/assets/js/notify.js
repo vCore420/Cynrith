@@ -24,14 +24,28 @@ function dialogue(...lines) {
 function showDialogueLine(idx) {
     const block = document.getElementById('dialogue-block');
     const text = document.getElementById('dialogue-text');
+    const footer = document.getElementById('dialogue-footer');
     if (idx < _dialogueQueue.length) {
         text.textContent = _dialogueQueue[idx];
         block.classList.remove('hidden');
-        block.onclick = () => showDialogueLine(idx + 1);
+        // Show hint for next line
+        if (block.dataset.dialogueType === "questGiven") {
+            footer.textContent = "Press B to close";
+        } else if (block.dataset.dialogueType === "questComplete") {
+            footer.textContent = "Press B to close";
+        } else if (idx === _dialogueQueue.length - 1) {
+            footer.textContent = "Press B to close or A to start quest";
+        } else {
+            footer.textContent = "Press B to continue";
+        }
+        block.onclick = null;
+        block.dataset.dialogueIdx = idx;
     } else {
         block.classList.add('hidden');
         block.onclick = null;
+        footer.textContent = "";
         _dialogueActive = false;
         controlsEnabled = true;
+        block.dataset.dialogueType = "";
     }
 }
