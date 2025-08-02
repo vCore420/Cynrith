@@ -15,6 +15,9 @@
 - [ ] Keyboard support - WASD for movement, left mouse for B button, right mouse for A button
 - [ ] Add collision logic between Player and Npc
 
+## Inventory 
+- [ ] Design dropdown menu for items, display item name, rarity and description, use and remove buttons
+      
 ## Skills Menu
 - [ ] Recycle skill menu used for FiveM to suit the style of this game and expand/adapt the system to work with our tile game
 - [ ] Allow for 3 skills to be used to add player buffs/debuffs
