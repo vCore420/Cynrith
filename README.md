@@ -84,8 +84,9 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 ## Contributors 
 
-[![Contributors](https://img.shields.io/github/contributors/vCore420/Cynrith?style=for-the-badge)](https://github.com/vCore420/Cynrith/graphs/contributors)
 [![Contributors Display](https://contrib.rocks/image?repo=vCore420/Cynrith)](https://github.com/vCore420/Cynrith/graphs/contributors)
+
+[![Contributors](https://img.shields.io/github/contributors/vCore420/Cynrith?style=for-the-badge)](https://github.com/vCore420/Cynrith/graphs/contributors)
 
 - Designed, extended, customized, and maintained by vCore420
 
