@@ -28,16 +28,7 @@ function showDialogueLine(idx) {
     if (idx < _dialogueQueue.length) {
         text.textContent = _dialogueQueue[idx];
         block.classList.remove('hidden');
-        // Show hint for next line
-        if (block.dataset.dialogueType === "questGiven") {
-            footer.textContent = "Press B to close";
-        } else if (block.dataset.dialogueType === "questComplete") {
-            footer.textContent = "Press B to close";
-        } else if (idx === _dialogueQueue.length - 1) {
-            footer.textContent = "Press B to close or A to start quest";
-        } else {
-            footer.textContent = "Press B to continue";
-        }
+        footer.textContent = "Press A to continue";
         block.onclick = null;
         block.dataset.dialogueIdx = idx;
     } else {
@@ -46,6 +37,8 @@ function showDialogueLine(idx) {
         footer.textContent = "";
         _dialogueActive = false;
         controlsEnabled = true;
+        player.frozen = false; 
+        clearAllMovementKeys(); 
         block.dataset.dialogueType = "";
     }
 }

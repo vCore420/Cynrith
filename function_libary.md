@@ -98,4 +98,16 @@
 - showQuestsMenu() — Opens the quest menu with tabs for active/completed quests.
 - updateQuestsUI(tab) — Renders the quest list and updates on quest changes.
 
+## Screen Effects
+- updateScreenFadeOverlay() — Animates and updates the screen fade overlay for cutscenes/dialogue.
+- drawScreenFadeOverlay() — Draws the current screen fade overlay.
+
+## Title & Lore Intro
+- playLoreIntro() — Plays the lore intro text sequence on new game.
+- endLoreAndStartGame() — Skips the lore intro and starts the game.
+- showSkipBtn() — Shows the skip button for the lore intro after first tap/click.
+
+## Miscellaneous
+- clearAllMovementKeys() — Sets all movement key flags to false (used to stop player movement instantly).
+
 ---

@@ -122,9 +122,26 @@ function updateQuestsUI(tab = "active") {
         if (!quest) return;
         const div = document.createElement('div');
         div.className = "quest-list-item";
+        
+        // Format rewards
+        let rewardsHtml = "";
+        if (quest.rewards && quest.rewards.length) {
+            rewardsHtml = `<div style="font-size:0.95em;color:#9f9;margin-top:4px;"><b>Rewards:</b> `;
+            rewardsHtml += quest.rewards.map(r => {
+                if (r.id && ITEM_DEFINITIONS[r.id]) {
+                    return `${r.amount || 1} ${ITEM_DEFINITIONS[r.id].name} <img src="${ITEM_DEFINITIONS[r.id].image}" alt="${ITEM_DEFINITIONS[r.id].name}" style="width:18px;vertical-align:middle;margin:0 2px 0 2px;">`;
+                } else if (typeof r.xp === "number") {
+                    return `${r.xp} XP`;
+                }
+                return "";
+            }).join(", ");
+            rewardsHtml += `</div>`;
+        }
+
         div.innerHTML = `
             <div><b>${quest.name}</b></div>
             <div style="font-size:0.95em;color:#ccc;margin-bottom:4px;">${quest.description}</div>
+            ${rewardsHtml}
             ${tab === "completed" ? `<div style="font-size:0.85em;color:#6f6;">(Completed)</div>` : ""}
         `;
         list.appendChild(div);

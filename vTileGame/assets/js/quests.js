@@ -1,23 +1,41 @@
 // All quest definitions
 const QUEST_DEFINITIONS = {
-    bobs_gift: {
-        id: "bobs_gift",
-        name: "Bob's Gift",
-        description: "A Gift from the dearest Bob.",
+    eldrin_intro: {
+        id: "eldrin_intro",
+        name: "Eldrin's Introduction",
+        description: "A Gift from the dearest Eldrin.",
         type: "gift",
         requiredItems: [],
         rewards: [{ id: "sword", amount: 1 }, { xp: 20 }],
         redoable: false
     },
-    slime_quest: {
-        id: "slime_quest",
-        name: "Slime Collection",
-        description: "Defeat 3 slimes for Villager Jim.",
-        type: "enemyDefeat",
-        requiredEnemies: [{ id: "slime", amount: 3 }],
-        rewards: [{ id: "potion", amount: 5 }, { xp: 20 }],
+    dewleaf_gather: {
+        id: "dewleaf_gather",
+        name: "Dewleaf Gathering",
+        description: "Collect 3 Dewleaf from Vicious Plants.",
+        type: "itemCollect",
+        requiredItems: [{ id: "dewleaf", amount: 3 }],
+        rewards: [{ id: "potion", amount: 2 }, { xp: 20 }],
         redoable: true
-    }
+    },
+    slime_cull: {
+        id: "slime_cull",
+        name: "Slime Cull",
+        description: "Defeat 3 Groovy Slimes.",
+        type: "itemCollect",
+        requiredItems: [{ id: "slime_balls", amount: 3 }],
+        rewards: [{ id: "potion", amount: 2 }, { xp: 20 }],
+        redoable: true
+    },
+    rook_gift: {
+        id: "rook_gift",
+        name: "Rook's Gift",
+        description: "A Gift from the wise Old Rook.",
+        type: "gift",
+        requiredItems: [],
+        rewards: [{ id: "atk_buff", amount: 1 }, { xp: 20 }],
+        redoable: false
+    },
     // Add more quests here...
 };
 

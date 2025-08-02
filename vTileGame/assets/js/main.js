@@ -156,107 +156,105 @@ function Loop() {
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
+    if (typeof updateScreenFadeOverlay === "function") updateScreenFadeOverlay();
+    if (typeof drawScreenFadeOverlay === "function") drawScreenFadeOverlay();
+    if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
 
     if (_dialogueActive) {
         const block = document.getElementById('dialogue-block');
         let idx = parseInt(block.dataset.dialogueIdx || "0", 10);
 
-        // If we're showing questGiven dialogue, only allow B to close
+        // Quest Given Dialogue
         if (block.dataset.dialogueType === "questGiven") {
-            if (actionButtonBPressed) {
+            if (actionButtonAPressed) {
                 showDialogueLine(idx + 1);
-                actionButtonBPressed = false;
+                actionButtonAPressed = false;
             }
-            // On last line, close dialogue
-            if (idx === _dialogueQueue.length - 1 && actionButtonBPressed) {
-                let npc = characters.find(c => c.isInteracting);
-                
+            if (idx === _dialogueQueue.length - 1 && actionButtonAPressed) {
                 block.classList.add('hidden');
                 _dialogueActive = false;
                 controlsEnabled = true;
-                actionButtonBPressed = false;
+                actionButtonAPressed = false;
                 block.dataset.dialogueType = "";
             }
             return;
         }
 
+        // Quest Complete Dialogue
         if (block.dataset.dialogueType === "questComplete") {
-            if (actionButtonBPressed) {
+            if (actionButtonAPressed) {
                 showDialogueLine(idx + 1);
-                actionButtonBPressed = false;
+                actionButtonAPressed = false;
             }
-            if (idx === _dialogueQueue.length - 1 && actionButtonBPressed) {
+            if (idx === _dialogueQueue.length - 1 && actionButtonAPressed) {
                 block.classList.add('hidden');
                 _dialogueActive = false;
                 controlsEnabled = true;
-                actionButtonBPressed = false;
+                actionButtonAPressed = false;
                 block.dataset.dialogueType = "";
             }
             return;
         }
 
-        // Normal dialogue logic
-        if (actionButtonBPressed) {
-            showDialogueLine(idx + 1);
-            actionButtonBPressed = false;
-        }
-        if (actionButtonAPressed && idx === _dialogueQueue.length - 1) {
-            let npc = characters.find(c => c.isInteracting);
-            if (npc && npc.questId) {
-                const questDef = QUEST_DEFINITIONS[npc.questId];
-                if (questDef) {
+        // Normal dialogue logic (default dialogue)
+        if (actionButtonAPressed) {
+            if (idx < _dialogueQueue.length - 1) {
+                showDialogueLine(idx + 1);
+                actionButtonAPressed = false;
+            } else {
+                // After last line of default dialogue, check for quest
+                let npc = characters.find(c => c.isInteracting);
+                if (npc && npc.questId && QUEST_DEFINITIONS[npc.questId]) {
+                    const questDef = QUEST_DEFINITIONS[npc.questId];
                     // If quest is active, check completion
                     if (playerQuests.active.includes(npc.questId)) {
                         let result = tryCompleteQuest(npc.questId);
                         if (result === "complete") {
+                            notify("Quest complete! Rewards added.", 2000); 
                             dialogue(...npc.dialogue.questComplete);
-                            notify(`Quest complete! Rewards added.`, 2000);
+                            block.dataset.dialogueType = "questComplete";
                         } else if (result === "incomplete") {
+                            notify("You haven't finished this quest yet.", 2000); 
                             dialogue(...npc.dialogue.questIncomplete);
-                            notify(`Quest not complete. Collect required items.`, 2000);
+                            block.dataset.dialogueType = "questGiven";
                         }
                         actionButtonAPressed = false;
                         return;
                     }
-                    // ...existing start quest logic...
+                    // Start quest if not completed or redoable
                     if (!isQuestCompleted(npc.questId) || questDef.redoable) {
                         if (questDef.type === "gift") {
-                            // Instantly complete the quest and give rewards
                             let result = tryCompleteQuest(npc.questId);
+                            notify("Quest complete! Rewards added.", 2000); 
                             dialogue(...npc.dialogue.questComplete);
                             block.dataset.dialogueType = "questComplete";
-                            if (result === "complete") {
-                                notify(`Quest complete! Rewards added.`, 2000);
-                                if (typeof updateQuestsUI === "function") updateQuestsUI("completed");
-                            }
-                            actionButtonAPressed = false;
-                            return;
                         } else {
                             startQuest(npc.questId);
                             notify(`Quest started: ${questDef.name}`, 2000);
                             dialogue(...npc.dialogue.questGiven);
                             block.dataset.dialogueType = "questGiven";
-                            actionButtonAPressed = false;
-                            return;
                         }
+                        actionButtonAPressed = false;
+                        return;
                     }
                 }
+                // If no quest, just close dialogue
+                block.classList.add('hidden');
+                _dialogueActive = false;
+                controlsEnabled = true;
+                actionButtonAPressed = false;
             }
-            // Only close if not starting/completing a quest
-            block.classList.add('hidden');
-            _dialogueActive = false;
-            controlsEnabled = true;
-            actionButtonAPressed = false;
         }
     }
 
-    if (actionButtonAPressed && typeof player.attackEnemy === "function") {
+    if (actionButtonBPressed && typeof player.attackEnemy === "function") {
         player.attackEnemy();
     }
     
     checkTeleport();
     checkBackTeleport();
     checkNpcInteraction();
+    checkForcedEncounters();
 
     actionButtonAPressed = false;
     actionButtonBPressed = false;

@@ -6,9 +6,14 @@ let characterIdCounter = 1;
 
 setInterval(() => {
     characters.forEach(char => {
-        if (char.movement.moving) {
-            char.movement.frame = (char.movement.frame + 1) % 4;
+        if (char.movement.moving || char.forcedWalking) {
+            const dir = char.movement.key;
+            const frames = keys[dir]?.f || [1, 1, 1, 1];
+            if (typeof char.movement.animIndex === "undefined") char.movement.animIndex = 0;
+            char.movement.animIndex = (char.movement.animIndex + 1) % frames.length;
+            char.movement.frame = char.movement.animIndex;
         } else {
+            char.movement.animIndex = 0;
             char.movement.frame = 1;
         }
     });
@@ -86,54 +91,79 @@ function isWalkable(tileX, tileY) {
 }
 
 // AI: Wander within a defined area
-// currently doesnt play frames for walking when wondering, sprite just faces the direction they are moving
 function wanderAI(char) {
+    if (char.forcedEncounterInProgress || char.forcedWalking) return;
     if (char.isInteracting) return;
     if (!char.wanderArea) return;
 
-    if (typeof char.stepsRemaining !== "number") char.stepsRemaining = 0;
+    // Initialize wander state
+    if (!char.wanderState) {
+        char.wanderState = {
+            destX: null,
+            destY: null,
+            moving: false,
+            pauseTimer: 0
+        };
+    }
 
-    if (!char.movement.moving && char.stepsRemaining <= 0) {
-        if (Math.random() < 0.02) {
-            const dir = randomDirection();
-            const move = keys[dir];
-            const newX = char.x + (move.x / config.size.tile);
-            const newY = char.y + (move.y / config.size.tile);
+    // If currently moving to a tile, continue moving
+    if (char.wanderState.moving) {
+        const speed = (char.moveSpeed || 1) / 2.5; 
+        let dx = char.wanderState.destX - char.x;
+        let dy = char.wanderState.destY - char.y;
 
-            if (
-                newX >= char.wanderArea.x1 && newX <= char.wanderArea.x2 &&
-                newY >= char.wanderArea.y1 && newY <= char.wanderArea.y2 &&
-                isWalkable(Math.round(newX), Math.round(newY))
-            ) {
-                char.movement.key = dir;
-                char.movement.moving = true;
-                char.stepsRemaining = Math.floor(Math.random() * 3) + 2;
-            }
+        // Move towards destination
+        if (Math.abs(dx) > 0.01) {
+            char.x += Math.sign(dx) * Math.min(Math.abs(dx), speed / config.size.tile);
         }
-    } else if (char.stepsRemaining > 0) {
-        const move = keys[char.movement.key];
-        const nextX = char.x + (move.x / config.size.tile);
-        const nextY = char.y + (move.y / config.size.tile);
+        if (Math.abs(dy) > 0.01) {
+            char.y += Math.sign(dy) * Math.min(Math.abs(dy), speed / config.size.tile);
+        }
+
+        char.movement.moving = true;
+
+        // Arrived at destination tile
+        if (Math.abs(dx) <= 0.01 && Math.abs(dy) <= 0.01) {
+            char.x = char.wanderState.destX;
+            char.y = char.wanderState.destY;
+            char.wanderState.moving = false;
+            char.movement.moving = false;
+            char.wanderState.pauseTimer = Math.floor(Math.random() * 20) + 10; // Pause before next move
+        }
+        return;
+    }
+
+    // If pausing, count down
+    if (char.wanderState.pauseTimer > 0) {
+        char.movement.moving = false;
+        char.wanderState.pauseTimer--;
+        return;
+    }
+
+    // Pick a new direction and destination tile
+    if (Math.random() < 0.04) { // Chance to start wandering
+        const dir = randomDirection();
+        const move = keys[dir];
+        const destX = Math.round(char.x) + Math.sign(move.x);
+        const destY = Math.round(char.y) + Math.sign(move.y);
 
         if (
-            nextX >= char.wanderArea.x1 && nextX <= char.wanderArea.x2 &&
-            nextY >= char.wanderArea.y1 && nextY <= char.wanderArea.y2 &&
-            isWalkable(Math.round(nextX), Math.round(nextY))
+            destX >= char.wanderArea.x1 && destX <= char.wanderArea.x2 &&
+            destY >= char.wanderArea.y1 && destY <= char.wanderArea.y2 &&
+            isWalkable(destX, destY)
         ) {
-            char.x = nextX;
-            char.y = nextY;
+            char.movement.key = dir;
+            char.wanderState.destX = destX;
+            char.wanderState.destY = destY;
+            char.wanderState.moving = true;
             char.movement.moving = true;
-            char.stepsRemaining--;
-        } else {
-            char.stepsRemaining = 0;
-            char.movement.moving = false;
         }
     } else {
         char.movement.moving = false;
     }
 }
 
-// Update all NPCs and Enemies (call in game loop)
+// Update all NPCs and Enemies
 function updateCharacters() {
     characters.forEach(char => {
         if (char.type === "enemy") {
@@ -159,6 +189,52 @@ function updateCharacters() {
             }
         } else {
             wanderAI(char);
+        }
+    });
+}
+
+function checkForcedEncounters() {
+    characters.forEach(npc => {
+        if (
+            npc.type === "npc" &&
+            npc.forcedEncounter &&
+            npc.forcedEncounter.enabled &&
+            !npc.forcedEncounter.triggered &&
+            !npc.forcedEncounterInProgress
+        ) {
+            const onTrigger = npc.forcedEncounter.triggerTiles.some(
+                t => player.tile.x === t.x && player.tile.y === t.y
+            );
+            if (onTrigger) {
+                npc.forcedEncounterInProgress = true;
+                npc.forcedWalking = true;
+                controlsEnabled = false;
+                npc.isInteracting = true;
+                player.frozen = true;
+                clearAllMovementKeys(); 
+ 
+                npc._forcedEncounterInterval = setInterval(() => {
+                    let dx = player.tile.x - Math.round(npc.x);
+                    let dy = player.tile.y - Math.round(npc.y);
+
+                    if (Math.abs(dx) + Math.abs(dy) > 1) {
+                        npc.movement.key = getDirectionToFace(npc, player);
+                        moveEnemyTowardPlayer(npc);
+                        npc.movement.moving = true;
+                    } else {
+                        clearInterval(npc._forcedEncounterInterval);
+                        npc._forcedEncounterInterval = null;
+                        npc.forcedEncounter.triggered = true;
+                        npc.forcedEncounterInProgress = false;
+                        npc.forcedWalking = false; 
+                        npc.isInteracting = true;
+                        npc.movement.moving = false;
+                        npc.movement.key = getDirectionToFace(npc, player);
+
+                        dialogue(...npc.dialogue.default);
+                    }
+                }, 30);
+            }
         }
     });
 }
@@ -303,7 +379,7 @@ function respawnPlayer() {
     deathScreenShown = false;
 }
 
-// Handle enemy death, clean this up a bit to have a better looking animation and dynamic cooldown times
+// Handle enemy death, clean this up a bit to have a better looking animation and dynamic cooldown times and proper respawn locations
 function handleEnemyDeath(enemy) {
     let fadeFrames = 12;
     let frame = 0;
@@ -335,7 +411,7 @@ function handleEnemyDeath(enemy) {
             // Respawn enemy after cooldown
             setTimeout(() => {
                 respawnEnemy(ENEMY_TYPES[enemy.id]); 
-            }, 4000); // 4 seconds respawn
+            }, 4000); // 4 seconds respawn, extend this 
         }
     }, 40);
 }
@@ -359,14 +435,14 @@ const characters = [];
 
 // Draw all NPCs and Enemies
 function drawCharacters() {
+    let anyHostile = false;
     characters.forEach(char => {
         if (!char.sprite || !char.sprite.complete || char.sprite.naturalWidth === 0) return;
 
         let frame = 1;
-        if (char.movement && char.movement.moving && char.movement.key && keys[char.movement.key]) {
-            frame = keys[char.movement.key].f[char.movement.frame || 1];
-        } else if (char.movement && char.movement.key && keys[char.movement.key]) {
-            frame = keys[char.movement.key].f[1];
+        if (char.movement && char.movement.key && keys[char.movement.key]) {
+            const frames = keys[char.movement.key].f;
+            frame = frames[char.movement.frame || 0] || frames[0];
         }
 
         let px = Math.round(char.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
@@ -384,6 +460,7 @@ function drawCharacters() {
         );
         // Draw health bar for hostile enemies
         if (char.type === "enemy" && char.state === "hostile" && typeof char.health === "number") {
+            anyHostile = true;
             let barWidth = config.size.char * 0.8;
             let barHeight = 8;
             let healthRatio = Math.max(0, char.health / char.maxHealth);
@@ -408,6 +485,7 @@ function drawCharacters() {
             context.strokeRect(px + (config.size.char - barWidth) / 2, py - barHeight - 6, barWidth, barHeight);
         }
     });
+    
     drawDamagePopups();
 }
 
@@ -427,6 +505,7 @@ function spawnCharactersForMap(mapIndex) {
                     );
                     npc.wanderArea = spawn.wanderArea;
                     characters.push(npc);
+                    npc.forcedEncounterInProgress = false;
                 }
             });
         }
@@ -456,15 +535,15 @@ function checkNpcInteraction() {
     characters.forEach(char => {
         if (char.type === "npc" && char.interactive) {
             const inRange =
-                Math.abs(player.tile.x - char.x) <= 1 &&
-                Math.abs(player.tile.y - char.y) <= 1;
+                Math.abs(player.tile.x - char.x) <= 2 &&
+                Math.abs(player.tile.y - char.y) <= 2;
 
             if (inRange) {
                 if (!char.notifShown) {
-                    notify(`Press the B button to talk to ${char.name}`, 2500);
+                    notify(`Press the A button to talk to ${char.name}`, 2500);
                     char.notifShown = true;
                 }
-                if (actionButtonBPressed && char.dialogue && char.dialogue.default) {
+                if (actionButtonAPressed && char.dialogue && char.dialogue.default) {
                     // Stop wandering and face player
                     char.isInteracting = true;
                     char.movement.key = getDirectionToFace(char, player);

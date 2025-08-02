@@ -22,11 +22,20 @@ function isTileBlocked(x, y) {
     }
 }
 
+function clearAllMovementKeys() {
+    for (let key in keys) {
+        if (keys.hasOwnProperty(key)) {
+            keys[key].a = false;
+        }
+    }
+}
+
 // player:
 const Player = function(tile_x, tile_y) {
     this.timer = setInterval(() => player.frame(), 125);
     this.frames = [0.40, 0.42, 0.44, 0.46, 0.48, 0.50, 0.48, 0.46, 0.44, 0.42, 0.40];
-    
+    this.frozen = false;
+
     this.sprite = new Image();
     this.sprite.src = "assets/img/char/hero.png";
 
@@ -106,6 +115,8 @@ Player.prototype = {
         }
     },
     frame: function() {
+        if (this.frozen) return;
+
         this.movement.frame++;
 
         if (this.movement.frame == 4) {
@@ -166,17 +177,19 @@ Player.prototype = {
         let dx = keys[dir]?.x ? Math.sign(keys[dir].x) : 0;
         let dy = keys[dir]?.y ? Math.sign(keys[dir].y) : 0;
 
-        // Target tile: ahead of player, Potentially add targeting line to show a 'lock on' to the enemy
-        let targetX = this.tile.x + dx;
-        let targetY = this.tile.y + dy;
+        // Target tiles: in front of player and two tiles in front
+        let targetTiles = [
+            { x: this.tile.x + dx,     y: this.tile.y + dy },     // 1 tile ahead
+            { x: this.tile.x + dx*2,   y: this.tile.y + dy*2 },   // 2 tiles ahead
+            { x: this.tile.x,          y: this.tile.y }           // player's own tile
+        ];
 
-        // Attack any enemy on target tile or same tile
+        // Attack any enemy on target tiles
         characters.forEach(char => {
             if (char.type === "enemy" && char.health > 0) {
-                let isTarget = 
-                    (Math.round(char.x) === targetX && Math.round(char.y) === targetY) ||
-                    (Math.round(char.x) === this.tile.x && Math.round(char.y) === this.tile.y);
-
+                let isTarget = targetTiles.some(t =>
+                    Math.round(char.x) === t.x && Math.round(char.y) === t.y
+                );
                 if (isTarget) {
                     let dmg = Math.max(1, this.attack - char.defense);
                     char.health -= dmg;
@@ -190,7 +203,6 @@ Player.prototype = {
     },
     quickAttackAnim: function() {
         playerAnimating = true;
-        // there got to be a better way to freeze the viewport while the player animations play
         frozenViewportX = viewport.x; 
         frozenViewportY = viewport.y;
         let dir = this.movement.key;
@@ -253,6 +265,43 @@ Player.prototype = {
     addDefence: function(val) { this.defence += val; }
 };
 
+function drawPlayerHealthHUD() {
+    // Only show if any enemy is hostile
+    const anyHostile = characters.some(char => char.type === "enemy" && char.state === "hostile");
+    if (!anyHostile) return;
+
+    const barWidth = Math.min(420, Math.floor(config.win.width * 0.45)); // Responsive, max 420px
+    const barHeight = 18;
+    const x = Math.floor((config.win.width - barWidth) / 2);
+    const y = 24;
+
+    const healthRatio = Math.max(0, player.health / player.maxHealth);
+
+    // Background
+    context.save();
+    context.globalAlpha = 0.92;
+    context.fillStyle = "#222";
+    context.fillRect(x, y, barWidth, barHeight);
+
+    // Health
+    context.fillStyle = "#3e3";
+    context.fillRect(x, y, barWidth * healthRatio, barHeight);
+
+    // Border
+    context.strokeStyle = "#fff";
+    context.lineWidth = 2;
+    context.strokeRect(x, y, barWidth, barHeight);
+
+    // Text
+    context.font = "bold 0.8em Arial";
+    context.textAlign = "center";
+    context.fillStyle = "#fff";
+    context.shadowColor = "#111";
+    context.shadowBlur = 2;
+    context.fillText(`Player Health: ${player.health} / ${player.maxHealth}`, x + barWidth / 2, y + barHeight - 4);
+    context.restore();
+}
+
 // Touch Controls 
 
 // Global flag to enable/disable controls (set by menu.js)
@@ -260,7 +309,7 @@ let controlsEnabled = true;
 
 // player movement start:
 document.addEventListener("keydown", function(event) {
-    if (!controlsEnabled) return;
+    if (!controlsEnabled || player.frozen) return;
 
     if (event.keyCode >= 37 && event.keyCode <= 40) {
         player.movement.moving = true;
@@ -283,7 +332,7 @@ document.addEventListener("keydown", function(event) {
 
 // player movement end:
 document.addEventListener("keyup", function(event) {
-    if (!controlsEnabled) return;
+    if (!controlsEnabled || player.frozen) return;
 
     let found = false;
 

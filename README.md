@@ -29,7 +29,9 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 - **Inventory system**: 3x3 grid, item stacking, add/remove/use items, modular item definitions.
 - **Menus and navigation**: With sprite preview and stats. Seamless switching between player menu, inventory, and future menus (skills, quests, etc.)
 - **Teleportation and map warping**: Multi Level (Floor) Game With XP requirements and contextual notifications, allowing the player to travel the world as they please as they gain xp.
+- **Title screen and lore intro:** Title screen with New Game/Load Game, and a lore intro sequence with skip functionality.
 - **Touch/mouse/keyboard controls**: For both desktop and mobile.
+- **Lore-rich worldbuilding:** Each floor features unique lore, NPCs, and environmental storytelling.
 - **All assets are placeholders or in beta**
 
 ## Getting Started
