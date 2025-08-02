@@ -56,7 +56,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 - Floor and Storyline expansion 
 - Improved assets and polish
 
-- planing to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+- planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
 ## Credits
 
