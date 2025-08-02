@@ -33,29 +33,22 @@
 
 ## Item System
 - [ ] Usable items, functionality for different item uses 
-- [ ] Buyable items (shop/traders system?) 
-- [ ] Lootable nodes
+- [ ] Buyable items? (shop/traders system?) 
+- [ ] Lootable nodes?
 
 ## Maps and Dialogue
-- [ ] Create at least 5 floors to start with for the beginning of the game 
+- [ ] Create at least 5 floors to start with before first bete release of the game 
     - Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
     - Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-    - Floors 3-5: Full set standard floors where the NPCs give quests and build story but stop trying to guide the player so much
+    - Floors 3-5: Full set standard floors where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
-- [ ] Tile-activated teleports for caves, interiors 
+- [ ] Tile-activated teleports for caves, interiors
+- [ ] Trigger tiles for tile frames for things like doors opening and closing 
+- [ ] Add character name the top of the dialogue box
 
 ---
 
-## **New Since Last Commit**
-- All NPC animations and movements improved 
-- Better button layout, A for interactions, B for combat 
-- Forced NPC encounters 
-- Player health bar 
-- Increased combat radius
-- Increased NPC interaction radius 
-- Added screen overlay for dialogue to give a cutscene feel
-- Added quest rewards to quest menu
-- Basic title screen added and intro screen for new games, setting it up for game saves and loads
-- Started adding dialogue for NPCs
+## **New Since Last Commit*
+- 
 
 ---
