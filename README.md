@@ -6,7 +6,7 @@
 
 ## Enter the World of Cynrith
 
-Welcome to **Cynrith**, a mysterious, ever-changing tower world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange NPCs and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
+Welcome to **Cynrith**, a mysterious, ever-changing world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange characters and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
 
 Long before the first Floor rose, Cynrith was a single, boundless realm—flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers—Floors—each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
 
@@ -14,12 +14,12 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 
 ## Core Features
 
-- **Ascend the Tower:**  
+- **Ascend the world:**  
   Explore a mysterious, multi-layered world filled with secrets, dangers, and branching lore.
 - **Dynamic Combat System:**  
   Face a variety of enemies and bosses using real-time movement, attacks, and tactical positioning.
 - **Quest-Driven Exploration:**  
-  Meet unique NPCs, unravel their stories, and complete quests that impact your journey and the world.
+  Meet unique Characters, unravel their stories, and complete quests that impact your journey and the world.
 - **Rich Worldbuilding:**  
   Every floor reveals new lore, environmental storytelling, and hidden mysteries to discover.
 - **Relic and Inventory System:**  
@@ -29,17 +29,17 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 - **Ever-Expanding Story:**  
   Cynrith is a living world—expect frequent updates, new floors, and evolving lore.
 - **Atmospheric Visuals:**  
-  Hand-crafted maps, evocative environments, and unique character designs bring the tower to life.
+  Hand-crafted maps, evocative environments, and unique character designs bring the world to life.
 
 ## Getting Started
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/vCore420/vTileGame.git
-   cd vTileGame
+   git clone https://github.com/vCore420/Cynrith.git
+   cd Cynrith
    ```
 2. **Open `index.html` in your browser**  
-   (No build step required; works out-of-the-box!)
+   (requires live server, vscode has an extension)
 
 ## Screenshots
 
@@ -49,7 +49,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 
 ## Roadmap
 
-- Quest system and quest menu (expanding quest types, save/load quest progress)
+- Quest system expansion 
 - Item usage and effects
 - Save/load system
 - Skill System
