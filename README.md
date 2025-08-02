@@ -1,9 +1,11 @@
 # Cynrith - by vCore
 
 A browser-based 2D tile game built with JavaScript, HTML5, and Canvas.  
-This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with new features, UI enhancements, and gameplay improvements.
+This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with a complete rework to become the game 'Cynrith', orangebles simles concept for the tile base game was the perfect inspiration to create the full blown project it has become.
 
-**⚠️ This project is in early development. All game assets are test/beta and subject to change.**
+**⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
+
+##Welcome to **Cynrith!**
 
 ![Demo Screenshot](docs/assets/demo1.png)
 
