@@ -5,6 +5,8 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 **⚠️ This project is in early development. All game assets are test/beta and subject to change.**
 
+![Demo Screenshot](docs/assets/demo1.png)
+
 ## Features
 
 - Responsive HTML5 Canvas rendering
