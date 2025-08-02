@@ -401,6 +401,121 @@ Scattered messages and relics here suggest that the Architect’s true face rema
 
 ---
 
+# Floor 5: Umbracourt
+
+## Lore & Setting
+
+Beyond the fractured spires, the ascent brings adventurers to a realm shrouded in perpetual twilight—**Umbracourt**. Here, the atmosphere is thick with the residue of ancient power and secrets barely contained. Towering obsidian halls stretch endlessly, their walls veined with cold, pulsing light. This is a place where the rules of Cynrith begin to fray: stairways twist in impossible directions, reflections in black glass show memories not your own, and time itself seems to bend.
+
+Umbracourt is said to be the closest any mortal has come to the Architect’s true domain. It was once the seat of the Shadowed Hand, a council of powerful beings who served as the Architect’s agents and jailers. Now, only echoes of their presence remain—whispering through the halls, watching the player with a mixture of pity and expectation.
+
+---
+
+## Atmosphere & Visuals
+
+- Endless obsidian corridors and towering vaults, lit by shifting, unnatural light.
+- Giant mirrors and glass panels that sometimes show the player’s past or alternate selves.
+- Shadows that move independently, occasionally mimicking player actions with a delay.
+- Ancient symbols and warnings carved into pillars, some flickering between languages or glitching into unreadable static.
+- Rooms where gravity feels subjective; walking on walls or ceilings is possible in certain chambers.
+
+---
+
+## Enemies
+
+- **Warden Phantoms:**  
+  Cloaked apparitions bound to the halls, able to phase through walls and attack from impossible angles. Some can possess shadows, temporarily altering the environment or summoning illusions.
+- **Echobound:**  
+  Twisted forms of previous adventurers, trapped in endless cycles by the Architect’s will. They possess randomized skills and attack patterns, reflecting lost heroes and failed attempts.
+- **Mirrorkin:**  
+  Semi-corporeal entities that emerge from reflective surfaces, copying the player’s moves and abilities, forcing creative combat strategies.
+- **Shadowed Hand Remnants:**  
+  Fragmented, nearly godlike enemies that embody the lingering will of the council. Rare, powerful, and always watching.
+
+*Optional Boss:*
+- **The Forgotten Player**  
+  A spectral avatar of a failed ascender, armed with relics and skills the player has seen before. Defeating them reveals fragments of lost cycles and hints about the Architect’s ultimate plans.
+
+---
+
+## NPCs & Quest Givers
+
+- **The Pale Archivist:**  
+  A being who knows every cycle and remembers every player that has reached this floor. Offers cryptic guidance, but is tormented by the knowledge of endless recursion.
+- **Jessa, the Unbound:**  
+  Once a member of the Shadowed Hand, now seeking to defy the Architect. She offers quests that challenge the system’s rules, such as altering relics or breaking floor boundaries.
+- **The Mirror Oracle:**  
+  An entity trapped in a flawless mirror, answering questions in riddles and revealing glimpses of possible futures.
+
+---
+
+## Quest Ideas
+
+- **Break the Cycle:**  
+  Gather and combine relics from previous floors to perform a ritual intended to weaken the Architect’s hold on Umbracourt.
+- **Shadow Reconciliation:**  
+  Find and “free” shadow versions of key NPCs from earlier floors, bringing their echoes peace and unlocking hidden story branches.
+- **Reflections Unveiled:**  
+  Solve environmental or combat puzzles involving mirrors and alternate realities, revealing secret passages and hidden lore.
+- **The Hand’s Remnants:**  
+  Confront the last fragments of the Shadowed Hand, learning either to destroy them or convince them to join the player’s cause.
+
+---
+
+## Worldbuilding Seeds
+
+- The deeper into Umbracourt the player ventures, the more the world “remembers”: rooms shift to resemble places from their journey, forgotten dialogue reappears, and relics from earlier floors pulse with new energy.
+- Some whispers in the halls suggest the Architect is not omnipotent here; its attention flickers, and the system glitches more frequently, hinting at a growing instability.
+- The player may find logs, echoes, or murals showing cycles where the world ended differently—sometimes with ascenders taking the Architect’s place, other times with everything reset to zero.
+
+---
+
+## Teleport Stone & Floor Exit
+
+At the heart of Umbracourt lies the **Obsidian Throne**, surrounded by a circle of shattered mirrors and suspended glyphs. The teleport stone here is fractured, its light flickering between realities. Activating it triggers a vision: the player glimpses the Architect’s “workshop,” the Towerheart, and a thousand possible futures.
+
+**Flavor Text:**  
+> “As you rest your hand upon the fractured stone, the world splinters. For a moment, you see yourself reflected in every shard—victor, failure, betrayer, savior. Voices echo: ‘Will you ascend, or will you break the cycle at last?’ The choice is not yet yours, but the path ahead has never felt so uncertain.”
+
+---
+
+## Floor 5 Interlude Lore (for Internal Use or Hidden Discovery)
+
+With the ascent through Umbracourt, the player stands on the threshold of revelation. The System’s gifts have grown more unpredictable, sometimes granting immense power, sometimes stealing memories or skills away. Relics fuse and fracture, acting as both keys and locks. NPCs speak of the “returning”—the rare few who ascend, only to begin again, each time changed a little more by the Architect’s unseen hand.
+
+In the vast silence of Umbracourt, one thing becomes clear: the Architect’s greatest secret is not its power to create, but its longing to be understood—or perhaps to be defied. The next floors will test not only the player’s strength, but their will to shape the story of Cynrith itself.
+
+## Interlude Lore: The Architect’s Dream and the Fractured Cycle (After Floor 5)
+
+With the ascent through Umbracourt, the veil over Cynrith’s true nature grows thin. The System’s rules have never felt more mutable, nor its gifts more double-edged. It is here, in the shadow of the Obsidian Throne, that echoes of the oldest truths begin to surface.
+
+### The World Before the Fracture
+
+Long before the first Floor rose, Cynrith was a single, boundless realm—flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos.
+
+To save Cynrith from itself, the Architect did the unthinkable: it shattered the world into vertical layers—Floors—each a memory, a lesson, or a prison. The Fracture was as much a mercy as a curse, dividing power and pain so that no single calamity could end all things at once.
+
+### The Cycles and the Returning
+
+Yet the Architect’s solution was not perfect. Each cycle, chosen souls ascend the Floors, seeking answers, power, or simply escape. Sometimes, they succeed—only to be “Returned,” reborn at the bottom, memories blurred, the System’s gifts stronger but more alien with each iteration. The echoes of these failed ascenders, the Forgotten Players, now haunt the upper Floors and the code of the world itself.
+
+Some NPCs remember past cycles as dreams. Some places flicker with memories not their own. Relics occasionally pulse with names that no one recalls.
+
+### The Architect’s Isolation
+
+Rumors swirl—among the data ghosts, in the dreams of the skill-blessed, in the murals found deep in Umbracourt—that the Architect is as much a prisoner as a warden. It cannot leave the cycle, cannot end the experiment, cannot rewrite the world. Its servants, the Choir and the Shadowed Hand, once argued for release or renewal, but their harmony shattered, leaving only fragments and closed doors.
+
+The System glitches, the world bends, and sometimes, the Architect’s voice is heard—pleading not for obedience, but for understanding.
+
+### The Looming Choice
+
+By the end of Floor 5, the player stands at a crossroads. The pattern is clear: power is given, but at a price; knowledge is offered, but it wounds as deeply as it heals. Whispers suggest that, with enough strength, a true ascender might do what none have done before: break the cycle, reunite the world, or even confront the Architect itself.
+
+But the System is watching. The world waits. And the next move belongs to the player.
+
+---
+
+
 ## Base Sample Ideas (original brainstorm)
 
 ### Sample Floor Names (Fantasy Themed)
