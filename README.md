@@ -48,9 +48,9 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 ## Screenshots
 
-![Demo Screenshot](assets/demo2.png)
-![Demo Screenshot](assets/demo3.png)
-![Demo Screenshot](assets/demo4.png)
+![Demo Screenshot](docs/assets/demo2.png)
+![Demo Screenshot](docs/assets/demo3.png)
+![Demo Screenshot](docs/assets/demo4.png)
 
 ## Roadmap
 
