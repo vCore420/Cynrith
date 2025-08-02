@@ -82,6 +82,11 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 **⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
 
+## Contributors 
+
+[![Contributors](https://img.shields.io/github/contributors/vCore420/Cynrith?style=for-the-badge)](https://github.com/vCore420/Cynrith/graphs/contributors)
+[![Contributors Display](https://contrib.rocks/image?repo=vCore420/Cynrith)](https://github.com/vCore420/Cynrith/graphs/contributors)
+
 - Designed, extended, customized, and maintained by vCore420
 
 ## License
