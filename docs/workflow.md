@@ -13,6 +13,7 @@
 ## Player Logic
 - [ ] Joystick instead of touch buttons?
 - [ ] Keyboard support - WASD for movement, left mouse for B button, right mouse for A button
+- [ ] Add collision logic between Player and Npc
 
 ## Skills Menu
 - [ ] Recycle skill menu used for FiveM to suit the style of this game and expand/adapt the system to work with our tile game
