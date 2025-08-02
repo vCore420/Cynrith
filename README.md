@@ -1,4 +1,12 @@
-# Cynrith - by vCore
+<div align="center">
+  <h1 align="center">Cynrith</h1>
+  <p align="center">A mysterious, ever-changing world woven from the dreams and ruins of lost civilizations.</p>
+  <p align="center">
+    <img alt="Github License" src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge">
+    <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
+    <img alt="Github release (latest by date)" src="https://img.shields.io/github/v/release/vCore420/Cynrith?style=for-the-badge">
+  </p>
+</div>
 
 ![Demo Screenshot](docs/assets/demo1.png)
 
@@ -57,6 +65,15 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 - Improved assets and polish
 
 - planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+
+## Documentation
+
+- [Workflow & Roadmap](docs/workflow.md)  
+  _Current goals, plans, and development roadmap for Cynrith._
+- [Function Library](docs/function_libary.md)  
+  _Every created function in the project, with explanations and usage._
+- [World Building](docs/world_Building.md)  
+  _Lore, story, and the evolving world of Cynrith._
 
 ## Credits
 
