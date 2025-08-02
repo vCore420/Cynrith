@@ -46,6 +46,12 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 2. **Open `index.html` in your browser**  
    (No build step required; works out-of-the-box!)
 
+## Screenshots
+
+![Demo Screenshot](assets/demo2.png)
+![Demo Screenshot](assets/demo3.png)
+![Demo Screenshot](assets/demo4.png)
+
 ## Roadmap
 
 - Quest system and quest menu (expanding quest types, save/load quest progress)
