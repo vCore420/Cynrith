@@ -5,7 +5,7 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 **⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
 
-##Welcome to **Cynrith!**
+##Welcome to Cynrith!
 
 ![Demo Screenshot](docs/assets/demo1.png)
 
