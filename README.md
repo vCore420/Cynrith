@@ -1,42 +1,35 @@
 # Cynrith - by vCore
 
-A browser-based 2D tile game built with JavaScript, HTML5, and Canvas.  
-This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with a complete rework to become the game 'Cynrith', orangebles simles concept for the tile base game was the perfect inspiration to create the full blown project it has become.
-
-**⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
-
-## Welcome to **Cynrith**!
-
 ![Demo Screenshot](docs/assets/demo1.png)
 
-## Features
+---
 
-- Responsive HTML5 Canvas rendering
-- Player movement and animation
+## Enter the World of Cynrith
 
-**vCore Expansion:**
-- **Modular:** extensible codebase for easy expansion
-- **NPC and Enemy system**: Modular spawning, wandering AI, and dialogue
-- **Combat system:**  
-  - Hostile enemies detect and chase the player within a set radius  
-  - Animated attack and knockback for both player and enemies  
-  - Dynamic health bars and enemy names displayed above hostile enemies  
-  - Loot and XP drops on enemy defeat, with respawn logic  
-  - Player death and respawn menu  
-- **Notification system**: Top-of-screen notifications for tips, events, and interactions
-- **Dialogue system**: Bottom-of-screen dialogue blocks for story and NPC interaction, disables player movement during dialogue
-- **Quest system:**  
-  - NPCs can offer quests with different types (item collection, enemy defeat, gift quests, etc. to be expanded)
-  - Quest progress and completion logic, including inventory checks and reward distribution (items, XP)
-  - Gift quests allow instant rewards for engaging with NPCs
-  - Quest menu with tabs for active and completed quests, updated dynamically
-- **Inventory system**: 3x3 grid, item stacking, add/remove/use items, modular item definitions.
-- **Menus and navigation**: With sprite preview and stats. Seamless switching between player menu, inventory, and future menus (skills, quests, etc.)
-- **Teleportation and map warping**: Multi Level (Floor) Game With XP requirements and contextual notifications, allowing the player to travel the world as they please as they gain xp.
-- **Title screen and lore intro:** Title screen with New Game/Load Game, and a lore intro sequence with skip functionality.
-- **Touch/mouse/keyboard controls**: For both desktop and mobile.
-- **Lore-rich worldbuilding:** Each floor features unique lore, NPCs, and environmental storytelling.
-- **All assets are placeholders or in beta**
+Welcome to **Cynrith**, a mysterious, ever-changing tower world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange NPCs and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
+
+Long before the first Floor rose, Cynrith was a single, boundless realm—flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers—Floors—each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
+
+---
+
+## Core Features
+
+- **Ascend the Tower:**  
+  Explore a mysterious, multi-layered world filled with secrets, dangers, and branching lore.
+- **Dynamic Combat System:**  
+  Face a variety of enemies and bosses using real-time movement, attacks, and tactical positioning.
+- **Quest-Driven Exploration:**  
+  Meet unique NPCs, unravel their stories, and complete quests that impact your journey and the world.
+- **Rich Worldbuilding:**  
+  Every floor reveals new lore, environmental storytelling, and hidden mysteries to discover.
+- **Relic and Inventory System:**  
+  Find, collect, and use powerful relics—each with their own story and gameplay effect.
+- **Multi-Platform Play:**  
+  Designed for both desktop and mobile, with intuitive controls and a seamless interface.
+- **Ever-Expanding Story:**  
+  Cynrith is a living world—expect frequent updates, new floors, and evolving lore.
+- **Atmospheric Visuals:**  
+  Hand-crafted maps, evocative environments, and unique character designs bring the tower to life.
 
 ## Getting Started
 
@@ -58,19 +51,21 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 - Quest system and quest menu (expanding quest types, save/load quest progress)
 - Item usage and effects
-- Expand NPC/Enemy behaviors (advace on movement animation)
 - Save/load system
-- Skil System
-- Storyline
-- Expand Floors to Expand Story and Npcs
+- Skill System
+- Floor and Storyline expansion 
 - Improved assets and polish
 
 - planing to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
 ## Credits
 
-- Original engine and scripts by orangeable ([javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game))
-- Extended, customized, and maintained by vCore420
+A browser-based 2D tile game built with JavaScript, HTML5, and Canvas.  
+This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with a complete rework to become the game 'Cynrith', orangebles simple concept for the tile base game was the perfect inspiration to create the full blown project it has become.
+
+**⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
+
+- Designed, extended, customized, and maintained by vCore420
 
 ## License
 
@@ -78,6 +73,6 @@ This project is licensed under the MIT License.
 
 ## Contributing
 
-Pull requests and suggestions are welcome. Or clone for your own project!
+Pull requests and suggestions are welcome!
 
 Enjoy
