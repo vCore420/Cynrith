@@ -1,5 +1,8 @@
-:root {
+/* Cynrith Game CSS Stylesheet
+ * This file contains the root CSS variables and styles for the Cynrith game.
+ * It defines the color scheme, fonts, and layout for various game components. */
 
+:root {
   /* Dark Theme (BETA COLOUR SCHEME) */
   --dk-ctrl: #222;
   --dk-btn: #333;
@@ -113,6 +116,7 @@
   --death-btn-text: #181a1f;
 }
 
+/* Main Body Styles */
 html, body {
     width: 100%;
     height: 100%;
@@ -121,6 +125,7 @@ html, body {
     margin: 0px;
 }
 
+/* Game Canvas */
 canvas#game {
     width: 100vw;
     height: 100vh;

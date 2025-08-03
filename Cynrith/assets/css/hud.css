@@ -1,3 +1,4 @@
+/* Fps and Coord Counter */
 div#log {
     background: var(--dk-btn);
     font-family: var(--font-playermenu);
@@ -11,6 +12,7 @@ div#log {
     z-index: 3;
 }
 
+/* Touch Controls */
 #touch-controls {
   position: fixed;
   bottom: 30px;
@@ -29,6 +31,7 @@ div#log {
   justify-content: center;
 }
 
+/* D-Pad Touch Controls */
 .dpad-btn {
   width: 80px;
   height: 80px;
@@ -42,6 +45,7 @@ div#log {
   touch-action: none;
 }
 
+/* Action Buttons */
 #act-controls {
   position: fixed;      
   bottom: 2vw;              
@@ -53,6 +57,7 @@ div#log {
   height: 200px;
 }
 
+/* Action Button A and B */
 #btn-a, #btn-b {
   position: absolute;     
   width: 100px;
@@ -67,9 +72,10 @@ div#log {
   touch-action: none;
 }
 
+/* Button A */
 #btn-a {
   right: 0;
-  bottom: 40;
+  bottom: 100px;
 }
 
 #btn-b {
@@ -77,22 +83,19 @@ div#log {
   bottom: 0px;  
 }
 
-/* === Player Health Bar === */
+/* Player Health Bar */
 .player-health-bar-bg {
   fill: var(--hud-bg, #2e2e38);
   opacity: 0.92;
 }
-
 .player-health-bar {
   fill: #3e3;
 }
-
 .player-health-bar-border {
   stroke: #fff;
   stroke-width: 2;
   fill: none;
 }
-
 .player-health-bar-text {
   font: bold 0.8em var(--font-playermenu);
   fill: #fff;
@@ -155,12 +158,16 @@ div#log {
   opacity: 0;
   transition: opacity 0.6s;
 }
+
+/* Player Death/Respawn Screen Title */
 .death-overlay h1 {
   color: #fff;
   font-size: 3em;
   margin-bottom: 1em;
   text-shadow: 0 0 10px #000, 0 0 20px #900;
 }
+
+/* Respawn Button */
 .death-overlay button {
   font-size: 1.5em;
   padding: 0.5em 2em;
@@ -176,8 +183,10 @@ div#log {
   background: #eee;
 }
 
+/* Vertical Screen Orientation Adjustments */
 @media (orientation: portrait) {
-        
+
+  /* Touch Controls */  
   #touch-controls {
     left: 20%;
   }

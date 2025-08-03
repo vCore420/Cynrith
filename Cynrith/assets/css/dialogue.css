@@ -18,13 +18,11 @@
   text-align: center;
   box-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
-
-/* Show notification */
 .notification.show {
   opacity: 1;
 }
 
-/* Dialogue block styles */
+/* Dialogue Block Styles */
 .dialogue-block {
   font-family: var(--font-dialogue);
   position: fixed;
@@ -43,7 +41,6 @@
   text-align: center;
   user-select: none;
 }
-
 .dialogue-block.hidden {
   display: none;
 }

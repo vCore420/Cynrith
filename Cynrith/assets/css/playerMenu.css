@@ -1,3 +1,4 @@
+/* Player Menu Button on Hud */
 .menu-btn {
   font-family: var(--font-playermenu);
   position: fixed;
@@ -13,11 +14,11 @@
   padding: 12px 20px;
   cursor: pointer;
 }
-
 .player-menu.hidden {
   display: none;
 }
 
+/* Player Menu Styles */
 .player-menu {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -28,6 +29,7 @@
   justify-content: center;
 }
 
+/* Player Menu Content */
 .player-menu-content {
   font-family: var(--font-playermenu);
   background: var(--dk-ctrl);
@@ -45,18 +47,21 @@
   justify-content: center;
 }
 
+/* Player Menu Inner Content */
 .player-menu-inner {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
 
+/* Player Menu Header */
 .h1 {
   font-size: 1.4em; 
   margin-top: 1px;
   padding: none;
 }
 
+/* Left side of Player Menu */
 .menu-left {
   width: 250px;
   display: flex;
@@ -68,6 +73,13 @@
   gap: 12px;
 }
 
+/* Right Side of Player Menu */
+.menu-right {
+  flex: 1;
+  display: flex;
+}
+
+/* Menu Buttons */
 .menu-nav-btn {
   font-family: var(--font-playermenu);
   padding: 12px 0;
@@ -84,11 +96,7 @@
   background: var(--dk-hvr);
 }
 
-.menu-right {
-  flex: 1;
-  display: flex;
-}
-
+/* Player Sprite Preview for Player Menu */
 #player-sprite-preview {
   width: 128px;
   height: 128px;
@@ -101,6 +109,7 @@
   overflow: hidden;
 }
 
+/* Player Stats Preview for Player Menu */
 #player-stats-preview {
   color: var(--dk-txt);
   padding: 2px;
@@ -110,6 +119,7 @@
   font-size: 1.2em;
 }
 
+/* Close Button for Player Menu */
 .close-btn { 
   position: absolute;
   top: 16px;
@@ -122,14 +132,17 @@
   opacity: 0.7;
 }
 
+/* Hide Menu Pages */
 .menu-page {
   display: none;
 }
 
+/* Display Menu Pages */
 .menu-page.active {
   display: block;
 }
 
+/* Inventory Menu */
 .inventory-grid {
   display: grid;
   grid-template-columns: repeat(3, 64px);
@@ -139,6 +152,7 @@
   margin: 24px auto;
 }
 
+/* Inventory Slot */
 .inventory-slot {
   width: 64px;
   height: 64px;
@@ -152,11 +166,13 @@
   cursor: pointer;
 }
 
+/* Inventory Slot Image */
 .inventory-slot img {
   width: 48px;
   height: 48px;
 }
 
+/* Inventory Item Amount Number */
 .inventory-amount {
   position: absolute;
   bottom: 4px;
@@ -168,7 +184,7 @@
   border-radius: 8px;
 }
 
-/* Overlay for dropdown */
+/* Overlay for Item Dropdown */ 
 #item-dropdown-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -177,7 +193,7 @@
   background: transparent;
 }
 
-/* Dropdown block */
+/* Dropdown Menu for Items */
 .item-dropdown {
   position: fixed;
   width: 240px;
@@ -194,11 +210,14 @@
   font-size: 1em;
   transition: box-shadow 0.2s;
 }
+
+/* Item Rarity Glows */
 .item-dropdown.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12);}
 .item-dropdown.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18);}
 .item-dropdown.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18);}
 .item-dropdown.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18);}
 
+/* Item Dropdown Close Button */
 .item-dropdown .dropdown-close-btn {
   position: absolute;
   top: 8px;
@@ -215,24 +234,28 @@
   opacity: 1;
 }
 
+/* Item Name In Dropdown */
 .item-dropdown .dropdown-name {
   font-weight: bold;
   font-size: 1.15em;
   margin-bottom: 6px;
 }
 
+/* Item Description In Dropdown */
 .item-dropdown .dropdown-desc {
   font-size: 0.98em;
   color: #ffe082;
   margin-bottom: 8px;
 }
 
+/* Item Rarity In Dropdown */
 .item-dropdown .dropdown-rarity {
   font-size: 0.93em;
   color: #9ff;
   margin-bottom: 14px;
 }
 
+/* Buttons In Dropdown Menu */
 .item-dropdown .dropdown-btn {
   margin-bottom: 10px;
   padding: 8px 0;
@@ -253,6 +276,7 @@
   margin-bottom: 0;
 }
 
+/* Item Remove Amount Block */
 .item-dropdown .remove-amount-block {
   display: flex;
   align-items: center;
@@ -261,6 +285,7 @@
   gap: 10px;
 }
 
+/* Item Remove Amount Button */
 .item-dropdown .remove-amount-btn {
   width: 32px;
   height: 32px;
@@ -276,12 +301,14 @@
   background: #666;
 }
 
+/* Item Remove Amount Number */
 .item-dropdown .remove-amount-num {
   font-size: 1.1em;
   min-width: 24px;
   text-align: center;
 }
 
+/* Item Remove Amount Confirm Button */
 .item-dropdown .remove-amount-ok {
   margin-left: 12px;
   padding: 6px 18px;
@@ -296,12 +323,14 @@
   background: #555;
 }
 
+/* Quests Menu */
 #quests-menu.menu-page {
     align-items: flex-start;
     justify-content: flex-start;
     padding-top: 0;
 }
 
+/* Quests List */
 .quests-list {
     max-height: 260px;
     overflow-y: auto;
@@ -312,30 +341,20 @@
     margin-top: 0;
 }
 
+/* Quest List Reward Item Preview */
 .quest-list-item {
     padding: 12px 0 8px 0;
     text-align: left;
 }
 
-.quests-list {
-    max-height: 260px;
-    overflow-y: auto;
-    padding: 0 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.quest-list-item {
-    padding: 12px 0 8px 0;
-    text-align: left;
-}
-
+/* Quest List Divider */
 .quest-divider {
     border: none;
     border-top: 1px solid #444;
     margin: 0 0 0 0;
 }
+
+/* Quest Menu Tab Buttons */
 .quest-tab {
     background: #222;
     color: #fff;
