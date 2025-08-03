@@ -110,4 +110,19 @@
 ## Miscellaneous
 - clearAllMovementKeys() — Sets all movement key flags to false (used to stop player movement instantly).
 
+## Title & Character Selection
+
+- showCharacterSelect() — Displays the character selection screen, populates the character list, and sets up the preview and name input.
+- selectCharacter(idx) — Highlights the selected character and updates the preview sprite.
+- drawPreviewSprite(idx, frame) — Draws a specific animation frame from the selected character's sprite sheet onto the preview canvas.
+
+## Lore Intro
+
+- playLoreIntro() — Plays the lore intro text sequence after character selection.
+- endLoreAndStartGame() — Skips the lore intro and starts the game.
+
+## UI Animation
+
+- charPreviewCanvas mouseenter/mouseleave — Handles sprite preview animation on hover in the character selection screen.
+
 ---
