@@ -1,0 +1,128 @@
+:root {
+
+  /* Dark Theme (BETA COLOUR SCHEME) */
+  --dk-ctrl: #222;
+  --dk-btn: #333;
+  --dk-hvr: #555;
+  --dk-txt: white;
+
+  /* === Fonts === */
+  --font-titlemenu: 'Quicksand', Arial, sans-serif;
+  --font-playermenu: 'Nunito', Arial, sans-serif;
+  --font-dialogue: 'Merriweather Sans', Arial, sans-serif;
+  --font-size-base: 1em;
+  --font-size-title: 2em;
+
+  /* === Title Screen === */
+  --title-bg: #181a1f;
+  --title-header: #ffe082;  
+  --title-header-alt: #3af0ff; 
+  --title-shadow: 0 0 24px #3af0ff, 0 0 8px #fff;
+  --title-btn-bg: #2b3a67;
+  --title-btn-text: #f8f8ff;
+
+  /* === New Game Loading Screen === */
+  --loading-bg: #101014;
+  --loading-text: #f8f8ff;
+  --loading-spinner: #3af0ff;
+
+  /* === Hud === */
+  --hud-bg: #2e2e38;
+  --hud-text: #f8f8ff;
+  --hud-border: #44475a;
+  --hud-health: #e33;
+  --hud-xp: #3af0ff;
+
+  /* === Main Player Menu === */
+  --menu-bg: #2e2e38;
+  --menu-text: #f8f8ff;
+  --menu-radius: 24px;
+  --menu-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  --menu-btn-bg: #333;
+  --menu-btn-bg-hover: #555;
+  --menu-btn-text: #f8f8ff;
+  --menu-close-btn: #f8f8ff;
+
+  /* === Inventory Menu === */
+  --inventory-bg: #2e2e38;
+  --inventory-border: #44475a;
+  --inventory-slot-radius: 10px;
+  --inventory-amount-bg: rgba(0,0,0,0.7);
+  --inventory-amount-text: #f8f8ff;
+
+  /* === Item Dropdown === */
+  --dropdown-bg: rgba(30,30,30,0.96);
+  --dropdown-text: #f8f8ff;
+  --dropdown-radius: 16px;
+  --dropdown-shadow: 0 2px 18px rgba(0,0,0,0.22);
+  --dropdown-close: #f8f8ff;
+  --dropdown-name: #f8f8ff;
+  --dropdown-desc: #ffe082;
+  --dropdown-rarity: #3af0ff;
+  --dropdown-btn-use-bg: #3af0ff;
+  --dropdown-btn-use-text: #181a1f;
+  --dropdown-btn-remove-bg: #c33;
+  --dropdown-btn-remove-text: #fff;
+  --dropdown-btn-ok-bg: #333;
+  --dropdown-btn-ok-text: #fff;
+
+  /* === Rarity Glows === */
+  --rarity-common-glow: rgba(255,255,255,0.12);
+  --rarity-rare-glow: rgba(0,180,255,0.18);
+  --rarity-epic-glow: rgba(180,0,255,0.18);
+  --rarity-legendary-glow: rgba(255,180,0,0.18);
+
+  /* === Quest Menu === */
+  --quest-bg: #2e2e38;
+  --quest-text: #f8f8ff;
+  --quest-divider: #44475a;
+  --quest-tab-bg: #2e2e38;
+  --quest-tab-bg-active: #44475a;
+
+  /* === Notifications === */
+  --notif-bg: rgba(40,40,40,0.95);
+  --notif-text: #f8f8ff;
+  --notif-shadow: 0 2px 12px rgba(0,0,0,0.18);
+
+  /* === Dialogue === */
+  --dialogue-bg: rgba(30,30,30,0.98);
+  --dialogue-text: #f8f8ff;
+  --dialogue-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  --dialogue-npc-name: #ffe082;
+
+  /* === D-Pad & Touch Controls === */
+  --dpad-bg: #2e2e38;
+  --dpad-text: #f8f8ff;
+  --dpad-radius: 18px;
+
+  /* === Action Buttons (A/B) === */
+  --act-btn-bg: #2e2e38;
+  --act-btn-text: #f8f8ff;
+  --act-btn-radius: 100%;
+
+  /* === Lore Intro === */
+  --lore-bg: #101014;
+  --lore-text: #f8f8ff;
+  --lore-btn-bg: rgba(30,30,30,0.55);
+  --lore-btn-text: #f8f8ff;
+
+  /* === Player Death/Respawn === */
+  --death-title-shadow: 0 0 10px #000, 0 0 20px #900;
+  --death-btn-bg: #f8f8ff;
+  --death-btn-bg-hover: #eee;
+  --death-btn-text: #181a1f;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    padding: 0px;
+    margin: 0px;
+}
+
+canvas#game {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}

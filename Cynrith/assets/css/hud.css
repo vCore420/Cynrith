@@ -1,0 +1,185 @@
+div#log {
+    background: var(--dk-btn);
+    font-family: var(--font-playermenu);
+    font-size: 12pt;
+    color: var(--dk-txt);
+    text-align: left;
+    padding: 5px 9px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+#touch-controls {
+  position: fixed;
+  bottom: 30px;
+  left: 12%;
+  transform: translateX(-50%);
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#touch-controls > div {
+  display: flex;
+  justify-content: center;
+}
+
+.dpad-btn {
+  width: 80px;
+  height: 80px;
+  margin: 6px;
+  font-size: 3em;
+  opacity: 0.8;
+  background: var(--dk-ctrl);
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 18px;
+  touch-action: none;
+}
+
+#act-controls {
+  position: fixed;      
+  bottom: 2vw;              
+  right: 4vw;
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  width: 200px;          
+  height: 200px;
+}
+
+#btn-a, #btn-b {
+  position: absolute;     
+  width: 100px;
+  height: 100px;
+  margin: 6px;
+  font-size: 3em;
+  opacity: 0.8;
+  background: var(--dk-ctrl);
+  color: var(--dk-txt);
+  border: none;
+  border-radius: 100%;
+  touch-action: none;
+}
+
+#btn-a {
+  right: 0;
+  bottom: 40;
+}
+
+#btn-b {
+  right: 80px;   
+  bottom: 0px;  
+}
+
+/* === Player Health Bar === */
+.player-health-bar-bg {
+  fill: var(--hud-bg, #2e2e38);
+  opacity: 0.92;
+}
+
+.player-health-bar {
+  fill: #3e3;
+}
+
+.player-health-bar-border {
+  stroke: #fff;
+  stroke-width: 2;
+  fill: none;
+}
+
+.player-health-bar-text {
+  font: bold 0.8em var(--font-playermenu);
+  fill: #fff;
+  stroke: #222;
+  stroke-width: 3;
+  paint-order: stroke fill;
+  text-anchor: middle;
+}
+
+/* Enemy Health Bar */
+.enemy-health-bar-bg {
+  fill: #222;
+  opacity: 0.92;
+}
+.enemy-health-bar {
+  fill: #e33;
+}
+.enemy-health-bar-border {
+  stroke: #fff;
+  stroke-width: 1;
+  fill: none;
+}
+.enemy-health-bar-text {
+  font: bold 16px var(--font-playermenu);
+  fill: #fff;
+  stroke: #222;
+  stroke-width: 3;
+  paint-order: stroke fill;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* Damage Popups */
+.damage-popup {
+  font: bold 22px var(--font-playermenu);
+  text-align: center;
+  color: #3e3;
+  text-shadow: 0 1px 2px #fff, 0 0 8px #000;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2001;
+  position: absolute;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.damage-popup.player {
+  color: #e33;
+}
+
+/* Player Death/Respawn Screen */
+.death-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.death-overlay h1 {
+  color: #fff;
+  font-size: 3em;
+  margin-bottom: 1em;
+  text-shadow: 0 0 10px #000, 0 0 20px #900;
+}
+.death-overlay button {
+  font-size: 1.5em;
+  padding: 0.5em 2em;
+  font-family: var(--font-titlemenu);
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #222;
+  transition: background 0.2s;
+}
+.death-overlay button:hover {
+  background: #eee;
+}
+
+@media (orientation: portrait) {
+        
+  #touch-controls {
+    left: 20%;
+  }
+  
+}

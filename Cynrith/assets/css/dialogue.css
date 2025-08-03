@@ -1,0 +1,49 @@
+/* Notification styles */
+.notification {
+  font-family: var(--font-dialogue);
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(40,40,40,0.95);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-size: 1.2em;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+/* Show notification */
+.notification.show {
+  opacity: 1;
+}
+
+/* Dialogue block styles */
+.dialogue-block {
+  font-family: var(--font-dialogue);
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.98);
+  color: #fff;
+  padding: 28px 40px;
+  border-radius: 18px;
+  font-size: 1.3em;
+  z-index: 1002;
+  min-width: 320px;
+  max-width: 80vw;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  text-align: center;
+  user-select: none;
+}
+
+.dialogue-block.hidden {
+  display: none;
+}
