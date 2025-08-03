@@ -1,4 +1,4 @@
-// local variables:
+// Game Rendering Variables
 var config = {
     win: {
         width: window.innerWidth,
@@ -19,6 +19,7 @@ var config = {
     speed: 5
 };
 
+// Player Movement Keys
 var keys = {
     // left:
     37: {
@@ -61,6 +62,7 @@ var fps = {
     last:  0
 };
 
+// Player Action Buttons 
 let actionButtonBPressed = false;
 
 document.getElementById('btn-b').addEventListener('click', function() {
@@ -73,7 +75,7 @@ document.getElementById('btn-a').addEventListener('click', function() {
     actionButtonAPressed = true;
 });
 
-// setup game:
+// Initial Setup:
 function Setup() {
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
@@ -95,8 +97,7 @@ function Setup() {
     }, 1000);
 }
 
-
-// window and canvas sizing:
+// Window and Canvas Sizing:
 function Sizing() {
     config.win = {
         width:  window.innerWidth,
@@ -113,23 +114,26 @@ function Sizing() {
         y: Math.round(config.tiles.y / 2)
     }
 
-    if (!playerAnimating) {
-        viewport.x = 0;
-        viewport.y = 0;
+    // Only update viewport if it exists
+    if (typeof viewport !== "undefined" && viewport) {
+        if (!playerAnimating) {
+            viewport.x = 0;
+            viewport.y = 0;
+        }
+        viewport.w = config.win.width;
+        viewport.h = config.win.height;
     }
-    viewport.w = config.win.width;
-    viewport.h = config.win.height;
 
-    context.canvas.width = config.win.width;
-    context.canvas.height = config.win.height;
+    if (typeof context !== "undefined" && context && context.canvas) {
+        context.canvas.width = config.win.width;
+        context.canvas.height = config.win.height;
+    }
 }
 
-
-// log data to screen:
+// Display Log Data to Screen:
 function Log(type, text) {
     document.getElementById(type).innerHTML = text;
 }
-
 
 // AJAX call:
 function LoadURL(url, callback) {
@@ -145,7 +149,7 @@ function LoadURL(url, callback) {
     http.send(null);
 }
 
-// game loop:
+// Main Game Loop:
 function Loop() {
     window.requestAnimationFrame(Loop);
 
@@ -270,13 +274,13 @@ setInterval(function() {
     Log("fps", "FPS: " + fps.count);
 }, 1000);
 
-// on window load:
+// On Window Load:
 window.onload = function() {
     Setup();
 };
 
 
-// on window resize:
+// On Window Resize:
 window.onresize = function() {
     Sizing();
 };

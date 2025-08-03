@@ -13,7 +13,7 @@ const Viewport = function(x, y, w, h) {
 Viewport.prototype = {
     center: function() {
         if (typeof playerAnimating !== "undefined" && playerAnimating) {
-            // Keep viewport at frozen position, used for player animations
+            // Keep viewport at frozen position, used for player combat animations
             if (frozenViewportX !== null && frozenViewportY !== null) {
                 viewport.x = frozenViewportX;
                 viewport.y = frozenViewportY;

@@ -1,11 +1,22 @@
 let playerAnimating = false;
 
 // Helper to check collision at a tile (for all layers)
-function isTileBlocked(x, y) {
+function isTileBlockedAtPixel(px, py, direction) {
+    const tileSize = config.size.tile;
+    const spriteSize = config.size.char;
+    const offset = (spriteSize - tileSize) / 2;
+
+    const tileX = Math.floor((px + offset + tileSize / 2) / tileSize);
+    let tileY;
+    if (direction === "up") {
+        tileY = Math.floor((py + offset) / tileSize);
+    } else {
+        tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
+    }
+
     if (map.data._layers) {
-        // Check all layers at this tile
         for (let l = 0; l < map.data._layers.length; l++) {
-            let gid = map.data._layers[l][y][x];
+            let gid = map.data._layers[l][tileY][tileX];
             if (gid > 0) {
                 let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
                 if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
@@ -15,8 +26,7 @@ function isTileBlocked(x, y) {
         }
         return false;
     } else {
-        // Legacy
-        let tileGid = map.data.layout[y][x];
+        let tileGid = map.data.layout[tileY][tileX];
         let tileIndex = tileGid > 0 ? tileGid - 1 : null;
         return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
     }
@@ -45,6 +55,28 @@ const Player = function(tile_x, tile_y) {
     this.xp = 0;
     this.attack = 1;
     this.defence = 1;
+    this.attackSpeed = 0;
+    this.lastAttackTime = 0;
+   
+    // Helper to get attacks per second from stat
+    Player.prototype.getAttacksPerSecond = function() {
+        // Capped at 10 attacks per second
+        return Math.min(1 + this.attackSpeed * 0.002, 10);
+    };
+
+    Player.prototype.getAttackSpeed = function() { return this.attackSpeed; };
+    Player.prototype.setAttackSpeed = function(val) {
+        const max = 5000;
+        if (val > max) {
+            notify("Attack Speed is Maxed Out!", 2000);
+            this.attackSpeed = max;
+        } else {
+            this.attackSpeed = Math.max(0, val);
+        }
+    };
+    Player.prototype.addAttackSpeed = function(val) {
+        this.setAttackSpeed(this.attackSpeed + val);
+    };
 
     this.movement = {
         moving: false,
@@ -134,38 +166,59 @@ Player.prototype = {
     },
     move: function(x, y) {
         let layout = map.data.layout;
-        if (!layout || !layout[0]) return; // Prevents error if map not loaded
+        if (!layout || !layout[0]) return;
 
         let maxY = layout.length - 1;
         let maxX = layout[0].length - 1;
 
+        // Calculate new pixel positions
+        let newPosX = this.pos.x + x;
+        let newPosY = this.pos.y + y;
+
         // X movement
-        let posX = Math.ceil(this.pos.x / config.size.tile);
-        let newX = Math.ceil((this.pos.x + x) / config.size.tile);
-        let tileY = this.tile.y;
-        if (newX >= 0 && newX <= maxX && tileY >= 0 && tileY <= maxY) {
-            if (!isTileBlocked(newX, tileY)) {
-                this.pos.x += x;
-                this.tile.x = newX;
-            }
+        // Only move if the new position's collision box is not blocked
+        if (!isTileBlockedAtPixel(newPosX, this.pos.y)) {
+            this.pos.x = newPosX;
+            // Update tile.x based on the center of the collision box
+            const tileSize = config.size.tile;
+            const spriteSize = config.size.char;
+            const offset = (spriteSize - tileSize) / 2;
+            this.tile.x = Math.floor((this.pos.x + offset + tileSize / 2) / tileSize);
         }
 
         // Y movement
-        let posY = Math.ceil(this.pos.y / config.size.tile);
-        let newY = Math.ceil((this.pos.y + y) / config.size.tile);
-        let tileX = this.tile.x;
-        if (newY >= 0 && newY <= maxY && tileX >= 0 && tileX <= maxX) {
-            if (!isTileBlocked(tileX, newY)) {
-                this.pos.y += y;
-                this.tile.y = newY;
-            }
+        if (!isTileBlockedAtPixel(this.pos.x, newPosY)) {
+            this.pos.y = newPosY;
+            const tileSize = config.size.tile;
+            const spriteSize = config.size.char;
+            const offset = (spriteSize - tileSize) / 2;
+            this.tile.y = Math.floor((this.pos.y + offset + tileSize / 2) / tileSize);
         }
 
         player = this;
-
         Log("coords", "Coords: " + this.tile.x + ", " + this.tile.y);
     },
+    getAttackSpeed: function() { return this.attackSpeed; },
+    setAttackSpeed: function(val) {
+        const max = 5;
+        if (val > max) {
+            notify("Attack Speed is already maxed out!", 2000);
+            this.attackSpeed = max;
+        } else {
+            this.attackSpeed = Math.max(1, val);
+        }
+    },
+    addAttackSpeed: function(val) {
+        this.setAttackSpeed(this.attackSpeed + val);
+    },
     attackEnemy: function() {
+        const now = Date.now();
+        const attacksPerSecond = this.getAttacksPerSecond();
+        const cooldown = 1000 / attacksPerSecond;
+        if (now - this.lastAttackTime < cooldown) return; 
+
+        this.lastAttackTime = now;
+
         // Only allow attack if player has a sword
         if (!hasItem("sword", 1)) return;
 
@@ -339,6 +392,7 @@ let controlsEnabled = true;
 
 // player movement start:
 document.addEventListener("keydown", function(event) {
+    if (typeof player === "undefined" || !player) return;
     if (!controlsEnabled || player.frozen) return;
 
     if (event.keyCode >= 37 && event.keyCode <= 40) {
@@ -362,6 +416,7 @@ document.addEventListener("keydown", function(event) {
 
 // player movement end:
 document.addEventListener("keyup", function(event) {
+    if (typeof player === "undefined" || !player) return;
     if (!controlsEnabled || player.frozen) return;
 
     let found = false;

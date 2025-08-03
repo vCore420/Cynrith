@@ -9,6 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
         "assets/img/mainMenu/img1.jpg",
         "assets/img/mainMenu/img2.jpg",
         "assets/img/mainMenu/img3.jpg"
+        // Add more player sprites here for full release
     ];
     const chosen = bgImages[Math.floor(Math.random() * bgImages.length)];
     titleScreen.style.background = `url('${chosen}') center center / cover no-repeat, #111`;
@@ -44,7 +45,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const charSelectClose = document.getElementById('char-select-close');
     const titleContent = document.querySelector('.title-content');
 
-    // Example sprite list (replace with your actual sprite data)
+    // Example sprite list (replace with actual sprite data, currently beta sprites are used)
     const sprites = [
       { name: "Hero", file: "assets/img/char/hero.png" },
       { name: "Mage", file: "assets/img/char/mage.png" },
@@ -57,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
     let previewAnimInterval = null;
     let previewMoving = false;
     const previewFrames = [0, 1, 2, 1]; // Walking animation frame indices
-    const frameWidth = 96; // Adjust if your sprite frames are a different size
+    const frameWidth = 96;
 
     function drawPreviewSprite(idx, frame = 1) {
         ctx.clearRect(0, 0, charPreviewCanvas.width, charPreviewCanvas.height);
@@ -65,8 +66,8 @@ window.addEventListener("DOMContentLoaded", function() {
         previewSprite.onload = function() {
             ctx.drawImage(
                 previewSprite,
-                frame * frameWidth, 0, frameWidth, frameWidth, // source x, y, w, h
-                0, 0, frameWidth, frameWidth                   // dest x, y, w, h
+                frame * frameWidth, 0, frameWidth, frameWidth, 
+                0, 0, frameWidth, frameWidth                   
             );
         };
         // If already loaded, draw immediately
@@ -186,10 +187,10 @@ window.addEventListener("DOMContentLoaded", function() {
         skipBtn.classList.remove("visible");
         const lines = [
             "Cynrith is a vast, mystical world forged by the enigmatic and ever-watchful Architect, layered into vertically ascending “floors.”",
-            "Each floor is a unique realm—shaped from fragments of lost worlds—with its own climate, culture, creatures, and secrets.",
+            "Each floor is a unique realm, shaped from fragments of lost worlds; with its own climate, culture, creatures, and secrets.",
             "Ancient magic courses through the land, but faint echoes of a deeper, unsettling design persist.",
             "Inhabitants speak naturally of quests, skills, and leveling as an accepted part of reality, hinting that Cynrith is more than just legend.",
-            "Every step upward draws adventurers deeper into the Architect’s hidden game, where power is earned, but the true cost remains unknown."
+            "Every step upward draws adventurers deeper into the Architect’s hidden game, where power is earned, but the true cost remains unknown..."
         ];
         let idx = 0;
 

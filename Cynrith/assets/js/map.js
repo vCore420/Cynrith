@@ -1,9 +1,11 @@
-// map:
+// Cynrith Game Map Engine
+
 let mapFrameInterval = null;
 let currentMapIndex = 0; 
 let lastTeleportTile = { x: null, y: null };
 let teleportNotifShown = false;
 
+// Helper function to Build GID to Asset Index Map
 function buildGidToAssetIndexMap(mapData) {
     // Build a flat array where gidMap[gid] = asset index
     const gidMap = [];
@@ -26,6 +28,7 @@ function buildGidToAssetIndexMap(mapData) {
     return gidMap;
 }
 
+// Map Constructor
 const Map = function(title) {
     this.data = {};
     this.tiles = [];
@@ -37,6 +40,7 @@ const Map = function(title) {
     this.load(title);
 };
 
+// Main Map Logic
 Map.prototype = {
     load: function(title) {
         LoadURL("assets/json/" + title.toString().toLowerCase() + ".json", (result) => {
@@ -84,6 +88,7 @@ Map.prototype = {
             }
         });
     },
+    // Draw the map
     draw: function() {
         if (!this.data.layout || !this.data.layout[0]) return;
 
@@ -105,7 +110,6 @@ Map.prototype = {
                     for (let x = x_min; x < x_max; x++) {
                         let gid = layer[y][x];
                         if (gid > 0) {
-                            // FAST: direct lookup, no loop!
                             let assetIdx = this.data._gidMap[gid];
                             if (typeof assetIdx === "undefined") continue;
                             let frame = this.data.frame;
@@ -156,6 +160,7 @@ Map.prototype = {
             }
         }
     },
+    // Update the map frame for animations
     frame: function() {
         this.data.frame = (this.data.frame == 0) ? 1 : 0;
     }
@@ -190,8 +195,6 @@ function warpToMap(mapIndex, spawnType = "spawn") {
 }
 
 // Teleport forward if on teleport tile and XP is enough
-// ...existing code...
-
 function checkTeleport() {
     if (!map.data.teleport) return;
     const t = map.data.teleport;
@@ -217,6 +220,7 @@ function checkTeleport() {
     }
 }
 
+// Check if player is on back teleport tile to go back to previous map
 function checkBackTeleport() {
     if (!map.data.spawn) return;
     const s = map.data.spawn;

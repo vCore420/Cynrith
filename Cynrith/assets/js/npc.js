@@ -68,6 +68,39 @@ function getDirectionToFace(npc, player) {
     return 40; // default down
 }
 
+// Helper to check collision at a pixel position for NPCs/Enemies
+function isNpcTileBlockedAtPixel(px, py, direction) {
+    const tileSize = config.size.tile;
+    const spriteSize = config.size.char;
+    const offset = (spriteSize - tileSize) / 2;
+
+    const tileX = Math.floor((px + offset + tileSize / 2) / tileSize);
+    let tileY;
+    if (direction === "up") {
+        tileY = Math.floor((py + offset) / tileSize);
+    } else {
+        // down or default: triggers a bit sooner for bottom collision
+        tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
+    }
+
+    if (map.data._layers) {
+        for (let l = 0; l < map.data._layers.length; l++) {
+            let gid = map.data._layers[l][tileY][tileX];
+            if (gid > 0) {
+                let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
+                if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    } else {
+        const tileGid = map.data.layout[tileY][tileX];
+        let tileIndex = tileGid > 0 ? tileGid - 1 : null;
+        return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
+    }
+}
+
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
     if (map.data._layers) {
@@ -114,10 +147,22 @@ function wanderAI(char) {
 
         // Move towards destination
         if (Math.abs(dx) > 0.01) {
-            char.x += Math.sign(dx) * Math.min(Math.abs(dx), speed / config.size.tile);
+            // Pixel-based collision check for X movement
+            let tryMoveX = char.x + Math.sign(dx) * Math.min(Math.abs(dx), speed / config.size.tile);
+            let px = tryMoveX * config.size.tile;
+            let py = char.y * config.size.tile;
+            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : dx < 0 ? "left" : "down")) {
+                char.x = tryMoveX;
+            }
         }
         if (Math.abs(dy) > 0.01) {
-            char.y += Math.sign(dy) * Math.min(Math.abs(dy), speed / config.size.tile);
+            // Pixel-based collision check for Y movement
+            let tryMoveY = char.y + Math.sign(dy) * Math.min(Math.abs(dy), speed / config.size.tile);
+            let px = char.x * config.size.tile;
+            let py = tryMoveY * config.size.tile;
+            if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down")) {
+                char.y = tryMoveY;
+            }
         }
 
         char.movement.moving = true;
@@ -183,7 +228,7 @@ function updateCharacters() {
                     }
                 }
             } else {
-                // Go back to wandering, need to make this work for situations wherew the npc leaves thair walkable box
+                // Go back to wandering
                 char.state = "wander";
                 wanderAI(char);
             }
@@ -251,12 +296,24 @@ function moveEnemyTowardPlayer(char) {
 
     if (Math.abs(dx) > Math.abs(dy)) {
         if (dx !== 0) {
-            char.x += Math.sign(dx) * speed / config.size.tile;
-            moved = true;
+            // Pixel-based collision check for X movement
+            let tryMoveX = char.x + Math.sign(dx) * speed / config.size.tile;
+            let px = tryMoveX * config.size.tile;
+            let py = char.y * config.size.tile;
+            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : dx < 0 ? "left" : "down")) {
+                char.x = tryMoveX;
+                moved = true;
+            }
         }
     } else if (dy !== 0) {
-        char.y += Math.sign(dy) * speed / config.size.tile;
-        moved = true;
+        // Pixel-based collision check for Y movement
+        let tryMoveY = char.y + Math.sign(dy) * speed / config.size.tile;
+        let px = char.x * config.size.tile;
+        let py = tryMoveY * config.size.tile;
+        if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down")) {
+            char.y = tryMoveY;
+            moved = true;
+        }
     }
 
     if (moved) {

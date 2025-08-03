@@ -58,6 +58,7 @@ function updatePlayerMenuStats() {
             <div><b>XP:</b> ${player.xp}</div>
             <div><b>Attack:</b> ${player.attack}</div>
             <div><b>Defence:</b> ${player.defence}</div>
+            <div><b>Attack Speed:</b> ${player.attackSpeed}</div>
         </div>
     `;
 }
