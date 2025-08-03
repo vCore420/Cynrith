@@ -90,12 +90,29 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 
 - Designed, extended, customized, and maintained by vCore420
 
-## License
-
-This project is licensed under the MIT License.
-
 ## Contributing
 
 Pull requests and suggestions are welcome!
 
-Enjoy
+---
+
+<details>
+<summary>🎨 Concept Art Gallery</summary>
+
+<p align="center">
+  <img src="docs/concept_art/Floor_1a.jpg" alt="Floor_1a" width="200"/>
+  <img src="docs/concept_art/Floor_2b.jpg" alt="Floor_2b" width="200"/>
+  <img src="docs/concept_art/Floor_3b.jpg" alt="Floor_3b" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1c.png" alt="Tile_concept_Floor_1c" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1d.png" alt="Tile_concept_Floor_1d" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Teleport_stone_c.jpg" alt="Tile_concept_Teleport_stone_c" width="200"/>
+</p>
+
+</details>
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
