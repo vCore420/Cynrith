@@ -103,9 +103,13 @@ Pull requests and suggestions are welcome!
   <img src="docs/concept_art/Floor_1a.jpg" alt="Floor_1a" width="200"/>
   <img src="docs/concept_art/Floor_2b.jpg" alt="Floor_2b" width="200"/>
   <img src="docs/concept_art/Floor_3b.jpg" alt="Floor_3b" width="200"/>
+  <img src="docs/concept_art/The_Architect_on_Floor_3.jpg" alt="The_Architect_on_Floor_3" width="200"/>
   <img src="docs/concept_art/Tile_concept_Floor_1c.png" alt="Tile_concept_Floor_1c" width="200"/>
   <img src="docs/concept_art/Tile_concept_Floor_1d.png" alt="Tile_concept_Floor_1d" width="200"/>
-  <img src="docs/concept_art/Tile_concept_Teleport_stone_c.jpg" alt="Tile_concept_Teleport_stone_c" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1e.png" alt="Tile_concept_Floor_1e" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1f.png" alt="Tile_concept_Floor_1f" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Teleport_Stone_c.jpg" alt="Tile_concept_Teleport_stone_c" width="200"/>
+  <img src="docs/concept_art/Floor_1_Eldrin_npc_b.jpg" alt="Floor_1_Eldrin_npc_b" width="200"/>
 </p>
 
 </details>
