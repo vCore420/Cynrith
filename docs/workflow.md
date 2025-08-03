@@ -1,5 +1,6 @@
 # vTile Game Workflow
 
+
 ## NPC Logic
 
 ## Combat System
@@ -16,7 +17,7 @@
 - [ ] Add collision logic between Player and Npc
 
 ## Inventory 
-- [ ] Design dropdown menu for items, display item name, rarity and description, use and remove buttons
+- [x] Design dropdown menu for items, display item name, rarity and description, use and remove buttons
       
 ## Skills Menu
 - [ ] Recycle skill menu used for FiveM to suit the style of this game and expand/adapt the system to work with our tile game
@@ -24,7 +25,9 @@
 
 ## Title Menu
 - [x] Menu that loads before the game starts giving the user a new game and load game button
-- [ ] New game changes menu to give the player options of the character they want to be and what their player's name is (which will also be the saveId)
+- [x] Use concetpt art with small effects for background of title screen
+- [x] Design main Title
+- [x] New game changes menu to give the player options of the character they want to be and what their player's name is (which will also be the saveId)
 - [ ] Load game changes menu to show list of game saves, selecting one will load the game 
 
 ## New Game
@@ -38,7 +41,7 @@
 ## Item System
 - [ ] Usable items, functionality for different item uses 
 - [ ] Buyable items? (shop/traders system?) 
-- [ ] Lootable nodes?
+- [ ] Lootable tiles?
 
 ## Maps and Dialogue
 - [ ] Create at least 5 floors to start with before first bete release of the game 
@@ -48,11 +51,15 @@
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing 
-- [ ] Add character name the top of the dialogue box
+- [x] Add character name the top of the dialogue box
 
 ---
 
 ## **New Since Last Commit*
-- 
+
+- Added npc charater name to dialouge box
+- Designed dropdown menu for inventory items
+- Added more Detailed root to css for a more defined colour sceme
+- Desigen Title screen, charater selection and new game lore screen
 
 ---
