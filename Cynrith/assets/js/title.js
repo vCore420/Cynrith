@@ -1,9 +1,32 @@
 window.addEventListener("DOMContentLoaded", function() {
-    const titleScreen = document.getElementById("title-screen");
     const loreIntro = document.getElementById("lore-intro");
     const loreText = document.getElementById("lore-text");
     const btnNewGame = document.getElementById("btn-newgame");
     const skipBtn = document.getElementById("lore-skip-btn");
+
+    const titleScreen = document.getElementById("title-screen");
+    const bgImages = [
+        "assets/img/mainMenu/img1.jpg",
+        "assets/img/mainMenu/img2.jpg",
+        "assets/img/mainMenu/img3.jpg"
+    ];
+    const chosen = bgImages[Math.floor(Math.random() * bgImages.length)];
+    titleScreen.style.background = `url('${chosen}') center center / cover no-repeat, #111`;
+    titleScreen.style.transition = "background-image 1.2s cubic-bezier(.4,0,.2,1)";
+
+    // Sparkle effect
+    const sparkles = document.getElementById("title-sparkles");
+    function spawnSparkle() {
+        if (!sparkles) return;
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 100 + "vh";
+        s.style.animationDuration = (2 + Math.random() * 2) + "s";
+        sparkles.appendChild(s);
+        setTimeout(() => sparkles.removeChild(s), 2500);
+    }
+    setInterval(spawnSparkle, 350);
 
     let gameStarted = false;
     let originalSetup = window.Setup;
@@ -11,9 +34,116 @@ window.addEventListener("DOMContentLoaded", function() {
         if (gameStarted) originalSetup();
     };
 
+    // Character select elements
+    const characterSelect = document.getElementById('character-select');
+    const charList = document.getElementById('char-list');
+    const charPreviewCanvas = document.getElementById('char-preview-canvas');
+    const ctx = charPreviewCanvas.getContext('2d');
+    const playerNameInput = document.getElementById('player-name-input');
+    const charConfirmBtn = document.getElementById('char-confirm-btn');
+    const charSelectClose = document.getElementById('char-select-close');
+    const titleContent = document.querySelector('.title-content');
+
+    // Example sprite list (replace with your actual sprite data)
+    const sprites = [
+      { name: "Hero", file: "assets/img/char/hero.png" },
+      { name: "Mage", file: "assets/img/char/mage.png" },
+      { name: "Rogue", file: "assets/img/char/rogue.png" }
+    ];
+
+    // Sprite preview animation logic
+    let selectedCharIdx = 0;
+    let previewSprite = new Image();
+    let previewAnimInterval = null;
+    let previewMoving = false;
+    const previewFrames = [0, 1, 2, 1]; // Walking animation frame indices
+    const frameWidth = 96; // Adjust if your sprite frames are a different size
+
+    function drawPreviewSprite(idx, frame = 1) {
+        ctx.clearRect(0, 0, charPreviewCanvas.width, charPreviewCanvas.height);
+        previewSprite.src = sprites[idx].file;
+        previewSprite.onload = function() {
+            ctx.drawImage(
+                previewSprite,
+                frame * frameWidth, 0, frameWidth, frameWidth, // source x, y, w, h
+                0, 0, frameWidth, frameWidth                   // dest x, y, w, h
+            );
+        };
+        // If already loaded, draw immediately
+        if (previewSprite.complete) {
+            ctx.drawImage(
+                previewSprite,
+                frame * frameWidth, 0, frameWidth, frameWidth,
+                0, 0, frameWidth, frameWidth
+            );
+        }
+    }
+
+    function selectCharacter(idx) {
+        selectedCharIdx = idx;
+        [...charList.children].forEach((li, i) => li.classList.toggle("selected", i === idx));
+        drawPreviewSprite(idx, 1); // Idle frame
+    }
+
+    // Animate on hover
+    charPreviewCanvas.addEventListener('mouseenter', function() {
+        if (previewAnimInterval) clearInterval(previewAnimInterval);
+        let frameIdx = 0;
+        previewMoving = true;
+        previewAnimInterval = setInterval(() => {
+            if (!previewMoving) return;
+            drawPreviewSprite(selectedCharIdx, previewFrames[frameIdx]);
+            frameIdx = (frameIdx + 1) % previewFrames.length;
+        }, 160);
+    });
+    charPreviewCanvas.addEventListener('mouseleave', function() {
+        previewMoving = false;
+        if (previewAnimInterval) clearInterval(previewAnimInterval);
+        drawPreviewSprite(selectedCharIdx, 1); // Idle frame
+    });
+
+    // Show character select when New Game is clicked
     btnNewGame.onclick = function() {
-        titleScreen.style.display = "none";
-        playLoreIntro();
+        titleContent.style.display = "none";
+        characterSelect.classList.remove("hidden");
+        // Populate list
+        charList.innerHTML = "";
+        sprites.forEach((sprite, idx) => {
+            const li = document.createElement("li");
+            li.textContent = sprite.name;
+            li.dataset.idx = idx;
+            if (idx === 0) li.classList.add("selected");
+            li.onclick = () => selectCharacter(idx);
+            charList.appendChild(li);
+        });
+        selectCharacter(0);
+        playerNameInput.value = "";
+        playerNameInput.focus();
+    };
+
+    // Confirm selection
+    charConfirmBtn.onclick = function() {
+        const playerName = playerNameInput.value.trim();
+        if (!playerName) {
+            playerNameInput.focus();
+            playerNameInput.placeholder = "Please enter a name!";
+            return;
+        }
+        // Save player name and sprite as needed here
+        characterSelect.classList.add("hidden");
+        // Fade out and continue to lore screen
+        document.getElementById("title-fade").style.opacity = "1";
+        setTimeout(() => {
+            document.getElementById("title-screen").style.display = "none";
+            playLoreIntro();
+            document.getElementById("title-fade").style.opacity = "0";
+        }, 850);
+    };
+
+    // Close character select
+    charSelectClose.onclick = function() {
+        characterSelect.classList.add("hidden");
+        titleContent.style.display = "";
     };
 
     let skipLore = false;

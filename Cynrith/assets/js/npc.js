@@ -284,6 +284,7 @@ function showDamagePopup(x, y, dmg, type = "enemy") {
 // Draw popups 
 function drawDamagePopups() {
     const now = Date.now();
+    const rootStyles = getComputedStyle(document.documentElement);
     for (let i = damagePopups.length - 1; i >= 0; i--) {
         const popup = damagePopups[i];
         const elapsed = now - popup.time;
@@ -294,17 +295,21 @@ function drawDamagePopups() {
         const progress = elapsed / popup.duration;
         const fade = progress < 0.2 ? progress * 5 : (1 - progress) * 1.2;
         popup.opacity = Math.max(0, Math.min(1, fade));
-        const slide = -24 * progress; 
+        const slide = -24 * progress;
 
         let px = Math.round(popup.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
         let py = Math.round(popup.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
         py -= 22 + slide;
 
+        // Use CSS variables for colors
+        const colorEnemy = rootStyles.getPropertyValue('--danger-red') || '#e33';
+        const colorPlayer = rootStyles.getPropertyValue('--dropdown-btn-use-bg') || '#3af0ff';
+
         context.save();
         context.globalAlpha = popup.opacity;
-        context.font = "bold 22px Arial";
+        context.font = "bold 22px " + (rootStyles.getPropertyValue('--font-playermenu') || 'Arial, sans-serif');
         context.textAlign = "center";
-        context.fillStyle = popup.type === "enemy" ? "#e33" : "#33e";
+        context.fillStyle = popup.type === "enemy" ? colorEnemy : colorPlayer;
         context.strokeStyle = "#fff";
         context.lineWidth = 2;
         context.strokeText("-" + popup.dmg, px + config.size.char / 2, py);
@@ -333,22 +338,10 @@ function handlePlayerDeath() {
 function showDeathScreen() {
     let overlay = document.createElement('div');
     overlay.id = "death-overlay";
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100vw";
-    overlay.style.height = "100vh";
-    overlay.style.background = "rgba(0,0,0,1)";
-    overlay.style.display = "flex";
-    overlay.style.flexDirection = "column";
-    overlay.style.justifyContent = "center";
-    overlay.style.alignItems = "center";
-    overlay.style.zIndex = "9999";
-    overlay.style.opacity = "0";
-    overlay.style.transition = "opacity 0.6s";
+    overlay.className = "death-overlay";
     overlay.innerHTML = `
-        <h1 style="color:#fff;font-size:3em;margin-bottom:1em;">You Died</h1>
-        <button id="respawn-btn" style="font-size:1.5em;padding:0.5em 2em;">Respawn</button>
+        <h1>You Died</h1>
+        <button id="respawn-btn">Respawn</button>
     `;
     document.body.appendChild(overlay);
 
@@ -465,22 +458,38 @@ function drawCharacters() {
             let barHeight = 8;
             let healthRatio = Math.max(0, char.health / char.maxHealth);
 
+            // Use CSS variables for styling
+            const rootStyles = getComputedStyle(document.documentElement);
+            const barBg = rootStyles.getPropertyValue('--enemy-health-bar-bg') || '#222';
+            const barFg = rootStyles.getPropertyValue('--enemy-health-bar') || '#e33';
+            const barBorder = rootStyles.getPropertyValue('--enemy-health-bar-border') || '#fff';
+            const nameColor = rootStyles.getPropertyValue('--quest-text') || '#fff';
+            const nameStroke = rootStyles.getPropertyValue('--enemy-health-bar-name-stroke') || '#222';
+
             // Draw enemy name above health bar
             context.save();
-            context.font = "bold 16px Arial";
+            context.font = "bold 16px " + (rootStyles.getPropertyValue('--font-playermenu') || 'Arial, sans-serif');
             context.textAlign = "center";
-            context.fillStyle = "#fff";
-            context.strokeStyle = "#222";
+            context.fillStyle = nameColor;
+            context.strokeStyle = nameStroke;
             context.lineWidth = 3;
             let nameY = py - barHeight - 18;
             context.strokeText(char.name || "Enemy", px + config.size.char / 2, nameY);
             context.fillText(char.name || "Enemy", px + config.size.char / 2, nameY);
             context.restore();
-            context.fillStyle = "#222";
+
+            // Draw health bar background
+            context.fillStyle = barBg;
+            context.globalAlpha = 0.92;
             context.fillRect(px + (config.size.char - barWidth) / 2, py - barHeight - 6, barWidth, barHeight);
-            context.fillStyle = "#e33";
+            context.globalAlpha = 1;
+
+            // Draw health bar foreground
+            context.fillStyle = barFg;
             context.fillRect(px + (config.size.char - barWidth) / 2, py - barHeight - 6, barWidth * healthRatio, barHeight);
-            context.strokeStyle = "#fff";
+
+            // Draw border
+            context.strokeStyle = barBorder;
             context.lineWidth = 1;
             context.strokeRect(px + (config.size.char - barWidth) / 2, py - barHeight - 6, barWidth, barHeight);
         }

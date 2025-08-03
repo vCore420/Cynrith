@@ -25,6 +25,16 @@ function showDialogueLine(idx) {
     const block = document.getElementById('dialogue-block');
     const text = document.getElementById('dialogue-text');
     const footer = document.getElementById('dialogue-footer');
+    const nameDiv = document.getElementById('dialogue-npc-name');
+    // Find the interacting NPC
+    let npc = characters.find(c => c.isInteracting);
+    if (npc && nameDiv) {
+        nameDiv.textContent = npc.name || "";
+        nameDiv.style.display = "";
+    } else if (nameDiv) {
+        nameDiv.textContent = "";
+        nameDiv.style.display = "none";
+    }
     if (idx < _dialogueQueue.length) {
         text.textContent = _dialogueQueue[idx];
         block.classList.remove('hidden');
@@ -40,5 +50,6 @@ function showDialogueLine(idx) {
         player.frozen = false; 
         clearAllMovementKeys(); 
         block.dataset.dialogueType = "";
+        if (nameDiv) nameDiv.textContent = "";
     }
 }

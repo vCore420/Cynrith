@@ -62,104 +62,152 @@ function updateInventoryUI() {
                 div.appendChild(amt);
             }
 
-            div.onclick = () => showItemDropdown(i, slot, def);
+            div.onclick = (e) => showItemDropdown(i, slot, def, e);
         }
         grid.appendChild(div);
     }
 }
 
 // Dropdown for item actions
-function showItemDropdown(index, slot, def) {
-    // Remove any existing dropdown
+function showItemDropdown(index, slot, def, event) {
+    // Remove any existing dropdown/overlay
     let old = document.getElementById('item-dropdown');
     if (old) old.remove();
+    let oldOverlay = document.getElementById('item-dropdown-overlay');
+    if (oldOverlay) oldOverlay.remove();
 
-    const div = document.createElement('div');
-    div.id = "item-dropdown";
-    div.style.position = "fixed";
-    div.style.left = (window.innerWidth / 2 - 80) + "px";
-    div.style.top = (window.innerHeight / 2 - 40) + "px";
-    div.style.background = "#222";
-    div.style.color = "#fff";
-    div.style.padding = "12px";
-    div.style.borderRadius = "10px";
-    div.style.zIndex = 2000;
-    div.style.boxShadow = "0 2px 12px rgba(0,0,0,0.18)";
+    // Overlay to close on click outside
+    let overlay = document.createElement('div');
+    overlay.id = "item-dropdown-overlay";
+    overlay.onclick = () => {
+        dropdown.remove();
+        overlay.remove();
+    };
 
+    // Dropdown block
+    const rarityClass = `rarity-${(def.rarity || "common").toLowerCase()}`;
+    const dropdown = document.createElement('div');
+    dropdown.id = "item-dropdown";
+    dropdown.className = `item-dropdown ${rarityClass}`;
+    dropdown.onclick = e => e.stopPropagation();
+
+    // Position dropdown near mouse, but not overlapping the slot
+    let mouseX = event?.clientX || window.innerWidth / 2;
+    let mouseY = event?.clientY || window.innerHeight / 2;
+    let dropdownWidth = 240;
+    let dropdownHeight = 220; // Approximate, adjust if needed
+
+    // Prefer to the right of the mouse, but if too close to edge, shift left
+    let left = mouseX + 16;
+    if (left + dropdownWidth > window.innerWidth) {
+        left = mouseX - dropdownWidth - 16;
+        if (left < 0) left = 8;
+    }
+    // Prefer above the mouse if too close to bottom
+    let top = mouseY - dropdownHeight / 2;
+    if (top + dropdownHeight > window.innerHeight) {
+        top = window.innerHeight - dropdownHeight - 8;
+    }
+    if (top < 0) top = 8;
+
+    dropdown.style.left = `${left}px`;
+    dropdown.style.top = `${top}px`;
+
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = "✕";
+    closeBtn.className = "dropdown-close-btn";
+    closeBtn.onclick = () => {
+        dropdown.remove();
+        overlay.remove();
+    };
+    dropdown.appendChild(closeBtn);
+
+    // Item name
+    const nameDiv = document.createElement('div');
+    nameDiv.textContent = def.name;
+    nameDiv.className = "dropdown-name";
+    dropdown.appendChild(nameDiv);
+
+    // Description
+    const descDiv = document.createElement('div');
+    descDiv.textContent = def.description;
+    descDiv.className = "dropdown-desc";
+    dropdown.appendChild(descDiv);
+
+    // Rarity
+    const rarityDiv = document.createElement('div');
+    rarityDiv.textContent = `Rarity: ${def.rarity || "Common"}`;
+    rarityDiv.className = "dropdown-rarity";
+    dropdown.appendChild(rarityDiv);
+
+    // Use button
     if (def.useable) {
         const useBtn = document.createElement('button');
         useBtn.textContent = "Use Item";
+        useBtn.className = "dropdown-btn use";
         useBtn.onclick = () => {
-            // Placeholder for use logic
             notify(`Used ${def.name}!`, 1500);
-            div.remove();
+            dropdown.remove();
+            overlay.remove();
         };
-        div.appendChild(useBtn);
+        dropdown.appendChild(useBtn);
     }
 
+    // Remove button
     const removeBtn = document.createElement('button');
     removeBtn.textContent = "Remove Item";
-    removeBtn.style.marginLeft = "12px";
+    removeBtn.className = "dropdown-btn remove";
     removeBtn.onclick = () => {
-        div.remove();
-        showRemoveAmountPrompt(slot, def);
-    };
-    div.appendChild(removeBtn);
+        // Show amount selector below this button
+        if (dropdown.querySelector('.remove-amount-block')) return;
+        const amtBlock = document.createElement('div');
+        amtBlock.className = "remove-amount-block";
 
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = "Cancel";
-    closeBtn.style.marginLeft = "12px";
-    closeBtn.onclick = () => div.remove();
-    div.appendChild(closeBtn);
+        let amt = 1;
 
-    document.body.appendChild(div);
-}
+        const minusBtn = document.createElement('button');
+        minusBtn.textContent = "−";
+        minusBtn.className = "remove-amount-btn";
+        minusBtn.onclick = () => {
+            if (amt > 1) {
+                amt--;
+                amtNum.textContent = amt;
+            }
+        };
 
-// Prompt for remove amount
-function showRemoveAmountPrompt(slot, def) {
-    let old = document.getElementById('item-dropdown');
-    if (old) old.remove();
+        const amtNum = document.createElement('span');
+        amtNum.textContent = amt;
+        amtNum.className = "remove-amount-num";
 
-    const div = document.createElement('div');
-    div.id = "item-dropdown";
-    div.style.position = "fixed";
-    div.style.left = (window.innerWidth / 2 - 80) + "px";
-    div.style.top = (window.innerHeight / 2 - 40) + "px";
-    div.style.background = "#222";
-    div.style.color = "#fff";
-    div.style.padding = "12px";
-    div.style.borderRadius = "10px";
-    div.style.zIndex = 2000;
-    div.style.boxShadow = "0 2px 12px rgba(0,0,0,0.18)";
+        const plusBtn = document.createElement('button');
+        plusBtn.textContent = "+";
+        plusBtn.className = "remove-amount-btn";
+        plusBtn.onclick = () => {
+            if (amt < slot.amount) {
+                amt++;
+                amtNum.textContent = amt;
+            }
+        };
 
-    const label = document.createElement('label');
-    label.textContent = `Remove how many (${slot.amount} max): `;
-    div.appendChild(label);
-
-    const input = document.createElement('input');
-    input.type = "number";
-    input.min = 1;
-    input.max = slot.amount;
-    input.value = 1;
-    input.style.width = "40px";
-    div.appendChild(input);
-
-    const okBtn = document.createElement('button');
-    okBtn.textContent = "OK";
-    okBtn.onclick = () => {
-        const amt = parseInt(input.value, 10);
-        if (amt >= 1 && amt <= slot.amount) {
+        const okBtn = document.createElement('button');
+        okBtn.textContent = "OK";
+        okBtn.className = "remove-amount-ok";
+        okBtn.onclick = () => {
             removeItem(slot.id, amt);
-            div.remove();
-        }
+            dropdown.remove();
+            overlay.remove();
+        };
+
+        amtBlock.appendChild(minusBtn);
+        amtBlock.appendChild(amtNum);
+        amtBlock.appendChild(plusBtn);
+        amtBlock.appendChild(okBtn);
+
+        dropdown.appendChild(amtBlock);
     };
-    div.appendChild(okBtn);
+    dropdown.appendChild(removeBtn);
 
-    const cancelBtn = document.createElement('button');
-    cancelBtn.textContent = "Cancel";
-    cancelBtn.style.marginLeft = "12px";
-    cancelBtn.onclick = () => div.remove();
-    div.appendChild(cancelBtn);
-
-    document.body.appendChild(div);
+    document.body.appendChild(overlay);
+    document.body.appendChild(dropdown);
 }

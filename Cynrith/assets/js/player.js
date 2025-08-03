@@ -268,38 +268,68 @@ Player.prototype = {
 function drawPlayerHealthHUD() {
     // Only show if any enemy is hostile
     const anyHostile = characters.some(char => char.type === "enemy" && char.state === "hostile");
-    if (!anyHostile) return;
+   
+    // Remove any existing SVG if not needed
+    let old = document.getElementById('player-health-bar-svg');
+    if (!anyHostile) {
+        if (old) old.remove();
+        return;
+    }
+    if (old) old.remove();
 
-    const barWidth = Math.min(420, Math.floor(config.win.width * 0.45)); // Responsive, max 420px
+    const barWidth = Math.min(420, Math.floor(config.win.width * 0.45));
     const barHeight = 18;
     const x = Math.floor((config.win.width - barWidth) / 2);
     const y = 24;
-
     const healthRatio = Math.max(0, player.health / player.maxHealth);
 
+    // Create SVG
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("id", "player-health-bar-svg");
+    svg.setAttribute("width", barWidth);
+    svg.setAttribute("height", barHeight + 8);
+    svg.style.position = "fixed";
+    svg.style.left = x + "px";
+    svg.style.top = y + "px";
+    svg.style.zIndex = 1000;
+    svg.style.pointerEvents = "none";
+
     // Background
-    context.save();
-    context.globalAlpha = 0.92;
-    context.fillStyle = "#222";
-    context.fillRect(x, y, barWidth, barHeight);
+    const bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    bg.setAttribute("class", "player-health-bar-bg");
+    bg.setAttribute("x", 0);
+    bg.setAttribute("y", 0);
+    bg.setAttribute("width", barWidth);
+    bg.setAttribute("height", barHeight);
+    svg.appendChild(bg);
 
     // Health
-    context.fillStyle = "#3e3";
-    context.fillRect(x, y, barWidth * healthRatio, barHeight);
+    const fg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    fg.setAttribute("class", "player-health-bar");
+    fg.setAttribute("x", 0);
+    fg.setAttribute("y", 0);
+    fg.setAttribute("width", barWidth * healthRatio);
+    fg.setAttribute("height", barHeight);
+    svg.appendChild(fg);
 
     // Border
-    context.strokeStyle = "#fff";
-    context.lineWidth = 2;
-    context.strokeRect(x, y, barWidth, barHeight);
+    const border = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    border.setAttribute("class", "player-health-bar-border");
+    border.setAttribute("x", 0);
+    border.setAttribute("y", 0);
+    border.setAttribute("width", barWidth);
+    border.setAttribute("height", barHeight);
+    svg.appendChild(border);
 
     // Text
-    context.font = "bold 0.8em Arial";
-    context.textAlign = "center";
-    context.fillStyle = "#fff";
-    context.shadowColor = "#111";
-    context.shadowBlur = 2;
-    context.fillText(`Player Health: ${player.health} / ${player.maxHealth}`, x + barWidth / 2, y + barHeight - 4);
-    context.restore();
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("class", "player-health-bar-text");
+    text.setAttribute("x", barWidth / 2);
+    text.setAttribute("y", barHeight / 2 + 5);
+    text.textContent = `Player Health: ${player.health} / ${player.maxHealth}`;
+    svg.appendChild(text);
+
+    document.body.appendChild(svg);
 }
 
 // Touch Controls 
