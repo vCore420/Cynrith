@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Cynrith</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700|Nunito:400,700|Merriweather+Sans:400,700&display=swap" rel="stylesheet">
     <link type="text/css" href="assets/css/main.css" rel="stylesheet" />
 </head>
 <body>
@@ -57,21 +58,46 @@
     <div id="notification" class="notification"></div>
 
     <div id="dialogue-block" class="dialogue-block hidden">
+      <div id="dialogue-npc-name" style="font-weight:bold;font-size:1.1em;color:#ffe082;margin-bottom:6px;"></div>
       <div id="dialogue-text"></div>
       <div id="dialogue-footer" style="margin-top:20px;font-size:0.6em;color:#ccc;"></div>
     </div>
 
     <div id="title-screen">
-      <h1>Cynrith</h1>
-      <button id="btn-newgame">New Game</button>
-      <button id="btn-loadgame">Load Game</button>
+      <div id="title-effects">
+        <div class="title-ray ray1"></div>
+        <div class="title-ray ray2"></div>
+        <div id="title-sparkles"></div>
+      </div>
+      <div class="title-content">
+        <h1>Cynrith</h1>
+        <button id="btn-newgame">New Game</button>
+        <button id="btn-loadgame">Load Game</button>
+      </div>
+      <div id="title-fade"></div>
     </div>
     
+    <div id="character-select" class="hidden">
+      <div class="char-select-content">
+        <button id="char-select-close" class="close-btn" title="Back to Title Menu">✕</button>
+        <h2>Character Selection</h2>
+        <input id="player-name-input" type="text" maxlength="16" placeholder="Enter your name..." autocomplete="off" />
+        <div class="char-select-body">
+          <ul id="char-list"></ul>
+          <div id="char-preview-container">
+            <canvas id="char-preview-canvas" width="96" height="96"></canvas>
+          </div>
+        </div>
+        <button id="char-confirm-btn" class="confirm-btn">Confirm</button>
+      </div>
+    </div>
+
     <div id="lore-intro">
+      <div id="lore-aura"></div>
       <div id="lore-text"></div>
       <button id="lore-skip-btn" class="lore-skip-btn" style="display:none;">Skip</button>
     </div>
-    
+
     <script src="assets/js/title.js"></script>
     <script src="assets/js/viewport.js"></script>
     <script src="assets/js/player.js"></script>
