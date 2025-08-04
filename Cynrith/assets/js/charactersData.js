@@ -1,5 +1,9 @@
 // NPC definitions
 const NPC_DEFINITIONS = {
+
+    // -------- FLOOR 1 --------
+
+    // Eldrin - First npc encounter
     eldrin_steward: {
         id: "eldrin_steward",
         name: "Eldrin the Steward",
@@ -40,10 +44,51 @@ const NPC_DEFINITIONS = {
                 { x: 44, y: 48 },
                 { x: 44, y: 47 }
             ],
-            triggered: false // runtime flag, not persisted
+            triggered: false
         }
     },
+
     
+    // Old Rook - First encounter with the Teleport Stone
+    old_rook: {
+        id: "old_rook",
+        name: "Old Rook",
+        sprite: "assets/img/npc/npc_m_1.png", 
+        interactive: true,
+        spawns: [
+            {
+                map: 0,
+                x: 42,
+                y: 24,
+                wanderArea: { x1: 41, y1: 23, x2: 43, y2: 25 }
+            }
+        ],
+        dialogue: {
+            default: [
+                "Ah, the Teleport Stone draws another wanderer. These ruins have seen more cycles than I can count.",
+                "Long ago, the Firstfolk built these stones to mark the path between worlds. Now, only the brave—or the curious—dare use them.",
+                "To travel, simply step close and let your intent guide you. The glyphs will answer, if you’re ready.",
+                "Take these—old traveler’s tricks. A few potions and a charm for luck. The next floor is never quite what you expect."
+            ],
+            questComplete: [
+                "The stone hums when you approach. That’s a good sign. Remember: every floor has its own rules, but the Architect is always watching.",
+                "Safe travels, adventurer. May the echoes be kind."
+            ]
+        },
+        questId: "rook_gift",
+        questRedo: false, 
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 35, y: 24 },
+                { x: 35, y: 25 }
+            ],
+            triggered: false 
+        }
+    },
+
+    
+    // Quest Giver
     mira_gatherer: {
         id: "mira_gatherer",
         name: "Mira the Gatherer",
@@ -61,8 +106,7 @@ const NPC_DEFINITIONS = {
             default: [
                 "Oh! A new face among the stones. Welcome to Verdant Rise, traveler.",
                 "If you’re looking to prove your mettle, the Vicious Plants around here drop something called Dewleaf. It’s prized by healers and cooks alike.",
-                "Would you mind gathering a few for me? The plants can be tricky—watch for their snapping jaws in the tall grass.",
-                "Strange, isn’t it, how the world seems to remember us? Sometimes I find echoes—shimmers in the air, like memories left behind."
+                "Would you mind gathering a few for me? The plants can be tricky—watch for their snapping jaws in the tall grass."
             ],
             questGiven: [
                 "Bring me 3 Dewleaf from the Vicious Plants. You’ll find them lurking in the grass. Good luck!"
@@ -72,12 +116,16 @@ const NPC_DEFINITIONS = {
             ],
             questComplete: [
                 "You found them! Thank you, traveler. The healers will be grateful.",
-                "If you ever find more Dewleaf, I’ll always have a reward for you."
+                "If you ever find more Dewleaf, I’ll always have a reward for you.",
+                "Strange, isn’t it, how the world seems to remember us? Sometimes I find echoes—shimmers in the air, like memories left behind."
             ]
         },
         questId: "dewleaf_gather",
         questRedo: true // Repeatable quest
     },
+
+
+    // Quest Giver
     finn_apprentice: {
         id: "finn_apprentice",
         name: "Finn the Apprentice",
@@ -112,47 +160,63 @@ const NPC_DEFINITIONS = {
         questId: "slime_cull",
         questRedo: true // Repeatable quest
     },
-    old_rook: {
-        id: "old_rook",
-        name: "Old Rook",
-        sprite: "assets/img/npc/npc_m_1.png", 
+
+
+    // Lore Building
+    lira_botanist: {
+        id: "lira_botanist",
+        name: "Lira the Botanist",
+        sprite: "assets/img/npc/npc_f_2.png",
         interactive: true,
         spawns: [
             {
                 map: 0,
-                x: 42,
-                y: 24,
-                wanderArea: { x1: 41, y1: 23, x2: 43, y2: 25 }
+                x: 12,
+                y: 41,
+                wanderArea: { x1: 9, y1: 14, x2: 16, y2: 46 }
             }
         ],
         dialogue: {
             default: [
-                "Ah, the Teleport Stone draws another wanderer. These ruins have seen more cycles than I can count.",
-                "Long ago, the Firstfolk built these stones to mark the path between worlds. Now, only the brave—or the curious—dare use them.",
-                "To travel, simply step close and let your intent guide you. The glyphs will answer, if you’re ready.",
-                "Take these—old traveler’s tricks. A few potions and a charm for luck. The next floor is never quite what you expect."
-            ],
-            questComplete: [
-                "The stone hums when you approach. That’s a good sign. Remember: every floor has its own rules, but the Architect is always watching.",
-                "Safe travels, adventurer. May the echoes be kind."
+                "Have you ever noticed how the flowers here bloom in patterns? Some say the Architect weaves messages into their petals.",
+                "If you listen closely, you might hear the grass whisper old secrets. This land remembers more than it reveals."
             ]
-        },
-        questId: "rook_gift",
-        questRedo: false, // One-time gift
-        forcedEncounter: {
-            enabled: true,
-            triggerTiles: [
-                { x: 35, y: 24 },
-                { x: 35, y: 25 }
-            ],
-            triggered: false // runtime flag, not persisted
         }
     },
-    // Add more NPCs here...
+
+
+    // Lore Building
+    mirae_dreamer: {
+        id: "mirae_dreamer",
+        name: "Mirae the Dreamer",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            {
+                map: 0,
+                x: 46,
+                y: 5,
+                wanderArea: { x1: 41, y1: 1, x2: 48, y2: 10 }
+            }
+        ],
+        dialogue: {
+            default: [
+                "Sometimes, when I close my eyes, I see glimpses of other places; towers in the clouds, forests made of crystal. Do you ever dream of somewhere else?",
+                "I like to watch the sky change. Here, every dawn feels like a new chance, don’t you think?"
+            ]
+        }
+    },
+
+    // -------- FLOOR 2 --------
+    
 };
 
 // Enemy type definitions
 const ENEMY_TYPES = {
+
+    // -------- FLOOR 1 --------
+
+    // Groovy Slime
     slime_01: {
         id: "slime_01",
         name: "Groovy Slime",
@@ -206,6 +270,8 @@ const ENEMY_TYPES = {
             }
         ]
     },
+
+    // Vicious Plant
     plant_01: {
         id: "plant_01",
         name: "Viscous Plant",
@@ -259,5 +325,7 @@ const ENEMY_TYPES = {
             }
         ]
     },
-    // Add more enemies here...
+
+    // -------- FLOOR 2 --------
+
 };
