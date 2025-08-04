@@ -96,6 +96,25 @@
       </div>
     </div>
 
+    <div id="load-game-menu" class="hidden">
+      <div class="char-select-content">
+        <button id="loadgame-close" class="close-btn" title="Back to Title Menu">✕</button>
+        <h2>Load Game</h2>
+        <ul id="save-list"></ul>
+        <div class="load-btn-row">
+          <button id="loadgame-confirm-btn" class="confirm-btn" disabled>Load Game</button>
+          <button id="loadgame-delete-btn" class="confirm-btn danger-btn" disabled>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading-screen" class="hidden">
+      <div id="loading-carousel"></div>
+      <div id="loading-bar-container">
+        <div id="loading-bar"></div>
+      </div>
+    </div>
+
     <div id="lore-intro">
       <div id="lore-aura"></div>
       <div id="lore-text"></div>
@@ -110,6 +129,7 @@
     <script src="assets/js/quests.js"></script>
     <script src="assets/js/npc.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/saveLoad.js"></script>
     <script src="assets/js/effects.js"></script>
     <script src="assets/js/items.js"></script>
     <script src="assets/js/inventory.js"></script>
