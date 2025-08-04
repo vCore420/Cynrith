@@ -1,3 +1,5 @@
+let selectedPlayerName = "";
+
 window.addEventListener("DOMContentLoaded", function() {
     const loreIntro = document.getElementById("lore-intro");
     const loreText = document.getElementById("lore-text");
@@ -31,8 +33,10 @@ window.addEventListener("DOMContentLoaded", function() {
 
     let gameStarted = false;
     let originalSetup = window.Setup;
-    window.Setup = function() {
-        if (gameStarted) originalSetup();
+    window.Setup = function(...args) {
+        if (gameStarted || args[1] !== undefined) { 
+            originalSetup(...args);
+        }
     };
 
     // Character select elements
@@ -45,7 +49,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const charSelectClose = document.getElementById('char-select-close');
     const titleContent = document.querySelector('.title-content');
 
-    // Example sprite list (replace with actual sprite data, currently beta sprites are used)
+    // Sprite list (replace with actual sprite data, currently beta sprites are used)
     const sprites = [
       { name: "Hero", file: "assets/img/char/hero.png" },
       { name: "Mage", file: "assets/img/char/mage.png" },
@@ -130,7 +134,7 @@ window.addEventListener("DOMContentLoaded", function() {
             playerNameInput.placeholder = "Please enter a name!";
             return;
         }
-        // Save player name and sprite as needed here
+        selectedPlayerName = playerName;
         characterSelect.classList.add("hidden");
         // Fade out and continue to lore screen
         document.getElementById("title-fade").style.opacity = "1";
@@ -145,6 +149,13 @@ window.addEventListener("DOMContentLoaded", function() {
     charSelectClose.onclick = function() {
         characterSelect.classList.add("hidden");
         titleContent.style.display = "";
+    };
+
+    // Load Game button
+    const btnLoadGame = document.getElementById("btn-loadgame");
+
+    btnLoadGame.onclick = function() {
+        showLoadGameMenu();
     };
 
     let skipLore = false;
@@ -162,7 +173,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 loreIntro.style.display = "none";
                 loreIntro.style.opacity = 1;
                 gameStarted = true;
-                window.Setup();
+                window.Setup(selectedPlayerName);
             }, 1200);
         }, 200);
     }
@@ -214,3 +225,143 @@ window.addEventListener("DOMContentLoaded", function() {
         showNextLine();
     }
 });
+
+function showLoadGameMenu() {
+    const loadMenu = document.getElementById('load-game-menu');
+    const saveList = document.getElementById('save-list');
+    const confirmBtn = document.getElementById('loadgame-confirm-btn');
+    const deleteBtn = document.getElementById('loadgame-delete-btn');
+    const closeBtn = document.getElementById('loadgame-close');
+
+    const saves = getAllSaves();
+
+    loadMenu.classList.remove('hidden');
+    saveList.innerHTML = "";
+    confirmBtn.disabled = true;
+    deleteBtn.disabled = true;
+
+    let selectedIdx = null;
+
+    saves.forEach((save, idx) => {
+        const li = document.createElement('li');
+        li.className = "save-list-item";
+
+        // Floor info
+        const floorNum = (save.mapIndex || 0) + 1;
+        const floorName = FLOOR_NAMES[save.mapIndex] || "Unknown";
+
+        // Sprite preview
+        const spriteCanvas = document.createElement("canvas");
+        spriteCanvas.width = 48;
+        spriteCanvas.height = 48;
+        spriteCanvas.style.verticalAlign = "middle";
+        spriteCanvas.style.marginLeft = "auto";
+        spriteCanvas.style.display = "block";
+
+        const img = new window.Image();
+        img.src = save.sprite;
+        img.onload = function() {
+            const ctx = spriteCanvas.getContext("2d");
+            ctx.clearRect(0, 0, 48, 48);
+            ctx.drawImage(img, 96, 0, 96, 96, 0, 0, 48, 48);
+        };
+
+        // Info container (left)
+        const infoDiv = document.createElement("div");
+        infoDiv.style.display = "flex";
+        infoDiv.style.flexDirection = "column";
+        infoDiv.style.gap = "2px";
+
+        infoDiv.innerHTML = `
+            <span style="font-size:1.15em;font-weight:700;">${save.playerName}</span>
+            <span style="font-size:0.98em;color:#ffe082;">XP: ${save.stats.xp}</span>
+            <span style="font-size:0.98em;color:#3af0ff;">Floor ${floorNum} <span style="color:#fff;">${floorName}</span></span>
+        `;
+
+        // Layout: info left, sprite right
+        li.style.display = "flex";
+        li.style.alignItems = "center";
+        li.style.justifyContent = "space-between";
+        li.appendChild(infoDiv);
+        li.appendChild(spriteCanvas);
+
+        li.onclick = () => {
+            [...saveList.children].forEach(el => el.classList.remove('selected'));
+            li.classList.add('selected');
+            selectedIdx = idx;
+            confirmBtn.disabled = false;
+            deleteBtn.disabled = false;
+        };
+        saveList.appendChild(li);
+    });
+
+    confirmBtn.onclick = function() {
+        if (selectedIdx === null) return;
+        const save = saves[selectedIdx];
+        loadMenu.classList.add('hidden');
+        fadeOutTitleAndLoadGame(save.playerName);
+    };
+
+    deleteBtn.onclick = function() {
+        if (selectedIdx === null) return;
+        const save = saves[selectedIdx];
+        if (confirm(`Are you sure you want to delete the save for "${save.playerName}"? This cannot be undone.`)) {
+            localStorage.removeItem("cynrith_save_" + save.playerName);
+            showLoadGameMenu();
+        }
+    };
+
+    closeBtn.onclick = function() {
+        loadMenu.classList.add('hidden');
+    };
+}
+
+function fadeOutTitleAndLoadGame(playerName) {
+    document.getElementById("title-fade").style.opacity = "1";
+    setTimeout(() => {
+        document.getElementById("title-screen").style.display = "none";
+        showLoadingScreen(() => {
+            loadGame(playerName, hideLoadingScreen);
+        });
+    }, 850);
+}
+
+function showLoadingScreen(onLoaded) {
+    const loadingScreen = document.getElementById('loading-screen');
+    const carousel = document.getElementById('loading-carousel');
+    const bar = document.getElementById('loading-bar');
+    loadingScreen.classList.remove('hidden');
+
+    // Carousel images
+    const images = [
+        "assets/img/mainMenu/img1.jpg",
+        "assets/img/mainMenu/img2.jpg",
+        "assets/img/mainMenu/img3.jpg"
+    ];
+    let idx = 0;
+    carousel.style.backgroundImage = `url('${images[idx]}')`;
+    let carouselInterval = setInterval(() => {
+        idx = (idx + 1) % images.length;
+        carousel.style.backgroundImage = `url('${images[idx]}')`;
+    }, 1200);
+
+    // Fake loading bar (Firm believer loading bars are full of it, so here's one that definitely is)
+    bar.style.width = "0%";
+    let progress = 0;
+    let barInterval = setInterval(() => {
+        progress += Math.random() * 30 + 10;
+        if (progress >= 100) progress = 100;
+        bar.style.width = progress + "%";
+        if (progress >= 100) {
+            clearInterval(barInterval);
+            clearInterval(carouselInterval);
+            setTimeout(() => {
+                onLoaded && onLoaded();
+            }, 400);
+        }
+    }, 400);
+}
+
+function hideLoadingScreen() {
+    document.getElementById('loading-screen').classList.add('hidden');
+}

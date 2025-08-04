@@ -53,7 +53,7 @@ var keys = {
 
 var viewport;
 var player;
-var map;
+var map = null;
 var context;
 
 var fps = {
@@ -76,13 +76,14 @@ document.getElementById('btn-a').addEventListener('click', function() {
 });
 
 // Initial Setup:
-function Setup() {
+function Setup(playerName, mapIndex = 0) {
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
     player = new Player(45, 47);
+    player.playerName = playerName; 
 
-    // Ensure NPCs/enemies spawn on first map load
-    map = new Map("map0");
+    // Load Map
+    map = new Map("map" + mapIndex);
     map.onLoad = function() {
         if (typeof spawnCharactersForMap === "function") {
             spawnCharactersForMap(0);

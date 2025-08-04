@@ -158,3 +158,4 @@ function updateQuestsUI(tab = "active") {
 // Attach event listener
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
+document.getElementById('btn-save').addEventListener('click', saveGame);

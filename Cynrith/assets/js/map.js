@@ -30,9 +30,11 @@ function buildGidToAssetIndexMap(mapData) {
 
 // Map Constructor
 const Map = function(title) {
+    console.log("[Map] Map constructor called with:", title);
     this.data = {};
     this.tiles = [];
-
+    this.onLoad = null;
+    
     // Clear any previous interval before starting a new one
     if (mapFrameInterval) clearInterval(mapFrameInterval);
     mapFrameInterval = setInterval(() => this.frame(), 750);
@@ -43,10 +45,12 @@ const Map = function(title) {
 // Main Map Logic
 Map.prototype = {
     load: function(title) {
+        console.log("[Map] load called with:", title);
         LoadURL("assets/json/" + title.toString().toLowerCase() + ".json", (result) => {
             this.data = JSON.parse(result);
             this.data.frame = 0;
             this.tiles = [];
+            console.log("[Map] Map data loaded:", this.data);
 
             // Support for Tiled multi-layer maps
             if (this.data.layers) {
@@ -238,3 +242,13 @@ function checkBackTeleport() {
         backTeleportNotifShown = false;
     }
 }
+
+
+// Floor names to match floor index, used for ui purposes
+const FLOOR_NAMES = [
+    "Verdant Rise",  
+    "Stonewake Expanse",
+    "Gloomroot Thicket",
+    "The Shattered Spires",
+    "Umbracourt"
+];
