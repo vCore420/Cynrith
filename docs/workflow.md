@@ -4,7 +4,7 @@
 - Tasks get removed after 2 - 3 days after they are pushed to github.
 
 ## NPC Logic
-- [ ] Fix npc getting stuck on spawn - believe its because thir spawns are too close to a collision
+- [ ] Fix npc getting stuck when hitting collisions tile 
 
 ## Combat System
 - [ ] Fix respawn of enemies, add IDs to enemies and make respawn at individual spawn points
