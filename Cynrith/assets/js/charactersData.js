@@ -3,7 +3,7 @@ const NPC_DEFINITIONS = {
     eldrin_steward: {
         id: "eldrin_steward",
         name: "Eldrin the Steward",
-        sprite: "assets/img/char/hero.png",
+        sprite: "assets/img/npc/eldrin.png",
         interactive: true, 
         spawns: [
             {
@@ -47,7 +47,7 @@ const NPC_DEFINITIONS = {
     mira_gatherer: {
         id: "mira_gatherer",
         name: "Mira the Gatherer",
-        sprite: "assets/img/char/hero.png", 
+        sprite: "assets/img/npc/npc_f_3.png", 
         interactive: true,
         spawns: [
             {
@@ -81,7 +81,7 @@ const NPC_DEFINITIONS = {
     finn_apprentice: {
         id: "finn_apprentice",
         name: "Finn the Apprentice",
-        sprite: "assets/img/char/hero.png",
+        sprite: "assets/img/npc/npc_m_1.png",
         interactive: true,
         spawns: [
             {
@@ -115,7 +115,7 @@ const NPC_DEFINITIONS = {
     old_rook: {
         id: "old_rook",
         name: "Old Rook",
-        sprite: "assets/img/char/hero.png", 
+        sprite: "assets/img/npc/npc_m_1.png", 
         interactive: true,
         spawns: [
             {
