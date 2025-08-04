@@ -1,8 +1,10 @@
 # vTile Game Workflow
-
+- Tasks get added when issues arrise or the project moves foward with the next steps/ideas.
+- Tasks get ticked off when completed, working and pushed to github.
+- Tasks get removed after 2 - 3 days after they are pushed to github.
 
 ## NPC Logic
--[ ] Fix npc getting stuck on spawn - believe its because thir spawns are too close to a collision
+- [ ] Fix npc getting stuck on spawn - believe its because thir spawns are too close to a collision
 
 ## Combat System
 - [ ] Fix respawn of enemies, add IDs to enemies and make respawn at individual spawn points
@@ -41,8 +43,8 @@
 - [x] On load, the player will be standing on their spawn tile; make all tiles around this one trigger the first NPC to give you a sword before you start 
 
 ## Save System
-- [ ] Need to save all data of the game: player stats, inventory items, amounts, slots, player map and position, active and completed quests, skill inventory and skill sets
-- [ ] Load system to reload all these attributes when a game save is loaded
+- [x] Need to save all data of the game: player stats, inventory items, amounts, slots, player map and position, active and completed quests, skill inventory and skill sets
+- [x] Load system to reload all these attributes when a game save is loaded
 
 ## Item System
 - [ ] Add logic to allow for a non-removable value on items
@@ -68,13 +70,6 @@
 
 ## **New Since Last Commit*
 
-- Added npc character name to dialogue box
-- Designed dropdown menu for inventory items
-- Added more Detailed root to css for a more defined colour scheme
-- Designed Title screen, character selection menu and new game lore screen
-- split css into multi css scripts to make them easily maintainable 
-- Added new player Stat attack speed, controls the amount of attacks per second 
-- fixed collision issues with player and npc sprites overlapping into collision tiles
-- Fixed window re sizing issue before viewport loads
+- Created save and load system 
 
 ---

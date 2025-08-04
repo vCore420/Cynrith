@@ -8,11 +8,20 @@
 - getAttackSpeed(), setAttackSpeed(val), addAttackSpeed(val) — Gets/sets/adds to the player's attack speed stat (raw value, e.g. 0–5000).
 - getAttacksPerSecond() — Returns the player's actual attacks per second (1 + attackSpeed * 0.002, capped at 10).
 
+## Save & Load System
+- getCurrentSaveData() — Returns an object representing the current game state (player stats, inventory, map, quests, etc.) for saving.
+- saveGame() — Saves the current game state to localStorage under the player's name.
+- getAllSaves() — Returns an array of all saved games found in localStorage.
+- applySaveData(data) — Applies loaded save data to the current game state (player, inventory, quests, etc.).
+- loadGame(playerName, onLoaded) — Loads a saved game by player name, applies the data, and warps the player to the correct map and position.
+
+
 ## Data Definitions
 - NPC_DEFINITIONS — Object mapping NPC IDs to their data (name, sprite, wander area, dialogue, quests, etc).
 - ENEMY_TYPES — Object mapping enemy type IDs to their data (name, sprite, stats, wander area, etc).
 - ITEM_DEFINITIONS — Object mapping item IDs to their data (name, description, image, stackable, useable, etc).
-
+- FLOOR_NAMES - Holds all floor names to their matching map indexs (Used in the UI).
+ 
 ## Control flags
 - controlsEnabled — flag for enabling/disabling input (used by menu).
 - actionButtonAPressed, actionButtonBPressed — flags for A/B button presses (used for interactions).
