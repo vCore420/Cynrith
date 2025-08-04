@@ -1,4 +1,5 @@
 let selectedPlayerName = "";
+let selectedPlayerSprite = ""; 
 
 window.addEventListener("DOMContentLoaded", function() {
     const loreIntro = document.getElementById("lore-intro");
@@ -56,6 +57,8 @@ window.addEventListener("DOMContentLoaded", function() {
       { name: "Rogue", file: "assets/img/char/rogue.png" }
     ];
 
+    selectedPlayerSprite = sprites[0].file;
+    
     // Sprite preview animation logic
     let selectedCharIdx = 0;
     let previewSprite = new Image();
@@ -86,6 +89,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     function selectCharacter(idx) {
         selectedCharIdx = idx;
+        selectedPlayerSprite = sprites[idx].file; // store the selected sprite file
         [...charList.children].forEach((li, i) => li.classList.toggle("selected", i === idx));
         drawPreviewSprite(idx, 1); // Idle frame
     }
@@ -173,7 +177,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 loreIntro.style.display = "none";
                 loreIntro.style.opacity = 1;
                 gameStarted = true;
-                window.Setup(selectedPlayerName);
+                window.Setup(selectedPlayerName, 0, selectedPlayerSprite); // pass sprite!
             }, 1200);
         }, 200);
     }

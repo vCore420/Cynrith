@@ -76,10 +76,10 @@ document.getElementById('btn-a').addEventListener('click', function() {
 });
 
 // Initial Setup:
-function Setup(playerName, mapIndex = 0) {
+function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
-    player = new Player(45, 47);
+    player = new Player(45, 47, spriteFile); // pass spriteFile
     player.playerName = playerName; 
 
     // Load Map

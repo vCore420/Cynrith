@@ -41,13 +41,13 @@ function clearAllMovementKeys() {
 }
 
 // player:
-const Player = function(tile_x, tile_y) {
+const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png") {
     this.timer = setInterval(() => player.frame(), 125);
     this.frames = [0.40, 0.42, 0.44, 0.46, 0.48, 0.50, 0.48, 0.46, 0.44, 0.42, 0.40];
     this.frozen = false;
 
     this.sprite = new Image();
-    this.sprite.src = "assets/img/char/hero.png";
+    this.sprite.src = spriteFile;
 
     // Base Player stats
     this.maxHealth = 100;
