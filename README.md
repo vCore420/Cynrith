@@ -59,7 +59,6 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 
 - Quest system expansion 
 - Item usage and effects
-- Save/load system
 - Skill System
 - Floor and Storyline expansion 
 - Improved assets and polish
