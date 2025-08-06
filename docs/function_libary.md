@@ -21,7 +21,7 @@
 - ENEMY_TYPES — Object mapping enemy type IDs to their data (name, sprite, stats, wander area, etc).
 - ITEM_DEFINITIONS — Object mapping item IDs to their data (name, description, image, stackable, useable, etc).
 - FLOOR_NAMES - Holds all floor names to their matching map indexs (Used in the UI).
- 
+
 ## Control flags
 - controlsEnabled — flag for enabling/disabling input (used by menu).
 - actionButtonAPressed, actionButtonBPressed — flags for A/B button presses (used for interactions).
@@ -53,7 +53,7 @@
 
 ## Combat System
 - showDamagePopup(x, y, dmg, type) — Displays a damage popup above the target (enemy or player) with animated slide and fade.
-- handleEnemyDeath(enemy) — Handles enemy defeat, fade-out animation, loot/XP drop, and respawn logic.
+- handleEnemyDeath(enemy) — Handles enemy defeat, fade-out animation, loot/XP drop, quest progress (for enemyDefeat quests), and respawn logic.
 - handlePlayerDeath() — Triggers player death sequence, fade-out, and shows respawn menu.
 - respawnPlayer() — Respawns the player at the map’s spawn position with half health and resets death screen.
 - getDirectionToFace(npc, player) — Returns the direction key for an NPC/enemy to face the player.
@@ -83,6 +83,7 @@
 - updateInventoryUI() — Renders the inventory grid.
 - showItemDropdown(index, slot, def) — Shows dropdown menu for inventory item actions.
 - showRemoveAmountPrompt(slot, def) — Shows prompt to remove a specific amount of an item.
+- getItemCount(itemId) — Returns the count of a specific item in the player's inventory (used for itemCollect quests).
 
 ## Quest System
 - showQuestsMenu() — Opens the quest menu with tabs for active/completed quests.
@@ -91,6 +92,8 @@
 - tryCompleteQuest(questId) — Checks quest requirements and, if met, completes the quest and gives rewards.
 - giveQuestRewards(rewards) — Gives items and XP to the player based on the quest's rewards array.
 - updateQuestsUI(tab) — Updates the quest menu UI for active/completed quests.
+- updateQuestHUD() — Updates the on-screen quest HUD to show current active quests and their progress.
+- getItemCount(itemId) — Returns the number of a specific item in the player's inventory.
 
 ## Screen Effects
 - updateScreenFadeOverlay() — Animates and updates the screen fade overlay for cutscenes/dialogue.
