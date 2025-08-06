@@ -115,7 +115,7 @@ const NPC_DEFINITIONS = {
     finn_apprentice: {
         id: "finn_apprentice",
         name: "Finn the Apprentice",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_2.png",
         interactive: true,
         spawns: [
             { map: 0, x: 25, y: 8, wanderArea: { x1: 18, y1: 7, x2: 26, y2: 9 } }
