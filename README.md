@@ -57,11 +57,11 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 
 ## Roadmap
 
-- Quest system expansion 
 - Item usage and effects
 - Skill System
 - Floor and Storyline expansion 
 - Improved assets and polish
+- Expand documentation
 
 - planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
