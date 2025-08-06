@@ -18,6 +18,57 @@ function getDirectionKey(fromX, fromY, toX, toY) {
     return 40; // default down
 }
 
+// Get direction key to face the player
+function getDirectionToFace(npc, player) {
+    const dx = player.tile.x - npc.x;
+    const dy = player.tile.y - npc.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+        return dx > 0 ? 39 : 37; // right : left
+    } else if (dy !== 0) {
+        return dy > 0 ? 40 : 38; // down : up
+    }
+    return 40; // default down
+}
+
+// Move enemy toward player
+function moveEnemyTowardPlayer(char) {
+    const speed = char.moveSpeed || 2;
+    let dx = player.tile.x - Math.round(char.x);
+    let dy = player.tile.y - Math.round(char.y);
+
+    char.movement.key = getDirectionToFace(char, player);
+
+    let moved = false;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx !== 0) {
+            // Pixel-based collision check for X movement
+            let tryMoveX = char.x + Math.sign(dx) * speed / config.size.tile;
+            let px = tryMoveX * config.size.tile;
+            let py = char.y * config.size.tile;
+            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : dx < 0 ? "left" : "down")) {
+                char.x = tryMoveX;
+                moved = true;
+            }
+        }
+    } else if (dy !== 0) {
+        // Pixel-based collision check for Y movement
+        let tryMoveY = char.y + Math.sign(dy) * speed / config.size.tile;
+        let px = char.x * config.size.tile;
+        let py = tryMoveY * config.size.tile;
+        if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down")) {
+            char.y = tryMoveY;
+            moved = true;
+        }
+    }
+
+    if (moved) {
+        char.movement.moving = true;
+    } else {
+        char.movement.moving = false;
+    }
+}
+
 // Helper to check collision at a pixel position for NPCs/Enemies
 function isNpcTileBlockedAtPixel(px, py, direction) {
     const tileSize = config.size.tile;
