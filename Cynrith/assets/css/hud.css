@@ -144,6 +144,69 @@ div#log {
   color: #e33;
 }
 
+/* Quest HUD */
+.quest-hud {
+    position: fixed;
+    left: 18px;
+    bottom: 60%;
+    width: 200px;
+    max-height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    z-index: 100;
+}
+.quest-hud::-webkit-scrollbar { display: none; }
+
+.quest-hud-entry {
+    background: var(--dk-btn, #23243acc);
+    border-radius: 8px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-playermenu);
+    font-size: 0.75em;
+    color: var(--dk-txt, #fff);
+    box-shadow: 0 1px 4px #0001;
+    border: 1.5px solid var(--dk-ctrl, #444);
+    min-height: 38px;
+    max-height: 38px;
+}
+
+.quest-hud-entry img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 5px;
+    background: var(--dk-ctrl, #181a1f);
+    flex-shrink: 0;
+    margin-right: 2px;
+}
+
+.enemy-icon-canvas {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    background: var(--dk-ctrl, #181a1f);
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.quest-hud-entry .counter {
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    padding-left: 6px;
+}
+.quest-hud-entry .counter.complete {
+    color: #3af07a;
+}
+
 /* Player Death/Respawn Screen */
 .death-overlay {
   position: fixed;
