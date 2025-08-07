@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">Cynrith</h1>
-  <p align="center">A mysterious, ever-changing world woven from the dreams and ruins of lost civilizations.</p>
+  <p align="center">Cynrith is not just a world; it’s a mystery waiting to be unraveled. Ascend, discover, and let its secrets weave your tale...</p>
   <p align="center">
     <img alt="Github License" src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge">
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
