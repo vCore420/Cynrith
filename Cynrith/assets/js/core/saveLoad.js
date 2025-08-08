@@ -124,6 +124,7 @@ function loadGame(playerName, onLoaded) {
 
     isLoadingSave = true;
     window._pendingSaveData = data;
+    currentMapIndex = data.mapIndex;
 
     // Setup the game world
     if (typeof Setup === "function") {
