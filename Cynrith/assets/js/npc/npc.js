@@ -175,6 +175,10 @@ function spawnCharactersForMap(mapIndex) {
             });
         }
     });
+    // Patch forced encounters for all NPCs just spawned
+    if (typeof patchForcedEncounters === "function") {
+        patchForcedEncounters();
+    }
 }
 
 

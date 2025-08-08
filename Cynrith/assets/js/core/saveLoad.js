@@ -151,7 +151,6 @@ function loadGame(playerName, onLoaded) {
             clearInterval(checkMap);
             console.log("[Save/Load] Map loaded, applying save data...");
             applySaveData(data);
-            patchForcedEncounters(window._lastSaveData);
 
             // Set player position from save
             if (isLoadingSave) {

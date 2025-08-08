@@ -17,10 +17,6 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
 
         if (typeof spawnCharactersForMap === "function") {
             spawnCharactersForMap(currentMapIndex);
-            if (typeof patchForcedEncounters === "function") {
-                patchForcedEncounters(); 
-                console.log("[WarpToMap] Patching forced encounters for map index:", currentMapIndex);
-            }
         }
 
         if (typeof spawnInteractableTilesForMap === "function") {
