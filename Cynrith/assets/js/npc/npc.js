@@ -184,7 +184,7 @@ function spawnCharactersForMap(mapIndex) {
 
 // Handle enemy death
 function handleEnemyDeath(enemy) {
-    console.log("handleEnemyDeath called for", enemy.typeId, enemy);
+    console.log(`[Npc] ${enemy.typeId} died at (${enemy.x}, ${enemy.y})`);
     let fadeFrames = 12;
     let frame = 0;
     let fadeInterval = setInterval(() => {
@@ -208,6 +208,7 @@ function handleEnemyDeath(enemy) {
                             : drop.amount;
                         addItem(drop.item, amt);
                         notify(`You found ${amt} ${ITEM_DEFINITIONS[drop.item].name}!`, 2000);
+                        console.log(`[Npc] ${amt}x ${ITEM_DEFINITIONS[drop.item].name} Rewarded to player`);
                     }
                 });
             }
@@ -253,4 +254,5 @@ function respawnEnemy(enemyId, spawnIdx) {
     newEnemy._spawnIndex = spawnIdx;
     newEnemy._spawnInfo = spawnInfo;
     characters.push(newEnemy);
+    console.log(`[Enemy Respawn] ${def.name} respawned at (${spawnInfo.x}, ${spawnInfo.y})`);
 }

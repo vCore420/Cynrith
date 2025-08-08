@@ -16,6 +16,7 @@ function checkNpcInteraction() {
                     char.notifShown = true;
                 }
                 if (actionButtonAPressed && char.dialogue && char.dialogue.default) {
+                    console.log(`[NPC Interaction] Talking to ${char.name}`);
                     // Stop wandering and face player
                     char.isInteracting = true;
                     char.movement.key = getDirectionKey(char.x, char.y, player.tile.x, player.tile.y);
@@ -27,6 +28,7 @@ function checkNpcInteraction() {
                     const resumeWander = () => {
                         char.isInteracting = false;
                         block.removeEventListener('transitionend', resumeWander);
+                        console.log(`[NPC Interaction] Dialogue ended for ${char.name}, Npc resuming wander`);
                     };
                     // Listen for dialogue block hiding (when interaction ends)
                     block.addEventListener('transitionend', resumeWander);
@@ -36,7 +38,6 @@ function checkNpcInteraction() {
                 char.isInteracting = false;
             }
         }
-        // Add more interaction logic here next for quests, etc.
     });
 }
 
@@ -61,6 +62,7 @@ function checkForcedEncounters() {
                 npc.isInteracting = true;
                 player.frozen = true;
                 clearAllMovementKeys(); 
+                console.log(`[ForcedEncounter] NPC ${npc.id} forced encounter triggered`);
  
                 npc._forcedEncounterInterval = setInterval(() => {
                     let dx = player.tile.x - Math.round(npc.x);
@@ -73,7 +75,7 @@ function checkForcedEncounters() {
                     } else {
                         clearInterval(npc._forcedEncounterInterval);
                         npc.forcedEncounter.triggered = true;
-                        triggeredForcedEncounters[npc.id] = true; // <-- Add this line
+                        triggeredForcedEncounters[npc.id] = true; 
                         npc.forcedEncounterInProgress = false;
                         npc.forcedWalking = false; 
                         npc.isInteracting = true;
@@ -81,6 +83,7 @@ function checkForcedEncounters() {
                         npc.movement.key = getDirectionToFace(npc, player);
 
                         dialogue(...npc.dialogue.default);
+                        console.log(`[ForcedEncounter] NPC ${npc.id} forced encounter completed`);
                     }
                 }, 30);
             }

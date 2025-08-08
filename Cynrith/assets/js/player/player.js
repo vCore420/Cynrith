@@ -289,6 +289,7 @@ Player.prototype = {
             frozenViewportY = null;
         }, 80);
     },
+    
     getHealth: function() { return this.health; },
     setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); },
     addHealth: function(val) { this.setHealth(this.health + val); },
@@ -300,6 +301,7 @@ Player.prototype = {
     getXP: function() { return this.xp; },
     addXP: function(val) {
         this.xp += val;
+        console.log(`[Player] Player gained ${val} XP, total: ${this.xp}`);
         if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
             Object.values(QUEST_DEFINITIONS).forEach(q => {
                 if (q.type === "statBuild" && q.stat === "xp" && playerQuests.active.includes(q.id)) {
@@ -317,6 +319,7 @@ Player.prototype = {
     setAttack: function(val) { this.attack = val; },
     addAttack: function(val) {
         this.attack += val;
+        console.log(`[Player] Player attack increased by ${val}, total: ${this.attack}`);
         if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
             Object.values(QUEST_DEFINITIONS).forEach(q => {
                 if (q.type === "statBuild" && q.stat === "attack" && playerQuests.active.includes(q.id)) {
@@ -334,6 +337,7 @@ Player.prototype = {
     setDefence: function(val) { this.defence = val; },
     addDefence: function(val) {
         this.defence += val;
+        console.log(`[Player] Player defence increased by ${val}, total: ${this.defence}`);
         if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
             Object.values(QUEST_DEFINITIONS).forEach(q => {
                 if (q.type === "statBuild" && q.stat === "defence" && playerQuests.active.includes(q.id)) {
@@ -359,7 +363,7 @@ Player.prototype = {
     },
     addAttackSpeed: function(val) {
         this.setAttackSpeed(this.attackSpeed + val);
-
+        console.log(`[Player] Player attack speed increased by ${val}, total: ${this.attackSpeed}`);
         // StatBuild quest progress update
         if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
             Object.values(QUEST_DEFINITIONS).forEach(q => {

@@ -39,6 +39,7 @@ function saveGame() {
         return;
     }
     localStorage.setItem("cynrith_save_" + data.playerName, JSON.stringify(data));
+    console.log("[Save/Load] Game saved:", data);
     notify("Game saved!", 1800);
 }
 

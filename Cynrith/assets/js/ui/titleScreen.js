@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", function() {
     let previewSprite = new Image();
     let previewAnimInterval = null;
     let previewMoving = false;
-    const previewFrames = [0, 1, 2, 1]; // Walking animation frame indices
+    const previewFrames = [0, 1, 2, 1]; 
     const frameWidth = 96;
 
     function drawPreviewSprite(idx, frame = 1) {
@@ -79,7 +79,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 0, 0, frameWidth, frameWidth                   
             );
         };
-        // If already loaded, draw immediately
+       
         if (previewSprite.complete) {
             ctx.drawImage(
                 previewSprite,
@@ -91,9 +91,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
     function selectCharacter(idx) {
         selectedCharIdx = idx;
-        selectedPlayerSprite = sprites[idx].file; // store the selected sprite file
+        selectedPlayerSprite = sprites[idx].file;
         [...charList.children].forEach((li, i) => li.classList.toggle("selected", i === idx));
-        drawPreviewSprite(idx, 1); // Idle frame
+        drawPreviewSprite(idx, 1); 
     }
 
     // Animate on hover
@@ -110,7 +110,7 @@ window.addEventListener("DOMContentLoaded", function() {
     charPreviewCanvas.addEventListener('mouseleave', function() {
         previewMoving = false;
         if (previewAnimInterval) clearInterval(previewAnimInterval);
-        drawPreviewSprite(selectedCharIdx, 1); // Idle frame
+        drawPreviewSprite(selectedCharIdx, 1);
     });
 
     // Show character select when New Game is clicked
@@ -179,7 +179,8 @@ window.addEventListener("DOMContentLoaded", function() {
                 loreIntro.style.display = "none";
                 loreIntro.style.opacity = 1;
                 gameStarted = true;
-                window.Setup(selectedPlayerName, 0, selectedPlayerSprite); // pass sprite!
+                window.Setup(selectedPlayerName, 0, selectedPlayerSprite); 
+                console.log("[titleScreen] Game starting with player:", selectedPlayerName, selectedPlayerSprite);
             }, 1200);
         }, 200);
     }
@@ -197,6 +198,7 @@ window.addEventListener("DOMContentLoaded", function() {
     skipBtn.addEventListener("click", endLoreAndStartGame);
 
     function playLoreIntro() {
+        console.log("[titleScreen] New game started, Starting lore intro");
         loreIntro.style.display = "flex";
         skipLore = false;
         skipBtnShown = false;
@@ -306,6 +308,7 @@ function showLoadGameMenu() {
         const save = saves[selectedIdx];
         loadMenu.classList.add('hidden');
         fadeOutTitleAndLoadGame(save.playerName);
+        console.log(`[titleScreen] Loading game for ${save.playerName} on floor ${save.mapIndex + 1}`);
     };
 
     deleteBtn.onclick = function() {
@@ -313,6 +316,7 @@ function showLoadGameMenu() {
         const save = saves[selectedIdx];
         if (confirm(`Are you sure you want to delete the save for "${save.playerName}"? This cannot be undone.`)) {
             localStorage.removeItem("cynrith_save_" + save.playerName);
+            console.log(`[titleScreen] Deleted save for ${save.playerName}`);
             showLoadGameMenu();
         }
     };
@@ -352,6 +356,7 @@ function showLoadingScreen(onLoaded) {
     }, 1200);
 
     // Fake loading bar (Firm believer loading bars are full of it, so here's one that definitely is)
+    console.log("[titleScreen] Playing time wasting loading bar");
     bar.style.width = "0%";
     let progress = 0;
     let barInterval = setInterval(() => {

@@ -11,6 +11,7 @@ function handlePlayerDeath() {
         if (frame >= fadeFrames) {
             clearInterval(fadeInterval);
             showDeathScreen();
+            console.log("[Player] Player has died");
         }
     }, 40);
 }
@@ -54,4 +55,5 @@ function respawnPlayer() {
     frozenViewportX = null;
     frozenViewportY = null;
     deathScreenShown = false;
+    console.log("[Player] Player respawned at spawn point:", map.data.spawn);
 }

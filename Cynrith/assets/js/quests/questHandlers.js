@@ -27,6 +27,7 @@ function startQuest(questId) {
         }
         if (typeof updateQuestHUD === "function") updateQuestHUD();
     }
+    console.log(`[Quest] Started quest ${questId}:`, quest);
 }
 
 
@@ -84,6 +85,7 @@ function completeQuest(questId) {
         playerQuests.completed.push(questId);
         playerQuests.active = playerQuests.active.filter(id => id !== questId);
         if (typeof updateQuestHUD === "function") updateQuestHUD();
+        console.log(`[Quest] Completed quest ${questId}`);
     }
 }
 

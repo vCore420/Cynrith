@@ -15,6 +15,7 @@ function addItem(itemId, amount = 1) {
         slot.amount += amount;
     } else if (inventory.length < INVENTORY_SIZE) {
         inventory.push({ id: itemId, amount });
+        console.log(`[Inventory] Added ${amount}x ${def.name} to inventory`); 
     } else {
         notify("Inventory full!", 2000);
         return false;
@@ -35,6 +36,7 @@ function removeItem(itemId, amount = 1) {
     if (slot.amount <= 0) {
         inventory.splice(idx, 1);
     }
+    console.log(`[Inventory] Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory`);
     // Shift items to fill empty slots
     inventory = inventory.filter(i => i.amount > 0);
     updateInventoryUI();
@@ -169,6 +171,7 @@ function showItemDropdown(index, slot, def, event) {
             notify(`Used ${def.name}!`, 1500);
             dropdown.remove();
             overlay.remove();
+            console.log(`[Inventory] Used item ${def.name} (ID: ${slot.id})`);
         };
         dropdown.appendChild(useBtn);
     }

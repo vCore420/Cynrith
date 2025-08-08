@@ -42,6 +42,7 @@ function checkInteractableTileInteraction() {
             // Remove tile from active list
             window.activeInteractableTiles = window.activeInteractableTiles.filter(t => t.id !== tile.id);
             actionButtonAPressed = false; 
+            console.log(`[InteractableTile] Interacted with tile ${tile.id} at (${tile.x}, ${tile.y})`);
         }
     });
 }
