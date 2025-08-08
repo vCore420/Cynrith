@@ -99,10 +99,20 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
 
     // Load Map
     map = new Map("map" + mapIndex);
+
+    // We'll wait for both map tiles and sprites before starting Loop
+    let mapReady = false;
+    let spritesReady = false;
+
+    function tryStartLoop() {
+        if (mapReady && spritesReady) {
+            Loop();
+        }
+    }
+
     map.onLoad = function() {
         if (typeof spawnCharactersForMap === "function") {
             spawnCharactersForMap(mapIndex);
-            // Patch forced encounters if loading a save, a work around for forced encounters to load before the loop starts, there has to be a better fix for this.
             if (window._pendingSaveData) {
                 if (typeof patchForcedEncounters === "function") {
                     patchForcedEncounters(window._pendingSaveData);
@@ -110,33 +120,36 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
                 window._pendingSaveData = null;
             }
         }
-        waitForSpritesThenStartLoop();
+        mapReady = true;
+        tryStartLoop();
     };
+
+    // Wait for all sprites to load before starting Loop
+    function waitForSprites() {
+        let allSprites = [player.sprite];
+        if (typeof characters !== "undefined" && characters.length) {
+            characters.forEach(char => {
+                if (char.sprite) allSprites.push(char.sprite);
+            });
+        }
+        let checkLoaded = () => {
+            let loaded = allSprites.every(img => img.complete && img.naturalWidth > 0);
+            if (loaded) {
+                spritesReady = true;
+                tryStartLoop();
+            } else {
+                setTimeout(checkLoaded, 50);
+            }
+        };
+        checkLoaded();
+    }
+    waitForSprites();
 
     Sizing();
 
     setInterval(function() {
         fps.shown = fps.count;
     }, 1000);
-}
-
-// Helper to wait for all sprites
-function waitForSpritesThenStartLoop() {
-    let allSprites = [player.sprite];
-    if (typeof characters !== "undefined" && characters.length) {
-        characters.forEach(char => {
-            if (char.sprite) allSprites.push(char.sprite);
-        });
-    }
-    let checkLoaded = () => {
-        let loaded = allSprites.every(img => img.complete && img.naturalWidth > 0);
-        if (loaded) {
-            Loop();
-        } else {
-            setTimeout(checkLoaded, 50);
-        }
-    };
-    checkLoaded();
 }
 
 
