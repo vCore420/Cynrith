@@ -110,7 +110,7 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
                 window._pendingSaveData = null;
             }
         }
-        Loop();
+        waitForSpritesThenStartLoop();
     };
 
     Sizing();
@@ -118,6 +118,25 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     setInterval(function() {
         fps.shown = fps.count;
     }, 1000);
+}
+
+// Helper to wait for all sprites
+function waitForSpritesThenStartLoop() {
+    let allSprites = [player.sprite];
+    if (typeof characters !== "undefined" && characters.length) {
+        characters.forEach(char => {
+            if (char.sprite) allSprites.push(char.sprite);
+        });
+    }
+    let checkLoaded = () => {
+        let loaded = allSprites.every(img => img.complete && img.naturalWidth > 0);
+        if (loaded) {
+            Loop();
+        } else {
+            setTimeout(checkLoaded, 50);
+        }
+    };
+    checkLoaded();
 }
 
 

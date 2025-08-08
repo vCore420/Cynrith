@@ -128,7 +128,7 @@ function loadGame(playerName, onLoaded) {
     // Setup the game world
     if (typeof Setup === "function") {
         console.log("[Load] Calling Setup...");
-        Setup(data.playerName, data.mapIndex); 
+        Setup(data.playerName, data.mapIndex, data.sprite);
     }
 
     // Wait for map to be ready, then patch and warp
@@ -140,27 +140,21 @@ function loadGame(playerName, onLoaded) {
             applySaveData(data);
             patchForcedEncounters(data);
 
-            // Warp to correct map and position
-            if (typeof warpToMap === "function") {
-                console.log("[Load] Warping to map:", data.mapIndex, "at", data.tile);
-                // Pass a callback to warpToMap to run after map is loaded
-                warpToMap(data.mapIndex, "spawn", function() {
-                    if (isLoadingSave) {
-                        console.log("[SaveLoad] Setting player position from save:", data.tile.x, data.tile.y);
-                        player.tile.x = data.tile.x;
-                        player.tile.y = data.tile.y;
-                        player.pos.x = data.pos.x;
-                        player.pos.y = data.pos.y;
-                        isLoadingSave = false;
-                    }
-                    if (typeof updatePlayerMenuStats === "function") updatePlayerMenuStats();
-                    if (typeof updateInventoryUI === "function") updateInventoryUI();
-                    if (typeof updateQuestsUI === "function") updateQuestsUI("active");
-                    if (typeof updateQuestHUD === "function") updateQuestHUD();
-                    notify("Game loaded!", 1800);
-                    if (typeof onLoaded === "function") onLoaded();
-                });
+            // Set player position from save
+            if (isLoadingSave) {
+                player.tile.x = data.tile.x;
+                player.tile.y = data.tile.y;
+                player.pos.x = data.pos.x;
+                player.pos.y = data.pos.y;
+                isLoadingSave = false;
             }
+
+            if (typeof updatePlayerMenuStats === "function") updatePlayerMenuStats();
+            if (typeof updateInventoryUI === "function") updateInventoryUI();
+            if (typeof updateQuestsUI === "function") updateQuestsUI("active");
+            if (typeof updateQuestHUD === "function") updateQuestHUD();
+            notify("Game loaded!", 1800);
+            if (typeof onLoaded === "function") onLoaded();
         }
     }, 100);
 }
