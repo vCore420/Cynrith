@@ -1,5 +1,7 @@
 // NPC Interaction Logic
 
+let triggeredForcedEncounters = {};
+
 // Check for NPC interactions
 function checkNpcInteraction() {
     characters.forEach(char => {
@@ -70,8 +72,8 @@ function checkForcedEncounters() {
                         npc.movement.moving = true;
                     } else {
                         clearInterval(npc._forcedEncounterInterval);
-                        npc._forcedEncounterInterval = null;
                         npc.forcedEncounter.triggered = true;
+                        triggeredForcedEncounters[npc.id] = true; // <-- Add this line
                         npc.forcedEncounterInProgress = false;
                         npc.forcedWalking = false; 
                         npc.isInteracting = true;

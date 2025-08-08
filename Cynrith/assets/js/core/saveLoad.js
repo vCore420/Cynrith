@@ -24,9 +24,9 @@ function getCurrentSaveData() {
             progress: { ...playerQuestProgress },
             statBuildStart: { ...statBuildQuestStart }
         },
-        forcedEncounters: characters
-            .filter(npc => npc.forcedEncounter && npc.forcedEncounter.triggered)
-            .map(npc => npc.id)
+        triggeredInteractableTiles: { ...triggeredInteractableTiles },
+        forcedEncounters: { ...triggeredForcedEncounters }
+        
     };
 }
 
@@ -60,14 +60,14 @@ function getAllSaves() {
 
 // Apply save data to the player
 function applySaveData(data) {
-    console.log("[Load] Applying save data:", data);
+    console.log("[Save/Load] Applying save data:", data);
 
     // Patch player
     if (typeof player !== "undefined" && player) {
         player.playerName = data.playerName;
         player.sprite.src = data.sprite;
         Object.assign(player, data.stats);
-        console.log("[Load] Player patched:", player);
+        console.log("[Save/Load] Player patched:", player);
     }
 
     // Patch inventory
@@ -76,7 +76,7 @@ function applySaveData(data) {
         data.inventory.forEach((slot, i) => {
             if (slot) inventory[i] = { id: slot.id, amount: slot.amount };
         });
-        console.log("[Load] Inventory patched:", inventory);
+        console.log("[Save/Load] Inventory patched:", inventory);
     }
 
     // Patch quests
@@ -90,28 +90,40 @@ function applySaveData(data) {
         if (typeof statBuildQuestStart !== "undefined" && data.quests.statBuildStart) {
             Object.assign(statBuildQuestStart, data.quests.statBuildStart);
         }
-        console.log("[Load] Quests patched:", playerQuests, playerQuestProgress, statBuildQuestStart);
+        console.log("[Save/Load] Quests patched:", playerQuests, playerQuestProgress, statBuildQuestStart);
     }
 
+    // Patch Triggered Tile Interactions
+    if (data.triggeredInteractableTiles) {
+        triggeredInteractableTiles = { ...data.triggeredInteractableTiles };
+        console.log("[Save/Load] Triggered interactable tiles patched:", triggeredInteractableTiles);
+    }
+
+    // Patch Triggered Forced Encounters
+    if (data.forcedEncounters) {
+        triggeredForcedEncounters = { ...data.forcedEncounters };
+        console.log("[Save/Load] Triggered forced encounters patched:", triggeredForcedEncounters);
+    }
 }
 
 
-function patchForcedEncounters(data) {
+// Patch Forced Encounters - why this has to load after everything else ill never know
+function patchForcedEncounters() {
     if (typeof characters !== "undefined" && characters) {
         characters.forEach(npc => {
             if (npc.forcedEncounter) {
-                npc.forcedEncounter.triggered = data.forcedEncounters.includes(npc.id);
-                console.log(`[Patch] NPC ${npc.id} forcedEncounter.triggered:`, npc.forcedEncounter.triggered);
+                npc.forcedEncounter.triggered = !!triggeredForcedEncounters[npc.id];
+                console.log(`[Save/Load] NPC ${npc.id} forcedEncounter.triggered:`, npc.forcedEncounter.triggered);
             }
         });
-        console.log("[Load] Forced encounters patched.");
+        console.log("[Save/Load] Forced encounters patched.");
     }
 }
 
 
 // Load a save by playerName
 function loadGame(playerName, onLoaded) {
-    console.log("[Load] loadGame called for:", playerName);
+    console.log("[Save/Load] loadGame called for:", playerName);
     const data = JSON.parse(localStorage.getItem("cynrith_save_" + playerName));
     if (!data) {
         notify("Save not found!", 2000);
@@ -119,27 +131,27 @@ function loadGame(playerName, onLoaded) {
         return false;
     }
 
-    console.log("[Load] Raw save data:", localStorage.getItem("cynrith_save_" + playerName));
-    console.log("[Load] Parsed save data:", data);
+    console.log("[Save/Load] Raw save data:", localStorage.getItem("cynrith_save_" + playerName));
+    console.log("[Save/Load] Parsed save data:", data);
 
     isLoadingSave = true;
-    window._pendingSaveData = data;
+    window._lastSaveData = data;
     currentMapIndex = data.mapIndex;
 
     // Setup the game world
     if (typeof Setup === "function") {
-        console.log("[Load] Calling Setup...");
+        console.log("[Save/Load] Calling Setup...");
         Setup(data.playerName, data.mapIndex, data.sprite);
     }
 
     // Wait for map to be ready, then patch and warp
     let checkMap = setInterval(() => {
-        console.log("[Load] Polling for map...", typeof map, map && map.data, map && map.data && map.data.layout);
+        console.log("[Save/Load] Polling for map...", typeof map, map && map.data, map && map.data && map.data.layout);
         if (typeof map !== "undefined" && map && map.data && map.data.layout) {
             clearInterval(checkMap);
-            console.log("[Load] Map loaded, applying save data...");
+            console.log("[Save/Load] Map loaded, applying save data...");
             applySaveData(data);
-            patchForcedEncounters(data);
+            patchForcedEncounters(window._lastSaveData);
 
             // Set player position from save
             if (isLoadingSave) {
@@ -150,6 +162,9 @@ function loadGame(playerName, onLoaded) {
                 isLoadingSave = false;
             }
 
+            if (typeof spawnInteractableTilesForMap === "function") {
+                spawnInteractableTilesForMap(data.mapIndex);
+            }
             if (typeof updatePlayerMenuStats === "function") updatePlayerMenuStats();
             if (typeof updateInventoryUI === "function") updateInventoryUI();
             if (typeof updateQuestsUI === "function") updateQuestsUI("active");

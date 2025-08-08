@@ -5,6 +5,7 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
     currentMapIndex = mapIndex;
     map.onLoad = function() {
         const spawn = map.data[spawnType];
+
         if (spawn) {
             console.log("[WarpToMap] Setting player position to:", spawn.x, spawn.y, "for spawnType:", spawnType);
             console.log("[WarpToMap] CurrentMapIndex:", currentMapIndex);
@@ -13,10 +14,22 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
             player.tile.x = spawn.x;
             player.tile.y = spawn.y;
         }
+
         if (typeof spawnCharactersForMap === "function") {
             spawnCharactersForMap(currentMapIndex);
+            if (typeof patchForcedEncounters === "function") {
+                patchForcedEncounters(); 
+                console.log("[WarpToMap] Patching forced encounters for map index:", currentMapIndex);
+            }
         }
+
+        if (typeof spawnInteractableTilesForMap === "function") {
+            spawnInteractableTilesForMap(currentMapIndex);
+            console.log("[WarpToMap] Interactable tiles spawned for map index:", currentMapIndex);
+        }
+
         if (typeof onWarped === "function") onWarped();
+        console.log("[WarpToMap] Map loaded successfully:", mapIndex);
     };
     map.load("map" + mapIndex);
 }
@@ -67,3 +80,5 @@ function checkBackTeleport() {
         backTeleportNotifShown = false;
     }
 }
+
+// Somethings happening here causing a save from a floor above 1 to not allow the teleport
