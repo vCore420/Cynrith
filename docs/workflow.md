@@ -31,6 +31,7 @@
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
 - [ ] Make all ui more structured and modular for multi device displays
+- [ ] red text for required xp notifications - teleport stone 
 
 ## New Game
 
@@ -43,7 +44,7 @@
 - [ ] Add logic to allow for a non-removable value on items
 - [ ] Usable items, functionality for different item uses 
 - [ ] Buyable items (shop/traders system?) 
-- [ ] Lootable tiles 
+- [x] Lootable tiles/ interactable tiles, ones to bring up dialouge /and give player item adn/or xp - then add to save and load, god forbid i have the same problem with the quest flags
 
 ## Settings Menu
 - [ ] Desgin and create the settings menu 
@@ -65,11 +66,14 @@
 
 ---
 
+
 ## **New Since Last Commit*
 
 - Fixed forced encounters not loading properly from save
 - Fixed quest hud ui not displaying correct numbers for item collection quests
 - Fixed enemyDefeat quests not counting respawned enemys
 - Fixed issue with warping between maps
+- Added logic for interactable tiles, spawn on game/map load, interacted ones save and load so they can only be interacted with once 
+- fixed triggered forced encounters patching between map warps correctly, again...
 
 ---
