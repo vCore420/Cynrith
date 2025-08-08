@@ -38,6 +38,7 @@ function checkNpcInteraction() {
     });
 }
 
+
 // Forced npc encounter logic
 function checkForcedEncounters() {
     characters.forEach(npc => {

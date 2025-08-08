@@ -1,10 +1,5 @@
 // Quest Ui on Hud
 
-// Helper to get current count of item in player inventory - surly we can do away with this for our normal item check
-function getItemCount(itemId) {
-    let slot = inventory.find(i => i && i.id === itemId);
-    return slot ? slot.amount : 0;
-}
 
 // Update quests shown on the hud
 function updateQuestHUD() {

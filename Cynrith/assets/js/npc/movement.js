@@ -6,6 +6,7 @@ function randomDirection() {
     return dirs[Math.floor(Math.random() * dirs.length)];
 }
 
+
 // Helper to get direction key to face the player
 function getDirectionKey(fromX, fromY, toX, toY) {
     const dx = toX - fromX;
@@ -18,6 +19,7 @@ function getDirectionKey(fromX, fromY, toX, toY) {
     return 40; // default down
 }
 
+
 // Get direction key to face the player
 function getDirectionToFace(npc, player) {
     const dx = player.tile.x - npc.x;
@@ -29,6 +31,7 @@ function getDirectionToFace(npc, player) {
     }
     return 40; // default down
 }
+
 
 // Move enemy toward player
 function moveEnemyTowardPlayer(char) {
@@ -69,7 +72,8 @@ function moveEnemyTowardPlayer(char) {
     }
 }
 
-// Helper to check collision at a pixel position for NPCs/Enemies
+
+// Check collision at a pixel position for NPCs/Enemies
 function isNpcTileBlockedAtPixel(px, py, direction) {
     const tileSize = config.size.tile;
     const spriteSize = config.size.char;
@@ -102,6 +106,7 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
     }
 }
 
+
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
     if (map.data._layers) {
@@ -123,6 +128,7 @@ function isWalkable(tileX, tileY) {
         return tileIndex === null || !map.data.assets[tileIndex].collision;
     }
 }
+
 
 // Npc Wondering Logic
 function wanderAI(char) {
@@ -219,6 +225,7 @@ function wanderAI(char) {
     }
 }
 
+
 // Find path using A* algorithm
 function findPathAStar(start, goal, isWalkable) {
     const openSet = [start];
@@ -262,6 +269,7 @@ function findPathAStar(start, goal, isWalkable) {
     }
     return null; // No path found
 }
+
 
 // Update all NPCs and Enemies
 function updateCharacters() {
@@ -315,6 +323,7 @@ function updateCharacters() {
         }
     });
 }
+
 
 // Move enemy toward player
 function moveEnemyTowardTile(char, tx, ty) {

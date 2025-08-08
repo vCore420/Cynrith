@@ -1,3 +1,5 @@
+// Core Game Loop Logic
+
 // Game Rendering Variables
 var config = {
     win: {
@@ -64,30 +66,43 @@ var fps = {
 
 // Player Action Buttons 
 let actionButtonBPressed = false;
+let actionButtonAPressed = false;
 
 document.getElementById('btn-b').addEventListener('click', function() {
     actionButtonBPressed = true;
 });
 
-let actionButtonAPressed = false;
-
 document.getElementById('btn-a').addEventListener('click', function() {
     actionButtonAPressed = true;
 });
 
+
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
+    if (typeof characters !== "undefined") characters.length = 0;
+    if (typeof inventory !== "undefined") inventory.length = 0;
+    if (typeof playerQuests !== "undefined") {
+        playerQuests.active = [];
+        playerQuests.completed = [];
+    }
+    if (typeof playerQuestProgress !== "undefined") {
+        for (let k in playerQuestProgress) delete playerQuestProgress[k];
+    }
+    if (typeof statBuildQuestStart !== "undefined") {
+        for (let k in statBuildQuestStart) delete statBuildQuestStart[k];
+    }
+    
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
-    player = new Player(45, 47, spriteFile); // pass spriteFile
+    player = new Player(45, 47, spriteFile); 
     player.playerName = playerName; 
 
     // Load Map
     map = new Map("map" + mapIndex);
     map.onLoad = function() {
         if (typeof spawnCharactersForMap === "function") {
-            spawnCharactersForMap(0);
-            // Patch forced encounters if loading a save
+            spawnCharactersForMap(mapIndex);
+            // Patch forced encounters if loading a save, a work around for forced encounters to load before the loop starts, there has to be a better fix for this.
             if (window._pendingSaveData) {
                 if (typeof patchForcedEncounters === "function") {
                     patchForcedEncounters(window._pendingSaveData);
@@ -95,15 +110,16 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
                 window._pendingSaveData = null;
             }
         }
+        Loop();
     };
 
-    Loop();
     Sizing();
 
     setInterval(function() {
         fps.shown = fps.count;
     }, 1000);
 }
+
 
 // Window and Canvas Sizing:
 function Sizing() {
@@ -138,10 +154,12 @@ function Sizing() {
     }
 }
 
+
 // Display Log Data to Screen:
 function Log(type, text) {
     document.getElementById(type).innerHTML = text;
 }
+
 
 // AJAX call:
 function LoadURL(url, callback) {
@@ -157,6 +175,7 @@ function LoadURL(url, callback) {
     http.send(null);
 }
 
+
 // Main Game Loop:
 function Loop() {
     window.requestAnimationFrame(Loop);
@@ -164,10 +183,13 @@ function Loop() {
     Sizing();
 
     viewport.center();
+
     map.draw();
+
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
+
     if (typeof updateScreenFadeOverlay === "function") updateScreenFadeOverlay();
     if (typeof drawScreenFadeOverlay === "function") drawScreenFadeOverlay();
     if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
@@ -214,10 +236,12 @@ function Loop() {
                 showDialogueLine(idx + 1);
                 actionButtonAPressed = false;
             } else {
+
                 // After last line of default dialogue, check for quest
                 let npc = characters.find(c => c.isInteracting);
                 if (npc && npc.questId && QUEST_DEFINITIONS[npc.questId]) {
                     const questDef = QUEST_DEFINITIONS[npc.questId];
+
                     // If quest is active, check completion
                     if (playerQuests.active.includes(npc.questId)) {
                         let result = tryCompleteQuest(npc.questId);
@@ -233,6 +257,7 @@ function Loop() {
                         actionButtonAPressed = false;
                         return;
                     }
+
                     // Start quest if not completed or redoable
                     if (!isQuestCompleted(npc.questId) || questDef.redoable) {
                         if (questDef.type === "gift") {
@@ -250,6 +275,7 @@ function Loop() {
                         return;
                     }
                 }
+
                 // If no quest, just close dialogue
                 block.classList.add('hidden');
                 _dialogueActive = false;
@@ -278,17 +304,20 @@ function Loop() {
 
 }
 
+
+// Log fps every second
 setInterval(function() {
     Log("fps", "FPS: " + fps.count);
 }, 1000);
 
-// On Window Load:
+
+// On Window Load
 window.onload = function() {
     Setup();
 };
 
 
-// On Window Resize:
+// On Window Resize
 window.onresize = function() {
     Sizing();
 };

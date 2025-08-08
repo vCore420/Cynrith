@@ -15,6 +15,7 @@ function handlePlayerDeath() {
     }, 40);
 }
 
+
 // Show player death screen
 function showDeathScreen() {
     let overlay = document.createElement('div');
@@ -35,6 +36,7 @@ function showDeathScreen() {
         document.body.removeChild(overlay);
     };
 }
+
 
 // Respawn Player
 function respawnPlayer() {

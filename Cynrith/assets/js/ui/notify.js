@@ -1,3 +1,5 @@
+// Notifcation and Dialogue system
+
 // Notification system
 function notify(text, time = 2000) {
     const el = document.getElementById('notification');
@@ -13,6 +15,7 @@ function notify(text, time = 2000) {
 let _dialogueQueue = [];
 let _dialogueActive = false;
 
+// Show Dialogue by Defining Lines
 function dialogue(...lines) {
     if (!lines.length) return;
     _dialogueQueue = Array.isArray(lines[0]) ? lines[0] : lines;
@@ -21,6 +24,7 @@ function dialogue(...lines) {
     showDialogueLine(0);
 }
 
+// Show Dialogue from idx (Npc dialogue/quest lines)
 function showDialogueLine(idx) {
     const block = document.getElementById('dialogue-block');
     const text = document.getElementById('dialogue-text');

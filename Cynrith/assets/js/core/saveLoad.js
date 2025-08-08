@@ -1,4 +1,5 @@
 // Save and Load Game Logic
+let isLoadingSave = false;
 
 // Get current save data as an object
 function getCurrentSaveData() {
@@ -29,6 +30,7 @@ function getCurrentSaveData() {
     };
 }
 
+
 // Save game to localStorage (overwrites by playerName)
 function saveGame() {
     const data = getCurrentSaveData();
@@ -39,6 +41,7 @@ function saveGame() {
     localStorage.setItem("cynrith_save_" + data.playerName, JSON.stringify(data));
     notify("Game saved!", 1800);
 }
+
 
 // Load all saves (returns array of {playerName, stats, ...})
 function getAllSaves() {
@@ -54,6 +57,7 @@ function getAllSaves() {
     return saves;
 }
 
+
 // Apply save data to the player
 function applySaveData(data) {
     console.log("[Load] Applying save data:", data);
@@ -63,8 +67,6 @@ function applySaveData(data) {
         player.playerName = data.playerName;
         player.sprite.src = data.sprite;
         Object.assign(player, data.stats);
-        player.tile = { ...data.tile };
-        player.pos = { ...data.pos };
         console.log("[Load] Player patched:", player);
     }
 
@@ -93,16 +95,19 @@ function applySaveData(data) {
 
 }
 
+
 function patchForcedEncounters(data) {
     if (typeof characters !== "undefined" && characters) {
         characters.forEach(npc => {
             if (npc.forcedEncounter) {
                 npc.forcedEncounter.triggered = data.forcedEncounters.includes(npc.id);
+                console.log(`[Patch] NPC ${npc.id} forcedEncounter.triggered:`, npc.forcedEncounter.triggered);
             }
         });
         console.log("[Load] Forced encounters patched.");
     }
 }
+
 
 // Load a save by playerName
 function loadGame(playerName, onLoaded) {
@@ -117,6 +122,7 @@ function loadGame(playerName, onLoaded) {
     console.log("[Load] Raw save data:", localStorage.getItem("cynrith_save_" + playerName));
     console.log("[Load] Parsed save data:", data);
 
+    isLoadingSave = true;
     window._pendingSaveData = data;
 
     // Setup the game world
@@ -132,22 +138,28 @@ function loadGame(playerName, onLoaded) {
             clearInterval(checkMap);
             console.log("[Load] Map loaded, applying save data...");
             applySaveData(data);
+            patchForcedEncounters(data);
 
             // Warp to correct map and position
             if (typeof warpToMap === "function") {
                 console.log("[Load] Warping to map:", data.mapIndex, "at", data.tile);
-                warpToMap(data.mapIndex, "spawn");
-                // After warp, set player position again in case spawn is not exact
-                setTimeout(() => {
-                    player.tile = { ...data.tile };
-                    player.pos = { ...data.pos };
+                // Pass a callback to warpToMap to run after map is loaded
+                warpToMap(data.mapIndex, "spawn", function() {
+                    if (isLoadingSave) {
+                        console.log("[SaveLoad] Setting player position from save:", data.tile.x, data.tile.y);
+                        player.tile.x = data.tile.x;
+                        player.tile.y = data.tile.y;
+                        player.pos.x = data.pos.x;
+                        player.pos.y = data.pos.y;
+                        isLoadingSave = false;
+                    }
                     if (typeof updatePlayerMenuStats === "function") updatePlayerMenuStats();
                     if (typeof updateInventoryUI === "function") updateInventoryUI();
                     if (typeof updateQuestsUI === "function") updateQuestsUI("active");
                     if (typeof updateQuestHUD === "function") updateQuestHUD();
                     notify("Game loaded!", 1800);
                     if (typeof onLoaded === "function") onLoaded();
-                }, 400);
+                });
             }
         }
     }, 100);

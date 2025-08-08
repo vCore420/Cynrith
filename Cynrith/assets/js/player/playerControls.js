@@ -5,6 +5,7 @@
 // Global flag to enable/disable controls (set by menu.js)
 let controlsEnabled = true;
 
+
 // player movement start:
 document.addEventListener("keydown", function(event) {
     if (typeof player === "undefined" || !player) return;
@@ -28,6 +29,7 @@ document.addEventListener("keydown", function(event) {
         }
     }
 });
+
 
 // player movement end:
 document.addEventListener("keyup", function(event) {
@@ -53,6 +55,7 @@ document.addEventListener("keyup", function(event) {
         player.movement.moving = false;
     }
 });
+
 
 // Touch and mouse controls for mobile/desktop
 function simulateKey(keyCode, isDown) {

@@ -1,12 +1,13 @@
 // Screen Effects
 
+// Fade overlay (used for npc interaction) - move to css 
 let fadeOverlayAlpha = 0;
 
 function updateScreenFadeOverlay() {
     const forcedActive = characters.some(npc => npc.forcedEncounterInProgress);
     const shouldShow = _dialogueActive || forcedActive;
     const target = shouldShow ? 1 : 0;
-    const speed = 0.08; // Adjust for faster/slower fade
+    const speed = 0.08;
 
     if (fadeOverlayAlpha < target) {
         fadeOverlayAlpha = Math.min(target, fadeOverlayAlpha + speed);

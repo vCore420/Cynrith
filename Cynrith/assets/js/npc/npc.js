@@ -1,8 +1,11 @@
 // NPC and Enemy logic
 
-let deathScreenShown = false;
+let deathScreenShown = false; // move to player death ui
 // Unique ID counter for all characters
 let characterIdCounter = 1;
+// List to hold all characters
+const characters = [];
+
 
 // Set frame rate for character animations
 setInterval(() => {
@@ -19,6 +22,7 @@ setInterval(() => {
         }
     });
 }, 125);
+
 
 // Base class for both NPC and Enemy
 function Character(x, y, spriteSrc, type = "npc", customData = {}) {
@@ -39,11 +43,13 @@ function Character(x, y, spriteSrc, type = "npc", customData = {}) {
     Object.assign(this, rest); 
 }
 
+
 // Friendly NPC
 function NPC(x, y, spriteSrc, customData = {}) {
     Character.call(this, x, y, spriteSrc, "npc", customData);
 }
 NPC.prototype = Object.create(Character.prototype);
+
 
 // Hostile Enemy
 function Enemy(x, y, spriteSrc, customData = {}) {
@@ -51,79 +57,6 @@ function Enemy(x, y, spriteSrc, customData = {}) {
 }
 Enemy.prototype = Object.create(Character.prototype);
 
-// Handle enemy death
-function handleEnemyDeath(enemy) {
-    console.log("handleEnemyDeath called for", enemy.typeId, enemy);
-    let fadeFrames = 12;
-    let frame = 0;
-    let fadeInterval = setInterval(() => {
-        enemy.sprite.opacity = 1 - frame / fadeFrames;
-        frame++;
-        if (frame >= fadeFrames) {
-            clearInterval(fadeInterval);
-            // Remove enemy from characters array
-            const idx = characters.indexOf(enemy);
-            if (idx !== -1) characters.splice(idx, 1);
-
-            // Give XP
-            if (enemy.xpGain) player.addXP(enemy.xpGain);
-
-            // Give loot
-            if (enemy.loot) {
-                enemy.loot.forEach(drop => {
-                    if (Math.random() * 100 < drop.chance) {
-                        let amt = Array.isArray(drop.amount)
-                            ? Math.floor(Math.random() * (drop.amount[1] - drop.amount[0] + 1)) + drop.amount[0]
-                            : drop.amount;
-                        addItem(drop.item, amt);
-                        notify(`You found ${amt} ${ITEM_DEFINITIONS[drop.item].name}!`, 2000);
-                    }
-                });
-            }
-
-            if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
-                Object.values(QUEST_DEFINITIONS).forEach(q => {
-                    if (
-                        q.type === "enemyDefeat" &&
-                        q.enemyId === enemy.typeId &&
-                        playerQuests.active.includes(q.id)
-                    ) {
-                        playerQuestProgress[q.id] = (playerQuestProgress[q.id] || 0) + 1;
-                        console.log(`[Quest] EnemyDefeat: Matched quest ${q.id}, enemy.typeId=${enemy.typeId}, progress=${playerQuestProgress[q.id]}`);
-                        if (typeof updateQuestHUD === "function") updateQuestHUD();
-                    }
-                });
-            }
-
-            // Respawn enemy after cooldown at its original spawn
-            setTimeout(() => {
-                respawnEnemy(enemy.id, enemy._spawnIndex);
-            }, 8000); // 8 seconds respawn
-        }
-    }, 40);
-}
-
-// Respawn enemy at its original spawn point
-function respawnEnemy(enemyId, spawnIdx) {
-    const def = ENEMY_TYPES[enemyId];
-    if (!def || !def.spawns || spawnIdx == null) return;
-    const spawnInfo = def.spawns[spawnIdx];
-    if (!spawnInfo) return;
-    const newEnemy = new Enemy(
-        spawnInfo.x,
-        spawnInfo.y,
-        def.sprite,
-        def
-    );
-    newEnemy.wanderArea = spawnInfo.wanderArea;
-    newEnemy.health = def.maxHealth;
-    newEnemy._spawnIndex = spawnIdx;
-    newEnemy._spawnInfo = spawnInfo;
-    characters.push(newEnemy);
-}
-
-// List to hold all characters
-const characters = [];
 
 // Draw all NPCs and Enemies
 function drawCharacters() {
@@ -197,6 +130,7 @@ function drawCharacters() {
     drawDamagePopups();
 }
 
+
 // Spawn characters for the current map
 function spawnCharactersForMap(mapIndex) {
     characters.length = 0; // Clear previous characters
@@ -244,3 +178,75 @@ function spawnCharactersForMap(mapIndex) {
 }
 
 
+// Handle enemy death
+function handleEnemyDeath(enemy) {
+    console.log("handleEnemyDeath called for", enemy.typeId, enemy);
+    let fadeFrames = 12;
+    let frame = 0;
+    let fadeInterval = setInterval(() => {
+        enemy.sprite.opacity = 1 - frame / fadeFrames;
+        frame++;
+        if (frame >= fadeFrames) {
+            clearInterval(fadeInterval);
+            // Remove enemy from characters array
+            const idx = characters.indexOf(enemy);
+            if (idx !== -1) characters.splice(idx, 1);
+
+            // Give XP
+            if (enemy.xpGain) player.addXP(enemy.xpGain);
+
+            // Give loot
+            if (enemy.loot) {
+                enemy.loot.forEach(drop => {
+                    if (Math.random() * 100 < drop.chance) {
+                        let amt = Array.isArray(drop.amount)
+                            ? Math.floor(Math.random() * (drop.amount[1] - drop.amount[0] + 1)) + drop.amount[0]
+                            : drop.amount;
+                        addItem(drop.item, amt);
+                        notify(`You found ${amt} ${ITEM_DEFINITIONS[drop.item].name}!`, 2000);
+                    }
+                });
+            }
+
+            if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
+                Object.values(QUEST_DEFINITIONS).forEach(q => {
+                    if (
+                        q.type === "enemyDefeat" &&
+                        q.enemyId === enemy.typeId &&
+                        playerQuests.active.includes(q.id)
+                    ) {
+                        playerQuestProgress[q.id] = (playerQuestProgress[q.id] || 0) + 1;
+                        console.log(`[Quest] EnemyDefeat: Matched quest ${q.id}, enemy.typeId=${enemy.typeId}, progress=${playerQuestProgress[q.id]}`);
+                        if (typeof updateQuestHUD === "function") updateQuestHUD();
+                    }
+                });
+            }
+
+            // Respawn enemy after cooldown at its original spawn
+            setTimeout(() => {
+                respawnEnemy(enemy.id, enemy._spawnIndex);
+            }, 8000); // 8 seconds respawn
+        }
+    }, 40);
+}
+
+
+// Respawn enemy at its original spawn point
+function respawnEnemy(enemyId, spawnIdx) {
+    const def = ENEMY_TYPES[enemyId];
+    if (!def || !def.spawns || spawnIdx == null) return;
+    const spawnInfo = def.spawns[spawnIdx];
+    if (!spawnInfo) return;
+    const newEnemy = new Enemy(
+        spawnInfo.x,
+        spawnInfo.y,
+        def.sprite,
+        def
+    );
+    newEnemy.typeId = def.id; 
+    newEnemy.wanderArea = spawnInfo.wanderArea;
+    newEnemy.health = def.maxHealth;
+    newEnemy._spawnIndex = spawnIdx;
+    newEnemy._spawnInfo = spawnInfo;
+    characters.push(newEnemy);
+}

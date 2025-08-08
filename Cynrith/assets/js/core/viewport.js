@@ -3,7 +3,7 @@
 let frozenViewportX = null;
 let frozenViewportY = null;
 
-// viewport:
+// Viewport definition
 const Viewport = function(x, y, w, h) {
     this.x = x;
     this.y = y;
@@ -11,7 +11,7 @@ const Viewport = function(x, y, w, h) {
     this.h = h;
 };
 
-
+// Draw Viewport
 Viewport.prototype = {
     center: function() {
         if (typeof playerAnimating !== "undefined" && playerAnimating) {

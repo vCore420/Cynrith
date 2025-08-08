@@ -2,6 +2,7 @@
 
 let statsInterval = null;
 
+
 // open menu
 function openMenu() {
     document.getElementById('player-menu').classList.remove('hidden');
@@ -11,6 +12,7 @@ function openMenu() {
     statsInterval = setInterval(updatePlayerMenuStats, 300); // Refresh stats every 300ms
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
 }
+
 
 // close menu 
 function closeMenu() {
@@ -22,8 +24,6 @@ function closeMenu() {
     }
 }
 
-document.getElementById('menu-btn').addEventListener('click', openMenu);
-document.getElementById('close-menu').addEventListener('click', closeMenu);
 
 // Display Player Sprite in menu
 function updatePlayerMenuSprite() {
@@ -47,6 +47,7 @@ function updatePlayerMenuSprite() {
     preview.appendChild(canvas);
 }
 
+
 // Display Player Stats in menu
 function updatePlayerMenuStats() {
     const stats = document.getElementById('player-stats-preview');
@@ -63,17 +64,23 @@ function updatePlayerMenuStats() {
     `;
 }
 
+
+// Show Player Menu Main Page
+function showPlayerMenuMain() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    document.querySelector('.player-menu-inner').classList.add('active');
+}
+
+
+// Show Inventory Menu
 function showInventoryMenu() {
     document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
     document.getElementById('inventory-menu').classList.add('active');
     updateInventoryUI && updateInventoryUI();
 }
 
-function showPlayerMenuMain() {
-    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
-    document.querySelector('.player-menu-inner').classList.add('active');
-}
 
+// Show Quest Menu - move styles to css
 function showQuestsMenu() {
     document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
     let questsPage = document.getElementById('quests-menu');
@@ -109,6 +116,8 @@ function showQuestsMenu() {
     updateQuestsUI("active");
 }
 
+
+// Update Quest UI in Player menu
 function updateQuestsUI(tab = "active") {
     const list = document.getElementById('quests-list');
     if (!list) return;
@@ -155,7 +164,10 @@ function updateQuestsUI(tab = "active") {
     });
 }
 
-// Attach event listener
+
+// Event listeners
+document.getElementById('menu-btn').addEventListener('click', openMenu);
+document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
 document.getElementById('btn-save').addEventListener('click', saveGame);

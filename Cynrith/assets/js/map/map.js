@@ -1,11 +1,22 @@
 // Cynrith Game Map Engine
 
+// Floor names to match floor index, used for ui purposes
+const FLOOR_NAMES = [
+    "Verdant Rise",  
+    "Stonewake Expanse",
+    "Gloomroot Thicket",
+    "The Shattered Spires",
+    "Umbracourt"
+];
+
+
 let mapFrameInterval = null;
 let currentMapIndex = 0; 
 let lastTeleportTile = { x: null, y: null };
 let teleportNotifShown = false;
 
-// Helper function to Build GID to Asset Index Map
+
+// Build GID to Asset Index Map
 function buildGidToAssetIndexMap(mapData) {
     // Build a flat array where gidMap[gid] = asset index
     const gidMap = [];
@@ -28,6 +39,7 @@ function buildGidToAssetIndexMap(mapData) {
     return gidMap;
 }
 
+
 // Map Constructor
 const Map = function(title) {
     console.log("[Map] Map constructor called with:", title);
@@ -42,15 +54,18 @@ const Map = function(title) {
     this.load(title);
 };
 
+
 // Main Map Logic
 Map.prototype = {
     load: function(title) {
         console.log("[Map] load called with:", title);
+
         LoadURL("assets/json/" + title.toString().toLowerCase() + ".json", (result) => {
             this.data = JSON.parse(result);
             this.data.frame = 0;
             this.tiles = [];
             console.log("[Map] Map data loaded:", this.data);
+
 
             // Support for Tiled multi-layer maps
             if (this.data.layers) {
@@ -68,15 +83,18 @@ Map.prototype = {
                     }
                     return arr;
                 });
+
                 // For compatibility, set layout to the bottom layer
                 this.data.layout = this.data._layers[0];
                 this.width = this.data.layers[0].width;
                 this.height = this.data.layers[0].height;
             } else {
-                // Legacy map
+
+                // Legacy map (Single Layer maps)
                 this.width = this.data.width;
                 this.height = this.data.height;
             }
+
 
             // Load tiles as before
             let loaded = 0;
@@ -92,6 +110,8 @@ Map.prototype = {
             }
         });
     },
+
+
     // Draw the map
     draw: function() {
         if (!this.data.layout || !this.data.layout[0]) return;
@@ -136,7 +156,8 @@ Map.prototype = {
                 }
             }
         } else {
-            // Legacy single-layer rendering
+
+            // Legacy (single-layer rendering)
             for (let y = y_min; y < y_max; y++) {
                 for (let x = x_min; x < x_max; x++) {
                     let value  = this.data.layout[y][x] - 1;
@@ -164,91 +185,9 @@ Map.prototype = {
             }
         }
     },
+    
     // Update the map frame for animations
     frame: function() {
         this.data.frame = (this.data.frame == 0) ? 1 : 0;
     }
 };
-
-// Helper: Try to warp to a map if player has enough XP
-function tryWarpToMap(targetMapIndex, spawnType, requiredXP) {
-    if (player.xp >= (requiredXP || 0)) {
-        warpToMap(targetMapIndex, spawnType);
-    } else {
-        Log("coords", "You need " + requiredXP + " XP to enter this area!");
-    }
-}
-
-// Warp to a map by index, placing player at a given location
-function warpToMap(mapIndex, spawnType = "spawn") {
-    currentMapIndex = mapIndex;
-    map.onLoad = function() {
-        const spawn = map.data[spawnType];
-        if (spawn) {
-            player.pos.x = spawn.x * config.size.tile;
-            player.pos.y = spawn.y * config.size.tile;
-            player.tile.x = spawn.x;
-            player.tile.y = spawn.y;
-        }
-        // Spawn NPCs and Enemies for this map
-        if (typeof spawnCharactersForMap === "function") {
-            spawnCharactersForMap(currentMapIndex);
-        }
-    };
-    map.load("map" + mapIndex);
-}
-
-// Teleport forward if on teleport tile and XP is enough
-function checkTeleport() {
-    if (!map.data.teleport) return;
-    const t = map.data.teleport;
-    const onTile = player.tile.x === t.x && player.tile.y === t.y;
-
-    if (onTile) {
-        if (!teleportNotifShown) {
-            const nextFloor = currentMapIndex + 2;
-            const xpRequired = t.xpRequired || 0;
-            notify(`Press the B button to move to Floor ${nextFloor} (requires ${xpRequired} XP)`, 3500);
-            teleportNotifShown = true;
-        }
-        if (actionButtonBPressed) {
-            const xpRequired = t.xpRequired || 0;
-            if (player.xp >= xpRequired) {
-                tryWarpToMap(currentMapIndex + 1, "spawn", xpRequired);
-            } else {
-                notify(`You need ${xpRequired} XP to move to this Floor!`, 3000);
-            }
-        }
-    } else {
-        teleportNotifShown = false;
-    }
-}
-
-// Check if player is on back teleport tile to go back to previous map
-function checkBackTeleport() {
-    if (!map.data.spawn) return;
-    const s = map.data.spawn;
-    const onTile = player.tile.x === s.x && player.tile.y === s.y && currentMapIndex > 0;
-
-    if (onTile) {
-        if (!backTeleportNotifShown) {
-            notify(`Press the B button to move to Floor ${currentMapIndex}`, 3000);
-            backTeleportNotifShown = true;
-        }
-        if (actionButtonBPressed) {
-            warpToMap(currentMapIndex - 1, "teleport");
-        }
-    } else {
-        backTeleportNotifShown = false;
-    }
-}
-
-
-// Floor names to match floor index, used for ui purposes
-const FLOOR_NAMES = [
-    "Verdant Rise",  
-    "Stonewake Expanse",
-    "Gloomroot Thicket",
-    "The Shattered Spires",
-    "Umbracourt"
-];

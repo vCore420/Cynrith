@@ -2,7 +2,8 @@
 
 let playerAnimating = false;
 
-// Helper to check collision at a tile (for all layers)
+
+// Player collision Logic, check collision at a tile (for all layers)
 function isTileBlockedAtPixel(px, py, direction) {
     const tileSize = config.size.tile;
     const spriteSize = config.size.char;
@@ -34,6 +35,7 @@ function isTileBlockedAtPixel(px, py, direction) {
     }
 }
 
+// Stops movement controls for player
 function clearAllMovementKeys() {
     for (let key in keys) {
         if (keys.hasOwnProperty(key)) {
@@ -42,7 +44,7 @@ function clearAllMovementKeys() {
     }
 }
 
-// player:
+// Player definition 
 const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png") {
     this.timer = setInterval(() => player.frame(), 125);
     this.frames = [0.40, 0.42, 0.44, 0.46, 0.48, 0.50, 0.48, 0.46, 0.44, 0.42, 0.40];
@@ -85,6 +87,7 @@ const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png")
     };
 };
 
+// Draw Player
 Player.prototype = {
     draw: function() {
         let frame = (player.movement.moving) ? keys[player.movement.key].f[player.movement.frame] : keys[player.movement.key].f[1];

@@ -1,8 +1,8 @@
 // Inventory logic and Ui
 
 const INVENTORY_SIZE = 9; // 3x3 grid
-
 let inventory = []; // Array of { id, amount }
+
 
 // Add item to players inventory
 function addItem(itemId, amount = 1) {
@@ -20,8 +20,10 @@ function addItem(itemId, amount = 1) {
         return false;
     }
     updateInventoryUI();
+    if (typeof updateQuestHUD === "function") updateQuestHUD();
     return true;
 }
+
 
 // Remove item from players inventory
 function removeItem(itemId, amount = 1) {
@@ -36,14 +38,25 @@ function removeItem(itemId, amount = 1) {
     // Shift items to fill empty slots
     inventory = inventory.filter(i => i.amount > 0);
     updateInventoryUI();
+    if (typeof updateQuestHUD === "function") updateQuestHUD();
     return true;
 }
+
 
 // Check if player has item in their inventory
 function hasItem(itemId, amount = 1) {
     let slot = inventory.find(i => i.id === itemId);
     return slot && slot.amount >= amount;
 }
+
+
+// Get current count of item in player inventory
+function getItemCount(itemId) {
+    return inventory
+        .filter(i => i && i.id === itemId)
+        .reduce((sum, i) => sum + (i.amount || 0), 0);
+}
+
 
 // Inventory Ui
 function updateInventoryUI() {
@@ -72,6 +85,7 @@ function updateInventoryUI() {
         grid.appendChild(div);
     }
 }
+
 
 // Dropdown for item actions
 function showItemDropdown(index, slot, def, event) {

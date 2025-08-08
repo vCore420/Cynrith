@@ -1,6 +1,7 @@
 // Inventory item definitions
 
 const ITEM_DEFINITIONS = {
+
     potion: {
         id: "potion",
         name: "Health Potion",
@@ -10,6 +11,8 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true
     },
+
+
     slime_ball: {
         id: "slime_ball",
         name: "Slime Ball",
@@ -19,6 +22,8 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: false
     },
+
+
     dewleaf: {
         id: "dewleaf",
         name: "Dewleaf",
@@ -28,6 +33,8 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: false
     },
+
+
     sword: {
         id: "sword",
         name: "Sword",
@@ -37,6 +44,8 @@ const ITEM_DEFINITIONS = {
         stackable: false,
         useable: false
     },
+
+    
     atk_buff: {
         id: "atk_buff",
         name: "Attack Buff",

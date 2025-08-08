@@ -5,14 +5,9 @@ let playerQuests = {
     active: [],
     completed: []
 };
-
 let playerQuestProgress = {};
 let statBuildQuestStart = {};
 
-// Check if quest has been moved to completed state
-function isQuestCompleted(questId) {
-    return playerQuests.completed.includes(questId);
-}
 
 // Start a quest
 function startQuest(questId) {
@@ -34,41 +29,6 @@ function startQuest(questId) {
     }
 }
 
-// Complete a quest, moving it to completed state
-function completeQuest(questId) {
-    if (!playerQuests.completed.includes(questId)) {
-        playerQuests.completed.push(questId);
-        playerQuests.active = playerQuests.active.filter(id => id !== questId);
-        if (typeof updateQuestHUD === "function") updateQuestHUD();
-    }
-}
-
-// Give quest rewards to player 
-function giveQuestRewards(rewards) {
-    // List of stat keys you want to support
-    const statKeys = ["attack", "defence", "maxHealth", "attackSpeed"];
-    rewards.forEach(reward => {
-        if (reward.id) {
-            addItem(reward.id, reward.amount || 1);
-        } else if (typeof reward.xp === "number") {
-            if (typeof player.addXP === "function") {
-                player.addXP(reward.xp);
-            } else if (typeof player.xp === "number") {
-                player.xp += reward.xp;
-            }
-        }
-        statKeys.forEach(stat => {
-            if (typeof reward[stat] === "number") {
-                const addFunc = player["add" + stat.charAt(0).toUpperCase() + stat.slice(1)];
-                if (typeof addFunc === "function") {
-                    addFunc.call(player, reward[stat]);
-                } else if (typeof player[stat] === "number") {
-                    player[stat] += reward[stat];
-                }
-            }
-        });
-    });
-}
 
 // Check if quest is complete
 function tryCompleteQuest(questId) {
@@ -116,3 +76,48 @@ function tryCompleteQuest(questId) {
 
     return handlers[quest.type] ? handlers[quest.type]() : false;
 }
+
+
+// Complete a quest, moving it to completed state
+function completeQuest(questId) {
+    if (!playerQuests.completed.includes(questId)) {
+        playerQuests.completed.push(questId);
+        playerQuests.active = playerQuests.active.filter(id => id !== questId);
+        if (typeof updateQuestHUD === "function") updateQuestHUD();
+    }
+}
+
+
+// Give quest rewards to player 
+function giveQuestRewards(rewards) {
+    // List of stat keys you want to support
+    const statKeys = ["attack", "defence", "maxHealth", "attackSpeed"];
+    rewards.forEach(reward => {
+        if (reward.id) {
+            addItem(reward.id, reward.amount || 1);
+        } else if (typeof reward.xp === "number") {
+            if (typeof player.addXP === "function") {
+                player.addXP(reward.xp);
+            } else if (typeof player.xp === "number") {
+                player.xp += reward.xp;
+            }
+        }
+        statKeys.forEach(stat => {
+            if (typeof reward[stat] === "number") {
+                const addFunc = player["add" + stat.charAt(0).toUpperCase() + stat.slice(1)];
+                if (typeof addFunc === "function") {
+                    addFunc.call(player, reward[stat]);
+                } else if (typeof player[stat] === "number") {
+                    player[stat] += reward[stat];
+                }
+            }
+        });
+    });
+}
+
+
+// Check if quest has been moved to completed state
+function isQuestCompleted(questId) {
+    return playerQuests.completed.includes(questId);
+}
+

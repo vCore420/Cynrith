@@ -1,5 +1,7 @@
 // All quest definitions
 const QUEST_DEFINITIONS = {
+
+
     eldrin_intro: {
         id: "eldrin_intro",
         name: "Eldrin's Introduction",
@@ -9,6 +11,8 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "sword", amount: 1 }, { xp: 20 }],
         redoable: false
     },
+    
+    
     dewleaf_gather: {
         id: "dewleaf_gather",
         name: "Dewleaf Gathering",
@@ -18,6 +22,8 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "potion", amount: 2 }, { xp: 20 }],
         redoable: true
     },
+    
+    
     slime_cull: {
         id: "slime_cull",
         name: "Slime Slayer",
@@ -28,6 +34,8 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "potion", amount: 2 }, { xp: 30 }],
         redoable: false
     },
+    
+    
     rook_gift: {
         id: "rook_gift",
         name: "Rook's Gift",
@@ -37,6 +45,8 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "atk_buff", amount: 1 }, { xp: 20 }],
         redoable: false
     },
+    
+    
     get_stronger: {
         id: "get_stronger",
         name: "Get Stronger!",
@@ -47,5 +57,7 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "atk_buff", amount: 1 }, { xp: 40 }],
         redoable: false
     },
+    
+    
     // Add more quests here...
 };

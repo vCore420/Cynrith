@@ -3,6 +3,7 @@
 // Damage popups queue
 let damagePopups = [];
 
+
 // Damage popup
 function showDamagePopup(x, y, dmg, type = "enemy") {
     damagePopups.push({
@@ -14,6 +15,7 @@ function showDamagePopup(x, y, dmg, type = "enemy") {
         opacity: 0
     });
 }
+
 
 // Draw popups 
 function drawDamagePopups() {
@@ -51,6 +53,7 @@ function drawDamagePopups() {
         context.restore();
     }
 }
+
 
 // Player Health Bar
 function drawPlayerHealthHUD() {
