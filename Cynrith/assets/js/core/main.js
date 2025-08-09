@@ -111,14 +111,12 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     }
 
     map.onLoad = function() {
+        if (window._lastSaveData) {
+            applySaveData(window._lastSaveData);
+            window._lastSaveData = null;
+        }
         if (typeof spawnCharactersForMap === "function") {
             spawnCharactersForMap(mapIndex);
-            if (window._pendingSaveData) {
-                if (typeof patchForcedEncounters === "function") {
-                    patchForcedEncounters(window._pendingSaveData);
-                }
-                window._pendingSaveData = null;
-            }
         }
         if (typeof spawnInteractableTilesForMap === "function") {
             spawnInteractableTilesForMap(mapIndex);

@@ -63,6 +63,12 @@ function getAllSaves() {
 function applySaveData(data) {
     console.log("[Save/Load] Applying save data:", data);
 
+    // Patch Triggered Forced Encounters
+    if (data.forcedEncounters) {
+        triggeredForcedEncounters = { ...data.forcedEncounters };
+        console.log("[Save/Load] Triggered forced encounters patched:", triggeredForcedEncounters);
+    }
+
     // Patch player
     if (typeof player !== "undefined" && player) {
         player.playerName = data.playerName;
@@ -98,12 +104,6 @@ function applySaveData(data) {
     if (data.triggeredInteractableTiles) {
         triggeredInteractableTiles = { ...data.triggeredInteractableTiles };
         console.log("[Save/Load] Triggered interactable tiles patched:", triggeredInteractableTiles);
-    }
-
-    // Patch Triggered Forced Encounters
-    if (data.forcedEncounters) {
-        triggeredForcedEncounters = { ...data.forcedEncounters };
-        console.log("[Save/Load] Triggered forced encounters patched:", triggeredForcedEncounters);
     }
 }
 
@@ -152,6 +152,10 @@ function loadGame(playerName, onLoaded) {
             clearInterval(checkMap);
             console.log("[Save/Load] Map loaded, applying save data...");
             applySaveData(data);
+
+            if (typeof spawnCharactersForMap === "function") {
+                spawnCharactersForMap(data.mapIndex);
+            }
 
             // Set player position from save
             if (isLoadingSave) {
