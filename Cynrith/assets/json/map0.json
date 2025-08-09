@@ -2,7 +2,7 @@
  "height":50,
  "infinite":false,
  "spawn": { "x": 45, "y": 47 },
- "teleport": { "x": 44, "y": 24, "xpRequired": 100 },
+ "teleport": { "x": 44, "y": 24, "xpRequired": 250 },
  "assets":[
    {"file_name":"grass-2","collision":0,"frames":0},
    {"file_name":"bush","collision":1,"frames":0},

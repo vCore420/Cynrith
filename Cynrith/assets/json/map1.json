@@ -1,7 +1,7 @@
 { "compressionlevel":-1,
  "height":50,
  "infinite":false,
- "spawn": { "x": 37, "y": 44 },
+ "spawn": { "x": 35, "y": 42 },
  "teleport": { "x": 21, "y": 25, "xpRequired": 250 },
  "assets":[
    {"file_name":"grass-2","collision":0,"frames":0},
