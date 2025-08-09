@@ -88,6 +88,14 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
         tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
     }
 
+    if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
+        return true; 
+    }
+
+    if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(tileX, tileY)) {
+        return true;
+    }
+
     if (map.data._layers) {
         for (let l = 0; l < map.data._layers.length; l++) {
             let gid = map.data._layers[l][tileY][tileX];
@@ -109,6 +117,18 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
 
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
+    
+    // Block if world sprite collision
+    if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(tileX, tileY)) {
+        return false;
+    }
+    
+    // Block if teleport stone collision
+    if (activeTeleportStones && activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
+        return false;
+    }
+
+    // Layered map collision check
     if (map.data._layers) {
         // Check all layers for collision
         for (let l = 0; l < map.data._layers.length; l++) {
@@ -122,7 +142,7 @@ function isWalkable(tileX, tileY) {
         }
         return true;
     } else {
-        // Legacy
+        // Legacy map collision check
         const tileGid = map.data.layout[tileY][tileX];
         let tileIndex = tileGid > 0 ? tileGid - 1 : null;
         return tileIndex === null || !map.data.assets[tileIndex].collision;

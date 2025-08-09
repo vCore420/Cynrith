@@ -3,6 +3,15 @@
 let playerAnimating = false;
 
 
+// Check for Player at the teleport stones
+function isPlayerAdjacentToTeleportStone() {
+    return activeTeleportStones.some(stone =>
+        (Math.abs(player.tile.x - stone.x) === 1 && player.tile.y === stone.y) ||
+        (Math.abs(player.tile.y - stone.y) === 1 && player.tile.x === stone.x)
+    );
+}
+
+
 // Player collision Logic, check collision at a tile (for all layers)
 function isTileBlockedAtPixel(px, py, direction) {
     const tileSize = config.size.tile;
@@ -15,6 +24,23 @@ function isTileBlockedAtPixel(px, py, direction) {
         tileY = Math.floor((py + offset) / tileSize);
     } else {
         tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
+    }
+
+    if (
+        tileY < 0 || tileX < 0 ||
+        !map.data.layout ||
+        !map.data.layout[tileY] ||
+        typeof map.data.layout[tileY][tileX] === "undefined"
+    ) {
+        return true;
+    }
+
+    if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
+        return true; 
+    }
+
+    if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(tileX, tileY)) {
+        return true;
     }
 
     if (map.data._layers) {

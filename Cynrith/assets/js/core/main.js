@@ -121,6 +121,12 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         if (typeof spawnInteractableTilesForMap === "function") {
             spawnInteractableTilesForMap(mapIndex);
         }
+        if (typeof spawnTeleportStonesForMap === "function") {
+            spawnTeleportStonesForMap(mapIndex);
+        }
+        if (typeof spawnWorldSpritesForMap === "function") {
+            spawnWorldSpritesForMap(mapIndex);
+        }
         mapReady = true;
         tryStartLoop();
     };
@@ -221,11 +227,17 @@ function Loop() {
     // Draw Interctable Tiles
     if (typeof drawInteractableTiles === "function") drawInteractableTiles();
     
+    drawWorldSprites(0);
+
     // Update and Draw Npcs
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
     
+    //Draw Animated World Sprite Sheets
+    drawTeleportStones();
+    drawWorldSprites(1);
+
     // Update and Draw Screen Effects
     if (typeof updateScreenFadeOverlay === "function") updateScreenFadeOverlay();
     if (typeof drawScreenFadeOverlay === "function") drawScreenFadeOverlay();
