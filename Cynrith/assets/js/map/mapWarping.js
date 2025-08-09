@@ -49,17 +49,19 @@ function spawnTeleportStonesForMap(mapIndex) {
 function drawTeleportStones() {
     if (!activeTeleportStones.length) return;
     teleportStoneAnimTick++;
-    if (teleportStoneAnimTick % 8 === 0) {
-        teleportStoneFrame = (teleportStoneFrame + 1) % 13;
+    const totalFrames = 38; 
+    if (teleportStoneAnimTick % 5 === 0) { 
+        teleportStoneFrame = (teleportStoneFrame + 1) % totalFrames;
     }
     activeTeleportStones.forEach(stone => {
-        let row = stone.type === "spawn" ? 0 : 1;
         let frameW = 64;
         let frameH = 320;
-        let sx = teleportStoneFrame * frameW;
+        let col = teleportStoneFrame % 13;
+        let row = Math.floor(teleportStoneFrame / 13);
+
+        let sx = col * frameW;
         let sy = row * frameH;
 
-        // Position so base aligns with tile
         let px = Math.round(
             stone.x * config.size.tile
             - viewport.x

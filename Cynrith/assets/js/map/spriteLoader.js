@@ -7,12 +7,27 @@ let activeWorldSprites = [];
 function isTileBlockedByWorldSprite(tileX, tileY) {
     return activeWorldSprites.some(s => {
         if (!s.collision) return false;
-        // Calculate how many tiles wide the sprite is
         const tilesWide = Math.ceil(s.frameW / config.size.tile);
-        // The bottom row of the sprite starts at s.y and spans tilesWide
-        for (let dx = 0; dx < tilesWide; dx++) {
-            if (tileX === s.x + dx && tileY === s.y) {
-                return true;
+        const tilesTall = Math.ceil(s.frameH / config.size.tile);
+
+        if (s.zIndex === 0) {
+            // Anchor collision to the bottom of the sprite (base at s.x, s.y)
+            for (let dx = 0; dx < tilesWide; dx++) {
+                for (let dy = 0; dy < tilesTall; dy++) {
+                    // dy = 0 is the bottom row, dy = tilesTall-1 is the top
+                    if (tileX === s.x + dx && tileY === s.y - dy) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            // Above player: block only the bottom row
+            if (tileY === s.y) {
+                for (let dx = 0; dx < tilesWide; dx++) {
+                    if (tileX === s.x + dx) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -47,26 +62,26 @@ function drawWorldSprites(zIndex) {
     activeWorldSprites.forEach(s => {
         if (typeof zIndex !== "undefined" && s.zIndex !== zIndex) return;
 
-        // Animate frame
-        s._animTick = (s._animTick || 0) + 1;
-        if (s._animTick % (s.animSpeed || 8) === 0) {
-            s._frame = ((s._frame || 0) + 1) % s.frames;
+        // Animate frame only if more than one frame
+        if (s.frames > 1) {
+            s._animTick = (s._animTick || 0) + 1;
+            if (s._animTick % (s.animSpeed || 8) === 0) {
+                s._frame = ((s._frame || 0) + 1) % s.frames;
+            }
+        } else {
+            s._frame = 0;
         }
 
         const img = _worldSpriteImages[s.spriteSheet];
         if (!img || !img.complete) return;
 
-        // Calculate frame position in sheet (supports vertical or horizontal)
-        const frameIndex = s._frame;
-        const col = frameIndex % s.cols;
-        const row = Math.floor(frameIndex / s.cols);
+        // Calculate frame position in sheet (supports single frame)
+        const frameIndex = s._frame || 0;
+        const col = s.frames > 1 ? frameIndex % s.cols : 0;
+        const row = s.frames > 1 ? Math.floor(frameIndex / s.cols) : 0;
 
         const sx = col * s.frameW;
         const sy = row * s.frameH;
-
-        // How many tiles does this frame cover?
-        const tilesWide = Math.ceil(s.frameW / config.size.tile);
-        const tilesTall = Math.ceil(s.frameH / config.size.tile);
 
         // Align base of sprite to (x, y) tile
         const px = Math.round(
