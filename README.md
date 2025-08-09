@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">Cynrith</h1>
-  <p align="center">Cynrith is not just a world; it’s a mystery waiting to be unraveled. Ascend, discover, and let its secrets weave your tale...</p>
+  <p align="center">A mysterious, ever-changing world woven from the dreams and ruins of lost civilizations.</p>
   <p align="center">
     <img alt="Github License" src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge">
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
@@ -54,18 +54,42 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 ![Demo Screenshot](docs/assets/demo2.png)
 ![Demo Screenshot](docs/assets/demo3.png)
 ![Demo Screenshot](docs/assets/demo4.png)
-![Demo Screenshot](docs/assets/demo5.png)
-![Demo Screenshot](docs/assets/demo6.png)
 
 ## Roadmap
 
-- Item usage and effects
+**Completed**
+
+- Dynamic map loading 
+- Real-time combat, death and respawn system
+- Modular sprite sheet loader
+- Animated, interactable teleport stones and map warping
+- Interactable tiles with rewards for hidden secrets 
+- Usable Items 
+- Player Stats, player buffs and dynamic stat adjustments
+- NPCs and enemies with pathfinding, interactions and triggers
+- Quest system with branching lore and dynamic UI
+- Multi types of quest can be given to the player (item collection, enemy defeats, stat gain)
+- Player menu UI
+- Clean Inventory system
+- Save/load system for persistent progress
+- Multi-platform controls (desktop & mobile)
+- Lore intro and evolving story
+- Multi-layered world and floor progression
+- Notifications and dialogue system
+- Forced encounters and event triggers
+
+**To DO**
+
 - Skill System
+- Settings menu
+- Map menu
+- trigger tiles for interiors/caves
+- Shop/trader system
 - Floor and Storyline expansion 
 - Improved assets and polish
 - Expand documentation
 
-- planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+- Planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
 ## Documentation
 
