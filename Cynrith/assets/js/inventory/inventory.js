@@ -168,67 +168,70 @@ function showItemDropdown(index, slot, def, event) {
         useBtn.textContent = "Use Item";
         useBtn.className = "dropdown-btn use";
         useBtn.onclick = () => {
-            notify(`Used ${def.name}!`, 1500);
-            dropdown.remove();
-            overlay.remove();
-            console.log(`[Inventory] Used item ${def.name} (ID: ${slot.id})`);
+            if (useItem(slot.id)) {
+                dropdown.remove();
+                overlay.remove();
+                console.log(`[Inventory] Used item ${def.name} (ID: ${slot.id})`);
+            }
         };
         dropdown.appendChild(useBtn);
     }
 
     // Remove button
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = "Remove Item";
-    removeBtn.className = "dropdown-btn remove";
-    removeBtn.onclick = () => {
-        // Show amount selector below this button
-        if (dropdown.querySelector('.remove-amount-block')) return;
-        const amtBlock = document.createElement('div');
-        amtBlock.className = "remove-amount-block";
+    if (def.removeable !== false) {
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "Remove Item";
+        removeBtn.className = "dropdown-btn remove";
+        removeBtn.onclick = () => {
+            // Show amount selector below this button
+            if (dropdown.querySelector('.remove-amount-block')) return;
+            const amtBlock = document.createElement('div');
+            amtBlock.className = "remove-amount-block";
 
-        let amt = 1;
+            let amt = 1;
 
-        const minusBtn = document.createElement('button');
-        minusBtn.textContent = "−";
-        minusBtn.className = "remove-amount-btn";
-        minusBtn.onclick = () => {
-            if (amt > 1) {
-                amt--;
-                amtNum.textContent = amt;
-            }
+            const minusBtn = document.createElement('button');
+            minusBtn.textContent = "−";
+            minusBtn.className = "remove-amount-btn";
+            minusBtn.onclick = () => {
+                if (amt > 1) {
+                    amt--;
+                    amtNum.textContent = amt;
+                }
+            };
+
+            const amtNum = document.createElement('span');
+            amtNum.textContent = amt;
+            amtNum.className = "remove-amount-num";
+
+            const plusBtn = document.createElement('button');
+            plusBtn.textContent = "+";
+            plusBtn.className = "remove-amount-btn";
+            plusBtn.onclick = () => {
+                if (amt < slot.amount) {
+                    amt++;
+                    amtNum.textContent = amt;
+                }
+            };
+
+            const okBtn = document.createElement('button');
+            okBtn.textContent = "OK";
+            okBtn.className = "remove-amount-ok";
+            okBtn.onclick = () => {
+                removeItem(slot.id, amt);
+                dropdown.remove();
+                overlay.remove();
+            };
+
+            amtBlock.appendChild(minusBtn);
+            amtBlock.appendChild(amtNum);
+            amtBlock.appendChild(plusBtn);
+            amtBlock.appendChild(okBtn);
+
+            dropdown.appendChild(amtBlock);
         };
-
-        const amtNum = document.createElement('span');
-        amtNum.textContent = amt;
-        amtNum.className = "remove-amount-num";
-
-        const plusBtn = document.createElement('button');
-        plusBtn.textContent = "+";
-        plusBtn.className = "remove-amount-btn";
-        plusBtn.onclick = () => {
-            if (amt < slot.amount) {
-                amt++;
-                amtNum.textContent = amt;
-            }
-        };
-
-        const okBtn = document.createElement('button');
-        okBtn.textContent = "OK";
-        okBtn.className = "remove-amount-ok";
-        okBtn.onclick = () => {
-            removeItem(slot.id, amt);
-            dropdown.remove();
-            overlay.remove();
-        };
-
-        amtBlock.appendChild(minusBtn);
-        amtBlock.appendChild(amtNum);
-        amtBlock.appendChild(plusBtn);
-        amtBlock.appendChild(okBtn);
-
-        dropdown.appendChild(amtBlock);
-    };
-    dropdown.appendChild(removeBtn);
+        dropdown.appendChild(removeBtn);
+    }
 
     document.body.appendChild(overlay);
     document.body.appendChild(dropdown);

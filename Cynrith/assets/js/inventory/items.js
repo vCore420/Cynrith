@@ -2,14 +2,15 @@
 
 const ITEM_DEFINITIONS = {
 
-    potion: {
-        id: "potion",
-        name: "Health Potion",
-        description: "Restores 20 health.",
-        image: "assets/img/items/potion.png",
+    health_buff_small: {
+        id: "health_buff_small",
+        name: "Health health_buff_small",
+        description: "Restores 10 health.",
+        image: "assets/img/items/health_buff_small.png",
         rarity: "common",
         stackable: true,
-        useable: true
+        useable: true,
+        removeable: true
     },
 
 
@@ -20,7 +21,8 @@ const ITEM_DEFINITIONS = {
         image: "assets/img/items/slime_ball.png",
         rarity: "common",
         stackable: true,
-        useable: false
+        useable: false,
+        removeable: true
     },
 
 
@@ -31,29 +33,32 @@ const ITEM_DEFINITIONS = {
         image: "assets/img/items/dewleaf.png",
         rarity: "common",
         stackable: true,
-        useable: false
+        useable: false,
+        removeable: true
     },
 
 
-    sword: {
-        id: "sword",
-        name: "Sword",
-        description: "A sharp blade. Deals extra damage.",
-        image: "assets/img/items/sword.png",
-        rarity: "rare",
+    basic_sword: {
+        id: "basic_sword",
+        name: "Basic Sword",
+        description: "A sharp blade. Deals good damage.",
+        image: "assets/img/items/basic_sword.png",
+        rarity: "common",
         stackable: false,
-        useable: false
+        useable: false,
+        removeable: false 
     },
 
-    
-    atk_buff: {
-        id: "atk_buff",
-        name: "Attack Buff",
-        description: "Increases attack damage.",
-        image: "assets/img/items/atk_buff.png",
+
+    atk_buff_small: {
+        id: "atk_buff_small",
+        name: "Attack Buff - Small",
+        description: "Increases attack damage by 3.",
+        image: "assets/img/items/atk_buff_small.png",
         rarity: "Rare",
         stackable: true,
-        useable: true
+        useable: true,
+        removeable: true
     },
     // Add more items here...
 };

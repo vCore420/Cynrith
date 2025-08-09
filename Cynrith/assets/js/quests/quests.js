@@ -8,7 +8,7 @@ const QUEST_DEFINITIONS = {
         description: "A Gift from the dearest Eldrin.",
         type: "gift",
         requiredItems: [],
-        rewards: [{ id: "sword", amount: 1 }, { xp: 20 }],
+        rewards: [{ id: "basic_sword", amount: 1 }, { xp: 20 }],
         redoable: false
     },
     
@@ -19,7 +19,7 @@ const QUEST_DEFINITIONS = {
         description: "Collect 3 Dewleaf from Vicious Plants.",
         type: "itemCollect",
         requiredItems: [{ id: "dewleaf", amount: 3 }],
-        rewards: [{ id: "potion", amount: 2 }, { xp: 20 }],
+        rewards: [{ id: "health_buff_small", amount: 2 }, { xp: 20 }],
         redoable: true
     },
     
@@ -31,7 +31,7 @@ const QUEST_DEFINITIONS = {
         type: "enemyDefeat",
         enemyId: "slime_01",
         requiredAmount: 5,
-        rewards: [{ id: "potion", amount: 2 }, { xp: 30 }],
+        rewards: [{ id: "health_buff_small", amount: 2 }, { xp: 30 }],
         redoable: false
     },
     
@@ -42,7 +42,7 @@ const QUEST_DEFINITIONS = {
         description: "A Gift from the wise Old Rook.",
         type: "gift",
         requiredItems: [],
-        rewards: [{ id: "atk_buff", amount: 1 }, { xp: 20 }],
+        rewards: [{ id: "atk_buff_small", amount: 1 }, { xp: 20 }],
         redoable: false
     },
     
@@ -54,7 +54,7 @@ const QUEST_DEFINITIONS = {
         type: "statBuild",
         stat: "attack",
         requiredAmount: 10,
-        rewards: [{ id: "atk_buff", amount: 1 }, { xp: 40 }],
+        rewards: [{ id: "atk_buff_small", amount: 1 }, { xp: 40 }],
         redoable: false
     },
     
