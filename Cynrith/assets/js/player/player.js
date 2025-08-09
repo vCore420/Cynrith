@@ -210,8 +210,9 @@ Player.prototype = {
 
         this.lastAttackTime = now;
 
-        // Only allow attack if player has a sword
-        if (!hasItem("sword", 1)) return;
+        // Only allow attack if player has a basic sword
+        const hasSword = inventory.some(item => item && typeof item.id === "string" && item.id.endsWith("_sword"));
+        if (!hasSword) return;
 
         // Play attack animation (jump forward and back)
         this.quickAttackAnim();
@@ -289,7 +290,7 @@ Player.prototype = {
             frozenViewportY = null;
         }, 80);
     },
-    
+
     getHealth: function() { return this.health; },
     setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); },
     addHealth: function(val) { this.setHealth(this.health + val); },
