@@ -3,6 +3,9 @@
 - Tasks get ticked off when completed, working and pushed to github.
 - Tasks get removed after 2 - 3 days after they are pushed to github.
 
+## World Logic
+- [ ] Forced encounter for just dialouge with no npc, triggers once, used for story building and events
+
 ## NPC Logic 
 - [ ] Stop npc walking animation when being interacting with 
 
@@ -11,6 +14,7 @@
 
 ## Quest Logic
 - [x] Allow for other player stat incresses to be used as quest rewards (decided aginst doing this becuase we are going to have buff items and skills that will all buff stats)
+- [ ] quest menu has some overlfow on lists and scroll bar needs removing
 
 ## Player Logic
 - [ ] Joystick instead of touch buttons?
@@ -39,12 +43,14 @@
 ## Save System
 - [x] Load system to reload all these attributes when a game save is loaded
 - [ ] make system more modular to easily add more data in the future 
-
+- [ ] Style load menu scroll bar
+ 
 ## Item System
-- [ ] Add logic to allow for a non-removable value on items
+- [x] Add logic to allow for a non-removable value on items
 - [ ] Usable items, functionality for different item uses 
 - [ ] Buyable items (shop/traders system?) 
 - [x] Lootable tiles/ interactable tiles, ones to bring up dialouge /and give player item adn/or xp - then add to save and load, god forbid i have the same problem with the quest flags
+- [ ] Add colisions to interatable tiles, trigger when on tile as well as ones around it
 
 ## Settings Menu
 - [ ] Desgin and create the settings menu 
@@ -59,6 +65,7 @@
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing 
 - [ ] Mini map in the player menu, display the floor as a small picture with player location
+- [x] Create logic to dynamiclly import any sprite sheet of size to display in the world (houses and larger objects with more depth)
 
 ## Docs & Dev work
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
@@ -75,5 +82,9 @@
 - Fixed issue with warping between maps
 - Added logic for interactable tiles, spawn on game/map load, interacted ones save and load so they can only be interacted with once 
 - fixed triggered forced encounters patching between map warps correctly, again...
+- fixed forced encounter patching again again....
+- added useable items logic
+- Added removable flag to items
+- Added dynamic sprite sheet loader to add more indepth sprite sheets to the world without altering the game loop rate
 
 ---

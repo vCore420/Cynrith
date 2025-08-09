@@ -8,12 +8,14 @@
 - getAttackSpeed(), setAttackSpeed(val), addAttackSpeed(val) — Gets/sets/adds to the player's attack speed stat (raw value, e.g. 0–5000).
 - getAttacksPerSecond() — Returns the player's actual attacks per second (1 + attackSpeed * 0.002, capped at 10).
 
+
 ## Save & Load System
 - getCurrentSaveData() — Returns an object representing the current game state (player stats, inventory, map, quests, etc.) for saving.
 - saveGame() — Saves the current game state to localStorage under the player's name.
 - getAllSaves() — Returns an array of all saved games found in localStorage.
 - applySaveData(data) — Applies loaded save data to the current game state (player, inventory, quests, etc.).
 - loadGame(playerName, onLoaded) — Loads a saved game by player name, applies the data, and warps the player to the correct map and position.
+- patchForcedEncounters() — Patches forced encounter flags for NPCs after loading a save.
 
 
 ## Data Definitions
@@ -21,35 +23,55 @@
 - ENEMY_TYPES — Object mapping enemy type IDs to their data (name, sprite, stats, wander area, etc).
 - ITEM_DEFINITIONS — Object mapping item IDs to their data (name, description, image, stackable, useable, etc).
 - FLOOR_NAMES - Holds all floor names to their matching map indexs (Used in the UI).
+- WORLD_SPRITES — Array of world sprite definitions for modular animated objects (id, positions, spriteSheet, imageW, imageH, rows, cols, animSpeed, zIndex, collision).
+- INTERACTABLE_TILES — Array of interactable tile definitions (id, map, x, y, image, notification, dialogue, rewards).
+
 
 ## Control flags
 - controlsEnabled — flag for enabling/disabling input (used by menu).
 - actionButtonAPressed, actionButtonBPressed — flags for A/B button presses (used for interactions).
+- playerAnimating — Flag for controlling player animation and viewport freeze during combat/knockback.
+- deathScreenShown — Flag for showing/hiding the player death overlay.
+
 
 ## Collision & Movement
 - isTileBlockedAtPixel(px, py, direction) — Checks if a pixel position (with direction) is blocked by a collision tile, using a centered 64x64 collision box for 96x96 sprites.
 - isNpcTileBlockedAtPixel(px, py, direction) — Checks collision for NPCs/enemies at a pixel position, using the same logic as the player.
+- isTileBlockedByWorldSprite(tileX, tileY) — Checks if a tile is blocked by a world sprite with collision enabled.
+- isPlayerAdjacentToTeleportStone() — Checks if the player is adjacent to any teleport stone.
+- isPlayerAdjacentToTile(x, y) — Checks if the player is adjacent to a specific tile (used for teleport/interaction logic).
+
 
 ## Character System
 - Character(x, y, spriteSrc, type, customData) — Base class for NPCs and enemies, supports custom data and unique IDs.
 - NPC(...), Enemy(...) — Friendly and hostile character constructors.
+- respawnEnemy(enemyId, spawnIdx) — Respawns an enemy at its original spawn location after death.
+
 
 ## Spawning Helpers
 - spawnNPC(npcId, x, y) — Spawns an NPC from NPC_DEFINITIONS at a location.
 - spawnEnemy(typeId, x, y) — Spawns an enemy from ENEMY_TYPES at a location.
 - spawnCharactersForMap(mapIndex) — Spawns all NPCs and enemies for a given map based on their definitions.
+- spawnTeleportStonesForMap(mapIndex) — Spawns teleport stones at defined locations for the current map.
+- spawnWorldSpritesForMap(mapIndex) — Spawns world sprites for the current map based on their definitions.
+- spawnInteractableTilesForMap(mapIndex) — Spawns interactable tiles for the current map.
+
 
 ## Npc Logic
 - updateCharacters() — Updates all NPCs and enemies (AI, movement).
 - drawCharacters() — Draws all NPCs and enemies.
 - wanderAI(char) — Handles wandering AI for NPCs/enemies (respects isInteracting flag).
 - checkNpcInteraction() — Checks if player is in range of an interactive NPC, shows notification, starts dialogue, and handles NPC facing/stop movement during interaction.
+- checkNpcInteraction() — Checks for NPC interactions and handles dialogue and facing logic.
+- checkForcedEncounters() — Handles forced NPC encounters triggered by player position.
+
 
 ## Warping/Teleportation
 - warpToMap(mapIndex, spawnType) — Warp player to a map and spawn NPCs/enemies.
 - tryWarpToMap(targetMapIndex, spawnType, requiredXP) — Warp if player has enough XP.
 - checkTeleport() — Handles teleport tile logic and notifications.
 - checkBackTeleport() — Handles back-teleport tile logic and notifications.
+
 
 ## Combat System
 - showDamagePopup(x, y, dmg, type) — Displays a damage popup above the target (enemy or player) with animated slide and fade.
@@ -63,6 +85,7 @@
 - quickAttackAnim() — Animates the player's attack lunge.
 - knockbackAnim() — Animates the player being knocked back.
 
+
 ## Menu/UI
 - openMenu(), closeMenu() — Show/hide the player menu, disables/enables controls, starts/stops stat refresh.
 - showInventoryMenu() — Shows the inventory page in the player menu.
@@ -71,10 +94,12 @@
 - updatePlayerMenuStats() — Displays player stats (health, XP, attack, defence) in the menu, updates regularly.
 - charPreviewCanvas mouseenter/mouseleave — Handles sprite preview animation on hover in the character selection screen.
 
+
 ## Notification & Dialogue System
 - notify(text, time) — Show a notification at the top of the screen for a set time.
 - dialogue(...lines) — Shows a dialogue block at the bottom of the screen, disables player movement, advances on B/A button.
 - showDialogueLine(idx) — Advances dialogue lines and updates footer hints based on quest/dialogue type.
+
 
 ## Inventory System
 - addItem(itemId, amount) — Add an item to the inventory (stacks if possible).
@@ -84,6 +109,7 @@
 - showItemDropdown(index, slot, def) — Shows dropdown menu for inventory item actions.
 - showRemoveAmountPrompt(slot, def) — Shows prompt to remove a specific amount of an item.
 - getItemCount(itemId) — Returns the count of a specific item in the player's inventory (used for itemCollect quests).
+
 
 ## Quest System
 - showQuestsMenu() — Opens the quest menu with tabs for active/completed quests.
@@ -95,14 +121,17 @@
 - updateQuestHUD() — Updates the on-screen quest HUD to show current active quests and their progress.
 - getItemCount(itemId) — Returns the number of a specific item in the player's inventory.
 
+
 ## Screen Effects
 - updateScreenFadeOverlay() — Animates and updates the screen fade overlay for cutscenes/dialogue.
 - drawScreenFadeOverlay() — Draws the current screen fade overlay.
+
 
 ## Lore Intro
 - playLoreIntro() — Plays the lore intro text sequence on new game.
 - endLoreAndStartGame() — Skips the lore intro and starts the game.
 - showSkipBtn() — Shows the skip button for the lore intro after first tap/click.
+
 
 ## Character Selection
 - showCharacterSelect() — Displays the character selection screen, populates the character list, and sets up the preview and name input.
@@ -111,8 +140,14 @@
 
 
 ## Utility
+- Sizing() — Updates window/canvas size and viewport dimensions.
 - Log(type, text) — Log data to screen (e.g. FPS, coords).
 - LoadURL(url, callback) — AJAX call for loading map and other data.
 - clearAllMovementKeys() — Sets all movement key flags to false (used to stop player movement instantly).
+
+
+## World Sprite System
+- drawWorldSprites(zIndex) — Draws all active world sprites, optionally filtered by zIndex (layer).
+
 
 ---
