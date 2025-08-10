@@ -76,15 +76,10 @@
 
 ## **New Since Last Commit*
 
-- Fixed forced encounters not loading properly from save
-- Fixed quest hud ui not displaying correct numbers for item collection quests
-- Fixed enemyDefeat quests not counting respawned enemys
-- Fixed issue with warping between maps
-- Added logic for interactable tiles, spawn on game/map load, interacted ones save and load so they can only be interacted with once 
-- fixed triggered forced encounters patching between map warps correctly, again...
-- fixed forced encounter patching again again....
-- added useable items logic
-- Added removable flag to items
-- Added dynamic sprite sheet loader to add more indepth sprite sheets to the world without altering the game loop rate
+- Incorperated Sprite sheet loader into interactable tiles, can nowe load sprite sheets to interact with
+- Completed floor 2, npcs, quests, interactable tiles, assest, design ect 
+- Expanded useable items to allow for al player stat increases, will make this more modular at a later date to allow for other items to give the player how much they define 
+- A bunch of new assests were added from sprites to tiles to inventory icons
+- Fixed sprite loaded collisions not lining up correctly with different sized tiles
 
 ---
