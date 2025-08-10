@@ -42,15 +42,15 @@
 
 ## Save System
 - [x] Load system to reload all these attributes when a game save is loaded
-- [ ] make system more modular to easily add more data in the future 
+- [x] make system more modular to easily add more data in the future 
 - [ ] Style load menu scroll bar
  
 ## Item System
 - [x] Add logic to allow for a non-removable value on items
-- [ ] Usable items, functionality for different item uses 
+- [x] Usable items, functionality for different item uses 
 - [ ] Buyable items (shop/traders system?) 
 - [x] Lootable tiles/ interactable tiles, ones to bring up dialouge /and give player item adn/or xp - then add to save and load, god forbid i have the same problem with the quest flags
-- [ ] Add colisions to interatable tiles, trigger when on tile as well as ones around it
+- [x] Add colisions to interatable tiles, trigger when on tile as well as ones around it
 
 ## Settings Menu
 - [ ] Desgin and create the settings menu 
@@ -58,9 +58,9 @@
 
 ## Maps and Dialogue
 - [ ] Create at least 5 floors to start with before first bete release of the game 
-    - Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
-    - Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-    - Floors 3-5: Full set standard floors where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building
+    - [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
+    - [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
+    - [ ] Floors 3-5: Full set standard floors where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing 
