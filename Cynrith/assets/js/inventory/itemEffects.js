@@ -8,6 +8,18 @@ const ITEM_EFFECTS = {
     atk_buff_small: function(player) {
         player.addAttack(3);
         notify("Attack increased by 3!", 1500);
+    },
+    def_buff_small: function(player) {
+        player.addDefense(3);
+        notify("Defense increased by 3!", 1500);
+    },
+    maxHealth_buff_small: function(player) {
+        player.addMaxHealth(10);
+        notify("Max Health increased by 10!", 1500);
+    },
+    atkSpeed_buff_small: function(player) {
+        player.addAttackSpeed(10);
+        notify("Attack Speed increased by 10!", 1500);
     }
     // Add more item effects here...
 };

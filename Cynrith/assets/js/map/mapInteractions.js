@@ -9,11 +9,47 @@ function spawnInteractableTilesForMap(mapIndex) {
 function drawInteractableTiles() {
     if (!window.activeInteractableTiles) return;
     window.activeInteractableTiles.forEach(tile => {
-        const img = new Image();
-        img.src = tile.image;
-        let px = Math.round(tile.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-        let py = Math.round(tile.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
-        context.drawImage(img, px, py, config.size.tile, config.size.tile);
+        if (tile.spriteSheet) {
+            // Use spriteLoader logic for sprite sheets
+            if (!_worldSpriteImages[tile.spriteSheet]) {
+                const img = new Image();
+                img.src = tile.spriteSheet;
+                _worldSpriteImages[tile.spriteSheet] = img;
+            }
+            const img = _worldSpriteImages[tile.spriteSheet];
+            if (!img || !img.complete) return;
+
+            // Support animation if needed
+            tile._frame = tile._frame || 0;
+            tile._animTick = (tile._animTick || 0) + 1;
+            const frames = (tile.rows || 1) * (tile.cols || 1);
+            if (frames > 1 && tile.animSpeed > 0) {
+                if (tile._animTick % tile.animSpeed === 0) {
+                    tile._frame = ((tile._frame || 0) + 1) % frames;
+                }
+            } else {
+                tile._frame = 0;
+            }
+            const frameIndex = tile._frame || 0;
+            const col = frames > 1 ? frameIndex % tile.cols : 0;
+            const row = frames > 1 ? Math.floor(frameIndex / tile.cols) : 0;
+            const sx = col * (tile.imageW / tile.cols);
+            const sy = row * (tile.imageH / tile.rows);
+            const px = Math.round(tile.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
+            const py = Math.round(tile.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2) - ((tile.imageH / tile.rows) - config.size.tile));
+            context.drawImage(
+                img,
+                sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),
+                px, py, (tile.imageW / tile.cols), (tile.imageH / tile.rows)
+            );
+        } else {
+            // Default: use static image
+            const img = new Image();
+            img.src = tile.image;
+            let px = Math.round(tile.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
+            let py = Math.round(tile.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+            context.drawImage(img, px, py, config.size.tile, config.size.tile);
+        }
     });
 }
 

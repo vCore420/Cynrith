@@ -107,7 +107,7 @@ const NPC_DEFINITIONS = {
             ]
         },
         questId: "dewleaf_gather",
-        questRedo: true // Repeatable quest
+        questRedo: true 
     },
 
 
@@ -139,7 +139,7 @@ const NPC_DEFINITIONS = {
             ]
         },
         questId: "slime_cull",
-        questRedo: true // Repeatable quest
+        questRedo: true 
     },
 
 
@@ -178,8 +178,233 @@ const NPC_DEFINITIONS = {
         }
     },
 
+
     // -------- FLOOR 2 --------
+
+
+    // Tharion - First encounter on floor 2
+    tharion_waykeeper: {
+        id: "tharion_waykeeper",
+        name: "Tharion the Waykeeper",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 39, y: 39, wanderArea: { x1: 36, y1: 38, x2: 40, y2: 41 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome to Stonewake, traveler. The land remembers more than it reveals.",
+                "These stones once marked the path for pilgrims and dreamers; now, they test the resolve of those who would climb higher.",
+                "Strength is not just in the arm, but in the spirit. To ascend, you must prove your resilience."
+            ],
+            questGiven: [
+                "Stonewake’s trials demand endurance. Return to me when you have increased your maximum health by 20.",
+                "The stones will sense your growth. Seek out relics, potions, or face the dangers of this floor to become stronger."
+            ],
+            questIncomplete: [
+                "You have not yet grown strong enough. The stones await your proof—return when your maximum health has increased by 20."
+            ],
+            questComplete: [
+                "You have proven your resilience. The stones hum in recognition, and the echoes of past pilgrims whisper their approval.",
+                "With greater strength, new paths will open to you. Remember: every ascent is both a test and a blessing."
+            ]
+        },
+        questId: "tharion_echoes",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 36, y: 42 },
+                { x: 35, y: 43 },
+                { x: 36, y: 43 },
+                { x: 35, y: 41 }
+            ],
+            triggered: false
+        }
+    },
+
+
+    // Detna - Lore Building Quest
+    deyna_the_chronicler: {
+        id: "deyna_the_chronicler",
+        name: "Deyna the Chronicler",
+        sprite: "assets/img/npc/npc_f_3.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 16, y: 18, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
+        ],
+        dialogue: {
+            default: [
+                "Every cycle, the forum fills with new voices and old stories. I record what I can, but much is lost to the Fracture.",
+                "If you find any pages scattered in the expanse, bring them here. Every fragment helps us remember."
+            ],
+            questGiven: [
+                "Please, gather 3 Lost Pages from the ruins. They're fragile, and often guarded by Echo Wisps.",
+                "Bring them here, and I'll share some history with you."
+            ],
+            questIncomplete: [
+                "Still searching? The pages are easily overlooked. Try near the old statues and broken pillars."
+            ],
+            questComplete: [
+                "With these pages, the forum’s record grows. Let me read you what they reveal:",
+                "\"Long ago, the world was shattered and rebuilt in layers by an unknown force. Each floor holds a fragment of the old world’s truth.\"",
+                "\"Occasional flickers of digital distortion are seen as omens or spirits by many, but only a few sense their true meaning.\"",
+                "\"Some say the Towerheart resides on the highest floor, a mythical source of power that can reshape Cynrith itself.\"",
+                "Take this as you will. May your own story be remembered, traveler."
+            ]
+        },
+        questId: "forum_pages",
+        questRedo: false
+    },
+
+
+    // Lirael - Quest Giver
+    lirael_herbalist: {
+        id: "lirael_herbalist",
+        name: "Lirael the Herbalist",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 36, y: 47, wanderArea: { x1: 31, y1: 46, x2: 45, y2: 48 } }
+        ],
+        dialogue: {
+            default: [
+                "The earth here is stubborn, but life finds a way. I’ve seen flowers bloom from cracks in the ancient stones; each one a small miracle.",
+                "But the Dustback Beetles make for a challenging harvest!",
+
+            ],
+            questGiven: [
+                "Could you gather 10 Dustroot for me? Dustback Beetles seem to favor them as well.",
+                "Be careful, they don't like sharing!"
+            ],
+            questIncomplete: [
+                "No luck yet? Dustroot is rare, but look where the ancient stones stand."
+            ],
+            questComplete: [
+                "Wonderful! With these, I can brew a remedy strong enough for even the toughest wounds.",
+                "Here, take this potion. And if you ever need another, come find me."
+            ]
+        },
+        questId: "liraels_dustroot",
+        questRedo: true
+    },
+
+
+    // Mordis - Quest Giver
+    mordis_relic_seeker: {
+        id: "mordis_relic_seeker",
+        name: "Mordis the Relic-Seeker",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 34, y: 21, wanderArea: { x1: 32, y1: 14, x2: 37, y2: 25 } }
+        ],
+        dialogue: {
+            default: [
+                "You’d be surprised what the earth gives up if you know where to look.",
+                "Some say the best treasures are hidden by the Architect itself; reset, reshuffled, waiting for the right hands."
+            ],
+            questGiven: [
+                "There's a relic deep in the caves, guarded by Echo Wisps. If you can bring me a Fractured Relic, I'll trade you something rare.",
+                "And if you find any Glitch Fragments from Echo Wisps, I'll make it extra worthwhile."
+            ],
+            questIncomplete: [
+                "No sign of the relic yet? The caves are tricky, but persistence pays off.",
+                "Glitch Fragments are always welcome, too."
+            ],
+            questComplete: [
+                "A real Fractured Relic! Impressive. Here’s your reward, may it serve you well.",
+                "If you find more fragments or relics, come back. The Architect’s secrets are never truly lost."
+            ]
+        },
+        questId: "mordis_relic",
+        questRedo: true
+    },
+
+
+    // Mynel - Hint Giver
+    mynel_resonant: {
+    id: "mynel_resonant",
+    name: "Mynel the Resonant",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 34, y: 6, wanderArea: { x1: 32, y1: 4, x2: 35, y2: 7 } }
+        ],
+        dialogue: {
+            default: [
+            "That stone over there has been humming all morning. Sometimes it gets so loud, I wonder if it's trying to say something.",
+            "I've seen travelers touch it and strange things happen! Lights, sounds, even a feeling like the world shifts a little.",
+            "If you're curious, maybe try standing close. Around here, you never know what might respond to a little attention."
+        ]
+        },
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 32, y: 9 },
+                { x: 33, y: 9 },
+                { x: 34, y: 9 },
+                { x: 35, y: 9 }
+            ],
+            triggered: false
+        }
+    },
+
+
+    // Sella - Lore Building
+    sella_the_guide: {
+        id: "sella_the_guide",
+        name: "Sella the Guide",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 19, y: 12, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome to the Forgotten Forum. Travelers gather here between journeys—some to trade, some to share stories, some just to remember.",
+                "They say the forum returns with every cycle, no matter how the world changes. If you listen, you might hear echoes of old voices in the pillars."
+            ]
+        }
+    },
+
+
+    // Bram - Lore Building
+    bram_the_lorekeeper: {
+        id: "bram_the_lorekeeper",
+        name: "Bram the Lorekeeper",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 23, y: 18, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
+        ],
+        dialogue: {
+            default: [
+                "Stonewake Expanse is older than most remember. The monoliths are memory anchors, left by the Firstfolk to keep the past from fading.",
+                "When the Fracture came, whole towns vanished. Now, only the bravest seek out the lost places and the stories they hold."
+            ]
+        }
+    },
+
+
+    // Elynn - Lore Building
+    elynn_the_wanderer: {
+        id: "elynn_the_wanderer",
+        name: "Elynn the Wanderer",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 1, x: 16, y: 25, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
+        ],
+        dialogue: {
+            default: [
+                "Cynrith is a world of cycles; layers built on memories and magic. Some say the Architect watches every step, waiting to see who will ascend.",
+                "If you find relics, look closely. Sometimes they whisper secrets from worlds that came before."
+            ]
+        }
+    },
     
+    // -------- FLOOR 3 --------                                                                                        
 };
 
 // Enemy type definitions
@@ -220,14 +445,14 @@ const ENEMY_TYPES = {
         id: "plant_01",
         name: "Viscous Plant",
         sprite: "assets/img/enemy/plant_01.png",
-        moveSpeed: 0.7,                  // Speed at which the enemy moves
-        distance: 3,                   // Distance the enemy will become hostile to player
-        maxHealth: 15,                 // Max health
-        attack: 4,                     // Attack damage
-        defense: 1,                    // Defense amount
-        speed: 1,                      // Attack speed
-        xpGain: 6,                     // Experience points gained when defeated
-        loot: [                        // Loot items dropped by the enemy
+        moveSpeed: 0.7,                 
+        distance: 3,                 
+        maxHealth: 15,              
+        attack: 4,                
+        defense: 1,             
+        speed: 1,                 
+        xpGain: 6,                   
+        loot: [                     
             { item: "dewleaf", chance: 50, amount: [1, 2] }
         ],
         spawns: [
@@ -244,5 +469,62 @@ const ENEMY_TYPES = {
     },
 
     // -------- FLOOR 2 --------
+
+    dustback_beetle: {
+        id: "dustback_beetle",
+        name: "Dustback Beetle",
+        sprite: "assets/img/enemy/dustback_beetle.png",
+        moveSpeed: 0.6,                
+        distance: 3,                   
+        maxHealth: 20,                 
+        attack: 6,                     
+        defense: 2,                    
+        speed: 1,                      
+        xpGain: 10,                     
+        loot: [                        
+            { item: "dustroot", chance: 40, amount: [1, 2] }
+        ],
+        spawns: [
+            { map: 1, x: 24, y: 39, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
+            { map: 1, x: 21, y: 44, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
+            { map: 1, x: 29, y: 38, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
+            { map: 1, x: 29, y: 31, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
+            { map: 1, x: 5, y: 2, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
+            { map: 1, x: 13, y: 6, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
+            { map: 1, x: 4, y: 6, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
+            { map: 1, x: 2, y: 43, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+            { map: 1, x: 5, y: 26, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+            { map: 1, x: 4, y: 17, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+            { map: 1, x: 5, y: 37, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+            { map: 1, x: 6, y: 18, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+        ]
+    },
+
+
+    echo_wisps: {
+        id: "echo_wisps",
+        name: "Echo Wisps",
+        sprite: "assets/img/enemy/echo_wisps.png",
+        moveSpeed: 0.8,
+        distance: 4,
+        maxHealth: 18,
+        attack: 8,
+        defense: 3,
+        speed: 1.2,
+        xpGain: 10,
+        loot: [
+            { item: "fractured_relic_1", chance: 10, amount: 1 }
+        ],
+        spawns: [
+            { map: 1, x: 42, y: 10, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
+            { map: 1, x: 46, y: 13, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
+            { map: 1, x: 42, y: 10, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
+            { map: 1, x: 35, y: 4, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
+            { map: 1, x: 24, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
+            { map: 1, x: 39, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
+            { map: 1, x: 2, y: 27, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
+        ]
+    },
+
 
 };

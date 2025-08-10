@@ -1,6 +1,8 @@
 // All quest definitions
 const QUEST_DEFINITIONS = {
 
+    // ---------- Floor 1 -----------
+
 
     eldrin_intro: {
         id: "eldrin_intro",
@@ -46,18 +48,55 @@ const QUEST_DEFINITIONS = {
         redoable: false
     },
     
+
+    // ---------- Floor 2 -----------
+
     
-    get_stronger: {
-        id: "get_stronger",
-        name: "Get Stronger!",
-        description: "Gain 10 Attack.",
+    tharion_echoes: {
+        id: "tharion_echoes",
+        name: "Tharion's Echoes",
+        description: "Gain 20 Max Health.",
         type: "statBuild",
-        stat: "attack",
-        requiredAmount: 10,
-        rewards: [{ id: "atk_buff_small", amount: 1 }, { xp: 40 }],
+        stat: "maxHealth",
+        requiredAmount: 20,
+        rewards: [{ id: "atk_buff_small", amount: 3 }, { xp: 60 }],
+        redoable: false
+    },
+
+    forum_pages: {
+        id: "forum_pages",
+        name: "Forum Pages",
+        description: "Collect all 'lost' pages.",
+        type: "itemCollect",
+        requiredItems: [{ id: "lost_pages", amount: 3 }],
+        rewards: [{ id: "health_buff_small", amount: 3 }, { xp: 50 }],
         redoable: false
     },
     
     
-    // Add more quests here...
+    liraels_dustroot: {
+        id: "liraels_dustroot",
+        name: "Lirael's Dustroot",
+        description: "Collect 10 Dustroot from the Dustback Beetles.",
+        type: "itemCollect",
+        requiredItems: [{ id: "dustroot", amount: 10 }],
+        rewards: [{ id: "def_buff_small", amount: 1 }, { xp: 40 }],
+        redoable: true
+    },
+    
+    
+    mordis_relic: {
+        id: "mordis_relic",
+        name: "Mordis' Relic",
+        description: "Retrieve the Fractured Relic.",
+        type: "itemCollect",
+        requiredItems: [{ id: "fractured_relic_1", amount: 1 }],
+        rewards: [{ id: "maxHealth_buff_small", amount: 1 }, { xp: 40, attackSpeed: 20 }],
+        redoable: true
+    },
+    
+
+    // ---------- Floor 3 -----------
+
+
 };
