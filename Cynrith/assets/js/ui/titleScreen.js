@@ -11,9 +11,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
     const titleScreen = document.getElementById("title-screen");
     const bgImages = [
-        "assets/img/mainMenu/img1.jpg",
-        "assets/img/mainMenu/img2.jpg",
-        "assets/img/mainMenu/img3.jpg"
+        "assets/img/mainMenu/img1.png",
+        "assets/img/mainMenu/img2.png",
+        "assets/img/mainMenu/img3.png"
         // Add more player sprites here for full release
     ];
     const chosen = bgImages[Math.floor(Math.random() * bgImages.length)];
@@ -344,9 +344,9 @@ function showLoadingScreen(onLoaded) {
 
     // Carousel images
     const images = [
-        "assets/img/mainMenu/img1.jpg",
-        "assets/img/mainMenu/img2.jpg",
-        "assets/img/mainMenu/img3.jpg"
+        "assets/img/mainMenu/img1.png",
+        "assets/img/mainMenu/img2.png",
+        "assets/img/mainMenu/img3.png"
     ];
     let idx = 0;
     carousel.style.backgroundImage = `url('${images[idx]}')`;
