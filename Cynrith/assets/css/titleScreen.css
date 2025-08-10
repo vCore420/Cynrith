@@ -38,9 +38,9 @@
 
 /* Title Screen Header */
 #title-screen h1 {
-  font-family: var(--font-titlemenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
   font-weight: 700;
-  font-size: 5em;
+  font-size: 4em;
   letter-spacing: 0.09em;
   margin-bottom: 80px;
   background: linear-gradient(90deg, var(--title-header) 40%, #fffbe6 60%, var(--title-header-alt) 100%);
@@ -84,38 +84,40 @@
 
 /* Title Screen Buttons */
 #title-screen button {
-  font-family: var(--font-playermenu);
-  font-size: 1.2em;
-  padding: 12px 36px;
-  border-radius: 14px;
-  border: none;
-  background: linear-gradient(90deg, var(--title-btn-bg) 0%, var(--title-header-alt) 100%);
-  color: var(--title-btn-text);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  padding: 14px 40px;
+  border-radius: 3px; /* Remove rounded corners for pixel look */
+  border: 2px solid #3af0ff;
+  background: #181a1f;
+  color: #fffbe6;
   cursor: pointer;
   position: relative;
   z-index: 10;
   margin-bottom: 18px;
   box-shadow:
-    0 2px 8px 0 rgba(58,240,255,0.08),
-    0 0 0 2px #181a1f88;
+    0 0 0 4px #3af0ff44,
+    0 2px 0 0 #fffbe6;
+  text-shadow:
+    0 2px 0 #181a1f,
+    0 0 8px #3af0ffcc;
   transition:
-    background 0.3s,
-    color 0.3s,
-    box-shadow 0.3s,
-    transform 0.15s;
-  letter-spacing: 0.03em;
-  font-weight: 600;
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.1s;
 }
 
-/* Title Screen Button Hover Effects */
 #title-screen button:hover,
 #title-screen button:focus {
-  background: linear-gradient(90deg, var(--title-header-alt) 0%, var(--title-header) 100%);
-  color: #222;
+  background: #3af0ff;
+  color: #181a1f;
   box-shadow:
-    0 4px 16px 0 rgba(58,240,255,0.12);
-  transform: translateY(-1px) scale(1.03);
+    0 0 0 4px #fffbe6cc,
+    0 4px 0 0 #3af0ff;
   outline: none;
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* Title Screen Ray Effect */
@@ -222,17 +224,18 @@
 
 /* Character Selection Content */
 .char-select-content {
-  background: #23243a;
-  border-radius: 24px;
-  box-shadow: 0 8px 48px #181a1f88;
+  background: #181a1f;
+  border-radius: 3px; /* Pixel style: no rounded corners */
+  box-shadow: 0 8px 48px #3af0ff88;
   padding: 36px 32px 24px 32px;
-  min-width: 340px;
+  max-width: 350px;
   min-height: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 18px;
   position: relative;
+  border: 3px solid #3af0ff;
 }
 
 /* Character Selection Close Button */
@@ -252,23 +255,29 @@
   margin-top: 0;
   margin-bottom: 8px;
   color: var(--title-header);
-  font-family: var(--font-titlemenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
   font-size: 2em;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-align: center;
+  white-space: normal;      
+  word-break: break-word;   
+  max-width: 90%;          
+  line-height: 1.2;         
 }
 
 /* Character Selection Name Input */
 #player-name-input {
   width: 90%;
   padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #3af0ff55;
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
   font-size: 1.1em;
-  margin-bottom: 10px;
   background: #222;
-  color: #fff;
+  color: #fffbe6;
   outline: none;
-  font-family: var(--font-playermenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  letter-spacing: 0.06em;
 }
 
 /* Character Selection Body */
@@ -292,22 +301,28 @@
   flex-direction: column;
   gap: 10px;
 }
+
 #char-list li {
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 3px;
   background: #23243a;
   color: #fff;
   cursor: pointer;
-  font-family: var(--font-playermenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-size: 1em;
+  letter-spacing: 0.06em;
   transition: background 0.2s;
   display: flex;
   align-items: center;
   gap: 8px;
+  border: 2px solid transparent;
 }
+
 #char-list li.selected,
 #char-list li:hover {
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   color: #181a1f;
+  border: 2px solid #3af0ff;
 }
 
 /* Character Preview Container */
@@ -318,9 +333,10 @@
   align-items: center;
   justify-content: center;
   background: #181a1f55;
-  border-radius: 16px;
+  border-radius: 3px;
   box-shadow: 0 2px 16px #3af0ff22;
   position: relative;
+  border: 2px solid #3af0ff;
 }
 
 /* Character Preview Image */
@@ -329,26 +345,30 @@
   height: 96px;
   image-rendering: pixelated;
   transition: filter 0.2s;
+  border-radius: 3px;
+  border: 2px solid #fffbe6;
+  background: #23243a;
 }
 
 /* Character Selection Confirm Button */
 .confirm-btn {
   margin-top: 18px;
   padding: 12px 36px;
-  border-radius: 14px;
-  border: none;
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   color: #181a1f;
-  font-family: var(--font-playermenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
   font-size: 1.2em;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 2px 8px #3af0ff22;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .confirm-btn:hover {
   background: linear-gradient(90deg, var(--title-header-alt) 0%, var(--title-header) 100%);
   color: #222;
+  border-color: #fffbe6;
 }
 
 /* Load Game Menu */
@@ -371,10 +391,15 @@
   margin-top: 0;
   margin-bottom: 8px;
   color: var(--title-header);
-  font-family: var(--font-titlemenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
   font-size: 2em;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
   text-align: center;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 90%;
+  line-height: 1.2;
 }
 
 /* List of Game Saves */
@@ -382,26 +407,28 @@
   list-style: none;
   padding: 12px 0 12px 0;
   margin: 0 0 18px 0;
-  max-height: 220px;
+  max-height: 250px;
   overflow-y: auto;
-  min-width: 320px;
-  min-height: 200px;
-  border: 1.5px solid #3af0ff33; 
-  border-radius: 12px;
-  background: #23243aee; 
+  min-width: 220px;
+  min-height: 160px;
+  border: 2px solid #3af0ff;
+  border-radius: 3px;
+  background: #23243aee;
   box-shadow: 0 2px 12px #181a1f11;
   transition: border-color 0.2s;
 }
 #save-list li {
   width: 100%;
   box-sizing: border-box;
-  padding: 16px 18px;
+  padding: 12px 14px;
   background: #23243a;
   color: #fff;
   cursor: pointer;
-  font-family: var(--font-playermenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-size: 0.6em;
+  letter-spacing: 0.06em;
   transition: background 0.2s, color 0.2s;
-  border-bottom: 1.5px solid #3af0ff22; 
+  border-bottom: 2px solid #3af0ff22;
   margin-bottom: 0;
   position: relative;
 }
@@ -413,6 +440,8 @@
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   color: #181a1f;
 }
+
+/* Save List Item Layout */
 .save-list-item {
   display: flex;
   align-items: center;
@@ -426,24 +455,24 @@
 /* Load Menu Buttons */
 .load-btn-row {
   display: flex;
-  flex-direction: column;   
-  gap: 5px;                
+  flex-direction: column;
+  gap: 5px;
   justify-content: center;
   align-items: center;
 }
 
 /* Delete Save Button */
 .danger-btn {
-  font-family: var(--font-playermenu);
+  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
   font-size: 1.2em;
   padding: 12px 36px;
-  border-radius: 14px;
-  border: none;
-  background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
-  color: #181a1f;
+  border-radius: 3px;
+  border: 2px solid #c33;
+  background: linear-gradient(90deg, #c33 0%, #a00 100%);
+  color: #fff;
   cursor: pointer;
   box-shadow:
-    0 2px 8px 0 rgba(58,240,255,0.08),
+    0 2px 8px 0 rgba(200,51,51,0.12),
     0 0 0 2px #181a1f88;
   transition:
     background 0.3s,
@@ -455,10 +484,10 @@
 }
 .danger-btn:hover,
 .danger-btn:focus {
-  background: linear-gradient(90deg, #c33 0%, #a00 100%);
-  color: #fff;
+  background: linear-gradient(90deg, #a00 0%, #c33 100%);
+  color: #fffbe6;
   box-shadow:
-    0 4px 16px 0 rgba(200,51,51,0.12);
+    0 4px 16px 0 rgba(200,51,51,0.18);
   transform: translateY(-1px) scale(1.03);
   outline: none;
 }
@@ -506,7 +535,7 @@
   width: 80vw;
   height: 60vh;
   background: #222;
-  border-radius: 24px;
+  border-radius: 14px;
   margin-bottom: 32px;
   background-size: cover;
   background-position: center;
@@ -521,15 +550,21 @@
   width: 320px;
   height: 18px;
   background: #23243a;
-  border-radius: 12px;
+  border-radius: 3px; 
+  border: 2px solid #3af0ff;
+  box-shadow: 0 2px 12px #3af0ff44;
   overflow: hidden;
 }
 #loading-bar {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
-  border-radius: 12px;
+  border-radius: 0; 
+  box-shadow:
+    0 0 8px #3af0ffcc,
+    0 2px 0 #fffbe6;
   transition: width 0.6s;
+  image-rendering: pixelated;
 }
 
 /* Lore Intro Overlay */
