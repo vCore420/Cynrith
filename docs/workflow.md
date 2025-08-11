@@ -35,7 +35,8 @@
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
 - [ ] Make all ui more structured and modular for multi device displays
-- [ ] red text for required xp notifications - teleport stone 
+- [ ] Red text for required xp notifications - teleport stone 
+- [ ] Sort out css styling and clean it up
 
 ## New Game
 
@@ -81,5 +82,6 @@
 - Expanded useable items to allow for al player stat increases, will make this more modular at a later date to allow for other items to give the player how much they define 
 - A bunch of new assests were added from sprites to tiles to inventory icons
 - Fixed sprite loaded collisions not lining up correctly with different sized tiles
+- New Title Screen Design
 
 ---
