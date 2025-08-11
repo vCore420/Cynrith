@@ -56,6 +56,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm—flouri
 ![Demo Screenshot](docs/assets/demo4.png)
 ![Demo Screenshot](docs/assets/demo5.png)
 ![Demo Screenshot](docs/assets/demo6.png)
+![Demo Screenshot](docs/assets/demo7.png)
 
 ## Roadmap
 
