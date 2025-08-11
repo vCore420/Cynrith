@@ -1,20 +1,26 @@
 /* Title Screen */
 #title-screen {
-  font-family: var(--font-titlemenu);
+  font-family: 'Audiowide';
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   z-index: 99999;
-  background: #111;
+  background: transparent;
   overflow: hidden;
 }
+
+/* Canvas Filter */
+#title-map-canvas {
+    filter: blur(1px) brightness(0.6);
+}
+
 
 /* Effects Wrapper Fills the Viewport and Sits Behind Content */
 #title-effects {
   position: absolute;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -38,9 +44,9 @@
 
 /* Title Screen Header */
 #title-screen h1 {
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'VT323';
   font-weight: 700;
-  font-size: 4em;
+  font-size: 7em;
   letter-spacing: 0.09em;
   margin-bottom: 80px;
   background: linear-gradient(90deg, var(--title-header) 40%, #fffbe6 60%, var(--title-header-alt) 100%);
@@ -51,10 +57,10 @@
   position: relative;
   z-index: 10;
   text-shadow:
-    0 4px 24px #181a1f,   
+    0 0 30px #181a1f,   
     0 0 12px #3af0ffcc,   
     0 0 2px #fff,         
-    0 0 20px #181a1f; 
+    0 0 5px #181a1f; 
   transition: text-shadow 0.4s;
   filter: drop-shadow(0 0 8px #222a);
 }
@@ -63,67 +69,68 @@
 #title-screen h1::after {
   content: '';
   position: absolute;
-  left: 50%; top: 100%;
+  left: 50%; top: 105%;
   transform: translateX(-50%);
-  width: 110%;
-  height: 32px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #fffbe6cc 30%,
-    #3af0ffcc 50%,
+  width: 80%;
+  height: 18px;
+  background: radial-gradient(ellipse at center,
+    #fffbe6cc 0%,
+    #3af0ffcc 40%,
     #ffe082cc 70%,
-    transparent
+    transparent 100%
   );
-  border-radius: 50%;
-  filter: blur(10px);
-  opacity: 0.95;
+  border-radius: 12px;
+  filter: blur(6px);
+  opacity: 0.50;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+  animation: header-glow-fade 3.5s ease-in-out infinite alternate;
+}
+@keyframes header-glow-fade {
+  0%, 100% { opacity: 0.50; }
+  50% { opacity: 0.35; }
 }
 
 /* Title Screen Buttons */
 #title-screen button {
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'Press Start 2P';
   font-size: 1em;
   letter-spacing: 0.08em;
   padding: 14px 40px;
-  border-radius: 3px; /* Remove rounded corners for pixel look */
+  border-radius: 3px; 
   border: 2px solid #3af0ff;
-  background: #181a1f;
+  background: #8a8e9983;
   color: #fffbe6;
   cursor: pointer;
   position: relative;
   z-index: 10;
   margin-bottom: 18px;
   box-shadow:
-    0 0 0 4px #3af0ff44,
-    0 2px 0 0 #fffbe6;
+    0 0 0 2px #3af0ff44,
+    0 1px 0 0 #fffbe6;
   text-shadow:
     0 2px 0 #181a1f,
-    0 0 8px #3af0ffcc;
+    0 0 1px #3af0ffcc;
   transition:
     background 0.2s,
     color 0.2s,
     box-shadow 0.2s,
-    transform 0.1s;
 }
 
 #title-screen button:hover,
 #title-screen button:focus {
-  background: #3af0ff;
-  color: #181a1f;
+  background: #3aefff8f;
+  color: #1b3d41;
   box-shadow:
-    0 0 0 4px #fffbe6cc,
-    0 4px 0 0 #3af0ff;
+    0 0 0 2px #fffbe6cc,
+    0 2px 0 0 #3af0ff;
   outline: none;
-  transform: translateY(-2px) scale(1.04);
 }
 
 /* Title Screen Ray Effect */
 .title-ray {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   pointer-events: none;
@@ -142,25 +149,25 @@
 /* Title Screen Sparkle Effect */
 #title-sparkles {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none;
   overflow: hidden;
 }
 .sparkle {
   position: absolute;
-  width: 4px;           
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.98); 
+  width: 5px;           
+  height: 5px;
+  border-radius: 20%;
+  background: rgba(255,255,255,0.80); 
   box-shadow:
-    0 0 18px 6px #fff,
-    0 0 36px 12px #3af0ff,
-    0 0 28px 8px #a882ff;
-  opacity: 0.7;       
-  animation: sparkle-float 2.5s linear infinite;
+    0 0 8px 2px #fff,
+    0 0 16px 4px #3af0ff,
+    0 0 12px 3px #a882ff;
+  opacity: 0.5;       
+  animation: sparkle-float 3.5s linear infinite;
   pointer-events: none;
-  z-index: 3;
+  z-index: 4;
 }
 
 /* Title Screen Fade Out Effect */
@@ -183,7 +190,7 @@
   width: min(90vw, 900px);
   height: min(45vw, 500px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   border-radius: 50%;
   opacity: 0.38;
   background:
@@ -224,9 +231,9 @@
 
 /* Character Selection Content */
 .char-select-content {
-  background: #181a1f;
-  border-radius: 3px; /* Pixel style: no rounded corners */
-  box-shadow: 0 8px 48px #3af0ff88;
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 3px; 
+  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
   padding: 36px 32px 24px 32px;
   max-width: 350px;
   min-height: 340px;
@@ -247,7 +254,7 @@
   border: none;
   color: #ffe082;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Character Selection Header */
@@ -255,8 +262,8 @@
   margin-top: 0;
   margin-bottom: 8px;
   color: var(--title-header);
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
-  font-size: 2em;
+  font-family: 'Press Start 2P';
+  font-size: 1.8em;
   letter-spacing: 0.08em;
   text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
   text-align: center;
@@ -273,10 +280,10 @@
   border-radius: 3px;
   border: 2px solid #3af0ff;
   font-size: 1.1em;
-  background: #222;
+  background: #2222228e;
   color: #fffbe6;
   outline: none;
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'Press Start 2P';
   letter-spacing: 0.06em;
 }
 
@@ -292,36 +299,35 @@
 /* Character List and Preview */
 #char-list {
   list-style: none;
-  padding: 0;
   margin: 0;
   max-height: 220px;
   overflow-y: auto;
   min-width: 120px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 #char-list li {
   padding: 8px 12px;
   border-radius: 3px;
-  background: #23243a;
+  background: #2222228e;
+  border: 2px solid #3af0ff;
   color: #fff;
   cursor: pointer;
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'Press Start 2P';
   font-size: 1em;
   letter-spacing: 0.06em;
   transition: background 0.2s;
   display: flex;
   align-items: center;
-  gap: 8px;
-  border: 2px solid transparent;
+  gap: 8px;;
 }
 
 #char-list li.selected,
 #char-list li:hover {
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
-  color: #181a1f;
+  color: #1b3d41;
   border: 2px solid #3af0ff;
 }
 
@@ -332,9 +338,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #181a1f55;
+  background: #2222228e;
   border-radius: 3px;
-  box-shadow: 0 2px 16px #3af0ff22;
   position: relative;
   border: 2px solid #3af0ff;
 }
@@ -346,7 +351,6 @@
   image-rendering: pixelated;
   transition: filter 0.2s;
   border-radius: 3px;
-  border: 2px solid #fffbe6;
   background: #23243a;
 }
 
@@ -357,8 +361,8 @@
   border-radius: 3px;
   border: 2px solid #3af0ff;
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
-  color: #181a1f;
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  color: #1b3d41;
+  font-family: 'Press Start 2P';
   font-size: 1.2em;
   font-weight: 700;
   cursor: pointer;
@@ -376,7 +380,6 @@
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(24,26,31,0.92);
   z-index: 100001;
   display: flex;
   align-items: center;
@@ -391,8 +394,8 @@
   margin-top: 0;
   margin-bottom: 8px;
   color: var(--title-header);
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
-  font-size: 2em;
+  font-family: 'Press Start 2P';
+  font-size: 1.8em;
   letter-spacing: 0.08em;
   text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
   text-align: center;
@@ -413,7 +416,7 @@
   min-height: 160px;
   border: 2px solid #3af0ff;
   border-radius: 3px;
-  background: #23243aee;
+  background: #23243acb;
   box-shadow: 0 2px 12px #181a1f11;
   transition: border-color 0.2s;
 }
@@ -421,10 +424,9 @@
   width: 100%;
   box-sizing: border-box;
   padding: 12px 14px;
-  background: #23243a;
   color: #fff;
   cursor: pointer;
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'Press Start 2P';
   font-size: 0.6em;
   letter-spacing: 0.06em;
   transition: background 0.2s, color 0.2s;
@@ -437,8 +439,11 @@
 }
 #save-list li.selected,
 #save-list li:hover {
-  background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
-  color: #181a1f;
+  background: linear-gradient(90deg, #23243a 0%, #3af0ff22 100%);
+  border-top: 1px solid #3af0ff;
+  border-bottom: 1px solid #3af0ff;
+  border-left: none;
+  border-right: none;
 }
 
 /* Save List Item Layout */
@@ -463,7 +468,7 @@
 
 /* Delete Save Button */
 .danger-btn {
-  font-family: 'Press Start 2P', var(--font-titlemenu), monospace;
+  font-family: 'Press Start 2P';
   font-size: 1.2em;
   padding: 12px 36px;
   border-radius: 3px;
@@ -506,7 +511,7 @@
   border: none;
   color: #ffe082;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   transition: color 0.2s;
 }
 #loadgame-close:hover,
@@ -569,11 +574,10 @@
 
 /* Lore Intro Overlay */
 #lore-intro {
-  font-family: var(--font-titlemenu);
   position: relative;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  z-index: 99998;
+  z-index: 100;
   background: #000;
   display: none;
   align-items: center;
@@ -583,9 +587,10 @@
 
 /* Lore Intro Text */
 #lore-text {
-  font-family: var(--font-dialogue);
+  font-family: 'Press Start 2P';
   color: #fff;
   font-size: 2em;
+  line-height: 1.6;
   text-align: center;
   max-width: 900px;
   opacity: 0;

@@ -171,3 +171,35 @@ document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
 document.getElementById('btn-save').addEventListener('click', saveGame);
+
+function hideGameUI() {
+    const ids = [
+        "touch-controls",
+        "act-controls",
+        "menu-btn",
+        "notification",
+        "dialogue-block",
+        "quest-hud",
+        "player-menu"
+    ];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+    });
+}
+
+function showGameUI() {
+    const ids = [
+        "touch-controls",
+        "act-controls",
+        "menu-btn",
+        "notification",
+        "dialogue-block",
+        "quest-hud",
+        "player-menu"
+    ];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "";
+    });
+}

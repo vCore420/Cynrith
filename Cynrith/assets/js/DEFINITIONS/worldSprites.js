@@ -6,6 +6,7 @@ const WORLD_SPRITES = [
     {
         id: "cat_animation",   
         positions: [
+            { map: "title0", x: 17, y: 5 }, 
             { map: 0, x: 28, y: 39 },  
             { map: 0, x: 31, y: 45 }
         ],
@@ -74,6 +75,7 @@ const WORLD_SPRITES = [
     {
         id: "dragon_bones",    
         positions: [
+            { map: "title0", x: 3, y: 6 },
             { map: 1, x: 6, y: 23 }, 
             { map: 1, x: 28, y: 4 }, 
             { map: 1, x: 24, y: 43 }, 

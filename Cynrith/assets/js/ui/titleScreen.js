@@ -1,5 +1,3 @@
-// Title Screen Logic
-
 let selectedPlayerName = "";
 let selectedPlayerSprite = ""; 
 
@@ -9,16 +7,12 @@ window.addEventListener("DOMContentLoaded", function() {
     const btnNewGame = document.getElementById("btn-newgame");
     const skipBtn = document.getElementById("lore-skip-btn");
 
-    const titleScreen = document.getElementById("title-screen");
-    const bgImages = [
-        "assets/img/mainMenu/img1.png",
-        "assets/img/mainMenu/img2.png",
-        "assets/img/mainMenu/img3.png"
-        // Add more player sprites here for full release
-    ];
-    const chosen = bgImages[Math.floor(Math.random() * bgImages.length)];
-    titleScreen.style.background = `url('${chosen}') center center / cover no-repeat, #111`;
-    titleScreen.style.transition = "background-image 1.2s cubic-bezier(.4,0,.2,1)";
+    loadTitleMap();
+    hideGameUI();
+
+    const overlay = document.createElement("div");
+    overlay.id = "title-map-overlay";
+    document.body.appendChild(overlay);
 
     // Sparkle effect
     const sparkles = document.getElementById("title-sparkles");
@@ -179,6 +173,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 loreIntro.style.display = "none";
                 loreIntro.style.opacity = 1;
                 gameStarted = true;
+                showGameUI();
                 window.Setup(selectedPlayerName, 0, selectedPlayerSprite); 
                 console.log("[titleScreen] Game starting with player:", selectedPlayerName, selectedPlayerSprite);
             }, 1200);
@@ -198,6 +193,7 @@ window.addEventListener("DOMContentLoaded", function() {
     skipBtn.addEventListener("click", endLoreAndStartGame);
 
     function playLoreIntro() {
+        unloadTitleMap();
         console.log("[titleScreen] New game started, Starting lore intro");
         loreIntro.style.display = "flex";
         skipLore = false;
@@ -332,6 +328,8 @@ function fadeOutTitleAndLoadGame(playerName) {
         document.getElementById("title-screen").style.display = "none";
         showLoadingScreen(() => {
             loadGame(playerName, hideLoadingScreen);
+            unloadTitleMap();
+            showGameUI();
         });
     }, 850);
 }

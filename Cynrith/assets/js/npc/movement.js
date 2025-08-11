@@ -152,9 +152,9 @@ function isWalkable(tileX, tileY) {
 
 // Npc Wondering Logic
 function wanderAI(char) {
-    if (char.forcedEncounterInProgress || char.forcedWalking) return;
-    if (char.isInteracting) return;
-    if (!char.wanderArea) return;
+    if (char.forcedEncounterInProgress || char.forcedWalking) { console.log("Blocked: forced"); return; }
+    if (char.isInteracting) { console.log("Blocked: interacting"); return; }
+    if (!char.wanderArea) { console.log("Blocked: no wanderArea", char); return; }
 
     // Initialize wander state
     if (!char.wanderState) {

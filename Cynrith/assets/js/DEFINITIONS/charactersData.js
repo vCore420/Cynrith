@@ -11,6 +11,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/eldrin.png",
         interactive: true, 
         spawns: [
+            { map: "title0",  x: 6, y: 6, wanderArea: { x1: 1, y1: 1, x2: 22, y2: 12 } },
             { map: 0,  x: 44, y: 43, wanderArea: { x1: 44, y1: 42, x2: 47, y2: 48 } }
         ],
         dialogue: {
@@ -189,6 +190,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_m_3.png",
         interactive: true,
         spawns: [
+            { map: "title0",  x: 16, y: 9, wanderArea: { x1: 1, y1: 1, x2: 22, y2: 12 } },
             { map: 1, x: 39, y: 39, wanderArea: { x1: 36, y1: 38, x2: 40, y2: 41 } }
         ],
         dialogue: {
@@ -265,6 +267,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_f_2.png",
         interactive: true,
         spawns: [
+            { map: "title0",  x: 13, y: 3, wanderArea: { x1: 1, y1: 1, x2: 22, y2: 12 } },
             { map: 1, x: 36, y: 47, wanderArea: { x1: 31, y1: 46, x2: 45, y2: 48 } }
         ],
         dialogue: {
