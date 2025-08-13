@@ -16,7 +16,7 @@
 
 Welcome to **Cynrith**, a mysterious, ever-changing world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange characters and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
 
-Long before the first Floor rose, Cynrith was a single, boundless realm—flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers—Floors—each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
+Long before the first Floor rose, Cynrith was a single, boundless realm; flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers 'Floors' each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
 
 ---
 
