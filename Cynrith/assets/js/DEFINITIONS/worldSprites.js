@@ -15,7 +15,24 @@ const WORLD_SPRITES = [
         imageH: 576,    
         rows: 18,         
         cols: 3,         
-        animSpeed: 6,    
+        animSpeed: 4,    
+        zIndex: 0,         
+        collision: false  
+    },
+
+
+    // Teleport stone, for itile maps
+    {
+        id: "teleport_stone",   
+        positions: [
+            { map: "title1", x: 19, y: 5 }
+        ],
+        spriteSheet: "assets/img/tile/teleport_stone.png",  
+        imageW: 832,      
+        imageH: 960,    
+        rows: 3,         
+        cols: 13,         
+        animSpeed: 4,    
         zIndex: 0,         
         collision: false  
     },

@@ -11,7 +11,7 @@
    {"file_name":"bush-3","collision":1,"frames":0},
    {"file_name":"bush-4","collision":0,"frames":0},
    {"file_name":"fern","collision":0,"frames":0},
-   {"file_name":"grass-2a","collision":0,"frames":0},
+   {"file_name":"dirt-1","collision":0,"frames":0},
    {"file_name":"grass-tall","collision":0,"frames":1},
    {"file_name":"mushroom-1","collision":0,"frames":0},
    {"file_name":"mushroom-2","collision":0,"frames":0},
@@ -21,7 +21,7 @@
    {"file_name":"rock-3","collision":1,"frames":0},
    {"file_name":"rock-2","collision":1,"frames":0},
    {"file_name":"tree-1","collision":1,"frames":0},
-   {"file_name":"wave","collision":1,"frames":1}
+   {"file_name":"water-1","collision":1,"frames":1}
 ],
  "layers":[
         {
@@ -183,7 +183,7 @@
         }, 
         {
          "firstgid":12,
-         "source":"grass-2a.tsx"
+         "source":"dirt-1.tsx"
         }, 
         {
          "firstgid":13,
@@ -223,7 +223,7 @@
         }, 
         {
          "firstgid":23,
-         "source":"wave.tsx"
+         "source":"water-1.tsx"
         }],
  "tilewidth":64,
  "type":"map",

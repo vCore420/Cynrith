@@ -1,10 +1,8 @@
 { "compressionlevel":-1,
  "height":12,
  "infinite":false,
- "spawn": { "x": 4, "y": 5 },
- "teleport": { "x": 57, "y": 57, "xpRequired": 600 },
  "assets":[
-   {"file_name":"grass-3c","collision":0,"frames":0},
+   {"file_name":"grass-2","collision":0,"frames":0},
    {"file_name":"tree-flash-2","collision":1,"frames":2},
    {"file_name":"water-1","collision":1,"frames":2},
    {"file_name":"tree-7","collision":1,"frames":0},
@@ -70,7 +68,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"grass-3c.tsx"
+         "source":"grass-2.tsx"
         }, 
         {
          "firstgid":3,

@@ -3,7 +3,7 @@
 // Map flags
 let titleMap = null;
 let titleMapReady = false;
-const TITLE_MAP_COUNT = 1; // Amount of Title Maps - Update if you add more
+const TITLE_MAP_COUNT = 2; // Amount of Title Maps - Update if you add more
 const chosenTitleMapIdx = Math.floor(Math.random() * TITLE_MAP_COUNT);
 const chosenTitleMapName = "title" + chosenTitleMapIdx;
 

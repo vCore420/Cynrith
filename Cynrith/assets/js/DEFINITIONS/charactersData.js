@@ -11,7 +11,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/eldrin.png",
         interactive: true, 
         spawns: [
-            { map: "title0",  x: 6, y: 6, wanderArea: { x1: 1, y1: 1, x2: 22, y2: 12 } },
+            { map: "title1",  x: 6, y: 6, wanderArea: { x1: 1, y1: 1, x2: 22, y2: 12 } },
             { map: 0,  x: 44, y: 43, wanderArea: { x1: 44, y1: 42, x2: 47, y2: 48 } }
         ],
         dialogue: {
@@ -522,9 +522,9 @@ const ENEMY_TYPES = {
             { map: 1, x: 42, y: 10, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
             { map: 1, x: 46, y: 13, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
             { map: 1, x: 42, y: 10, wanderArea: { x1: 40, y1: 8, x2: 48, y2: 17 } },
-            { map: 1, x: 35, y: 4, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
-            { map: 1, x: 24, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
-            { map: 1, x: 39, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 6 } },
+            { map: 1, x: 35, y: 4, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 4 } },
+            { map: 1, x: 24, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 4 } },
+            { map: 1, x: 39, y: 2, wanderArea: { x1: 23, y1: 1, x2: 43, y2: 4 } },
             { map: 1, x: 2, y: 27, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
         ]
     },
