@@ -52,13 +52,13 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 ## Screenshots
 
 <p align="center">
-  <img src="docs/assets/demo2.png" width="160"/>
-  <img src="docs/assets/demo3.png" width="160"/>
-  <img src="docs/assets/demo4.png" width="160"/>
-  <img src="docs/assets/demo5.png" width="160"/>
-  <img src="docs/assets/demo6.png" width="160"/>
-  <img src="docs/assets/demo7.png" width="160"/>
-  <img src="docs/assets/demo8.png" width="160"/>
+  <img src="docs/assets/demo2.png" width="320"/>
+  <img src="docs/assets/demo3.png" width="320"/>
+  <img src="docs/assets/demo4.png" width="320"/>
+  <img src="docs/assets/demo5.png" width="320"/>
+  <img src="docs/assets/demo6.png" width="320"/>
+  <img src="docs/assets/demo7.png" width="320"/>
+  <img src="docs/assets/demo8.png" width="320"/>
 </p>
 
 ## Roadmap
