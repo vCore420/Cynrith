@@ -1,9 +1,12 @@
 // NPC Interaction Logic
 
 let triggeredForcedEncounters = {};
+const NPC_INTERACTION_COOLDOWN = 800; // Cooldown between Interactions in milliseconds
+
 
 // Check for NPC interactions
 function checkNpcInteraction() {
+    const now = Date.now();
     characters.forEach(char => {
         if (char.type === "npc" && char.interactive) {
             const inRange =
@@ -15,7 +18,8 @@ function checkNpcInteraction() {
                     notify(`Press the A button to talk to ${char.name}`, 2500);
                     char.notifShown = true;
                 }
-                if (actionButtonAPressed && char.dialogue && char.dialogue.default) {
+                if (actionButtonAPressed && char.dialogue && char.dialogue.default &&
+                    (!player.lastNpcInteractionTime || now - player.lastNpcInteractionTime > NPC_INTERACTION_COOLDOWN)) {
                     console.log(`[NPC Interaction] Talking to ${char.name}`);
                     // Stop wandering and face player
                     char.isInteracting = true;

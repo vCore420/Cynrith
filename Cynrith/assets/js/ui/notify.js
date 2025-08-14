@@ -159,5 +159,8 @@ function closeDialogue() {
     if (nameDiv) nameDiv.textContent = "";
     clearAllMovementKeys();
     console.log("[Dialogue] Dialogue ended, player unfrozen (notify.js)");
+    if (typeof player !== "undefined") {
+        player.lastNpcInteractionTime = Date.now();
+    }
 }
 
