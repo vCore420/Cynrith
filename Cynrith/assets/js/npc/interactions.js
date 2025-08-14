@@ -25,6 +25,10 @@ function checkNpcInteraction() {
                     char.isInteracting = true;
                     char.movement.key = getDirectionKey(char.x, char.y, player.tile.x, player.tile.y);
 
+                    if (char.trader && typeof openTraderShop === "function") {
+                        onDialogueClosed = () => openTraderShop(char.trader);
+                    }
+
                     // Start dialogue and resume wandering after
                     dialogue(...char.dialogue.default);
                     // Wait for dialogue to finish, then resume wandering

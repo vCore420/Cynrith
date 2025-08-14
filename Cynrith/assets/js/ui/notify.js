@@ -15,6 +15,7 @@ function notify(text, time = 2000) {
 // Dialogue system
 let _dialogueQueue = [];
 let _dialogueActive = false;
+let onDialogueClosed = null;
 
 
 // Show Dialogue by Defining Lines 
@@ -161,6 +162,10 @@ function closeDialogue() {
     console.log("[Dialogue] Dialogue ended, player unfrozen (notify.js)");
     if (typeof player !== "undefined") {
         player.lastNpcInteractionTime = Date.now();
+    }
+    if (typeof onDialogueClosed === "function") {
+        onDialogueClosed();
+        onDialogueClosed = null;
     }
 }
 

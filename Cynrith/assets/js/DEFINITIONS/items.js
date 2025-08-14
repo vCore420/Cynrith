@@ -67,6 +67,19 @@ const ITEM_DEFINITIONS = {
         removeable: false 
     },
 
+
+    // --------------- Currency ---------------
+
+    money: {
+        id: "money",
+        name: "Coin",
+        description: "Currency used for trading.",
+        image: "assets/img/items/coin.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false
+    },
     
     // --------------- Enemy Drops ---------------
 

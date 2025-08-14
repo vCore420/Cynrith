@@ -407,7 +407,27 @@ const NPC_DEFINITIONS = {
         }
     },
     
-    // -------- FLOOR 3 --------                                                                                        
+    // -------- FLOOR 3 --------   
+
+    // Fernix - First Trader shop
+    fernix_trader: {
+        id: "fernix_trader",
+        name: "Fernix the Barterer",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 20, y: 6, wanderArea: { x1: 18, y1: 4, x2: 24, y2: 7 } }
+        ],
+        dialogue: {
+            default: [
+                "Looking to trade? I deal in coin and curiosities from your travels for something useful.",
+                "Show me what you’ve found, and I’ll show you what’s for sale. Simple as that."
+            ]
+        },
+        trader: "trader1"
+    },
+
+
 };
 
 // Enemy type definitions
