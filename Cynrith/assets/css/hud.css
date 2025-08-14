@@ -1,9 +1,13 @@
 /* Fps and Coord Counter */
 div#log {
-    background: var(--dk-btn);
+    background: linear-gradient(120deg, #22252c 80%, #222335 100%);
     font-family: var(--font-playermenu);
     font-size: 12pt;
     color: var(--dk-txt);
+    border-radius: 4px;
+    border: 1px solid #3af0ff;
+    box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+    opacity: 0.8;
     text-align: left;
     padding: 5px 9px;
     position: fixed;
@@ -40,8 +44,9 @@ div#log {
   opacity: 0.8;
   background: var(--dk-ctrl);
   color: var(--dk-txt);
-  border: none;
-  border-radius: 18px;
+  border: 2px solid #3af0ff;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  border-radius: 8px;
   touch-action: none;
 }
 
@@ -66,8 +71,9 @@ div#log {
   font-size: 3em;
   opacity: 0.8;
   background: var(--dk-ctrl);
+  border: 2px solid #3af0ff;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
   color: var(--dk-txt);
-  border: none;
   border-radius: 100%;
   touch-action: none;
 }
@@ -156,13 +162,14 @@ div#log {
     gap: 10px;
     overflow-y: auto;
     scrollbar-width: none;
+    border-radius: 4px;
     z-index: 100;
 }
 .quest-hud::-webkit-scrollbar { display: none; }
 
 .quest-hud-entry {
-    background: var(--dk-btn, #23243acc);
-    border-radius: 8px;
+    background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+    border-radius: 4px;
     padding: 6px 8px;
     display: flex;
     align-items: center;
@@ -170,8 +177,7 @@ div#log {
     font-family: var(--font-playermenu);
     font-size: 0.75em;
     color: var(--dk-txt, #fff);
-    box-shadow: 0 1px 4px #0001;
-    border: 1.5px solid var(--dk-ctrl, #444);
+    border: 1px solid #3af0ff;
     min-height: 38px;
     max-height: 38px;
 }
@@ -209,6 +215,7 @@ div#log {
 
 /* Player Death/Respawn Screen */
 .death-overlay {
+  font-family: 'VT323';
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
@@ -224,26 +231,28 @@ div#log {
 
 /* Player Death/Respawn Screen Title */
 .death-overlay h1 {
-  color: #fff;
-  font-size: 3em;
+  color: #fffbe6;
+  font-size: 8em;
   margin-bottom: 1em;
-  text-shadow: 0 0 10px #000, 0 0 20px #900;
+  text-shadow: 0 0 10px #000, 0 0 20px rgb(71, 0, 0);
 }
 
 /* Respawn Button */
 .death-overlay button {
-  font-size: 1.5em;
+  font-size: 1.8em;
   padding: 0.5em 2em;
-  font-family: var(--font-titlemenu);
-  background: #fff;
-  border: none;
-  border-radius: 8px;
+  font-family: "VT323";
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
+  color: #fffbe6;
   cursor: pointer;
-  box-shadow: 0 0 10px #222;
-  transition: background 0.2s;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  transition: background 0.2s, color 0.2s;
 }
 .death-overlay button:hover {
-  background: #eee;
+  background: #fffbe6;
+  color: #222335;
 }
 
 /* Vertical Screen Orientation Adjustments */
