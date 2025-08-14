@@ -549,5 +549,30 @@ const ENEMY_TYPES = {
         ]
     },
 
+    mistbound_ork: {
+        id: "mistbound_ork",
+        name: "Mistbound Ork",
+        sprite: "assets/img/enemy/orc_01.png",
+        moveSpeed: 0.7,
+        distance: 3,
+        maxHealth: 25,
+        attack: 10,
+        defense: 4,
+        speed: 1.2,
+        xpGain: 12,
+        loot: [
+            { item: "twilight_totem", chance: 10, amount: 1 }
+        ],
+        spawns: [
+            { map: 2, x: 8, y: 24, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 13, y: 28, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 8, y: 32, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 13, y: 33, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 11, y: 37, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 16, y: 39, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+        ]
+    },
+
+
 
 };

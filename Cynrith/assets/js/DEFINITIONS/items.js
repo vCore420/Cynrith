@@ -131,6 +131,19 @@ const ITEM_DEFINITIONS = {
         removeable: true
     },
 
+
+    twilight_totem: {
+        id: "twilight_totem",
+        name: "Twilight Totem",
+        description: "A mysterious totem that pulses with a soft light. Said to guide lost souls.",
+        image: "assets/img/items/twilight_totem.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
     // --------------- Miscellaneous ---------------
 
 
