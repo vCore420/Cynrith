@@ -39,7 +39,7 @@
 - [ ] Make all ui more structured and modular for multi device displays
 - [ ] Red text for required xp notifications - teleport stone 
 - [ ] Sort out css styling and clean it up
-- [ ] Make player stat icons
+- [x] Make player stat icons
 
 ## New Game
 
@@ -48,7 +48,7 @@
 - [ ] Style load menu scroll bar
  
 ## Item System
-- [ ] Buyable items (shop/traders system?) 
+- [x] Buyable items (shop/traders system?) 
 
 ## Settings Menu
 - [ ] Desgin and create the settings menu 
@@ -75,6 +75,13 @@
 
 ## **New Since Last Commit*
 
-- added npc interaction cooldown
-- expanded map loading logic to load multi frame tiles dynamicly
+- Added npc interaction cooldown
+- Expanded map loading logic to load multi frame tiles dynamicly
+- Reduced player movement speed
+- Introduced Shop/Trader System on floor 3
+- Started trigger tile system, current calls dialogue when triggered but left open for modularity
+- Added assets for player stat icons
+- Re Designed all UI to match theme made for title screen
+- Started work on Floor 3
+
 ---

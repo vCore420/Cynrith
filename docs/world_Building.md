@@ -181,22 +181,6 @@ A spectral figure who speaks of “resetting” and “saving,” hinting at the
 
 > “The stone is cool beneath your palm, yet a pulse of ancient energy thrums within. As glyphs shimmer to life, you sense the weight of memory—trials endured, secrets buried, and the promise of ascent. Beyond this point, the path grows steeper, and the Architect’s gaze more distant.”
 
----
-
-## Floor 2 Desiging
-
-**Areas**
-- The Shattered Causeway, A vast, broken stone bridge suspended between cliff faces, with toppled statues and ancient glyphs.
-NPC Concept: The “Waykeeper,” a spectral guide who remembers fragments of past cycles and can offer quests to recover lost relics from the depths below.
-Lore Hook: The bridge was once a direct path to a higher civilization, shattered in the Fracture. NPCs here speak of attempts to reconstruct memory itself.
-- The Forgotten Forum, A ruined plaza with broken pillars, where travelers gather to share rumors and trade.
-NPC Concept: “The Chronicler,” an archivist NPC compiling a living record of the world’s cycles and resets, who needs help gathering lost pages scattered across the floor.
-Lore Hook: The forum itself is a recurring feature in every cycle, a place where knowledge is lost and found.
-- 
-
-**Enemy's**
-- Petrified Rootlings, Lore: Animate fragments of the Riftroot Outcroppings, remnants of the primordial forest petrified by world shifts. Description: Gnarled, root-like beings that entangle and drain life. Some are docile unless provoked, hinting at a deeper connection to the world’s cycles.
-- Echo Wraiths, Lore: Manifestations of memory echoes from the Echoing Caverns. These spectral entities are formed from the lingering regrets and forgotten voices of previous explorers. Description: Wispy, flickering shadows that attack with psychic energy, causing confusion or memory loss. Sometimes mimic the player’s own voice or abilities.
 
 ---
 
@@ -256,8 +240,8 @@ Legends speak of the Gloomroot as a place where the Architect’s influence is f
 
 ## Enemies
 
-- **Ork Raiders**  
-  Hulking forest marauders, clad in scavenged bone and bark armor. They are territorial, forming roaming patrols and setting crude traps.
+- **Mistbound Ork**   
+   Mistbound Ork are not ordinary orks—they are descendants of ancient warriors who once tried to tame the Thicket’s wild magic. Over generations, the forest’s strange energies have twisted their forms and minds. Some retain flickers of memory from previous cycles, speaking in riddles or recalling battles that happened long ago.
 
 - **Vampire Stalkers**  
   Pale, swift predators who blend into the shadows, attacking unsuspecting adventurers. Some may attempt to speak, offering cryptic warnings or bargains.
@@ -530,7 +514,10 @@ By the end of Floor 5, the player stands at a crossroads. The pattern is clear: 
 But the System is watching. The world waits. And the next move belongs to the player.
 
 ---
+### Brainstorming for later ideas
 
+the world is in one big server, each floor is another layer of the hard drives
+uncover as the game goes with hints like photo fragments or lore hints
 
 ## Base Sample Ideas (original brainstorm)
 
