@@ -46,6 +46,7 @@ const Map = function(title) {
     this.data = {};
     this.tiles = [];
     this.onLoad = null;
+    this.frameIndices = [];
     
     // Clear any previous interval before starting a new one
     if (mapFrameInterval) clearInterval(mapFrameInterval);
@@ -136,8 +137,8 @@ Map.prototype = {
                         if (gid > 0) {
                             let assetIdx = this.data._gidMap[gid];
                             if (typeof assetIdx === "undefined") continue;
-                            let frame = this.data.frame;
-                            if (frame > this.data.assets[assetIdx].frames) frame = 0;
+                            let frame = this.frameIndices[assetIdx] || 0;
+                            if (frame >= this.data.assets[assetIdx].frames) frame = 0;
                             let tile_x = Math.floor((x * config.size.tile) - viewport.x + (config.win.width / 2) - (viewport.w / 2));
                             let tile_y = Math.floor((y * config.size.tile) - viewport.y + (config.win.height / 2) - (viewport.h / 2));
                             context.drawImage(
@@ -188,6 +189,11 @@ Map.prototype = {
     
     // Update the map frame for animations
     frame: function() {
-        this.data.frame = (this.data.frame == 0) ? 1 : 0;
+        if (!this.data.assets) return;
+        for (let i = 0; i < this.data.assets.length; i++) {
+            const frames = this.data.assets[i].frames || 1;
+            if (!this.frameIndices[i]) this.frameIndices[i] = 0;
+            this.frameIndices[i] = (this.frameIndices[i] + 1) % frames;
+        }
     }
 };

@@ -3,14 +3,16 @@
 // Map flags
 let titleMap = null;
 let titleMapReady = false;
+let titleMapFrameIndices = [];
+let lastMapFrameTime = 0;
 const TITLE_MAP_COUNT = 2; // Amount of Title Maps - Update if you add more
 const chosenTitleMapIdx = Math.floor(Math.random() * TITLE_MAP_COUNT);
 const chosenTitleMapName = "title" + chosenTitleMapIdx;
 
 // NPC flags
 let lastNpcAnimTime = 0;
-const MAP_FRAME_INTERVAL = 1000;   // World frame rate
-const NPC_ANIM_INTERVAL = 125;    // NPC animation speed
+const MAP_FRAME_INTERVAL = 800;   // World frame rate
+const NPC_ANIM_INTERVAL = 110;    // NPC animation speed
 let titleScreenNPCs = [];
 
 //Sprite flags
@@ -37,6 +39,16 @@ let titleViewport = new Viewport(0, 0, titleMapCanvas.width, titleMapCanvas.heig
 function startTitleScreenLoop() {
     let lastNpcAnimTime = 0;
     function loop(now) {
+
+        // Advance map tile frames
+        if (now - lastMapFrameTime >= MAP_FRAME_INTERVAL && titleMap && titleMap.data && titleMap.data.assets) {
+            for (let i = 0; i < titleMap.data.assets.length; i++) {
+                const frames = titleMap.data.assets[i].frames || 1;
+                if (!titleMapFrameIndices[i]) titleMapFrameIndices[i] = 0;
+                titleMapFrameIndices[i] = (titleMapFrameIndices[i] + 1) % frames;
+            }
+            lastMapFrameTime = now;
+        }
 
         // Advance NPC animation frames and movement
         if (now - lastNpcAnimTime >= NPC_ANIM_INTERVAL) {
@@ -111,8 +123,8 @@ function drawTitleMap() {
                 if (gid > 0) {
                     let assetIdx = titleMap.data._gidMap[gid];
                     if (typeof assetIdx === "undefined") continue;
-                    let frame = titleMap.data.frame;
-                    if (frame > titleMap.data.assets[assetIdx].frames) frame = 0;
+                    let frame = titleMapFrameIndices[assetIdx] || 0;
+                    if (frame >= titleMap.data.assets[assetIdx].frames) frame = 0;
                     let px = x * tileSize - titleViewport.x;
                     let py = y * tileSize - titleViewport.y;
                     titleMapContext.drawImage(
