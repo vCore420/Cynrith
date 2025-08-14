@@ -1,0 +1,123 @@
+/* Trader Shop Menu */
+.trader-shop-menu {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 100002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24,26,31,0.92);
+}
+.trader-shop-menu.hidden {
+  display: none !important;
+}
+.trader-shop-content {
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 3px;
+  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  padding: 36px 32px 24px 32px;
+  max-width: 350px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  border: 3px solid #3af0ff;
+}
+#trader-shop-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--title-header);
+  font-family: 'Press Start 2P';
+  font-size: 1.6em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-align: center;
+}
+.trader-shop-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+.trader-tab {
+  font-family: 'Press Start 2P';
+  font-size: 1em;
+  padding: 8px 24px;
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
+  background: #8a8e9983;
+  color: #fffbe6;
+  cursor: pointer;
+  box-shadow: 0 1px 0 0 #fffbe6;
+  text-shadow: 0 0 1px #3af0ffcc;
+  transition: background 0.2s;
+}
+.trader-tab.active,
+.trader-tab:hover {
+  background: #3aefff8f;
+  color: #1b3d41;
+  border-color: #3af0ff;
+}
+.trader-shop-page {
+  display: none;
+  width: 100%;
+  min-height: 120px;
+}
+.trader-shop-page.active {
+  display: block;
+}
+.trader-shop-coins {
+  margin-top: 18px;
+  font-family: 'Press Start 2P';
+  font-size: 1.1em;
+  color: #ffe082;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#trader-shop-close {
+  position: absolute;
+  top: 12px; right: 16px;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #ffe082;
+  cursor: pointer;
+  z-index: 2;
+}
+.trader-shop-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #3af0ff22;
+}
+.trader-shop-item:last-child {
+  border-bottom: none;
+}
+.trader-shop-item img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+.trader-shop-btn {
+  font-family: 'Press Start 2P';
+  font-size: 0.9em;
+  padding: 6px 18px;
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
+  background: #3aefff8f;
+  color: #1b3d41;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.trader-shop-btn:disabled {
+  background: #888;
+  color: #ccc;
+  cursor: not-allowed;
+}
