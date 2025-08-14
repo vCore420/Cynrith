@@ -10,6 +10,7 @@
     <link type="text/css" href="assets/css/hud.css" rel="stylesheet" />
     <link type="text/css" href="assets/css/dialogue.css" rel="stylesheet" />
     <link type="text/css" href="assets/css/playerMenu.css" rel="stylesheet" />
+    <link type="text/css" href="assets/css/traderMenu.css" rel="stylesheet" />
 </head>
 <body>
     <canvas id="game"></canvas>
@@ -71,6 +72,24 @@
 
     <div id="quest-hud" class="quest-hud"></div>
 
+    <div id="trader-shop-menu" class="trader-shop-menu hidden">
+      <div class="trader-shop-content">
+        <button id="trader-shop-close" class="close-btn">✕</button>
+        <h2 id="trader-shop-title">Trader Shop</h2>
+        <div class="trader-shop-tabs">
+          <button id="tab-buy" class="trader-tab active">Buy</button>
+          <button id="tab-sell" class="trader-tab">Sell</button>
+        </div>
+        <div id="trader-shop-buy" class="trader-shop-page active"></div>
+        <div id="trader-shop-sell" class="trader-shop-page"></div>
+        <div class="trader-shop-coins">
+          <span>Coins:</span>
+          <span id="trader-shop-coins-amount">0</span>
+          <img src="assets/img/items/coin.png" alt="Coin" style="width:22px;vertical-align:middle;margin-left:4px;">
+        </div>
+      </div>
+    </div>
+
     <div id="title-screen">
       <div id="title-effects">
         <div class="title-ray ray1"></div>
@@ -129,6 +148,7 @@
     <script src="assets/js/DEFINITIONS/interactTiles.js"></script>
     <script src="assets/js/DEFINITIONS/triggerTiles.js"></script>
     <script src="assets/js/DEFINITIONS/charactersData.js"></script>
+    <script src="assets/js/DEFINITIONS/traders.js"></script>
     <script src="assets/js/DEFINITIONS/quests.js"></script>
     <script src="assets/js/DEFINITIONS/worldSprites.js"></script>
     <script src="assets/js/core/viewport.js"></script>
@@ -145,6 +165,7 @@
     <script src="assets/js/npc/npc.js"></script>
     <script src="assets/js/npc/movement.js"></script>
     <script src="assets/js/npc/interactions.js"></script>
+    <script src="assets/js/npc/npcTraders.js"></script>
     <script src="assets/js/player/playerDeath.js"></script>
     <script src="assets/js/core/main.js"></script>
     <script src="assets/js/core/saveLoad.js"></script>
