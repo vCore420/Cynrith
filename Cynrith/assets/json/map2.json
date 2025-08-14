@@ -10,7 +10,7 @@
    {"file_name":"tree-3","collision":1,"frames":0},
    {"file_name":"tree-6","collision":1,"frames":0},
    {"file_name":"tree-5","collision":1,"frames":0},
-   {"file_name":"water-1","collision":1,"frames":1},
+   {"file_name":"water-1","collision":1,"frames":4},
    {"file_name":"tree-7","collision":1,"frames":0},
    {"file_name":"gravel-1a","collision":0,"frames":0},
    {"file_name":"grass-3b","collision":0,"frames":1},
