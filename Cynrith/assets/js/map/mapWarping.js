@@ -118,6 +118,11 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
             console.log("[WarpToMap] Interactable tiles spawned for map index:", currentMapIndex);
         }
 
+        if (typeof spawnTriggerTilesForMap === "function") {
+            spawnTriggerTilesForMap(currentMapIndex);
+            console.log("[WarpToMap] Trigger tiles spawned for map index:", currentMapIndex);
+        }
+
         if (typeof spawnTeleportStonesForMap === "function") {
             spawnTeleportStonesForMap(currentMapIndex);
         }

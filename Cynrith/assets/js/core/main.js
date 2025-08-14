@@ -18,7 +18,7 @@ var config = {
         tile: 64,
         char: 96
     },
-    speed: 4
+    speed: 3
 };
 
 // Player Movement Keys
@@ -120,6 +120,9 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         }
         if (typeof spawnInteractableTilesForMap === "function") {
             spawnInteractableTilesForMap(mapIndex);
+        }
+        if (typeof spawnTriggerTilesForMap === "function") {
+            spawnTriggerTilesForMap(mapIndex);
         }
         if (typeof spawnTeleportStonesForMap === "function") {
             spawnTeleportStonesForMap(mapIndex);
@@ -266,6 +269,7 @@ function Loop() {
 
     // Interactable Tile Check
     if (typeof checkInteractableTileInteraction === "function") checkInteractableTileInteraction();
+    if (typeof checkTriggerTileActivation === "function") checkTriggerTileActivation();
 
     // Reset Action Buttons
     actionButtonAPressed = false;

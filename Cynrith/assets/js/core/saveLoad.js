@@ -25,8 +25,8 @@ function getCurrentSaveData() {
             statBuildStart: { ...statBuildQuestStart }
         },
         triggeredInteractableTiles: { ...triggeredInteractableTiles },
+        triggeredTriggerTiles: { ...triggeredTriggerTiles },
         forcedEncounters: { ...triggeredForcedEncounters }
-        
     };
 }
 
@@ -104,6 +104,10 @@ function applySaveData(data) {
     if (data.triggeredInteractableTiles) {
         triggeredInteractableTiles = { ...data.triggeredInteractableTiles };
         console.log("[Save/Load] Triggered interactable tiles patched:", triggeredInteractableTiles);
+    }
+
+    if (data.triggeredTriggerTiles) {
+        triggeredTriggerTiles = { ...data.triggeredTriggerTiles };
     }
 }
 

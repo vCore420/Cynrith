@@ -1,4 +1,5 @@
-let triggeredInteractableTiles = {}; // { [tileId]: true }
+let triggeredInteractableTiles = {};
+let triggeredTriggerTiles = {};
 
 function spawnInteractableTilesForMap(mapIndex) {
     window.activeInteractableTiles = INTERACTABLE_TILES
@@ -79,6 +80,39 @@ function checkInteractableTileInteraction() {
             window.activeInteractableTiles = window.activeInteractableTiles.filter(t => t.id !== tile.id);
             actionButtonAPressed = false; 
             console.log(`[InteractableTile] Interacted with tile ${tile.id} at (${tile.x}, ${tile.y})`);
+        }
+    });
+}
+
+function spawnTriggerTilesForMap(mapIndex) {
+    window.activeTriggerTiles = TRIGGER_TILES
+        .filter(tile => tile.map === mapIndex && (!tile.oneTime || !triggeredTriggerTiles[tile.id]))
+        .map(tile => ({ ...tile }));
+}
+
+function checkTriggerTileActivation() {
+    if (!window.activeTriggerTiles) return;
+    window.activeTriggerTiles.forEach(tile => {
+        // Player must be exactly on the tile
+        const onTile = player.tile.x === tile.x && player.tile.y === tile.y;
+
+        if (onTile && !tile.triggered) {
+            if (tile.type === "dialogue" && tile.dialogue) {
+                controlsEnabled = false;
+                player.frozen = true;
+                clearAllMovementKeys(); 
+                player.movement.moving = false; 
+                dialogue(...tile.dialogue);
+            }
+            // Mark as triggered if oneTime
+            if (tile.oneTime) {
+                triggeredTriggerTiles[tile.id] = true;
+                tile.triggered = true;
+                // Remove from active list
+                window.activeTriggerTiles = window.activeTriggerTiles.filter(t => t.id !== tile.id);
+            }
+            // Future: handle other types (warp, frameChange, etc.)
+            console.log(`[TriggerTile] Triggered tile ${tile.id} at (${tile.x}, ${tile.y})`);
         }
     });
 }
