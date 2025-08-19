@@ -45,10 +45,7 @@ Viewport.prototype = {
         viewport.scroll(center_x, center_y);
     },
     scroll: function(x, y) {
-        const zoom = config.zoom || 1;
-        const visibleW = window.innerWidth / zoom;
-        const visibleH = window.innerHeight / zoom;
-        this.x = x - (visibleW / 2);
-        this.y = y - (visibleH / 2);
+        this.x = x - (this.w / 2);
+        this.y = y - (this.h / 2);
     }
 };
