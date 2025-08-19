@@ -205,10 +205,6 @@ function Sizing() {
         viewport.h = config.win.height;
     }
 
-    if (typeof context !== "undefined" && context && context.canvas) {
-        context.canvas.width = config.win.width;
-        context.canvas.height = config.win.height;
-    }
 }
 
 
@@ -312,6 +308,7 @@ setInterval(function() {
 
 // On Window Load
 window.onload = function() {
+    updateZoom();
     Setup();
 };
 
