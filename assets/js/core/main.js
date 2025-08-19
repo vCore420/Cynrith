@@ -18,7 +18,8 @@ var config = {
         tile: 64,
         char: 96
     },
-    speed: 3
+    speed: 3,
+    zoom: 1
 };
 
 // Player Movement Keys
@@ -75,6 +76,15 @@ document.getElementById('btn-b').addEventListener('click', function() {
 document.getElementById('btn-a').addEventListener('click', function() {
     actionButtonAPressed = true;
 });
+
+
+function updateZoom() {
+    if (window.innerHeight > window.innerWidth) {
+        config.zoom = 1.6; // Zoom in for portrait
+    } else {
+        config.zoom = 1; // Normal for landscape/desktop
+    }
+}
 
 
 // Initial Setup:
@@ -170,6 +180,11 @@ function Sizing() {
         height: window.innerHeight
     };
 
+    if (context && context.canvas) {
+        context.canvas.width = config.win.width / config.zoom;
+        context.canvas.height = config.win.height / config.zoom;
+    }
+
     config.tiles = {
         x: Math.ceil(config.win.width / config.size.tile),
         y: Math.ceil(config.win.height / config.size.tile)
@@ -225,6 +240,10 @@ function Loop() {
     // Draw Map
     Sizing();
     viewport.center();
+
+    context.save();
+    context.scale(config.zoom, config.zoom);
+
     map.draw();
 
     // Draw Interctable Tiles
@@ -259,6 +278,8 @@ function Loop() {
         player.attackEnemy();
     }
     
+    context.restore();
+
     // Teleport Checks
     checkTeleport();
     checkBackTeleport();
@@ -297,5 +318,8 @@ window.onload = function() {
 
 // On Window Resize
 window.onresize = function() {
+    updateZoom();
     Sizing();
 };
+
+
