@@ -80,7 +80,7 @@ document.getElementById('btn-a').addEventListener('click', function() {
 
 function updateZoom() {
     if (window.innerHeight > window.innerWidth) {
-        config.zoom = 1.6; // Zoom in for portrait
+        config.zoom = 5; // Zoom in for portrait
     } else {
         config.zoom = 1; // Normal for landscape/desktop
     }
