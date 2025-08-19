@@ -87,6 +87,13 @@ function updateZoom() {
 }
 
 
+function setCanvasCssSize() {
+    const canvas = document.getElementById('game');
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+}
+
+
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
     if (typeof characters !== "undefined") characters.length = 0;
@@ -309,6 +316,7 @@ setInterval(function() {
 // On Window Load
 window.onload = function() {
     updateZoom()
+    setCanvasCssSize();
     Setup();
 };
 
@@ -316,6 +324,7 @@ window.onload = function() {
 // On Window Resize
 window.onresize = function() {
     updateZoom();
+    setCanvasCssSize();
     Sizing();
 };
 
