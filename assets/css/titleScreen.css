@@ -652,3 +652,76 @@
     opacity: 0.45;
   }
 }
+
+/* Mobile Portrait Styles */
+@media (max-width: 600px) and (orientation: portrait) {
+  #title-screen {
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #181a1f;
+    overflow: auto;
+  }
+
+  .title-content {
+    height: auto;
+    min-height: 100vh;
+    padding: 24px 0 0 0;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #title-screen h1 {
+    font-size: 3em;
+    margin-bottom: 32px;
+    text-shadow: 0 0 12px #181a1f, 0 0 2px #3af0ffcc;
+  }
+
+  #title-screen button {
+    font-size: 0.9em;
+    padding: 10px 18px;
+    margin-bottom: 12px;
+  }
+
+  #lore-text {
+    font-size: 1.1em;
+    max-width: 95vw;
+    padding: 0 8px;
+  }
+
+  .char-select-content {
+    max-width: 98vw;
+    min-height: 220px;
+    padding: 18px 8px 12px 8px;
+    gap: 10px;
+  }
+
+  #char-preview {
+    width: 64px;
+    height: 64px;
+  }
+
+  #save-list {
+    min-width: 90vw;
+    max-height: 120px;
+    font-size: 0.7em;
+  }
+
+  .confirm-btn,
+  .danger-btn {
+    font-size: 1em;
+    padding: 10px 18px;
+  }
+
+  #loading-bar-container {
+    width: 90vw;
+    right: 5vw;
+    bottom: 24px;
+  }
+
+  #loading-carousel {
+    width: 95vw;
+    height: 30vh;
+    margin-bottom: 18px;
+  }
+}
