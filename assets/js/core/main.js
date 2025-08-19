@@ -76,6 +76,19 @@ document.getElementById('btn-a').addEventListener('click', function() {
     actionButtonAPressed = true;
 });
 
+function isPortraitPhone() {
+    return window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+}
+
+function getTileSize() {
+    if (isPortraitPhone()) return 96; // Large for phones
+    return 64; // Default for desktop/tablet
+}
+
+function getCharSize() {
+    if (isPortraitPhone()) return 128;
+    return 96;
+}
 
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
@@ -166,26 +179,24 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
 // Window and Canvas Sizing:
 function Sizing() {
     config.win = {
-        width:  window.innerWidth,
+        width: window.innerWidth,
         height: window.innerHeight
     };
+
+    config.size.tile = getTileSize();
+    config.size.char = getCharSize();
 
     config.tiles = {
         x: Math.ceil(config.win.width / config.size.tile),
         y: Math.ceil(config.win.height / config.size.tile)
-    }
+    };
 
     config.center = {
         x: Math.round(config.tiles.x / 2),
         y: Math.round(config.tiles.y / 2)
-    }
+    };
 
-    // Only update viewport if it exists
     if (typeof viewport !== "undefined" && viewport) {
-        if (!playerAnimating) {
-            viewport.x = 0;
-            viewport.y = 0;
-        }
         viewport.w = config.win.width;
         viewport.h = config.win.height;
     }
@@ -299,3 +310,6 @@ window.onload = function() {
 window.onresize = function() {
     Sizing();
 };
+
+window.addEventListener("resize", Sizing);
+window.addEventListener("orientationchange", Sizing);
