@@ -183,7 +183,7 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
 // Window and Canvas Sizing:
 function Sizing() {
     config.win = {
-        width:  window.innerWidth,
+        width: window.innerWidth,
         height: window.innerHeight
     };
 
@@ -195,23 +195,22 @@ function Sizing() {
     config.tiles = {
         x: Math.ceil(config.win.width / config.size.tile),
         y: Math.ceil(config.win.height / config.size.tile)
-    }
+    };
 
     config.center = {
         x: Math.round(config.tiles.x / 2),
         y: Math.round(config.tiles.y / 2)
-    }
+    };
 
-    // Only update viewport if it exists
+    // Use canvas pixel size for viewport
     if (typeof viewport !== "undefined" && viewport) {
         if (!playerAnimating) {
             viewport.x = 0;
             viewport.y = 0;
         }
-        viewport.w = config.win.width;
-        viewport.h = config.win.height;
+        viewport.w = context.canvas.width;
+        viewport.h = context.canvas.height;
     }
-
 }
 
 
