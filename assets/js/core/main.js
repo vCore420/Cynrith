@@ -76,20 +76,9 @@ document.getElementById('btn-a').addEventListener('click', function() {
     actionButtonAPressed = true;
 });
 
-function isPortraitPhone() {
-    return window.innerWidth < 600 && window.innerHeight > window.innerWidth;
-}
-
-let zoom = 1;
-function updateZoom() {
-    zoom = (isPortraitPhone()) ? 1.5 : 1;
-}
 
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
-
-    Sizing();
-    
     if (typeof characters !== "undefined") characters.length = 0;
     if (typeof inventory !== "undefined") inventory.length = 0;
     if (typeof playerQuests !== "undefined") {
@@ -176,36 +165,34 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
 
 // Window and Canvas Sizing:
 function Sizing() {
-    updateZoom();
     config.win = {
-        width: window.innerWidth,
+        width:  window.innerWidth,
         height: window.innerHeight
     };
-
-    config.size.tile = 64; // Keep your default tile size
-    config.size.char = 96;
 
     config.tiles = {
         x: Math.ceil(config.win.width / config.size.tile),
         y: Math.ceil(config.win.height / config.size.tile)
-    };
+    }
 
     config.center = {
         x: Math.round(config.tiles.x / 2),
         y: Math.round(config.tiles.y / 2)
-    };
+    }
 
+    // Only update viewport if it exists
     if (typeof viewport !== "undefined" && viewport) {
-        viewport.w = config.win.width / zoom;
-        viewport.h = config.win.height / zoom;
+        if (!playerAnimating) {
+            viewport.x = 0;
+            viewport.y = 0;
+        }
+        viewport.w = config.win.width;
+        viewport.h = config.win.height;
     }
 
     if (typeof context !== "undefined" && context && context.canvas) {
-        context.canvas.width = config.win.width / zoom;
-        context.canvas.height = config.win.height / zoom;
-        // Stretch canvas visually to fill screen
-        context.canvas.style.width = config.win.width + "px";
-        context.canvas.style.height = config.win.height + "px";
+        context.canvas.width = config.win.width;
+        context.canvas.height = config.win.height;
     }
 }
 
@@ -238,10 +225,6 @@ function Loop() {
     // Draw Map
     Sizing();
     viewport.center();
-
-    context.save();
-    context.scale(zoom, zoom);
-
     map.draw();
 
     // Draw Interctable Tiles
@@ -264,8 +247,6 @@ function Loop() {
     
     // Draw Player Health Bar on Hud
     if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
-
-    context.restore();
 
     // Dialogue handling
     if (_dialogueActive && actionButtonAPressed) {
@@ -318,6 +299,3 @@ window.onload = function() {
 window.onresize = function() {
     Sizing();
 };
-
-window.addEventListener("resize", Sizing);
-window.addEventListener("orientationchange", Sizing);
