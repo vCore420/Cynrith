@@ -257,14 +257,7 @@ div#log {
 
 
 /* Mobile Portrait Styles */
-@media (max-width: 600px) and (orientation: portrait) {
-
-  div#log {
-    font-size: 0.3em;
-    padding: 3px 7px;
-    top: 10px;
-    left: 10px;
-  }
+@media (max-width: 600px) and (orientation: portrait) {       
     
   /* Touch Controls */  
   #touch-controls {
@@ -279,3 +272,4 @@ div#log {
   }
 
 }
+
