@@ -80,14 +80,9 @@ function isPortraitPhone() {
     return window.innerWidth < 600 && window.innerHeight > window.innerWidth;
 }
 
-function getTileSize() {
-    if (isPortraitPhone()) return 96; // Large for phones
-    return 64; // Default for desktop/tablet
-}
-
-function getCharSize() {
-    if (isPortraitPhone()) return 128;
-    return 96;
+let zoom = 1;
+function updateZoom() {
+    zoom = (isPortraitPhone()) ? 1.5 : 1;
 }
 
 // Initial Setup:
@@ -181,13 +176,14 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
 
 // Window and Canvas Sizing:
 function Sizing() {
+    updateZoom();
     config.win = {
         width: window.innerWidth,
         height: window.innerHeight
     };
 
-    config.size.tile = getTileSize();
-    config.size.char = getCharSize();
+    config.size.tile = 64; // Keep your default tile size
+    config.size.char = 96;
 
     config.tiles = {
         x: Math.ceil(config.win.width / config.size.tile),
@@ -200,13 +196,16 @@ function Sizing() {
     };
 
     if (typeof viewport !== "undefined" && viewport) {
-        viewport.w = config.win.width;
-        viewport.h = config.win.height;
+        viewport.w = config.win.width / zoom;
+        viewport.h = config.win.height / zoom;
     }
 
     if (typeof context !== "undefined" && context && context.canvas) {
-        context.canvas.width = config.win.width;
-        context.canvas.height = config.win.height;
+        context.canvas.width = config.win.width / zoom;
+        context.canvas.height = config.win.height / zoom;
+        // Stretch canvas visually to fill screen
+        context.canvas.style.width = config.win.width + "px";
+        context.canvas.style.height = config.win.height + "px";
     }
 }
 
@@ -239,6 +238,10 @@ function Loop() {
     // Draw Map
     Sizing();
     viewport.center();
+
+    context.save();
+    context.scale(zoom, zoom);
+
     map.draw();
 
     // Draw Interctable Tiles
@@ -261,6 +264,8 @@ function Loop() {
     
     // Draw Player Health Bar on Hud
     if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
+
+    context.restore();
 
     // Dialogue handling
     if (_dialogueActive && actionButtonAPressed) {
