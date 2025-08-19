@@ -255,12 +255,27 @@ div#log {
   color: #222335;
 }
 
-/* Vertical Screen Orientation Adjustments */
-@media (orientation: portrait) {
 
+/* Mobile Portrait Styles */
+@media (max-width: 600px) and (orientation: portrait) {
+
+  div#log {
+    font-size: 0.3em;
+    padding: 3px 7px;
+    top: 10px;
+    left: 10px;
+  }
+    
   /* Touch Controls */  
   #touch-controls {
     left: 20%;
   }
-  
+
+  .dpad-btn {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  font-size: 1em;
+  }
+
 }
