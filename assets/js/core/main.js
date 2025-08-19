@@ -92,6 +92,9 @@ function getCharSize() {
 
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
+
+    Sizing();
+    
     if (typeof characters !== "undefined") characters.length = 0;
     if (typeof inventory !== "undefined") inventory.length = 0;
     if (typeof playerQuests !== "undefined") {
