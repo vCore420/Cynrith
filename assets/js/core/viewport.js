@@ -45,9 +45,9 @@ Viewport.prototype = {
         viewport.scroll(center_x, center_y);
     },
     scroll: function(x, y) {
-        const canvas = document.getElementById('game');
-        const visibleW = canvas.width;
-        const visibleH = canvas.height;
+        const zoom = config.zoom || 1;
+        const visibleW = window.innerWidth / zoom;
+        const visibleH = window.innerHeight / zoom;
         this.x = x - (visibleW / 2);
         this.y = y - (visibleH / 2);
     }
