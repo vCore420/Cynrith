@@ -45,7 +45,9 @@ Viewport.prototype = {
         viewport.scroll(center_x, center_y);
     },
     scroll: function(x, y) {
-        this.x = x - (this.w / 2);
-        this.y = y - (this.h / 2);
+        const screenW = window.innerWidth;
+        const screenH = window.innerHeight;
+        this.x = x - (screenW / 2);
+        this.y = y - (screenH / 2);
     }
 };
