@@ -677,15 +677,15 @@ body, #title-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* <-- This centers vertically */
+    justify-content: center; 
     padding: 24px 0 0 0;
   }
 
   #title-screen h1 {
-    font-size: 4em;
+    font-size: 5.5em;
     margin-bottom: 32px;
-    margin-top: 0; /* Remove margin-top for better centering */
-    text-shadow: 0 0 12px #181a1f, 0 0 2px #3af0ffcc;
+    margin-top: 0; 
+    text-shadow: 0 0 16px #181a1f, 0 0 4px #3af0ffcc;
   }
 
   #title-screen button {
@@ -696,15 +696,26 @@ body, #title-screen {
 
   #lore-text {
     font-size: 1.1em;
-    max-width: 95vw;
+    max-width: 90vw;
     padding: 0 8px;
   }
 
   .char-select-content {
-    max-width: 98vw;
+    max-width: 85vw;
     min-height: 220px;
-    padding: 18px 8px 12px 8px;
+    padding: 12px 8px 12px 8px;
     gap: 10px;
+  }
+
+  #char-select-close {
+    top: 6px; right: 6px;
+    font-size: 1.2em;
+  }
+
+  #character-select h2 {
+    font-size: 1.6em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 1px 0 #181a1f, 0 0 8px #3af0ffcc;        
   }
 
   #char-preview {
@@ -712,22 +723,63 @@ body, #title-screen {
     height: 64px;
   }
 
-  #save-list {
-    min-width: 90vw;
-    max-height: 120px;
-    font-size: 0.7em;
+  #player-name-input {
+    width: 80%;
+    padding: 10px 14px;
+    font-size: 0.8em;
+    letter-spacing: 0.02em;
+    border: 1.4px solid #3af0ff;
   }
 
-  .confirm-btn,
+  #char-list {
+    list-style: none;
+    margin-left: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #char-list li {
+    padding: 8px 12px;
+    border: 1.4px solid #3af0ff;
+    font-size: 1em;
+    letter-spacing: 0.06em;
+  }
+
+  #save-list {
+    min-width: 80vw;
+    max-height: 120px;
+    font-size: 0.8em;
+  }
+
+  .confirm-btn {
+    border: 1.4px solid #3af0ff;
+    font-size: 1em;
+  }
+
   .danger-btn {
     font-size: 1em;
     padding: 10px 18px;
   }
 
+  #load-game-menu h2 {
+    font-size: 1.6em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 1px 0 #181a1f, 0 0 8px #3af0ffcc;
+  }
+
+  #loadgame-close {
+    top: 6px; right: 6px;
+    font-size: 1.2em;
+  }
+
   #loading-bar-container {
     width: 90vw;
     right: 5vw;
-    bottom: 24px;
+    bottom: 20%;
   }
 
   #loading-carousel {
