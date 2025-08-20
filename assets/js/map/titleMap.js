@@ -34,7 +34,7 @@ titleViewport.scroll = function(x, y) {
 };
 
 function getTitleZoom() {
-    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.1 : 1;
+    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1 : 1;
 }
 
 // Main animation loop for title screen
