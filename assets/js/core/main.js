@@ -83,7 +83,7 @@ function isPortraitZoomed() {
 
 function getZoom() {
     // Portrait phone: zoom in
-    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.1 : 1;
+    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.04 : 1;
 }
 
 
