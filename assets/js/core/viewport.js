@@ -46,7 +46,7 @@ Viewport.prototype = {
     },
     scroll: function(x, y) {
         // Optionally tweak these values for fine centering
-        this.x = x - (this.w / 2) + config.size.char / 5;
-        this.y = y - (this.h / 2) + config.size.char / 5;
+        this.x = x - (this.w / 2) + config.size.char / 10;
+        this.y = y - (this.h / 2) + config.size.char / 10;
     }
 };
