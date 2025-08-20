@@ -123,7 +123,6 @@ window.addEventListener("DOMContentLoaded", function() {
         });
         selectCharacter(0);
         playerNameInput.value = "";
-        playerNameInput.focus();
     };
 
     // Confirm selection
