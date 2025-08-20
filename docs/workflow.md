@@ -33,6 +33,7 @@
 ## Title Menu
 - [ ] Add more logic for player name input to ensure name is at least 4 charaters long and give overwrite warner if name matches a save file
 - [ ] Add loading screen on window load to hide title screen loading 
+- [ ] Ensure player name input validates minimum length and warns if overwriting a save
 
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
@@ -68,10 +69,10 @@
 ## Docs & Dev work
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
 - [ ] Add unit test scripts 
+- [ ] Optimize main game loop for mobile performance (reduce DOM updates, avoid resizing canvas every frame, batch sprite/frame updates)
 
 ---
 
-- makes stat icons
 
 ## **New Since Last Commit*
 
@@ -83,5 +84,9 @@
 - Added assets for player stat icons
 - Re Designed all UI to match theme made for title screen
 - Started work on Floor 3
+- Ran first deployment,
+- Styled main maps and all map contents for phone screens
+- Styled title screen for phones
+- Made player stat icons
 
 ---

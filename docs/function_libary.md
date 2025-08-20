@@ -25,6 +25,8 @@
 - FLOOR_NAMES - Holds all floor names to their matching map indexs (Used in the UI).
 - WORLD_SPRITES — Array of world sprite definitions for modular animated objects (id, positions, spriteSheet, imageW, imageH, rows, cols, animSpeed, zIndex, collision).
 - INTERACTABLE_TILES — Array of interactable tile definitions (id, map, x, y, image, notification, dialogue, rewards).
+- INVENTORY_SIZE — Constant for inventory grid size.
+- QUEST_DEFINITIONS — Object mapping quest IDs to their data.
 
 
 ## Control flags
@@ -32,6 +34,7 @@
 - actionButtonAPressed, actionButtonBPressed — flags for A/B button presses (used for interactions).
 - playerAnimating — Flag for controlling player animation and viewport freeze during combat/knockback.
 - deathScreenShown — Flag for showing/hiding the player death overlay.
+- player.frozen — Flag for freezing player movement (used in dialogue, combat, etc.).
 
 
 ## Collision & Movement
@@ -43,6 +46,9 @@
 
 
 ## Character System
+- Player(tile_x, tile_y, spriteFile) — Player constructor.
+- player.move(x, y) — Moves the player by x/y pixels, updates tile position.
+- player.frame() — Advances player animation frame.
 - Character(x, y, spriteSrc, type, customData) — Base class for NPCs and enemies, supports custom data and unique IDs.
 - NPC(...), Enemy(...) — Friendly and hostile character constructors.
 - respawnEnemy(enemyId, spawnIdx) — Respawns an enemy at its original spawn location after death.
@@ -53,8 +59,10 @@
 - spawnEnemy(typeId, x, y) — Spawns an enemy from ENEMY_TYPES at a location.
 - spawnCharactersForMap(mapIndex) — Spawns all NPCs and enemies for a given map based on their definitions.
 - spawnTeleportStonesForMap(mapIndex) — Spawns teleport stones at defined locations for the current map.
+- drawTeleportStones() — Draws teleport stones.
 - spawnWorldSpritesForMap(mapIndex) — Spawns world sprites for the current map based on their definitions.
-- spawnInteractableTilesForMap(mapIndex) — Spawns interactable tiles for the current map.
+- spawnTitleScreenNPCs(mapName) — Spawns NPCs for the title screen map.
+- spawnTitleWorldSpritesForMap(mapName) — Spawns world sprites for the title screen map.
 
 
 ## Npc Logic
@@ -72,6 +80,13 @@
 - checkTeleport() — Handles teleport tile logic and notifications.
 - checkBackTeleport() — Handles back-teleport tile logic and notifications.
 
+## Interactable/Trigger Tiles
+- spawnInteractableTilesForMap(mapIndex) — Spawns interactable tiles for the current map.
+- drawInteractableTiles() — Draws interactable tiles.
+- checkInteractableTileInteraction() — Checks for interactable tile interaction.
+- spawnTriggerTilesForMap(mapIndex) — Spawns trigger tiles for the current map.
+- checkTriggerTileActivation() — Checks for trigger tile activation.
+
 
 ## Combat System
 - showDamagePopup(x, y, dmg, type) — Displays a damage popup above the target (enemy or player) with animated slide and fade.
@@ -81,9 +96,11 @@
 - getDirectionToFace(npc, player) — Returns the direction key for an NPC/enemy to face the player.
 - moveEnemyTowardPlayer(char) — Moves an enemy toward the player, sets facing direction, and triggers hostile state.
 - drawDamagePopups() — Renders all active damage popups above characters.
-- attackEnemy() — Handles player attack logic, enforces attack speed cooldown, and applies damage to enemies.
-- quickAttackAnim() — Animates the player's attack lunge.
-- knockbackAnim() — Animates the player being knocked back.
+- player.attackEnemy() — Handles player attack logic, enforces attack speed cooldown, and applies damage to enemies.
+- player.quickAttackAnim() — Animates the player's attack lunge.
+- player.knockbackAnim() — Animates the player being knocked back.
+- moveEnemyTowardTile(char, tx, ty) — Moves an enemy toward a specific tile.
+- findPathAStar(start, goal, isWalkable) — Finds a path using A* algorithm.
 
 
 ## Menu/UI
@@ -93,12 +110,17 @@
 - updatePlayerMenuSprite() — Draws the player sprite in the menu preview.
 - updatePlayerMenuStats() — Displays player stats (health, XP, attack, defence) in the menu, updates regularly.
 - charPreviewCanvas mouseenter/mouseleave — Handles sprite preview animation on hover in the character selection screen.
+- hideGameUI() — Hides all game UI elements.
+- showGameUI() — Shows all game UI elements.
+- showDeathScreen() — Shows player death screen.
 
 
 ## Notification & Dialogue System
 - notify(text, time) — Show a notification at the top of the screen for a set time.
 - dialogue(...lines) — Shows a dialogue block at the bottom of the screen, disables player movement, advances on B/A button.
 - showDialogueLine(idx) — Advances dialogue lines and updates footer hints based on quest/dialogue type.
+- advanceDialogue() — Advances through dialogue box.
+- closeDialogue() — Closes the dialogue box.
 
 
 ## Inventory System
@@ -120,6 +142,28 @@
 - updateQuestsUI(tab) — Updates the quest menu UI for active/completed quests.
 - updateQuestHUD() — Updates the on-screen quest HUD to show current active quests and their progress.
 - getItemCount(itemId) — Returns the number of a specific item in the player's inventory.
+- playerQuests — Object holding active and completed quests.
+- playerQuestProgress — Object holding quest progress.
+- statBuildQuestStart — Object holding stat build quest start values.
+
+
+## Title Screen Map System
+- loadTitleMap() — Loads the title screen map.
+- centerTitleViewport() — Centers the title screen viewport.
+- startTitleScreenLoop() — Starts the animation loop for the title screen.
+- drawTitleMap() — Draws the title screen map.
+- drawTitleScreenNPCs() — Draws NPCs on the title screen map.
+- drawTitleWorldSprites(zIndex) — Draws world sprites on the title screen map.
+- unloadTitleMap() — Unloads the title screen map and cleans up.
+- resizeTitleMapCanvasAndViewport() — Resizes the title map canvas and viewport.
+
+
+## Trader Shop System
+- openTraderShop(traderId) — Opens the trader shop menu.
+- closeTraderShop() — Closes the trader shop menu.
+- updateTraderShopUI() — Updates the trader shop UI.
+- buyItem(itemId, price) — Buys an item from the trader.
+- sellItem(itemId, price) — Sells an item to the trader.
 
 
 ## Screen Effects
@@ -144,6 +188,9 @@
 - Log(type, text) — Log data to screen (e.g. FPS, coords).
 - LoadURL(url, callback) — AJAX call for loading map and other data.
 - clearAllMovementKeys() — Sets all movement key flags to false (used to stop player movement instantly).
+- simulateKey(keyCode, isDown) — Simulates key events for touch controls.
+- isPortraitZoomed() — Returns true if device is portrait and zoomed.
+- getZoom() — Returns the current zoom factor.
 
 
 ## World Sprite System
