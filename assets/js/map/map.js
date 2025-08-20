@@ -139,8 +139,8 @@ Map.prototype = {
                             if (typeof assetIdx === "undefined") continue;
                             let frame = this.frameIndices[assetIdx] || 0;
                             if (frame >= this.data.assets[assetIdx].frames) frame = 0;
-                            let tile_x = Math.floor((x * config.size.tile) - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-                            let tile_y = Math.floor((y * config.size.tile) - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+                            let tile_x = Math.floor((x * config.size.tile) - viewport.x);
+                            let tile_y = Math.floor((y * config.size.tile) - viewport.y);
                             context.drawImage(
                                 map.tiles[assetIdx],
                                 frame * config.size.tile,
@@ -162,8 +162,8 @@ Map.prototype = {
             for (let y = y_min; y < y_max; y++) {
                 for (let x = x_min; x < x_max; x++) {
                     let value  = this.data.layout[y][x] - 1;
-                    let tile_x = Math.floor((x * config.size.tile) - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-                    let tile_y = Math.floor((y * config.size.tile) - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+                    let tile_x = Math.floor((x * config.size.tile) - viewport.x);
+                    let tile_y = Math.floor((y * config.size.tile) - viewport.y);
 
                     if (value > -1) {
                         let frame = this.data.frame;

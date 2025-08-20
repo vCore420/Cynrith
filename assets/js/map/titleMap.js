@@ -22,23 +22,28 @@ let activeTitleWorldSprites = [];
 // Canvas for the title map 
 const titleMapCanvas = document.createElement("canvas");
 titleMapCanvas.id = "title-map-canvas";
-titleMapCanvas.style.position = "fixed";
-titleMapCanvas.style.top = "0";
-titleMapCanvas.style.left = "0";
-titleMapCanvas.style.width = "100vw";
-titleMapCanvas.style.height = "100vh";
-titleMapCanvas.style.zIndex = "1";
-titleMapCanvas.style.pointerEvents = "none";
 document.body.prepend(titleMapCanvas);
 
 let titleMapContext = titleMapCanvas.getContext("2d");
 let titleViewport = new Viewport(0, 0, titleMapCanvas.width, titleMapCanvas.height);
 
+// Pure centering for title screen map
+titleViewport.scroll = function(x, y) {
+    this.x = x - (this.w / 2);
+    this.y = y - (this.h / 2);
+};
+
+function getTitleZoom() {
+    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.1 : 1;
+}
 
 // Main animation loop for title screen
 function startTitleScreenLoop() {
     let lastNpcAnimTime = 0;
     function loop(now) {
+        const zoom = getTitleZoom();
+        titleMapContext.save();
+        titleMapContext.setTransform(zoom, 0, 0, zoom, 0, 0);
 
         // Advance map tile frames
         if (now - lastMapFrameTime >= MAP_FRAME_INTERVAL && titleMap && titleMap.data && titleMap.data.assets) {
@@ -74,6 +79,8 @@ function startTitleScreenLoop() {
         drawTitleWorldSprites(0);
         drawTitleScreenNPCs();
         drawTitleWorldSprites(1);
+
+        titleMapContext.restore();
         requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
@@ -84,25 +91,20 @@ function centerTitleViewport() {
     if (!titleMap) return;
     let mapPixelWidth = titleMap.width * config.size.tile;
     let mapPixelHeight = titleMap.height * config.size.tile;
-    let viewportWidth = titleViewport.w;
-    let viewportHeight = titleViewport.h;
-    let scrollX = Math.floor((mapPixelWidth - viewportWidth) / 4);
-    let scrollY = Math.floor((mapPixelHeight - viewportHeight) / 4);
-    scrollX = Math.max(0, scrollX);
-    scrollY = Math.max(0, scrollY);
-    titleViewport.scroll(scrollX, scrollY);
+    let center_x = Math.floor(mapPixelWidth / 2);
+    let center_y = Math.floor(mapPixelHeight / 2);
+    titleViewport.scroll(center_x, center_y);
 }
 
 // Load title map
 function loadTitleMap() {
-    titleMapCanvas.width = window.innerWidth;
-    titleMapCanvas.height = window.innerHeight;
+    resizeTitleMapCanvasAndViewport();
     titleMap = new Map(chosenTitleMapName);
     titleMap.onLoad = function() {
         titleMapReady = true;
         spawnTitleScreenNPCs(chosenTitleMapName);
         spawnTitleWorldSpritesForMap(chosenTitleMapName);
-        centerTitleViewport();
+        centerTitleViewport();        
         startTitleScreenLoop();
     };
 }
@@ -125,8 +127,8 @@ function drawTitleMap() {
                     if (typeof assetIdx === "undefined") continue;
                     let frame = titleMapFrameIndices[assetIdx] || 0;
                     if (frame >= titleMap.data.assets[assetIdx].frames) frame = 0;
-                    let px = x * tileSize - titleViewport.x;
-                    let py = y * tileSize - titleViewport.y;
+                    let px = Math.round(x * tileSize - titleViewport.x);
+                    let py = Math.round(y * tileSize - titleViewport.y);
                     titleMapContext.drawImage(
                         titleMap.tiles[assetIdx],
                         frame * tileSize,
@@ -188,8 +190,8 @@ function drawTitleScreenNPCs() {
             const frames = keys[npc.movement.key].f;
             frame = frames[npc.movement.frame || 0] || frames[0];
         }
-        let px = npc.x * config.size.tile - titleViewport.x;
-        let py = npc.y * config.size.tile - titleViewport.y;
+        let px = Math.round(npc.x * config.size.tile - titleViewport.x);
+        let py = Math.round(npc.y * config.size.tile - titleViewport.y);
         titleMapContext.drawImage(
             npc.sprite,
             frame * config.size.char,
@@ -276,9 +278,17 @@ function unloadTitleMap() {
 }
 
 // Redraw on resize
-window.addEventListener("resize", () => {
-    titleMapCanvas.width = window.innerWidth;
-    titleMapCanvas.height = window.innerHeight;
+function resizeTitleMapCanvasAndViewport() {
+    const zoom = getTitleZoom();
+    titleMapCanvas.width = Math.round(window.innerWidth / zoom);
+    titleMapCanvas.height = Math.round(window.innerHeight / zoom);
+    titleMapCanvas.style.width = window.innerWidth + "px";
+    titleMapCanvas.style.height = window.innerHeight + "px";
     titleViewport.w = titleMapCanvas.width;
     titleViewport.h = titleMapCanvas.height;
+}
+
+window.addEventListener("resize", () => {
+    resizeTitleMapCanvasAndViewport();
+    centerTitleViewport();
 });

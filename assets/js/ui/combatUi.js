@@ -33,8 +33,8 @@ function drawDamagePopups() {
         popup.opacity = Math.max(0, Math.min(1, fade));
         const slide = -24 * progress;
 
-        let px = Math.round(popup.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-        let py = Math.round(popup.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+        let px = Math.round(popup.x * config.size.tile - viewport.x);
+        let py = Math.round(popup.y * config.size.tile - viewport.y);
         py -= 22 + slide;
 
         // Use CSS variables for colors

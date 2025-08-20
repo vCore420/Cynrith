@@ -70,8 +70,8 @@ function drawCharacters() {
             frame = frames[char.movement.frame || 0] || frames[0];
         }
 
-        let px = Math.round(char.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-        let py = Math.round(char.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+        let px = Math.round(char.x * config.size.tile - viewport.x);
+        let py = Math.round(char.y * config.size.tile - viewport.y);
         context.drawImage(
             char.sprite,
             frame * config.size.char,

@@ -117,12 +117,12 @@ const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png")
 Player.prototype = {
     draw: function() {
         let frame = (player.movement.moving) ? keys[player.movement.key].f[player.movement.frame] : keys[player.movement.key].f[1];
-        let pos_x = Math.round(player.pos.x - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-        let pos_y = Math.round(player.pos.y - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+        let pos_x = Math.round(player.pos.x - viewport.x);
+        let pos_y = Math.round(player.pos.y - viewport.y);
 
         this.light(pos_x, pos_y);
         this.torch_func(pos_x, pos_y);
-        
+
         context.drawImage(
             this.sprite,
             frame * config.size.char,

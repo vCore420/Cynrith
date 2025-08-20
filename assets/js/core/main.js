@@ -77,9 +77,13 @@ document.getElementById('btn-a').addEventListener('click', function() {
 });
 
 
+function isPortraitZoomed() {
+    return window.innerWidth < 600 && window.innerHeight > window.innerWidth && getZoom() > 1;
+}
+
 function getZoom() {
     // Portrait phone: zoom in
-    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.6 : 1;
+    return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.1 : 1;
 }
 
 
@@ -193,8 +197,8 @@ function Sizing() {
     }
 
     if (typeof context !== "undefined" && context && context.canvas) {
-        context.canvas.width = config.win.width / zoom;
-        context.canvas.height = config.win.height / zoom;
+        context.canvas.width = Math.round(config.win.width / zoom);
+        context.canvas.height = Math.round(config.win.height / zoom);
         context.canvas.style.width = config.win.width + "px";
         context.canvas.style.height = config.win.height + "px";
     }
@@ -258,7 +262,7 @@ function Loop() {
     if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
 
     context.restore();
-    
+
     // Dialogue handling
     if (_dialogueActive && actionButtonAPressed) {
         advanceDialogue();

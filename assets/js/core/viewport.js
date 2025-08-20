@@ -45,7 +45,8 @@ Viewport.prototype = {
         viewport.scroll(center_x, center_y);
     },
     scroll: function(x, y) {
-        this.x = x - (this.w / 2);
-        this.y = y - (this.h / 2);
+        // Optionally tweak these values for fine centering
+        this.x = x - (this.w / 2) + config.size.char / 5;
+        this.y = y - (this.h / 2) + config.size.char / 5;
     }
 };

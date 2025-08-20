@@ -62,19 +62,8 @@ function drawTeleportStones() {
         let sx = col * frameW;
         let sy = row * frameH;
 
-        let px = Math.round(
-            stone.x * config.size.tile
-            - viewport.x
-            + (config.win.width / 2)
-            - (viewport.w / 2)
-        );
-        let py = Math.round(
-            (stone.y * config.size.tile)
-            - viewport.y
-            + (config.win.height / 2)
-            - (viewport.h / 2)
-            - (frameH - config.size.tile)
-        );
+        let px = Math.round(stone.x * config.size.tile - viewport.x);
+        let py = Math.round(stone.y * config.size.tile - viewport.y - (frameH - config.size.tile));
 
         context.drawImage(
             teleportStoneSprite,

@@ -36,8 +36,8 @@ function drawInteractableTiles() {
             const row = frames > 1 ? Math.floor(frameIndex / tile.cols) : 0;
             const sx = col * (tile.imageW / tile.cols);
             const sy = row * (tile.imageH / tile.rows);
-            const px = Math.round(tile.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-            const py = Math.round(tile.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2) - ((tile.imageH / tile.rows) - config.size.tile));
+            const px = Math.round(tile.x * config.size.tile - viewport.x);
+            const py = Math.round(tile.y * config.size.tile - viewport.y - ((tile.imageH / tile.rows) - config.size.tile));
             context.drawImage(
                 img,
                 sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),
@@ -47,8 +47,8 @@ function drawInteractableTiles() {
             // Default: use static image
             const img = new Image();
             img.src = tile.image;
-            let px = Math.round(tile.x * config.size.tile - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-            let py = Math.round(tile.y * config.size.tile - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+            let px = Math.round(tile.x * config.size.tile - viewport.x);
+            let py = Math.round(tile.y * config.size.tile - viewport.y);
             context.drawImage(img, px, py, config.size.tile, config.size.tile);
         }
     });
