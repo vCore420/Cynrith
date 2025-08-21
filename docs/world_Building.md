@@ -242,6 +242,7 @@ Legends speak of the Gloomroot as a place where the Architect’s influence is f
 
 - **Mistbound Ork**   
    Mistbound Ork are not ordinary orks—they are descendants of ancient warriors who once tried to tame the Thicket’s wild magic. Over generations, the forest’s strange energies have twisted their forms and minds. Some retain flickers of memory from previous cycles, speaking in riddles or recalling battles that happened long ago.
+   Story Hook: Defeating or befriending a Mistbound Ork may unlock a vision of a past cycle, revealing a secret about the Architect.
 
 - **Vampire Stalkers**  
   Pale, swift predators who blend into the shadows, attacking unsuspecting adventurers. Some may attempt to speak, offering cryptic warnings or bargains.
@@ -260,13 +261,16 @@ Add a rare enemy or mini-boss, such as a “Thicket Warden” (a giant, corrupte
 ## NPCs & Quest Givers
 
 - **Eira of the Veil**  
-  A mysterious, hooded wanderer who appears to be studying the anomalies of the Thicket. Offers lore on the Fracture and the forest’s role as a “memory vault.”
+  A hooded wanderer who studies the forest’s anomalies. She offers lore about the Fracture and the Thicket’s role as a “memory vault.”
+  Quest: Collect bioluminescent fungi and glitch fragments to help Eira decode a vision from the Architect.
 
 - **Bruk the Ork Outcast**  
-  A surprisingly friendly ork who was exiled for refusing to serve the Thicket’s darker powers. Offers quests to sabotage ork raider camps or recover his lost totem.
+  A friendly ork exiled for refusing to serve the Thicket’s darker powers.
+  Quest: Sabotage ork raider camps, recover Bruk’s lost totem, and learn about the Orks’ ancient pact with the forest.
 
 - **The Whispering Shade**  
   An incorporeal figure at a ruined altar, offering cryptic advice and side quests tied to the floor’s glitches and secrets.
+  Quest: Activate glitching statues to reveal hidden lore about the Fracture and the Architect’s experiments.
 
 ---
 
@@ -293,14 +297,23 @@ Add a rare enemy or mini-boss, such as a “Thicket Warden” (a giant, corrupte
 
 - NPCs reference strange phenomena:  
   “Sometimes, you’ll see your own shadow walking ahead of you… even when you’re standing still.”
-- The Thicket is rumored to be a crossroads—“At the center is a place where the world forgets itself. Don’t linger there too long.”
+- The Thicket is rumored to be a crossroads—“At the center is a place where the world forgets itself. Don’t linger there too long.” - banch off this to have 'brain dead' npc interactions
 - Hints that some orks and vampires once belonged to earlier “cycles” of Cynrith, and retain flickers of ancient memory.
+- Areas here sometimes “whisper” to the player, offering cryptic warnings or flashes of ancient events. - include dialogue trigger tiles
+
+
+## Architect’s Influence
+- The Architect’s presence is felt more strongly:
+- Glitches and echoes are more frequent.
+- NPCs and enemies sometimes “glitch” mid-dialogue, revealing hidden truths.
+- The player may experience visions or skill surges after key events.
+
 
 ---
 
 ## Teleport Stone & Floor Exit
 
-At the heart of the Thicket, a **crumbling stone arch** stands, half-swallowed by roots and covered in glowing runes. The teleport stone here pulses with a cold, blue light, and the glyphs are more complex, sometimes “glitching” to show fleeting, cryptic symbols.
+At the heart of the Thicket, a **crumbling stone arch** stands, half-swallowed by roots and covered in glowing runes. The teleport stone here pulses with a cold, blue light, and the glyphs are more complex, sometimes “glitching” to show fleeting, cryptic symbols. - this is really good but unfortunatly we only have the one looking teleport stone 
 
 **Flavor Text:**  
 > “A chill runs through you as you approach the arch. The runes flicker, showing visions of battles fought and lost, faces you do not remember. The forest seems to hold its breath, as if awaiting your choice to ascend… or vanish into memory.”

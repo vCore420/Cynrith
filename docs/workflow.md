@@ -76,17 +76,6 @@
 
 ## **New Since Last Commit*
 
-- Added npc interaction cooldown
-- Expanded map loading logic to load multi frame tiles dynamicly
-- Reduced player movement speed
-- Introduced Shop/Trader System on floor 3
-- Started trigger tile system, current calls dialogue when triggered but left open for modularity
-- Added assets for player stat icons
-- Re Designed all UI to match theme made for title screen
-- Started work on Floor 3
-- Ran first deployment,
-- Styled main maps and all map contents for phone screens
-- Styled title screen for phones
-- Made player stat icons
+- Styled all eliements for a portrait phone and tablet screen
 
 ---
