@@ -180,6 +180,7 @@ div#log {
     border: 1px solid #3af0ff;
     min-height: 38px;
     max-height: 38px;
+    opacity: 0.9;
 }
 
 .quest-hud-entry img {
@@ -187,7 +188,7 @@ div#log {
     height: 28px;
     object-fit: contain;
     border-radius: 5px;
-    background: var(--dk-ctrl, #181a1f);
+    background: transparent;
     flex-shrink: 0;
     margin-right: 2px;
 }
@@ -196,7 +197,7 @@ div#log {
     width: 28px;
     height: 28px;
     border-radius: 5px;
-    background: var(--dk-ctrl, #181a1f);
+    background: transparent;
     margin-right: 2px;
     display: inline-block;
     vertical-align: middle;
@@ -255,20 +256,100 @@ div#log {
   color: #222335;
 }
 
+/* For Bigger Devices like Tablets */
+@media (orientation: portrait) {
+  #touch-controls {
+    left: 20%;
+  }
+}
 
 /* Mobile Portrait Styles */
 @media (max-width: 600px) and (orientation: portrait) {       
     
-  /* Touch Controls */  
+  div#log {
+    font-size: 0.6em;
+    top: 2%;
+    left: 3%;
+ }
+
   #touch-controls {
     left: 20%;
   }
 
   .dpad-btn {
-  width: 40px;
-  height: 40px;
-  margin: 3px;
-  font-size: 1em;
+   width: 40px;
+   height: 40px;
+   margin: 3px;
+   font-size: 1em;
+   border: 1.4px solid #3af0ff;
+  }
+
+  #act-controls {   
+    bottom: 6vw;              
+    right: 4vw;
+    width: 100px;          
+    height: 100px;
+  }
+
+  #btn-a, #btn-b {     
+    width: 65px;
+    height: 65px;
+    margin: 6px;
+    font-size: 1.5em;
+    border: 1.4px solid #3af0ff;
+  }
+
+  #btn-a {
+    right: 0;
+    bottom: 60px;
+  }
+
+  #btn-b {
+    right: 60px;   
+    bottom: 0px;  
+  }
+
+  .quest-hud {
+    left: 18px;
+    bottom: 65%;
+    width: 140px;
+    max-height: 240px;
+  }
+
+  .quest-hud-entry {
+    padding: 1px 6px;
+    gap: 8px;
+    font-size: 0.65em;
+    border: 1.3px solid #3af0ff;
+    min-height: 34px;
+    max-height: 34px;
+  }
+
+  .quest-hud-entry img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .enemy-icon-canvas {
+    width: 20px;
+    height: 20px;
+  }
+
+  .quest-hud-entry .counter {
+    font-size: 0.75em;
+  }
+
+  /* Player Death/Respawn Screen Title */
+  .death-overlay h1 {
+    font-size: 5em;
+    margin-bottom: 1em;
+    text-shadow: 0 0 10px #000, 0 0 20px rgb(71, 0, 0);
+  }
+
+  /* Respawn Button */
+  .death-overlay button {
+    font-size: 2em;
+    border: 1.5px solid #3af0ff;
   }
 
 }
