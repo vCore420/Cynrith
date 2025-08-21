@@ -63,7 +63,7 @@
 /* Dialogue Block Styles */
 .dialogue-block {
   left: 50%;
-  bottom: 125px;
+  bottom: 14em;
   padding: 10px 10px;
   border: 0.8px solid #3af0ff;
   font-size: 0.7em;
