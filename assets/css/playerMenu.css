@@ -382,3 +382,165 @@
     color: #1b3d41;
     opacity: 1;
 }
+
+/* Mobile Portrait Styles */
+@media (max-width: 600px) and (orientation: portrait) {  
+
+  /* Player Menu Button on Hud */
+  .menu-btn {
+    top: 2%;
+    right: 4%;
+    font-size: 1em;
+    padding: 6px 10px;
+  }
+
+  /* Player Menu Overlay */
+  .player-menu {
+    padding: 0;
+  }
+
+  /* Player Menu Content */
+  .player-menu-content {
+    width: 85vw;
+    min-height: 200px;
+    padding: 18px 8px 12px 8px;
+  }
+
+  /* Player Menu Inner Content */
+  .player-menu-inner {
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  /* Left side of Player Menu */
+  .menu-left {
+    width: 50%;
+    margin-left: 6px;
+    margin-top: 16px;
+    gap: 6px;
+  }
+
+  /* Menu Buttons */
+  .menu-nav-btn {
+    font-size: 1em;
+    padding: 8px 0;
+    margin-bottom: 6px;
+  }
+
+  /* Player Sprite Preview */
+  #player-sprite-preview {
+    margin: 0 0 8px 0;
+    position: absolute;
+    right: 5%;
+    bottom: 30%;
+  }
+
+  /* Player Stats Preview */
+  #player-stats-preview {
+    font-size: 0.8em;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    right: 8%;
+    bottom: 10%;
+  }
+
+  /* Close Button */
+  .close-btn {
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+    border-radius: 6px;
+  }
+
+  /* Inventory Grid */
+  .inventory-grid {
+    grid-template-columns: repeat(3, 64px);
+    grid-template-rows: repeat(3, 64px);
+    gap: 12px;
+    margin: 20px auto;
+  }
+
+  /* Inventory Slot */
+  .inventory-slot {
+    width: 64px;
+    height: 64px;
+    border-radius: 3px;
+  }
+
+  /* Inventory Slot Image */
+  .inventory-slot img {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Inventory Amount */
+  .inventory-amount {
+    font-size: 0.5em;
+    padding: 1px 4px;
+  }
+
+  /* Item Dropdown */
+  .item-dropdown {
+    width: 70vw;
+    padding: 12px 8px 12px 8px; 
+    font-size: 1em;
+  }
+
+  /* Item Dropdown Buttons */
+  .item-dropdown .dropdown-btn {
+    font-size: 0.95em;
+    padding: 6px 0;
+  }
+
+  /* Remove Amount Block */
+  .item-dropdown .remove-amount-block {
+    gap: 6px;
+  }
+
+  .item-dropdown .remove-amount-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  .item-dropdown .remove-amount-num {
+    font-size: 1em;
+    min-width: 18px;
+  }
+
+  .item-dropdown .remove-amount-ok {
+    padding: 4px 12px;
+    font-size: 0.95em;
+  }
+
+  /* Quests Menu */
+  #quests-menu.menu-page {
+    padding-top: 0;
+  }
+
+  /* Quests List */
+  .quests-list {
+    max-height: 160px;
+    padding: 0 4px;
+    font-size: 0.95em;
+  }
+
+  /* Quest List Item */
+  .quest-list-item {
+    padding: 8px 0 6px 0;
+  }
+
+  /* Quest Divider */
+  .quest-divider {
+    border-top: 1px solid #444;
+  }
+
+  /* Quest Tab Buttons */
+  .quest-tab {
+    padding: 6px 12px;
+    font-size: 0.95em;
+  }
+
+}
