@@ -105,8 +105,8 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
   _Every created function in the project, with explanations and usage._
 - [World Building](docs/world_Building.md)  
   _Lore, story, and the evolving world of Cynrith._
-  - [Content Tracker](docs/content_tracker.md)  
-  _All content (item, characters, lore refs, etc) currently created in the world of Cynritn._
+- [Content Tracker](docs/content_tracker.md)  
+  _All content (item, characters, lore refs, etc) currently created in the world of Cynrith._
 
 ## Credits
 
