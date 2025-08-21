@@ -99,12 +99,14 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 ## Documentation
 
-- [Workflow & Roadmap](docs/workflow.md)  
+- [Roadmap](docs/roadmap.md)  
   _Current goals, plans, and development roadmap for Cynrith._
 - [Function Library](docs/function_libary.md)  
   _Every created function in the project, with explanations and usage._
 - [World Building](docs/world_Building.md)  
   _Lore, story, and the evolving world of Cynrith._
+  - [Content Tracker](docs/content_tracker.md)  
+  _All content (item, characters, lore refs, etc) currently created in the world of Cynritn._
 
 ## Credits
 
