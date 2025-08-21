@@ -121,3 +121,78 @@
   color: #ccc;
   cursor: not-allowed;
 }
+
+@media (max-width: 600px) and (orientation: portrait) {
+
+  /* Trader Shop Content */
+  .trader-shop-content {
+    width: 85vw;
+    min-height: 300px;
+    padding: 18px 8px 12px 8px;
+    box-shadow: 0 8px 32px #3af0ff33, 0 0 0 2px #3af0ff22;
+    font-size: 1em;
+    border: 2px solid #3af0ff;
+    gap: 12px;
+  }
+
+  /* Trader Shop Title */
+  #trader-shop-title {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+    letter-spacing: 0.08em;
+  }
+
+  /* Trader Shop Tabs */
+  .trader-shop-tabs {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .trader-tab {
+    font-size: 0.95em;
+    padding: 6px 12px;
+    border: 1px solid #3af0ff;
+    box-shadow: 0 1px 0 0 #fffbe6;
+    text-shadow: 0 0 1px #3af0ffcc;
+  }
+
+  /* Trader Shop Page */
+  .trader-shop-page {
+    min-height: 80px;
+    width: 100%;
+  }
+
+  /* Trader Shop Coins */
+  .trader-shop-coins {
+    margin-top: 25px;
+    font-size: 1em;
+    gap: 6px;
+  }
+
+  /* Trader Shop Close Button */
+  #trader-shop-close {
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+  }
+
+  /* Trader Shop Item */
+  .trader-shop-item {
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 1em;
+  }
+  .trader-shop-item img {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+  }
+
+  /* Trader Shop Button */
+  .trader-shop-btn {
+    font-size: 0.7em;
+    padding: 8px 12px;
+    margin-left: 6px;
+  }
+}
