@@ -1,7 +1,8 @@
-# vTile Game Workflow
+# Cynrith by vCore Roadmap
 - Tasks get added when issues arrise or the project moves foward with the next steps/ideas.
 - Tasks get ticked off when completed, working and pushed to github.
 - Tasks get removed after 2 - 3 days after they are pushed to github.
+- This will be intergrated into githubs issues and requests once the first beta is Released
 
 ## World Logic
 - [x] Forced encounter for just dialouge with no npc, triggers once, used for story building and events
@@ -56,10 +57,10 @@
 - [ ] Setting will include, touch controls toggle, sound toggle (sounds to come), log toggle 
 
 ## Maps and Dialogue
-- [ ] Create at least 5 floors to start with before first bete release of the game 
+- [ ] Create at least 3 floors to start with before first bete release of the game 
     - [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
     - [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-    - [ ] Floors 3-5: Full set standard floors where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building
+    - [ ] Floors 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing as well as map warping triggers
@@ -77,5 +78,7 @@
 ## **New Since Last Commit*
 
 - Styled all eliements for a portrait phone and tablet screen
+- Started adding Npcs to Floor 3
+- First beta Release planned after floor 3 is made 
 
 ---
