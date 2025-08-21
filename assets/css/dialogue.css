@@ -46,3 +46,30 @@
 .dialogue-block.hidden {
   display: none;
 }
+
+@media (max-width: 600px) and (orientation: portrait) {
+
+  /* Notification styles */
+.notification {
+  top: 25px;
+  left: 50%;
+  padding: 8px 16px;
+  border: 0.8px solid #3af0ff;
+  font-size: 0.7em;
+  min-width: 140px;
+  box-shadow: 0 4px 24px #3af0ff44, 0 0 0 4px #3af0ff22;
+}
+
+/* Dialogue Block Styles */
+.dialogue-block {
+  left: 50%;
+  bottom: 125px;
+  padding: 10px 10px;
+  border: 0.8px solid #3af0ff;
+  font-size: 0.7em;
+  min-width: 180px;
+  max-width: 180px;
+  box-shadow: 0 4px 24px #3af0ff44, 0 0 0 4px #3af0ff22;
+  }
+
+}
