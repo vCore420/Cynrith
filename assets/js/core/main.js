@@ -301,6 +301,11 @@ function Loop() {
 // Log fps every second
 setInterval(function() {
     Log("fps", "FPS: " + fps.count);
+    if (typeof player !== "undefined" && player && player.tile) {
+        Log("coords", "Coords: " + player.tile.x + ", " + player.tile.y);
+    } else {
+        Log("coords", "Coords: --, --");
+    }
 }, 1000);
 
 
