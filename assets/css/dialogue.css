@@ -47,6 +47,14 @@
   display: none;
 }
 
+/* Bigger devices in portrait */
+@media (orientation: portrait) {
+  .dialogue-block {
+    bottom: 24%;
+  }
+}
+
+/* Phone Screen Styling */
 @media (max-width: 600px) and (orientation: portrait) {
 
   /* Notification styles */
@@ -63,13 +71,13 @@
 /* Dialogue Block Styles */
 .dialogue-block {
   left: 50%;
-  bottom: 14em;
+  bottom: 24%;
   padding: 10px 10px;
   border: 0.8px solid #3af0ff;
   font-size: 0.7em;
   min-width: 180px;
   max-width: 180px;
   box-shadow: 0 4px 24px #3af0ff44, 0 0 0 4px #3af0ff22;
-  }
+}
 
 }
