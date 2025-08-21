@@ -427,6 +427,327 @@ const NPC_DEFINITIONS = {
         trader: "trader1"
     },
 
+    // Eira of the Veil - Lore/Quest Giver (Starting Enclosure)
+    eira_veil: {
+        id: "eira_veil",
+        name: "Eira of the Veil",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 8, y: 10, wanderArea: { x1: 5, y1: 9, x2: 11, y2: 13 } }
+        ],
+        dialogue: {
+            default: [
+                "You feel it, don’t you? The air here is thick with memory. The Architect’s hand lingers in every shadow.",
+                "If you see a shimmer, follow it. Echoes hold secrets, sometimes warnings, sometimes gifts.",
+                "Bring me any Glitch Fragments you find. I’m close to understanding the Thicket’s true nature."
+            ],
+            questGiven: [
+                "Collect Glitch Fragments from echoes and bioluminescent mushrooms. Each one brings us closer to the truth."
+            ],
+            questIncomplete: [
+                "Have you found any Glitch Fragments yet? The echoes are strongest near the mushrooms and flickering trees.",
+                "The Thicket hides its secrets well. Keep searching—every fragment brings us closer to understanding."
+            ],
+            questComplete: [
+                "These fragments pulse with old power. Thank you, traveler. The Thicket remembers your kindness."
+            ]
+        },
+        questId: "eira_echo_fragments",
+        questRedo: true
+    },
+
+    // The Whispering Shade - Glitch/Echo NPC (Echo Trigger Path)
+    whispering_shade: {
+        id: "whispering_shade",
+        name: "The Whispering Shade",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 26, y: 17, wanderArea: { x1: 21, y1: 13, x2: 29, y2: 19 } }
+        ],
+        dialogue: {
+            default: [
+                "You walk in two worlds, traveler. One remembers, one forgets.",
+                "The Fracture is not a wound, but a door. Will you open it, or pass by?",
+                "{ERROR: MEMORY NOT FOUND}",
+                "The Architect watches. The cycle repeats."
+            ],
+            questGiven: [
+                "Activate three glitching statues in the forest. Each holds lost memories."
+            ],
+            questIncomplete: [
+                "The statues remain silent. Their memories are locked away until you activate them.",
+                "Listen for the glitches in the forest. Only then will the echoes reveal their stories."
+            ],
+            questComplete: [
+                "The echoes grow clearer. You have seen what others have missed."
+            ]
+        },
+        questId: "shade_statue_echoes",
+        questRedo: false
+    },
+
+    // Sakura the Dreamer - Lore NPC (Cherry Tree Grove)
+    sakura_dreamer: {
+        id: "sakura_dreamer",
+        name: "Sakura the Dreamer",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 38, y: 8, wanderArea: { x1: 34, y1: 3, x2: 41, y2: 11 } }
+        ],
+        dialogue: {
+            default: [
+                "The pink blossoms remind me of a world I’ve never seen. Do you ever dream of places beyond the Thicket?",
+                "Sometimes, the trees whisper names I don’t remember. Are they yours, or mine?"
+            ],
+            questGiven: [
+                "Find a lost memory fragment. It may help me remember my dreams."
+            ],
+            questIncomplete: [
+                "No sign of the lost blossom yet? The cherry grove is full of memories—look where the petals gather.",
+                "Sometimes, the wind carries fragments far from home. Keep searching, traveler."
+            ],
+            questComplete: [
+                "Thank you. This blossom feels familiar, somehow. Perhaps in another cycle, I knew its name."
+            ]
+        },
+        questId: "sakura_lost_blossom",
+        questRedo: false
+    },
+
+    // Bruk the Outcast - Quest Giver (Orc Patch)
+    bruk_outcast: {
+        id: "bruk_outcast",
+        name: "Bruk the Outcast",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 4, y: 17, wanderArea: { x1: 1, y1: 15, x2: 6, y2: 19 } }
+        ],
+        dialogue: {
+            default: [
+                "Most orks here serve the Thicket’s will. I chose another path."
+            ],
+            questGiven: [
+                "Help me sabotage these orcs, and I’ll share what I have of the old pacts.",
+                "Defeat 25 orks to recover my lost totem. The forest hides many dangers."
+            ],
+            questIncomplete: [
+                "The orks still hold their ground. Sabotage their traps and recover my totem if you can.",
+                "Be careful—the Thicket twists even the bravest. My totem is the key to our old pacts."
+            ],
+            questComplete: [
+                "You’ve done it! The old pacts are safe, for now. Take this as thanks."
+            ]
+        },
+        questId: "bruk_sabotage",
+        questRedo: false
+    },
+
+    // Myco the Luminous - Lore/Quest Giver (Flickering Forest Core)
+    myco_luminous: {
+        id: "myco_luminous",
+        name: "Myco the Luminous",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 33, y: 49, wanderArea: { x1: 29, y1: 40, x2: 40, y2: 56 } }
+        ],
+        dialogue: {
+            default: [
+                "The mushrooms here pulse with memory. Some say they’re the Architect’s eyes.",
+                "If you gather enough glowing caps, I can brew a potion to reveal hidden paths."
+            ],
+            questGiven: [
+                "Collect bioluminescent mushrooms. With enough, I’ll make a potion to show you secrets."
+            ],
+            questIncomplete: [
+                "Not enough glowing mushrooms yet? The brightest caps grow near the flickering lights.",
+                "The potion needs more ingredients. Search deeper in the forest and bring me what you find."
+            ],
+            questComplete: [
+                "Here is the potion. Drink it near the flickering trees and watch for hidden paths."
+            ]
+        },
+        questId: "myco_mushroom_potion",
+        questRedo: true
+    },
+
+    // Lirael the Rememberer - Lore NPC (Open Forest Areas)
+    lirael_rememberer: {
+        id: "lirael_rememberer",
+        name: "Lirael the Rememberer",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 52, y: 22, wanderArea: { x1: 46, y1: 19, x2: 59, y2: 26 } }
+        ],
+        dialogue: {
+            default: [
+                "I’ve seen this forest before, in dreams and in waking. Each time, it changes and yet, it stays the same.",
+                "The Architect’s game is older than any of us. We are pieces, but sometimes, pieces change the board."
+            ]
+        }
+    },
+
+    // Venn the Chronicler - Lore (Open Forest Areas)
+    venn_chronicler: {
+        id: "venn_chronicler",
+        name: "Venn the Chronicler",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 58, y: 10, wanderArea: { x1: 52, y1: 4, x2: 62, y2: 15 } }
+        ],
+        dialogue: {
+            default: [
+                "Have you seen them, traveler? The ones who wander with empty eyes, lost in the mist. Some say their minds were claimed by the Thicket itself.",
+                "Others flicker and stutter, caught between moments, glitching, as if the world forgot how to remember them.",
+                "I record their stories, even if they cannot speak. Every broken memory is a clue to the Architect’s design.",
+                "Sometimes, I wonder if we are all just echoes, waiting for the cycle to reset."
+            ]
+        }
+    },
+
+    // Astra the Guide - Lore NPC (Teleport Stone Area)
+    astra_guide: {
+        id: "astra_guide",
+        name: "Astra the Guide",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 51, y: 54, wanderArea: { x1: 50, y1: 52, x2: 52, y2: 59 } }
+        ],
+        dialogue: {
+            default: [
+                "You’ve come far, traveler. The Thicket remembers you, even if you do not remember it.",
+                "Beyond this stone, the world grows stranger. The Architect’s gaze sharpens."
+            ]
+        }
+    },
+
+    // Brain Dead/Glitching NPCs (scattered, use unique names)
+    ork_wanderer: {
+        id: "ork_wanderer",
+        name: "Ork Wanderer",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 14, y: 37, wanderArea: { x1: 10, y1: 25, x2: 16, y2: 40 } }
+        ],
+        dialogue: {
+            default: [
+                "...must find... the totem..."
+            ]
+        }
+    },
+
+    lost_adventurer: {
+        id: "lost_adventurer",
+        name: "Lost Adventurer",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 45, y: 27, wanderArea: { x1: 41, y1: 26, x2: 49, y2: 29 } }
+        ],
+        dialogue: {
+            default: [
+                "I was looking for the light. Did you see it?"
+            ]
+        }
+    },
+
+    fragment_searcher: {
+        id: "fragment_searcher",
+        name: "Fragment Searcher",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 59, y: 32, wanderArea: { x1: 56, y1: 27, x2: 60, y2: 38 } }
+        ],
+        dialogue: {
+            default: [
+                "{GLITCH} The cycle repeats. The cycle repeats."
+            ]
+        }
+    },
+
+    faded_botanist: {
+        id: "faded_botanist",
+        name: "Faded Botanist",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 37, y: 42, wanderArea: { x1: 35, y1: 38, x2: 39, y2: 44 } }
+        ],
+        dialogue: {
+            default: [
+                "Flowers bloom, then fade. I remember... nothing."
+            ]
+        }
+    },
+
+    mistbound_shade: {
+        id: "mistbound_shade",
+        name: "Mistbound Shade",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 22, y: 22, wanderArea: { x1: 18, y1: 22, x2: 25, y2: 23 } }
+        ],
+        dialogue: {
+            default: [
+                "I am... not myself. Are you?"
+            ]
+        }
+    },
+
+    cherry_grove_ghost: {
+        id: "cherry_grove_ghost",
+        name: "Cherry Grove Ghost",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 36, y: 18, wanderArea: { x1: 13, y1: 31, x2: 38, y2: 21 } }
+        ],
+        dialogue: {
+            default: [
+                "Pink petals fall, blue leaves flicker. Is this real?"
+            ]
+        }
+    },
+
+    mushroom_echoer: {
+        id: "mushroom_echoer",
+        name: "Mushroom Echoer",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 21, y: 52, wanderArea: { x1: 18, y1: 50, x2: 24, y2: 55 } }
+        ],
+        dialogue: {
+            default: [
+                "The lights... they blink out, then return. Why?"
+            ]
+        }
+    },
+
+    forest_watcher: {
+        id: "forest_watcher",
+        name: "Forest Watcher",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 2, x: 9, y: 59, wanderArea: { x1: 5, y1: 56, x2: 12, y2: 62 } }
+        ],
+        dialogue: {
+            default: [
+                "The Architect... watches... always."
+            ]
+        }
+    },
 
 };
 
@@ -548,6 +869,8 @@ const ENEMY_TYPES = {
             { map: 1, x: 2, y: 27, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
         ]
     },
+
+    // -------- Floor 3 --------
 
     mistbound_ork: {
         id: "mistbound_ork",
