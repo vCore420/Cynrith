@@ -66,11 +66,18 @@
 - [ ] Trigger tiles for tile frames for things like doors opening and closing as well as map warping triggers
 - [ ] Mini map in the player menu, display the floor as a small picture with player location
 
+## Sounds
+- [ ] Stop forgetting that sounds exsit
+- [ ] Add sound funstions to call when sounds need to be played
+- [ ] Create sound asseets 
+(I dont think the first beta release will have any sounds as ive left this one a bit late)
 
 ## Docs & Dev work
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
 - [ ] Add unit test scripts 
 - [ ] Optimize main game loop for mobile performance (reduce DOM updates, avoid resizing canvas every frame, batch sprite/frame updates)
+- [ ] Create templates for all Definitions
+- [ ] Create easy to follow plasn for adding new floors (docs) to make tracking of new floor aspects easier 
 
 ---
 
