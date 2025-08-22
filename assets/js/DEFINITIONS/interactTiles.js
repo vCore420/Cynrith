@@ -123,4 +123,135 @@ const INTERACTABLE_TILES = [
 
     // ----------- Floor 3 ----------
 
+    {
+        id: "bio_mushroom_1",
+        map: 2,
+        x: 35,
+        y: 47,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+
+    {
+        id: "bio_mushroom_2",
+        map: 2,
+        x: 30,
+        y: 37,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+
+    {
+        id: "bio_mushroom_3",
+        map: 2,
+        x: 42,
+        y: 47,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+    
+    {
+        id: "bio_mushroom_4",
+        map: 2,
+        x: 17,
+        y: 51,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+
+    {
+        id: "bio_mushroom_5",
+        map: 2,
+        x: 16,
+        y: 57,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+
+    {
+        id: "bio_mushroom_6",
+        map: 2,
+        x: 22,
+        y: 41,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128, 
+        imageH: 64, 
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        zIndex: 0,
+        notification: "Press A to Inspect Mushroom.",
+        dialogue: [
+            "You find a bioluminescent mushroom glowing softly in the shadows.",
+        ],
+        rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
+    },
+
+    {
+        id: "lost_memory_1",
+        map: 2,
+        x: 27,
+        y: 8,
+        image: "assets/img/tile/rock-1.png",
+        notification: "Press A to examine this Humming Rock.",
+        dialogue: [
+            "You hear a soft humming sound emanating from the rock.",
+            "As you get closer, the humming grows louder, resonating with a strange energy.",
+            "You found a Lost Memory Fragment, its whispers fill your mind."
+        ],
+        rewards: [{ id: "memory_fragment", amount: 1 }],
+    },
+
+    // -------- Floor 4 --------
+
 ];

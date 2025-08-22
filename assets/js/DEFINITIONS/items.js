@@ -52,6 +52,17 @@ const ITEM_DEFINITIONS = {
         removeable: true
     },
 
+    atkSpeed_buff_small: {
+        id: "atkSpeed_buff_small",
+        name: "Attack Speed Buff - Small",
+        description: "Increases attack speed by 10.",
+        image: "assets/img/items/atkSpeed_buff_small.png",
+        rarity: "Rare",
+        stackable: true,
+        useable: true,
+        removeable: true
+    },
+
     
     // --------------- Weapons ---------------
 
@@ -81,7 +92,7 @@ const ITEM_DEFINITIONS = {
         removeable: false
     },
     
-    // --------------- Enemy Drops ---------------
+    // --------------- loot, Drops, Quest Items ---------------
 
 
     slime_ball: {
@@ -143,9 +154,7 @@ const ITEM_DEFINITIONS = {
         removeable: true
     },
 
-
-    // --------------- Miscellaneous ---------------
-
+    
 
     lost_pages: {
         id: "lost_pages",
@@ -157,6 +166,42 @@ const ITEM_DEFINITIONS = {
         useable: false,
         removeable: false
     },
+
     
+    bioluminescent_mushroom: {
+        id: "bioluminescent_mushroom",
+        name: "Bioluminescent Mushroom",
+        description: "A glowing mushroom found deep in the Thicket. Used in potions and quests.",
+        image: "assets/img/items/bioluminescent_mushroom.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
+    memory_fragment: {
+        id: "memory_fragment",
+        name: "Memory Fragment",
+        description: "A fragment of lost memory. Sought by lorekeepers and chroniclers.",
+        image: "assets/img/items/memory_fragment.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
+    glitch_fragment: {
+        id: "glitch_fragment",
+        name: "Glitch Fragment",
+        description: "A fragment of digital distortion, pulsing with strange energy.",
+        image: "assets/img/items/glitch_fragment.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
 
 };

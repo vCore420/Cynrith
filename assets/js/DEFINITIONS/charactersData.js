@@ -18,7 +18,7 @@ const NPC_DEFINITIONS = {
             default: [
                 "Ah, another soul steps into the green! Welcome, traveler, to Verdant Rise, the first of many floors beneath the Architect’s gaze.",
                 "Here, every blade of grass and whisper of wind is shaped by laws both seen and unseen.",
-                "Take up this sword—it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
+                "Take up this sword, it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
                 "Seek out others like myself; we are here to guide, not command. Your journey is your own, but remember: wisdom is often found in simple beginnings."
             ],
             questComplete: [
@@ -407,7 +407,9 @@ const NPC_DEFINITIONS = {
         }
     },
     
+    
     // -------- FLOOR 3 --------   
+
 
     // Fernix - First Trader shop
     fernix_trader: {
@@ -427,7 +429,8 @@ const NPC_DEFINITIONS = {
         trader: "trader1"
     },
 
-    // Eira of the Veil - Lore/Quest Giver (Starting Enclosure)
+
+    // Eira of the Veil - Quest Giver (Thickets Entrance) make forced trigger tiles that give items for this
     eira_veil: {
         id: "eira_veil",
         name: "Eira of the Veil",
@@ -443,11 +446,11 @@ const NPC_DEFINITIONS = {
                 "Bring me any Glitch Fragments you find. I’m close to understanding the Thicket’s true nature."
             ],
             questGiven: [
-                "Collect Glitch Fragments from echoes and bioluminescent mushrooms. Each one brings us closer to the truth."
+                "Collect Glitch Fragments from echoes in the Thicket. Each one brings us closer to the truth."
             ],
             questIncomplete: [
                 "Have you found any Glitch Fragments yet? The echoes are strongest near the mushrooms and flickering trees.",
-                "The Thicket hides its secrets well. Keep searching—every fragment brings us closer to understanding."
+                "The Thicket hides its secrets well. Keep searching, every fragment brings us closer to understanding."
             ],
             questComplete: [
                 "These fragments pulse with old power. Thank you, traveler. The Thicket remembers your kindness."
@@ -457,7 +460,8 @@ const NPC_DEFINITIONS = {
         questRedo: true
     },
 
-    // The Whispering Shade - Glitch/Echo NPC (Echo Trigger Path)
+
+    // The Whispering Shade - Echo NPC - Quest Giver (Echo Trigger Path) needs quest type made, need asset for this npc made
     whispering_shade: {
         id: "whispering_shade",
         name: "The Whispering Shade",
@@ -488,7 +492,8 @@ const NPC_DEFINITIONS = {
         questRedo: false
     },
 
-    // Sakura the Dreamer - Lore NPC (Cherry Tree Grove)
+ 
+    // Sakura the Dreamer - Quest Giver (Cherry Tree Grove)
     sakura_dreamer: {
         id: "sakura_dreamer",
         name: "Sakura the Dreamer",
@@ -506,11 +511,11 @@ const NPC_DEFINITIONS = {
                 "Find a lost memory fragment. It may help me remember my dreams."
             ],
             questIncomplete: [
-                "No sign of the lost blossom yet? The cherry grove is full of memories—look where the petals gather.",
+                "No sign of the lost memory yet? The cherry grove is full of memories, look where the petals gather.",
                 "Sometimes, the wind carries fragments far from home. Keep searching, traveler."
             ],
             questComplete: [
-                "Thank you. This blossom feels familiar, somehow. Perhaps in another cycle, I knew its name."
+                "Thank you. This memory feels familiar, somehow. Perhaps in another cycle, I knew its name."
             ]
         },
         questId: "sakura_lost_blossom",
@@ -546,7 +551,7 @@ const NPC_DEFINITIONS = {
         questRedo: false
     },
 
-    // Myco the Luminous - Lore/Quest Giver (Flickering Forest Core)
+    // Myco the Luminous - Quest Giver (Flickering Forest Core)
     myco_luminous: {
         id: "myco_luminous",
         name: "Myco the Luminous",
@@ -568,14 +573,15 @@ const NPC_DEFINITIONS = {
                 "The potion needs more ingredients. Search deeper in the forest and bring me what you find."
             ],
             questComplete: [
-                "Here is the potion. Drink it near the flickering trees and watch for hidden paths."
+                "Here is the potion. Drink it near the flickering trees where the light is strongest."
             ]
         },
         questId: "myco_mushroom_potion",
         questRedo: true
     },
 
-    // Lirael the Rememberer - Lore NPC (Open Forest Areas)
+
+    // Lirael the Rememberer - Lore 
     lirael_rememberer: {
         id: "lirael_rememberer",
         name: "Lirael the Rememberer",
@@ -592,7 +598,8 @@ const NPC_DEFINITIONS = {
         }
     },
 
-    // Venn the Chronicler - Lore (Open Forest Areas)
+
+    // Venn the Chronicler - Lore 
     venn_chronicler: {
         id: "venn_chronicler",
         name: "Venn the Chronicler",
@@ -611,7 +618,8 @@ const NPC_DEFINITIONS = {
         }
     },
 
-    // Astra the Guide - Lore NPC (Teleport Stone Area)
+
+    // Astra the Guide - Lore 
     astra_guide: {
         id: "astra_guide",
         name: "Astra the Guide",
@@ -628,7 +636,8 @@ const NPC_DEFINITIONS = {
         }
     },
 
-    // Brain Dead/Glitching NPCs (scattered, use unique names)
+
+    // Brain Dead/Glitching NPCs 
     ork_wanderer: {
         id: "ork_wanderer",
         name: "Ork Wanderer",
@@ -748,6 +757,10 @@ const NPC_DEFINITIONS = {
             ]
         }
     },
+
+
+    // -------- Floor 4 --------
+
 
 };
 
