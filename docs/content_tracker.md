@@ -22,6 +22,14 @@
   Floor guardian, speaks of cycles and the Architect.  
   *Role:* Lore, floor transitions, recurring at key moments.
 
+- **Eira of the Veil**  
+  Floor 3 lore/quest giver, studies echoes and glitches.  
+  *Role:* Echo/fragment quests, lore, recurring in memory/echo events.
+
+- **Whispering Shade**  
+  Glitch/echo NPC, cryptic advice.  
+  *Role:* Echo quests, lore, recurring in glitch events.
+
 ---
 
 ## Key Items & Fragments
@@ -45,6 +53,19 @@
 - **Twilight Totem**  
   Dropped by Mistbound Orks.  
   *Use:* Ork quests, lore, possible crafting.
+
+  - **Bioluminescent Mushroom**  
+  Glowing mushroom, used for potions and quests.  
+  *Use:* Ingredient for Myco's quest, crafting.
+
+- **Buff Items**  
+  - Health Buff (Small)
+  - Attack Buff (Small)
+  - Defence Buff (Small)
+  - Max Health Buff (Small)
+  - Attack Speed Buff (Small)
+  - Speed Buff (Small)
+  *Use:* Consumable stat upgrades.
 
 - **Relics (General)**  
   Items with memory, sometimes whisper to the player.  
@@ -77,6 +98,16 @@
 
 - **Wardens of the Veil, Shadowed Hand, Choir**  
   Factions/orders referenced in lore, can be reused for quests and storylines.
+
+---
+
+## Quest Types
+
+- **gift**: Immediate reward quests.
+- **itemCollect**: Collect specific items.
+- **enemyDefeat**: Defeat specific enemies.
+- **statBuild**: Increase player stats by a set amount.
+- **interactTiles**: Trigger specific interactable tiles.
 
 ---
 

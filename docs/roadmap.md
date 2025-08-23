@@ -6,6 +6,7 @@
 
 ## World Logic
 - [x] Forced encounter for just dialouge with no npc, triggers once, used for story building and events
+- [ ] Allow for multi location tiles for trigger tiles
 
 ## NPC Logic 
 - [ ] Stop npc walking animation when being interacting with 
@@ -16,7 +17,10 @@
 
 ## Quest Logic
 - [ ] quest menu has some overflow on lists and scroll bar needs removing
-- [ ] Fix stat quests
+- [x] Fix stat quests
+- [x] Fix redoable quests not removing from active list after repeat completion
+- [x] Add new quest type "interactTiles" for quests requiring specific interactable tiles to be triggered
+- [x] Quest HUD shows correct icons and progress for interactTiles and statBuild quests
  
 ## Player Logic
 - [ ] Joystick instead of touch buttons?
@@ -60,7 +64,7 @@
 - [ ] Create at least 3 floors to start with before first bete release of the game 
     - [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
     - [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-    - [ ] Floors 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
+    - [x] Floors 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing as well as map warping triggers
@@ -76,16 +80,20 @@
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
 - [ ] Add unit test scripts 
 - [ ] Optimize main game loop for mobile performance (reduce DOM updates, avoid resizing canvas every frame, batch sprite/frame updates)
-- [ ] Create templates for all Definitions
-- [ ] Create easy to follow plasn for adding new floors (docs) to make tracking of new floor aspects easier 
+- [x] Create templates for all Definitions
+- [x] Create reusable content tracker for key NPCs, items, and lore objects
+- [ ] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
 
 ---
 
 
 ## **New Since Last Commit*
 
-- Styled all eliements for a portrait phone and tablet screen
-- Started adding Npcs to Floor 3
+- Styled all elements for a portrait phone and tablet screen
+- Started adding NPCs to Floor 3
+- Added new quest types and quest logic improvements
+- Improved interactable tile system and quest HUD
 - First beta Release planned after floor 3 is made 
+ 
 
 ---
