@@ -97,6 +97,26 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 - Planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
+---
+<details>
+<summary>Change Logs</summary>
+
+<p>
+23/8 Beta v0.1.0
+
+- Added new quest types and improved quest logic (stat tracking, interactTiles, redoable quests)
+- Expanded interactable and trigger tile system (animated tiles, notifications, persistent state)
+- Created reusable content tracker for NPCs, items, and lore objects
+- Added templates for NPCs, enemies, items, traders, interactable/trigger tiles, and quests
+- Implemented modular trader/shop system
+- Improved quest HUD, inventory, and trader UI
+- Expanded documentation for easier contribution and onboarding
+- Finished Creation Floor 3!
+- First Beta Release "Cynrith Beta v0.1.0" pushed!!
+</p> 
+
+---
+
 ## Documentation
 
 - [Roadmap](docs/roadmap.md)  
