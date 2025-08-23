@@ -114,6 +114,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Finished Creation Floor 3!
 - First Beta Release "Cynrith Beta v0.1.0" pushed!!
 </p> 
+<details>
 
 ---
 
