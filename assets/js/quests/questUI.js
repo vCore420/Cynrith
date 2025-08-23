@@ -45,6 +45,20 @@ function updateQuestHUD() {
             let need = quest.requiredItems[0].amount;
             counter.textContent = `${have} / ${need}`;
             if (have >= need) counter.classList.add("complete");
+        } else if (quest.type === "interactTiles") {
+            // Load quest icon from assets/img/quests/
+            let icon = document.createElement("img");
+            icon.width = 32;
+            icon.height = 32;
+            // Use quest.icon if defined, otherwise fallback to first interact tile id
+            let iconName = quest.icon || quest.interactTileIds?.[0] || "default";
+            icon.src = `assets/img/quests/${iconName}.png`;
+            entry.appendChild(icon);
+
+            // Progress counter
+            let triggered = quest.interactTileIds.filter(id => triggeredInteractableTiles[id]).length;
+            counter.textContent = `${triggered} / ${quest.requiredAmount}`;
+            if (triggered >= quest.requiredAmount) counter.classList.add("complete");
         }
         entry.appendChild(document.createTextNode(quest.name));
         entry.appendChild(counter);

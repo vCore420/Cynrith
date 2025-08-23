@@ -407,7 +407,7 @@ const NPC_DEFINITIONS = {
         }
     },
     
-    
+
     // -------- FLOOR 3 --------   
 
 
@@ -430,7 +430,7 @@ const NPC_DEFINITIONS = {
     },
 
 
-    // Eira of the Veil - Quest Giver (Thickets Entrance) make forced trigger tiles that give items for this
+    // Eira of the Veil - Quest Giver 
     eira_veil: {
         id: "eira_veil",
         name: "Eira of the Veil",
@@ -461,7 +461,7 @@ const NPC_DEFINITIONS = {
     },
 
 
-    // The Whispering Shade - Echo NPC - Quest Giver (Echo Trigger Path) needs quest type made, need asset for this npc made
+    // The Whispering Shade - Echo NPC - Quest Giver (need asset for this npc made)
     whispering_shade: {
         id: "whispering_shade",
         name: "The Whispering Shade",
@@ -719,7 +719,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_f_1.png",
         interactive: true,
         spawns: [
-            { map: 2, x: 36, y: 18, wanderArea: { x1: 13, y1: 31, x2: 38, y2: 21 } }
+            { map: 2, x: 36, y: 18, wanderArea: { x1: 32, y1: 13, x2: 38, y2: 21 } }
         ],
         dialogue: {
             default: [
@@ -846,9 +846,9 @@ const ENEMY_TYPES = {
             { map: 1, x: 21, y: 44, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
             { map: 1, x: 29, y: 38, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
             { map: 1, x: 29, y: 31, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
-            { map: 1, x: 5, y: 2, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
+            { map: 1, x: 5, y: 2,  wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
             { map: 1, x: 13, y: 6, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
-            { map: 1, x: 4, y: 6, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
+            { map: 1, x: 4, y: 6,  wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
             { map: 1, x: 2, y: 43, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
             { map: 1, x: 5, y: 26, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
             { map: 1, x: 4, y: 17, wanderArea: { x1: 1, y1: 12, x2: 7, y2: 48 } },
@@ -906,6 +906,16 @@ const ENEMY_TYPES = {
             { map: 2, x: 13, y: 33, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
             { map: 2, x: 11, y: 37, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
             { map: 2, x: 16, y: 39, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
+            { map: 2, x: 43, y: 11, wanderArea: { x1: 34, y1: 4, x2: 46, y2: 13 } },
+            { map: 2, x: 40, y: 8, wanderArea: { x1: 34, y1: 4, x2: 46, y2: 13 } },
+            { map: 2, x: 39, y: 11, wanderArea: { x1: 34, y1: 4, x2: 46, y2: 13 } },
+            { map: 2, x: 25, y: 35, wanderArea: { x1: 20, y1: 25, x2: 26, y2: 38 } },
+            { map: 2, x: 24, y: 30, wanderArea: { x1: 20, y1: 25, x2: 26, y2: 38 } },
+            { map: 2, x: 22, y: 26, wanderArea: { x1: 20, y1: 25, x2: 26, y2: 38 } },
+            { map: 2, x: 13, y: 46, wanderArea: { x1: 11, y1: 42, x2: 16, y2: 48 } },
+            { map: 2, x: 32, y: 34, wanderArea: { x1: 30, y1: 22, x2: 33, y2: 36 } },
+            { map: 2, x: 32, y: 34, wanderArea: { x1: 30, y1: 22, x2: 33, y2: 36 } },
+            { map: 2, x: 31, y: 24, wanderArea: { x1: 30, y1: 22, x2: 33, y2: 36 } },
         ]
     },
 

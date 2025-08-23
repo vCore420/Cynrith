@@ -3,24 +3,52 @@ let triggeredTriggerTiles = {};
 
 function spawnInteractableTilesForMap(mapIndex) {
     window.activeInteractableTiles = INTERACTABLE_TILES
-        .filter(tile => tile.map === mapIndex && !triggeredInteractableTiles[tile.id])
+        .filter(tile =>
+            tile.map === mapIndex &&
+            (
+                !triggeredInteractableTiles[tile.id] ||
+                (tile.animOnTrigger === true) // Always include animOnTrigger tiles
+            )
+        )
         .map(tile => ({ ...tile }));
 }
 
-function drawInteractableTiles() {
+function drawInteractableTiles(zIndex) {
     if (!window.activeInteractableTiles) return;
-    window.activeInteractableTiles.forEach(tile => {
-        if (tile.spriteSheet) {
-            // Use spriteLoader logic for sprite sheets
-            if (!_worldSpriteImages[tile.spriteSheet]) {
-                const img = new Image();
-                img.src = tile.spriteSheet;
-                _worldSpriteImages[tile.spriteSheet] = img;
-            }
-            const img = _worldSpriteImages[tile.spriteSheet];
-            if (!img || !img.complete) return;
+    window.activeInteractableTiles
+        .filter(tile => typeof zIndex === "undefined" ? true : tile.zIndex === zIndex)
+        .forEach(tile => drawSingleInteractableTile(tile));
+}
 
-            // Support animation if needed
+
+function drawSingleInteractableTile(tile) {
+    if (tile.spriteSheet) {
+        if (!_worldSpriteImages[tile.spriteSheet]) {
+            const img = new Image();
+            img.src = tile.spriteSheet;
+            _worldSpriteImages[tile.spriteSheet] = img;
+        }
+        const img = _worldSpriteImages[tile.spriteSheet];
+        if (!img || !img.complete) return;
+
+        let frameIndex = 0;
+        if (tile.animOnTrigger) {
+            if (triggeredInteractableTiles[tile.id]) {
+                tile._frame = tile._frame || 0;
+                tile._animTick = (tile._animTick || 0) + 1;
+                const frames = (tile.rows || 1) * (tile.cols || 1);
+                if (frames > 1 && tile.animSpeed > 0) {
+                    if (tile._animTick % tile.animSpeed === 0) {
+                        tile._frame = ((tile._frame || 0) + 1) % frames;
+                    }
+                } else {
+                    tile._frame = 0;
+                }
+                frameIndex = tile._frame || 0;
+            } else {
+                frameIndex = 0;
+            }
+        } else {
             tile._frame = tile._frame || 0;
             tile._animTick = (tile._animTick || 0) + 1;
             const frames = (tile.rows || 1) * (tile.cols || 1);
@@ -31,56 +59,97 @@ function drawInteractableTiles() {
             } else {
                 tile._frame = 0;
             }
-            const frameIndex = tile._frame || 0;
-            const col = frames > 1 ? frameIndex % tile.cols : 0;
-            const row = frames > 1 ? Math.floor(frameIndex / tile.cols) : 0;
-            const sx = col * (tile.imageW / tile.cols);
-            const sy = row * (tile.imageH / tile.rows);
-            const px = Math.round(tile.x * config.size.tile - viewport.x);
-            const py = Math.round(tile.y * config.size.tile - viewport.y - ((tile.imageH / tile.rows) - config.size.tile));
-            context.drawImage(
-                img,
-                sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),
-                px, py, (tile.imageW / tile.cols), (tile.imageH / tile.rows)
-            );
-        } else {
-            // Default: use static image
-            const img = new Image();
-            img.src = tile.image;
-            let px = Math.round(tile.x * config.size.tile - viewport.x);
-            let py = Math.round(tile.y * config.size.tile - viewport.y);
-            context.drawImage(img, px, py, config.size.tile, config.size.tile);
+            frameIndex = tile._frame || 0;
         }
-    });
+        const col = frameIndex % tile.cols;
+        const row = Math.floor(frameIndex / tile.cols);
+        const sx = col * (tile.imageW / tile.cols);
+        const sy = row * (tile.imageH / tile.rows);
+        const px = Math.round(tile.x * config.size.tile - viewport.x);
+        const py = Math.round(tile.y * config.size.tile - viewport.y - ((tile.imageH / tile.rows) - config.size.tile));
+        context.drawImage(
+            img,
+            sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),
+            px, py, (tile.imageW / tile.cols), (tile.imageH / tile.rows)
+        );
+    } else {
+        const img = new Image();
+        img.src = tile.image;
+        let px = Math.round(tile.x * config.size.tile - viewport.x);
+        let py = Math.round(tile.y * config.size.tile - viewport.y);
+        context.drawImage(img, px, py, config.size.tile, config.size.tile);
+    }
 }
 
 function checkInteractableTileInteraction() {
     if (!window.activeInteractableTiles) return;
     window.activeInteractableTiles.forEach(tile => {
-        // Check if player is on one of the 4 adjacent tiles
-        const adjacent =
+        // Check if player is on the tile OR one of the 4 adjacent tiles
+        const adjacentOrOn =
+            (player.tile.x === tile.x && player.tile.y === tile.y) || // On the tile
             (player.tile.x === tile.x && Math.abs(player.tile.y - tile.y) === 1) ||
             (player.tile.y === tile.y && Math.abs(player.tile.x - tile.x) === 1);
 
-        if (adjacent && !tile.notifShown) {
+        // Only show notification if tile has NOT been triggered
+        if (adjacentOrOn && !tile.notifShown && !triggeredInteractableTiles[tile.id]) {
             notify(tile.notification, 2500);
             tile.notifShown = true;
-        } else if (!adjacent) {
+        } else if (!adjacentOrOn || triggeredInteractableTiles[tile.id]) {
             tile.notifShown = false;
         }
 
-        if (adjacent && actionButtonAPressed && !triggeredInteractableTiles[tile.id]) {
+        if (adjacentOrOn && actionButtonAPressed && !triggeredInteractableTiles[tile.id]) {
             controlsEnabled = false;
             player.frozen = true;
             dialogue(...tile.dialogue);
-            triggeredInteractableTiles[tile.id] = true;
+            triggeredInteractableTiles[tile.id] = true; // <--- Mark as triggered
             // Give rewards
-            tile.rewards.forEach(r => addItem(r.id, r.amount));
-            // Remove tile from active list
-            window.activeInteractableTiles = window.activeInteractableTiles.filter(t => t.id !== tile.id);
+            tile.rewards.forEach(r => {
+                    addItem(r.id, r.amount);
+                    // Show notification for each item added
+                    const def = ITEM_DEFINITIONS[r.id];
+                    if (def) notify(`Added ${r.amount}x ${def.name} to inventory`, 3500);
+                });
+            // Only remove from active list if NOT animOnTrigger
+            if (!tile.animOnTrigger) {
+                window.activeInteractableTiles = window.activeInteractableTiles.filter(t => t.id !== tile.id);
+            }
             actionButtonAPressed = false; 
             console.log(`[InteractableTile] Interacted with tile ${tile.id} at (${tile.x}, ${tile.y})`);
         }
+    });
+}
+
+function isTileBlockedByInteractable(tileX, tileY) {
+    if (!window.activeInteractableTiles) return false;
+    return window.activeInteractableTiles.some(tile => {
+        if (!tile.collision) return false;
+        const frameW = tile.spriteSheet ? (tile.imageW / tile.cols) : (tile.imageW || config.size.tile);
+        const frameH = tile.spriteSheet ? (tile.imageH / tile.rows) : (tile.imageH || config.size.tile);
+        const tilesWide = Math.ceil(frameW / config.size.tile);
+        const tilesTall = Math.ceil(frameH / config.size.tile);
+
+        if (tile.zIndex === 0) {
+            // Anchor collision to the bottom of the sprite (base at tile.x, tile.y)
+            for (let dx = 0; dx < tilesWide; dx++) {
+                for (let dy = 0; dy < tilesTall; dy++) {
+                    // dy = 0 is the bottom row, dy = tilesTall-1 is the top
+                    if (tileX === tile.x + dx && tileY === tile.y - dy) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            // Above player: block only the bottom row
+            if (tile.y === tileY) {
+                for (let dx = 0; dx < tilesWide; dx++) {
+                    if (tileX === tile.x + dx) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     });
 }
 
@@ -103,6 +172,15 @@ function checkTriggerTileActivation() {
                 clearAllMovementKeys(); 
                 player.movement.moving = false; 
                 dialogue(...tile.dialogue);
+            }
+            // Give rewards if defined
+            if (tile.rewards && Array.isArray(tile.rewards)) {
+                tile.rewards.forEach(r => {
+                    addItem(r.id, r.amount);
+                    // Show notification for each item added
+                    const def = ITEM_DEFINITIONS[r.id];
+                    if (def) notify(`Added ${r.amount}x ${def.name} to inventory`, 3500);
+                });
             }
             // Mark as triggered if oneTime
             if (tile.oneTime) {

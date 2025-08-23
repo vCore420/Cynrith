@@ -240,10 +240,11 @@ function Loop() {
 
     map.draw();
 
-    // Draw Interctable Tiles
-    if (typeof drawInteractableTiles === "function") drawInteractableTiles();
-    
-    drawWorldSprites(0);
+    // Draw world sprites below player
+    if (typeof drawWorldSprites === "function") drawWorldSprites(0);
+
+    // Draw interactable tiles below player
+    if (typeof drawInteractableTiles === "function") drawInteractableTiles(0);
 
     // Update and Draw Npcs
     if (typeof updateCharacters === "function") updateCharacters(); 
@@ -252,7 +253,12 @@ function Loop() {
     
     //Draw Animated World Sprite Sheets
     drawTeleportStones();
-    drawWorldSprites(1);
+
+    // Draw world sprites above player
+    if (typeof drawWorldSprites === "function") drawWorldSprites(1);
+
+    // Draw interactable tiles above player
+    if (typeof drawInteractableTiles === "function") drawInteractableTiles(1);
 
     // Update and Draw Screen Effects
     if (typeof updateScreenFadeOverlay === "function") updateScreenFadeOverlay();

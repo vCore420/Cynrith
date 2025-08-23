@@ -252,6 +252,116 @@ const INTERACTABLE_TILES = [
         rewards: [{ id: "memory_fragment", amount: 1 }],
     },
 
+    {
+        id: "statue_f3_1",
+        map: 2,
+        x: 15,
+        y: 16,
+        spriteSheet: "assets/img/worldSprites/statue_01.png",
+        imageW: 512,
+        imageH: 480,
+        rows: 3,
+        cols: 8,
+        animSpeed: 6,
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: true,
+        notification: "Press A to activate the statue.",
+        dialogue: [
+            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+        ],
+        rewards: [{ id: "money", amount: 10 }],
+    },
+
+    {
+        id: "statue_f3_2",
+        map: 2,
+        x: 5,
+        y: 34,
+        spriteSheet: "assets/img/worldSprites/statue_01.png",
+        imageW: 512,
+        imageH: 480,
+        rows: 3,
+        cols: 8,
+        animSpeed: 6,
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: true,
+        notification: "Press A to activate the statue.",
+        dialogue: [
+            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+        ],
+        rewards: [{ id: "money", amount: 10 }],
+    },
+
+    {
+        id: "statue_f3_3",
+        map: 2,
+        x: 61,
+        y: 24,
+        spriteSheet: "assets/img/worldSprites/statue_01.png",
+        imageW: 512,
+        imageH: 480,
+        rows: 3,
+        cols: 8,
+        animSpeed: 6,
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: true,
+        notification: "Press A to activate the statue.",
+        dialogue: [
+            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+        ],
+        rewards: [{ id: "money", amount: 10 }],
+    },
+
     // -------- Floor 4 --------
 
 ];
+
+/*
+    INTERACTABLE TILE TEMPLATE
+
+    id:           // Unique string identifier
+    map:          // Map index or name (number or string)
+    x:            // Tile X coordinate (number)
+    y:            // Tile Y coordinate (number)
+    image:        // Path to static image (optional, if not using spriteSheet)
+    spriteSheet:  // Path to sprite sheet (optional, for animated tiles)
+    imageW:       // Width of the sprite/sheet in pixels (optional, for spriteSheet)
+    imageH:       // Height of the sprite/sheet in pixels (optional, for spriteSheet)
+    rows:         // Number of rows in sprite sheet (optional, for spriteSheet)
+    cols:         // Number of columns in sprite sheet (optional, for spriteSheet)
+    animSpeed:    // Animation speed (frames per update, optional, for spriteSheet)
+    animOnTrigger:// true/false (optional, if animation starts only after interaction)
+    zIndex:       // 0 (below player) or 1 (above player), optional
+    collision:    // true/false (optional, blocks movement if true)
+    notification: // Text to show when player is adjacent/on tile (optional)
+    dialogue:     // Array of dialogue lines shown on interaction (required)
+    rewards:      // Array of { id: "item_id", amount: n } (optional, items given on interaction)
+
+    // Example:
+    {
+        id: "example_interact_tile",
+        map: 1,
+        x: 10,
+        y: 15,
+        image: "assets/img/tile/rock-1.png",
+        spriteSheet: "assets/img/worldSprites/statue_01.png",
+        imageW: 512,
+        imageH: 480,
+        rows: 3,
+        cols: 8,
+        animSpeed: 6,
+        animOnTrigger: true,
+        zIndex: 1,
+        collision: true,
+        notification: "Press A to activate the statue.",
+        dialogue: [
+            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+        ],
+        rewards: [
+            { id: "memory_fragment", amount: 1 }
+        ]
+    }
+*/

@@ -8,7 +8,12 @@ const WORLD_SPRITES = [
         positions: [
             { map: "title0", x: 17, y: 5 }, 
             { map: 0, x: 28, y: 39 },  
-            { map: 0, x: 31, y: 45 }
+            { map: 0, x: 31, y: 45 },
+            { map: 2, x: 29, y: 2 },
+            { map: 2, x: 53, y: 24 },
+            { map: 2, x: 11, y: 55 },
+            { map: 2, x: 55, y: 44 },
+            { map: 2, x: 12, y: 19 },
         ],
         spriteSheet: "assets/img/worldSprites/cat.png",  
         imageW: 96,      
@@ -21,7 +26,7 @@ const WORLD_SPRITES = [
     },
 
 
-    // Teleport stone, for itile maps
+    // Teleport stone, for title maps
     {
         id: "teleport_stone",   
         positions: [
@@ -50,6 +55,8 @@ const WORLD_SPRITES = [
             { map: 1, x: 25, y: 19 },
             { map: 1, x: 6, y: 43 },
             { map: 1, x: 46, y: 31 },
+            { map: 2, x: 48, y: 60 },
+            { map: 2, x: 24, y: 22 },
         ],
         spriteSheet: "assets/img/worldSprites/deer_statue.png",  
         imageW: 128,     
@@ -75,6 +82,8 @@ const WORLD_SPRITES = [
             { map: 1, x: 47, y: 15 },
             { map: 1, x: 14, y: 2 },
             { map: 1, x: 23, y: 32 }, 
+            { map: 2, x: 59, y: 50 },
+            { map: 2, x: 11, y: 61 },
         ],
         spriteSheet: "assets/img/worldSprites/oldman_statue.png",  
         imageW: 128,     
@@ -96,7 +105,9 @@ const WORLD_SPRITES = [
             { map: 1, x: 6, y: 23 }, 
             { map: 1, x: 28, y: 4 }, 
             { map: 1, x: 24, y: 43 }, 
-            { map: 1, x: 17, y: 16 }, 
+            { map: 1, x: 17, y: 16 },
+            { map: 2, x: 43, y: 9 },  
+            { map: 2, x: 9, y: 26 },
         ],
         spriteSheet: "assets/img/worldSprites/dragon_bones.png",  
         imageW: 256,     

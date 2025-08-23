@@ -99,7 +99,7 @@ const QUEST_DEFINITIONS = {
     // ---------- Floor 3 -----------
 
 
-    // Eira of the Veil  - needs trigger tiles with item adding made
+    // Eira of the Veil 
     eira_echo_fragments: {
         id: "eira_echo_fragments",
         name: "Echo Fragments",
@@ -110,12 +110,13 @@ const QUEST_DEFINITIONS = {
         redoable: true
     },
 
-    // Whispering Shade - Activate Glitch Statues, needs quest type made
+    // Whispering Shade 
     shade_statue_echoes: {
         id: "shade_statue_echoes",
         name: "Statue Echoes",
         description: "Activate 3 glitching statues in the Thicket for the Whispering Shade.",
-        type: "triggerEvent",
+        type: "interactTiles",
+        interactTileIds: ["statue_f3_1", "statue_f3_2", "statue_f3_3"], 
         requiredAmount: 3,
         rewards: [{ id: "atk_buff_small", amount: 2 }, { xp: 45 }],
         redoable: false
@@ -159,3 +160,42 @@ const QUEST_DEFINITIONS = {
 
 
 };
+
+
+/*
+    QUEST DEFINITION TEMPLATE
+
+    id:             // Unique string identifier for the quest
+    name:           // Display name of the quest
+    description:    // Description shown to the player
+    type:           // "gift" | "itemCollect" | "enemyDefeat" | "statBuild" | "interactTiles"
+    requiredItems:  // Array of { id: "item_id", amount: n } (for itemCollect/gift)
+    enemyId:        // Enemy ID to defeat (for enemyDefeat)
+    requiredAmount: // Number required (for itemCollect, enemyDefeat, statBuild, interactTiles)
+    stat:           // Stat key to build (for statBuild)
+    interactTileIds:// Array of interactable tile IDs (for interactTiles)
+    rewards:        // Array of { id: "item_id", amount: n } or { xp: n, attack: n, defence: n, maxHealth: n, attackSpeed: n }
+    redoable:       // true/false (can be repeated)
+
+    // Example:
+    {
+        id: "example_quest",
+        name: "Example Quest",
+        description: "Complete the example quest.",
+        type: "itemCollect", // or "gift", "enemyDefeat", "statBuild", "interactTiles"
+        requiredItems: [{ id: "example_item", amount: 3 }],
+        enemyId: "example_enemy", // for enemyDefeat
+        requiredAmount: 5,        // for itemCollect, enemyDefeat, statBuild, interactTiles
+        stat: "maxHealth",        // for statBuild
+        interactTileIds: ["example_tile_1", "example_tile_2"], // for interactTiles
+        rewards: [
+            { id: "example_reward_item", amount: 1 },
+            { xp: 50 },
+            { attack: 2 },
+            { defence: 1 },
+            { maxHealth: 10 },
+            { attackSpeed: 5 }
+        ],
+        redoable: false
+    }
+*/

@@ -25,6 +25,9 @@ function startQuest(questId) {
         if (quest.type === "itemCollect") {
             playerQuestProgress[questId] = 0; 
         }
+        if (quest.type === "interactTiles") {
+            playerQuestProgress[questId] = 0;
+        }
         if (typeof updateQuestHUD === "function") updateQuestHUD();
     }
     console.log(`[Quest] Started quest ${questId}:`, quest);
@@ -71,6 +74,16 @@ function tryCompleteQuest(questId) {
             giveQuestRewards(quest.rewards);
             completeQuest(questId);
             return "complete";
+        },
+        interactTiles: () => {
+            // Count triggered interactable tiles matching quest.interactTileIds
+            let triggeredCount = quest.interactTileIds.filter(id => triggeredInteractableTiles[id]).length;
+            if (triggeredCount >= quest.requiredAmount) {
+                giveQuestRewards(quest.rewards);
+                completeQuest(questId);
+                return "complete";
+            }
+            return "incomplete";
         }
         // Add more quest types here as required
     };
