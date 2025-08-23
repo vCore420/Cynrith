@@ -119,6 +119,7 @@ const QUEST_DEFINITIONS = {
         interactTileIds: ["statue_f3_1", "statue_f3_2", "statue_f3_3"], 
         requiredAmount: 3,
         rewards: [{ id: "atk_buff_small", amount: 2 }, { xp: 45 }],
+        icon: "statue_01",
         redoable: false
     },
 
