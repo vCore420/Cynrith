@@ -174,3 +174,11 @@ Pull requests and suggestions are welcome!
 
 This project is licensed under the MIT License.
 
+Is and Will Always be Open Source!
+
+Please note:
+
+This project and its assets, and any other repo by vCore, must not be sold or exchanged for any form of currency.
+
+All rights to this project belong to everyone; free to use, modify, and share under the MIT License.
+
