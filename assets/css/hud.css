@@ -156,7 +156,7 @@ div#log {
     left: 18px;
     bottom: 55%;
     width: 200px;
-    max-height: 240px;
+    max-height: 180px;
     display: flex;
     flex-direction: column;
     gap: 10px;
