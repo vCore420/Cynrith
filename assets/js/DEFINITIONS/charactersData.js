@@ -764,6 +764,50 @@ const NPC_DEFINITIONS = {
 
 };
 
+
+/*
+// NPC Template Example
+
+const npc_template = {
+    id: "unique_npc_id", // Unique string ID for this NPC
+    name: "NPC Name",
+    sprite: "assets/img/npc/npc_m_1.png", // Path to NPC sprite image
+    interactive: true, // Can the player interact with this NPC?
+    spawns: [
+        { map: 0, x: 10, y: 10, wanderArea: { x1: 8, y1: 8, x2: 12, y2: 12 } }
+        // Add more spawn locations as needed
+    ],
+    dialogue: {
+        default: [
+            "Default dialogue line 1.",
+            "Default dialogue line 2."
+        ],
+        questGiven: [
+            "Dialogue when quest is given."
+        ],
+        questIncomplete: [
+            "Dialogue when quest is incomplete."
+        ],
+        questComplete: [
+            "Dialogue when quest is complete."
+        ]
+        // Add/remove dialogue sections as needed
+    },
+    questId: "optional_quest_id", // Link to quest definition (if any)
+    questRedo: false, // Can the quest be repeated?
+    forcedEncounter: {
+        enabled: false, // Set true for forced encounter
+        triggerTiles: [
+            // { x: 10, y: 10 }
+        ],
+        triggered: false
+    },
+    trader: null // Set trader ID if NPC is a shop/trader
+};
+
+*/
+
+
 // Enemy type definitions
 const ENEMY_TYPES = {
 
@@ -922,3 +966,29 @@ const ENEMY_TYPES = {
 
 
 };
+
+/*
+// Enemy Type Template Example
+
+const enemy_template = {
+    id: "unique_enemy_id", // Unique string ID for this enemy
+    name: "Enemy Name",
+    sprite: "assets/img/enemy/enemy_01.png", // Path to enemy sprite image
+    moveSpeed: 1.0, // Movement speed
+    distance: 3, // Hostile distance to player
+    maxHealth: 20, // Maximum health
+    attack: 5, // Attack damage
+    defense: 2, // Defense value
+    speed: 1, // Attack speed
+    xpGain: 10, // XP gained when defeated
+    loot: [ // Array of loot drops
+        { item: "item_id", chance: 50, amount: [1, 2] }
+        // Add more loot items as needed
+    ],
+    spawns: [
+        { map: 0, x: 10, y: 10, wanderArea: { x1: 8, y1: 8, x2: 12, y2: 12 } }
+        // Add more spawn locations as needed
+    ]
+};
+
+*/

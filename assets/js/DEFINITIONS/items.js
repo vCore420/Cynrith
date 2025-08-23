@@ -205,3 +205,21 @@ const ITEM_DEFINITIONS = {
 
 
 };
+
+
+/*
+// Item Definition Template Example
+
+const item_template = {
+    id: "unique_item_id", // Unique string ID for this item
+    name: "Item Name",
+    description: "Description of the item.",
+    image: "assets/img/items/item_image.png", // Path to item image
+    rarity: "common", // common, rare, epic, etc.
+    stackable: true, // Can stack in inventory
+    useable: false, // Can be used (consumed/equipped)
+    removeable: true // Can be removed from inventory
+    // Add custom properties as needed (e.g. questItem, effect, etc.)
+};
+
+*/
