@@ -99,7 +99,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 ---
 <details>
-<summary>Change Logs</summary>
+<summary><strong>Change Logs</strong></summary>
 
 <p>
 23/8 Beta v0.1.0
