@@ -10,8 +10,8 @@ const ITEM_EFFECTS = {
         notify("Attack increased by 3!", 1500);
     },
     def_buff_small: function(player) {
-        player.addDefense(3);
-        notify("Defense increased by 3!", 1500);
+        player.addDefence(3);
+        notify("Defence increased by 3!", 1500);
     },
     maxHealth_buff_small: function(player) {
         player.addMaxHealth(10);

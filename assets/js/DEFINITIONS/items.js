@@ -44,7 +44,7 @@ const ITEM_DEFINITIONS = {
     maxHealth_buff_small: {
         id: "maxHealth_buff_small",
         name: "Max Health Buff - Small",
-        description: "Increases Max Health by 5.",
+        description: "Increases Max Health by 10.",
         image: "assets/img/items/maxHealth_buff_small.png",
         rarity: "Rare",
         stackable: true,

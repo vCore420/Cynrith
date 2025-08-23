@@ -12,6 +12,9 @@ const INTERACTABLE_TILES = [
         y: 2,
         image: "assets/img/tile/rock-3.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "You feel a strange energy coming from this rock.",
             "you lean in for a better look...",
@@ -27,6 +30,9 @@ const INTERACTABLE_TILES = [
         y: 1,
         image: "assets/img/tile/fern.png",
         notification: "Press A to search this Bush.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "You hear a rustling from this bush.",
             "you reach in to have a look...",
@@ -46,10 +52,13 @@ const INTERACTABLE_TILES = [
         y: 1,
         image: "assets/img/tile/rock-2.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "You feel a faint vibration from the stone.",
             "As you brush away some moss, a weathered page slips free from a crack.",
-            "You found a Lost Page—its surface shimmers with strange symbols."
+            "You found a Lost Page, its surface shimmers with strange symbols."
         ],
         rewards: [{ id: "lost_pages", amount: 1 }],
     },
@@ -61,10 +70,13 @@ const INTERACTABLE_TILES = [
         y: 38,
         image: "assets/img/tile/rock-2.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
         "A flicker of light catches your eye near the stone.",
         "You investigate and discover a Lost Page wedged between the rocks.",
-        "You found a Lost Page—echoes of old stories seem to linger on its surface."
+        "You found a Lost Page, echoes of old stories seem to linger on its surface."
         ],
         rewards: [{ id: "lost_pages", amount: 1 }],
     },
@@ -76,10 +88,13 @@ const INTERACTABLE_TILES = [
         y: 9,
         image: "assets/img/tile/rock-1.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "Hidden among the tangled roots, you spot something unusual.",
             "You reach in and pull out a fragment of parchment, humming softly in your hand.",
-            "You found a Lost Page—its writing shifts as you look at it."
+            "You found a Lost Page, its writing shifts as you look at it."
         ],
         rewards: [{ id: "lost_pages", amount: 1 }],
     },
@@ -91,6 +106,9 @@ const INTERACTABLE_TILES = [
         y: 45,
         image: "assets/img/tile/rock-1.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "You kneel beside the humming stone, feeling a gentle pulse beneath your hand.",
             "As you search the tangled roots, you uncover a small vial wrapped in faded cloth.",
@@ -109,8 +127,10 @@ const INTERACTABLE_TILES = [
         imageH: 96, 
         rows: 1,
         cols: 12,
-        animSpeed: 6,
+        collision: true, 
         zIndex: 0,
+        animOnTrigger: false,
+        animSpeed: 6,
         notification: "Press A to Speak with the Wise Sunny Man.",
         dialogue: [
             "A grey cat sits next to this humming stone, tail flicking in rhythm with the pulse.",
@@ -134,7 +154,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -153,7 +175,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -172,7 +196,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -191,7 +217,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -210,7 +238,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -229,7 +259,9 @@ const INTERACTABLE_TILES = [
         rows: 1,
         cols: 2,
         animSpeed: 10,
+        collision: false, 
         zIndex: 0,
+        animOnTrigger: false,
         notification: "Press A to Inspect Mushroom.",
         dialogue: [
             "You find a bioluminescent mushroom glowing softly in the shadows.",
@@ -244,6 +276,9 @@ const INTERACTABLE_TILES = [
         y: 8,
         image: "assets/img/tile/rock-1.png",
         notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
         dialogue: [
             "You hear a soft humming sound emanating from the rock.",
             "As you get closer, the humming grows louder, resonating with a strange energy.",

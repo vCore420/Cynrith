@@ -34,7 +34,9 @@ function updateQuestHUD() {
             let icon = document.createElement("img");
             icon.src = `assets/img/icons/${quest.stat}.png`;
             entry.appendChild(icon);
-            let gained = playerQuestProgress[qid] || 0;
+            let startValue = statBuildQuestStart[qid] || 0;
+            let statValue = player[quest.stat] || 0;
+            let gained = statValue - startValue;
             counter.textContent = `${gained} / ${quest.requiredAmount}`;
             if (gained >= quest.requiredAmount) counter.classList.add("complete");
         } else if (quest.type === "itemCollect") {

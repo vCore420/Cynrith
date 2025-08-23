@@ -34,7 +34,7 @@ const QUEST_DEFINITIONS = {
         enemyId: "slime_01",
         requiredAmount: 5,
         rewards: [{ id: "health_buff_small", amount: 2 }, { xp: 30 }],
-        redoable: false
+        redoable: true
     },
     
     

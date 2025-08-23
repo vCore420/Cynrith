@@ -19,11 +19,11 @@ const NPC_DEFINITIONS = {
                 "Ah, another soul steps into the green! Welcome, traveler, to Verdant Rise, the first of many floors beneath the Architect’s gaze.",
                 "Here, every blade of grass and whisper of wind is shaped by laws both seen and unseen.",
                 "Take up this sword, it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
-                "Seek out others like myself; we are here to guide, not command. Your journey is your own, but remember: wisdom is often found in simple beginnings."
+                "Seek out others like myself, we are here to guide, not command. Your journey is your own, but remember, wisdom is often found in simple beginnings."
             ],
             questComplete: [
                 "May the Architect watch over you. The world is wide, and your story has only just begun.",
-                "If you ever feel lost, listen to the wind—or seek out the stones. They remember more than you might think.",
+                "If you ever feel lost, listen to the wind, or seek out the stones. They remember more than you might think.",
                 "**Press the B Button to use your Sword!**"
             ]
         },
@@ -53,17 +53,17 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_m_1.png", 
         interactive: true,
         spawns: [
-            { map: 0, x: 42, y: 24, wanderArea: { x1: 41, y1: 23, x2: 43, y2: 25 } }
+            { map: 0, x: 38, y: 24, wanderArea: { x1: 37, y1: 20, x2: 39, y2: 27 } }
         ],
         dialogue: {
             default: [
                 "Ah, the Teleport Stone draws another wanderer. These ruins have seen more cycles than I can count.",
-                "Long ago, the Firstfolk built these stones to mark the path between worlds. Now, only the brave—or the curious—dare use them.",
+                "Long ago, the Firstfolk built these stones to mark the path between worlds. Now, only the brave, or the curious, dare use them.",
                 "To travel, simply step close and let your intent guide you. The glyphs will answer, if you’re ready.",
-                "Take these—old traveler’s tricks. A few potions and a charm for luck. The next floor is never quite what you expect."
+                "Take these, an old traveler’s tricks. A few potions and a charm for luck. The next floor is never quite what you expect."
             ],
             questComplete: [
-                "The stone hums when you approach. That’s a good sign. Remember: every floor has its own rules, but the Architect is always watching.",
+                "The stone hums when you approach. That’s a good sign. Remember, every floor has its own rules, but the Architect is always watching.",
                 "Safe travels, adventurer. May the echoes be kind."
             ]
         },
@@ -93,18 +93,18 @@ const NPC_DEFINITIONS = {
             default: [
                 "Oh! A new face among the stones. Welcome to Verdant Rise, traveler.",
                 "If you’re looking to prove your mettle, the Vicious Plants around here drop something called Dewleaf. It’s prized by healers and cooks alike.",
-                "Would you mind gathering a few for me? The plants can be tricky—watch for their snapping jaws in the tall grass."
+                "Would you mind gathering a few for me? The plants can be tricky, watch for their snapping jaws in the tall grass."
             ],
             questGiven: [
                 "Bring me 3 Dewleaf from the Vicious Plants. You’ll find them lurking in the grass. Good luck!"
             ],
             questIncomplete: [
-                "Still searching? Take your time—the plants aren’t going anywhere. Just be careful out there."
+                "Still searching? Take your time, the plants aren’t going anywhere. Just be careful out there."
             ],
             questComplete: [
                 "You found them! Thank you, traveler. The healers will be grateful.",
                 "If you ever find more Dewleaf, I’ll always have a reward for you.",
-                "Strange, isn’t it, how the world seems to remember us? Sometimes I find echoes—shimmers in the air, like memories left behind."
+                "Strange, isn’t it, how the world seems to remember us? Sometimes I find echoes, shimmers in the air, like memories left behind."
             ]
         },
         questId: "dewleaf_gather",
@@ -126,10 +126,10 @@ const NPC_DEFINITIONS = {
                 "Hey there! You’re new, right? Don’t worry, everyone starts somewhere.",
                 "Eldrin says the best way to learn is by doing. Around here, that means facing a few Groovy Slimes.",
                 "They look harmless, but they’ll keep you on your toes. Defeat a few and you’ll feel your skills sharpening already!",
-                "Come back and tell me how it went—I’m always curious to see how newcomers handle their first challenge."
+                "Come back and tell me how it went, I’m always curious to see how newcomers handle their first challenge."
             ],
             questGiven: [
-                "Defeat 5 Groovy Slimes. They bounce all over the fields—just watch out for their surprise attacks!"
+                "Defeat 5 Groovy Slimes. They bounce all over the fields, just watch out for their surprise attacks!"
             ],
             questIncomplete: [
                 "Still working on those slimes? Take your time. Every battle is a lesson."
@@ -365,7 +365,7 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Forgotten Forum. Travelers gather here between journeys—some to trade, some to share stories, some just to remember.",
+                "Welcome to the Forgotten Forum. Travelers gather here between journeys, some to trade, some to share stories, some just to remember.",
                 "They say the forum returns with every cycle, no matter how the world changes. If you listen, you might hear echoes of old voices in the pillars."
             ]
         }
@@ -839,13 +839,13 @@ const ENEMY_TYPES = {
         speed: 1,                      
         xpGain: 10,                     
         loot: [                        
-            { item: "dustroot", chance: 40, amount: [1, 2] }
+            { item: "dustroot", chance: 45, amount: [1, 2] }
         ],
         spawns: [
             { map: 1, x: 24, y: 39, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
             { map: 1, x: 21, y: 44, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
             { map: 1, x: 29, y: 38, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
-            { map: 1, x: 29, y: 31, wanderArea: { x1: 18, y1: 37, x2: 31, y2: 48 } },
+            { map: 1, x: 29, y: 32, wanderArea: { x1: 27, y1: 31, x2: 34, y2: 34 } },
             { map: 1, x: 5, y: 2,  wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
             { map: 1, x: 13, y: 6, wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
             { map: 1, x: 4, y: 6,  wanderArea: { x1: 1, y1: 1, x2: 14, y2: 7 } },
@@ -891,11 +891,11 @@ const ENEMY_TYPES = {
         sprite: "assets/img/enemy/orc_01.png",
         moveSpeed: 0.7,
         distance: 3,
-        maxHealth: 25,
-        attack: 10,
-        defense: 4,
+        maxHealth: 40,
+        attack: 25,
+        defense: 6,
         speed: 1.2,
-        xpGain: 12,
+        xpGain: 15,
         loot: [
             { item: "twilight_totem", chance: 10, amount: 1 }
         ],

@@ -63,7 +63,8 @@ function tryCompleteQuest(questId) {
         },
         statBuild: () => {
             let statValue = player[quest.stat] || 0;
-            if (statValue >= quest.requiredAmount) {
+            let startValue = statBuildQuestStart[questId] || 0;
+            if ((statValue - startValue) >= quest.requiredAmount) {
                 giveQuestRewards(quest.rewards);
                 completeQuest(questId);
                 return "complete";
@@ -94,12 +95,16 @@ function tryCompleteQuest(questId) {
 
 // Complete a quest, moving it to completed state
 function completeQuest(questId) {
-    if (!playerQuests.completed.includes(questId)) {
+    const quest = QUEST_DEFINITIONS[questId];
+    playerQuests.active = playerQuests.active.filter(id => id !== questId);
+
+    if (quest && !quest.redoable && !playerQuests.completed.includes(questId)) {
         playerQuests.completed.push(questId);
-        playerQuests.active = playerQuests.active.filter(id => id !== questId);
-        if (typeof updateQuestHUD === "function") updateQuestHUD();
-        console.log(`[Quest] Completed quest ${questId}`);
     }
+
+    if (typeof updateQuestHUD === "function") updateQuestHUD();
+
+    console.log(`[Quest] Completed quest ${questId}`);
 }
 
 
