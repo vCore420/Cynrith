@@ -2,7 +2,7 @@
  "height":64,
  "infinite":false,
  "spawn": { "x": 4, "y": 5 },
- "teleport": { "x": 57, "y": 57, "xpRequired": 600 },
+ "teleport": { "x": 57, "y": 57, "xpRequired": 2000 },
  "assets":[
    {"file_name":"grass-3a","collision":0,"frames":0},
    {"file_name":"tree-4","collision":1,"frames":0},
