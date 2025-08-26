@@ -1,6 +1,7 @@
 // Main player logic
 
 let playerAnimating = false;
+let footstepToggle = false;
 
 
 // Check for Player at the teleport stones
@@ -171,6 +172,18 @@ Player.prototype = {
         if (this.frozen) return;
 
         this.movement.frame++;
+
+        // Play footstep sound every 3rd frame for a quicker, but not too fast, rhythm
+        if (this.movement.moving) {
+            footstepFrameCounter++;
+            // Play on frames 0 and 2 of every 3-frame cycle (e.g. frames 0, 3, 6, ...)
+            if (footstepFrameCounter % 3 === 0) {
+                playFootstepSoundForCurrentTile();
+            }
+            if (footstepFrameCounter > 1000) footstepFrameCounter = 0; // Prevent overflow
+        } else {
+            footstepFrameCounter = 0; // Reset when not moving
+        }
 
         if (this.movement.frame == 4) {
             this.movement.frame = 0;

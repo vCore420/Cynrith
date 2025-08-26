@@ -144,6 +144,17 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         tryStartLoop();
     };
 
+    // Fade out any previous background music, then play new music for this map
+    if (window.SoundManager) {
+        SoundManager.fadeBgMusicVolume(0, 700);
+        setTimeout(() => {
+            SoundManager.stopBgMusic();
+            const bgMusicSrc = `assets/sound/bg_map${mapIndex}.mp3`;
+            SoundManager.playBgMusic(bgMusicSrc);
+            SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
+        }, 750);
+    }
+
     // Wait for all sprites to load before starting Loop
     function waitForSprites() {
         let allSprites = [player.sprite];

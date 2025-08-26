@@ -120,6 +120,17 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
             spawnWorldSpritesForMap(mapIndex);
         }
 
+        // Fade out current music and fade in new map music
+        if (window.SoundManager) {
+            SoundManager.fadeBgMusicVolume(0, 700);
+            setTimeout(() => {
+                SoundManager.stopBgMusic();
+                const bgMusicSrc = `assets/sound/bg_map${mapIndex}.mp3`;
+                SoundManager.playBgMusic(bgMusicSrc);
+                SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
+            }, 750);
+        }
+
         if (typeof onWarped === "function") onWarped();
         console.log("[WarpToMap] Map loaded successfully:", mapIndex);
     };

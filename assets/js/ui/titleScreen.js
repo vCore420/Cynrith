@@ -10,6 +10,11 @@ window.addEventListener("DOMContentLoaded", function() {
     loadTitleMap();
     hideGameUI();
 
+    // Play title screen background music
+    if (window.SoundManager) {
+        SoundManager.playBgMusic("assets/sound/bg_title.mp3");
+    }
+
     const overlay = document.createElement("div");
     overlay.id = "title-map-overlay";
     document.body.appendChild(overlay);
@@ -137,6 +142,10 @@ window.addEventListener("DOMContentLoaded", function() {
         characterSelect.classList.add("hidden");
         // Fade out and continue to lore screen
         document.getElementById("title-fade").style.opacity = "1";
+        if (window.SoundManager) {
+            SoundManager.fadeBgMusicVolume(0, 800);
+            setTimeout(() => SoundManager.stopBgMusic(), 900);
+        }
         setTimeout(() => {
             document.getElementById("title-screen").style.display = "none";
             playLoreIntro();
@@ -323,6 +332,10 @@ function showLoadGameMenu() {
 
 function fadeOutTitleAndLoadGame(playerName) {
     document.getElementById("title-fade").style.opacity = "1";
+    if (window.SoundManager) {
+        SoundManager.fadeBgMusicVolume(0, 800);
+        setTimeout(() => SoundManager.stopBgMusic(), 900);
+    }
     setTimeout(() => {
         document.getElementById("title-screen").style.display = "none";
         showLoadingScreen(() => {
