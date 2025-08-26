@@ -102,6 +102,17 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 <summary><strong>Change Logs</strong></summary>
 
 <p>
+--
+  
+26/8 Beta v0.1.1
+
+- Added background music for title screen and each map, with smooth transitions.
+- Introduced modular sound system for music and effects.
+- Player footsteps now play and change based on ground tile type.
+- Sound assets integrated for world and player actions.
+
+--
+  
 23/8 Beta v0.1.0
 
 - Added new quest types and improved quest logic (stat tracking, interactTiles, redoable quests)
