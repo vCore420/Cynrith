@@ -71,10 +71,11 @@
 - [ ] Mini map in the player menu, display the floor as a small picture with player location
 
 ## Sounds
-- [ ] Stop forgetting that sounds exsit
-- [ ] Add sound funstions to call when sounds need to be played
-- [ ] Create sound asseets 
-(I dont think the first beta release will have any sounds as ive left this one a bit late)
+- [x] Stop forgetting that sounds exist
+- [x] Add sound functions to call when sounds need to be played
+- [x] Create sound assets
+- [ ] Expand sounds to work in with the world and player more
+- [ ] Ui Interacation sounds
 
 ## Docs & Dev work
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
@@ -89,11 +90,9 @@
 
 ## **New Since Last Commit*
 
-- Styled all elements for a portrait phone and tablet screen
-- Started adding NPCs to Floor 3
-- Added new quest types and quest logic improvements
-- Improved interactable tile system and quest HUD
-- First beta Release planned after floor 3 is made 
- 
+- Sound System started
+- Player Movement sounds attached to map tiles
+- Background music for each floor and title screen
+- Other sound assets added to files 
 
 ---
