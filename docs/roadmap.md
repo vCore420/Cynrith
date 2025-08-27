@@ -74,8 +74,20 @@
 - [x] Stop forgetting that sounds exist
 - [x] Add sound functions to call when sounds need to be played
 - [x] Create sound assets
-- [ ] Expand sounds to work in with the world and player more
-- [ ] Ui Interacation sounds
+- [x] Background music for each map
+- [x] Ground Tile sounds for player movement
+- [x] Player Combat sounds
+- [x] Player Death sounds
+- [x] Npc Combat sounds
+- [x] Npc Dialogue interaction sounds
+- [ ] Enemy ambient Sounds
+- [ ] Title Menu sounds
+- [ ] Player Menu Sounds
+- [x] Item Collection sounds
+- [x] Item Usage sounds
+- [ ] Teleport Stone Interactions and ambient sounds
+- [ ] Interaction and Trigger Tile sound options
+- [ ] World Sprite sound options
 
 ## Docs & Dev work
 - [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
@@ -93,6 +105,11 @@
 - Sound System started
 - Player Movement sounds attached to map tiles
 - Background music for each floor and title screen
-- Other sound assets added to files 
+- Other sound assets added to files
+- Added combat sounds
+- Added dialogue and NPC interaction noises
+- Added sounds for items being added to inventory based off rarity
+- Added sounds for usable items
+- Refined ground sound assets
 
 ---
