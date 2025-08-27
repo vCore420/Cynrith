@@ -83,6 +83,8 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Multi-layered world and floor progression
 - Notifications and dialogue system
 - Forced encounters and event triggers
+- Trader Npc with buy/sell menus
+- World, Dialogue, Player and Combat sounds effects
 
 **To DO**
 
@@ -90,7 +92,6 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Settings menu
 - Map menu
 - trigger tiles for interiors/caves
-- Shop/trader system
 - Floor and Storyline expansion 
 - Improved assets and polish
 - Expand documentation
@@ -99,9 +100,24 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 ---
 <details>
-<summary><strong>Change Logs</strong></summary>
+<summary>Change Logs</summary>
 
 <p>
+--
+
+27/8 Beta v0.1.2
+
+- Expanded sound system: contextual background music for each map and title screen, with smooth fade transitions.
+- Player movement now triggers ground tile-specific footstep sounds, supporting multi-layer maps and all defined tile types.
+- Added combat sounds: sword slash and sword hit effects play when attacking and hitting enemies.
+- Player receives a hit sound when damaged by enemies.
+- Player death now triggers a dedicated death sound effect.
+- Dialogue system now fades background music and plays a sound on each dialogue advance.
+- Item pickup sounds play based on item rarity; usable items play their defined sound effect.
+- Improved sound timing for footsteps to better match player movement animation.
+- Fixed ground tile sound logic to support all asset types and multi-layer maps.
+- Ensured background music only starts after user interaction
+
 --
   
 26/8 Beta v0.1.1
@@ -125,7 +141,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Finished Creation Floor 3!
 - First Beta Release "Cynrith Beta v0.1.0" pushed!!
 </p> 
-</details>
+<details>
 
 ---
 
@@ -184,12 +200,4 @@ Pull requests and suggestions are welcome!
 ## License
 
 This project is licensed under the MIT License.
-
-Is and Will Always be Open Source!
-
-Please note:
-
-This project and its assets, and any other repo by vCore, must not be sold or exchanged for any form of currency.
-
-All rights to this project belong to everyone; free to use, modify, and share under the MIT License.
 
