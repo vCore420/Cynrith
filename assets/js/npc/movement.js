@@ -327,8 +327,19 @@ function updateCharacters() {
                     if (!char._attackTimer || Date.now() - char._attackTimer > 1000 / char.speed) {
                         char._attackTimer = Date.now();
                         let dmg = Math.max(1, char.attack - player.getDefence());
+                        
+                        // Remove Player Health
                         player.addHealth(-dmg);
+
+                        // Draw Damage Popup
                         showDamagePopup(player.tile.x, player.tile.y, dmg, "player");
+
+                        // Play Player hit sound
+                        if (window.SoundManager) {
+                            SoundManager.playEffect("assets/sound/sfx/player/player_hit.wav");
+                        }
+
+                        // Handle Player Death when Health Hits 0
                         if (player.getHealth() <= 0) handlePlayerDeath();
                         else player.knockbackAnim();
                     }

@@ -154,8 +154,14 @@ function checkTeleport() {
         if (actionButtonAPressed) {
             const xpRequired = t.xpRequired || 0;
             if (player.xp >= xpRequired) {
+                // Play Warp Sound
+                if (window.SoundManager) {
+                    SoundManager.playEffect("assets/sound/sfx/world/warp.wav");
+                }
+                // Warp Player to Map
                 warpToMap(currentMapIndex + 1, "spawn");
             } else {
+                // Else notify player of insufficient XP
                 notify(`You need ${xpRequired} XP to move to this Floor!`, 3000);
             }
         }
@@ -177,6 +183,11 @@ function checkBackTeleport() {
             backTeleportNotifShown = true;
         }
         if (actionButtonAPressed) {
+            // Play Warp Sound
+            if (window.SoundManager) {
+                SoundManager.playEffect("assets/sound/sfx/world/warp.wav");
+            }
+            // Warp Player to Map
             warpToMap(currentMapIndex - 1, "teleport");
         }
     } else {

@@ -22,6 +22,13 @@ function addItem(itemId, amount = 1) {
     }
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
+
+    // Play item pickup sound based on rarity
+    if (window.SoundManager && def.rarity) {
+        const rarity = def.rarity.toLowerCase();
+        SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.wav`);
+    }
+    
     return true;
 }
 

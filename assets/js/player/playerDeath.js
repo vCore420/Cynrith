@@ -3,6 +3,11 @@ function handlePlayerDeath() {
     if (deathScreenShown) return; 
     deathScreenShown = true;
 
+    // Play player death sound
+    if (window.SoundManager) {
+        SoundManager.playEffect("assets/sound/sfx/player/player_death.wav");
+    }
+
     let fadeFrames = 12;
     let frame = 0;
     let fadeInterval = setInterval(() => {

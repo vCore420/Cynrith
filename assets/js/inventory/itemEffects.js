@@ -29,6 +29,11 @@ function useItem(itemId) {
     if (!def || !def.useable) return false;
     if (!hasItem(itemId, 1)) return false;
 
+    // Play use sound if defined in item definition
+    if (window.SoundManager && def.sound) {
+        SoundManager.playEffect("assets/sound/sfx/items/" + def.sound);
+    }
+
     if (ITEM_EFFECTS[itemId]) {
         ITEM_EFFECTS[itemId](player);
         removeItem(itemId, 1);

@@ -202,9 +202,6 @@ Player.prototype = {
         let layout = map.data.layout;
         if (!layout || !layout[0]) return;
 
-        let maxY = layout.length - 1;
-        let maxX = layout[0].length - 1;
-
         // Calculate new pixel positions
         let newPosX = this.pos.x + x;
         let newPosY = this.pos.y + y;
@@ -257,6 +254,11 @@ Player.prototype = {
         const hasSword = inventory.some(item => item && typeof item.id === "string" && item.id.endsWith("_sword"));
         if (!hasSword) return;
 
+        // Play sword slash sound effect
+        if (window.SoundManager) {
+            SoundManager.playEffect("assets/sound/sfx/player/sword_slash.wav");
+        }
+
         // Play attack animation (jump forward and back)
         this.quickAttackAnim();
 
@@ -272,6 +274,8 @@ Player.prototype = {
             { x: this.tile.x,          y: this.tile.y }           // player's own tile
         ];
 
+        let hitEnemy = false;
+
         // Attack any enemy on target tiles
         characters.forEach(char => {
             if (char.type === "enemy" && char.health > 0) {
@@ -279,6 +283,7 @@ Player.prototype = {
                     Math.round(char.x) === t.x && Math.round(char.y) === t.y
                 );
                 if (isTarget) {
+                    hitEnemy = true;
                     let dmg = Math.max(1, this.attack - char.defense);
                     char.health -= dmg;
                     showDamagePopup(Math.round(char.x), Math.round(char.y), dmg, "enemy");
@@ -288,6 +293,11 @@ Player.prototype = {
                 }
             }
         });
+
+        // Play sword hit sound if an enemy was hit
+        if (hitEnemy && window.SoundManager) {
+            SoundManager.playEffect("assets/sound/sfx/player/sword_hit.wav");
+        }
     },
     quickAttackAnim: function() {
         playerAnimating = true;

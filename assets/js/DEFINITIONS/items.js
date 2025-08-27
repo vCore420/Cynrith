@@ -13,7 +13,8 @@ const ITEM_DEFINITIONS = {
         rarity: "common",
         stackable: true,
         useable: true,
-        removeable: true
+        removeable: true,
+        sound: 'health.wav'
     },
 
 
@@ -25,7 +26,8 @@ const ITEM_DEFINITIONS = {
         rarity: "Rare",
         stackable: true,
         useable: true,
-        removeable: true
+        removeable: true,
+        sound: 'atk.wav'
     },
 
 
@@ -37,7 +39,8 @@ const ITEM_DEFINITIONS = {
         rarity: "Rare",
         stackable: true,
         useable: true,
-        removeable: true
+        removeable: true,
+        sound: 'def.wav'
     },
 
 
@@ -49,7 +52,8 @@ const ITEM_DEFINITIONS = {
         rarity: "Rare",
         stackable: true,
         useable: true,
-        removeable: true
+        removeable: true,
+        sound: 'maxHealth.wav'
     },
 
     atkSpeed_buff_small: {
@@ -60,7 +64,8 @@ const ITEM_DEFINITIONS = {
         rarity: "Rare",
         stackable: true,
         useable: true,
-        removeable: true
+        removeable: true,
+        sound: 'atkSpeed.wav'
     },
 
     
@@ -218,8 +223,8 @@ const item_template = {
     rarity: "common", // common, rare, epic, etc.
     stackable: true, // Can stack in inventory
     useable: false, // Can be used (consumed/equipped)
-    removeable: true // Can be removed from inventory
-    // Add custom properties as needed (e.g. questItem, effect, etc.)
+    removeable: true, // Can be removed from inventory
+    sound: 'item_use.wav' // Sound effect played when item is used
 };
 
 */

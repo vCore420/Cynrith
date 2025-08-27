@@ -29,6 +29,13 @@ function dialogue(...lines) {
     _dialogueQueue = Array.isArray(lines[0]) ? lines[0] : lines;
     _dialogueActive = true;
     controlsEnabled = false;
+    // Fade background music volume to half when dialogue starts
+    if (window.SoundManager && SoundManager.bgMusic) {
+        SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume * 0.5, 400);
+    }
+    if (window.SoundManager) {
+        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.wav");
+    }
     showDialogueLine(0, name);
 }
 
@@ -76,6 +83,11 @@ function advanceDialogue() {
     const block = document.getElementById('dialogue-block');
     let idx = parseInt(block.dataset.dialogueIdx || "0", 10);
     let type = block.dataset.dialogueType || "";
+
+    // Play dialogue sound effect on each advance
+    if (window.SoundManager) {
+        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.wav");
+    }
 
     // Quest Given Dialogue
     if (type === "questGiven") {
@@ -166,6 +178,11 @@ function closeDialogue() {
     if (typeof onDialogueClosed === "function") {
         onDialogueClosed();
         onDialogueClosed = null;
+    }
+
+    // Restore background music volume when dialogue closes
+    if (window.SoundManager && SoundManager.bgMusic) {
+        SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 400);
     }
 }
 

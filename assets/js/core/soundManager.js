@@ -2,8 +2,8 @@
 
 const SoundManager = {
     bgMusic: null,
-    bgMusicVolume: 0.2,
-    effectVolume: 0.4,
+    bgMusicVolume: 0.1,
+    effectVolume: 0.6,
     muted: false,
 
     playBgMusic(src, loop = true) {
@@ -81,7 +81,7 @@ function playFootstepSoundForCurrentTile() {
         const gid = layer[tileY][tileX];
         let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
         if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].footsteps) {
-            SoundManager.playEffect(`assets/sound/sfx/${map.data.assets[tileIndex].footsteps}`);
+            SoundManager.playEffect(`assets/sound/sfx/world/${map.data.assets[tileIndex].footsteps}`);
             return; // Play only the first valid sound found
         }
     }
