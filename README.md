@@ -84,7 +84,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Notifications and dialogue system
 - Forced encounters and event triggers
 - Trader Npc with buy/sell menus
-- World, Dialogue, Player and Combat sounds effects
+- World, Dialogue, Player and Combat sound effects
 
 **To DO**
 
