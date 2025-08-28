@@ -301,6 +301,7 @@ const INTERACTABLE_TILES = [
         collision: true, 
         zIndex: 1,
         animOnTrigger: true,
+        sound: { enabled: true, file: "glitching_statue.wav", type: "trigger" },
         notification: "Press A to activate the statue.",
         dialogue: [
             "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
@@ -322,6 +323,7 @@ const INTERACTABLE_TILES = [
         collision: true, 
         zIndex: 1,
         animOnTrigger: true,
+        sound: { enabled: true, file: "glitching_statue.wav", type: "trigger" },
         notification: "Press A to activate the statue.",
         dialogue: [
             "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
@@ -343,6 +345,7 @@ const INTERACTABLE_TILES = [
         collision: true, 
         zIndex: 1,
         animOnTrigger: true,
+        sound: { enabled: true, file: "glitching_statue.wav", type: "trigger" },
         notification: "Press A to activate the statue.",
         dialogue: [
             "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
@@ -374,6 +377,11 @@ const INTERACTABLE_TILES = [
     notification: // Text to show when player is adjacent/on tile (optional)
     dialogue:     // Array of dialogue lines shown on interaction (required)
     rewards:      // Array of { id: "item_id", amount: n } (optional, items given on interaction)
+    sound: {      // Sound options for this tile (optional)
+        enabled: true,                // true/false, whether sound should play
+        file: "sound_file.wav",       // sound file name in assets/sound/sfx/interactions/
+        type: "loop"|"ambient"|"trigger" // sound type: loop (continuous), ambient (random), trigger (play once on interaction)
+    }
 
     // Example:
     {
@@ -397,6 +405,11 @@ const INTERACTABLE_TILES = [
         ],
         rewards: [
             { id: "memory_fragment", amount: 1 }
-        ]
+        ],
+        sound: {
+            enabled: true,
+            file: "statue_activate.wav",
+            type: "trigger"
+        }
     }
 */

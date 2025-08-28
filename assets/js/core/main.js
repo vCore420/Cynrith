@@ -262,6 +262,10 @@ function Loop() {
     if (typeof drawCharacters === "function") drawCharacters();
     player.draw();
     
+    // Play Enemy and World Sounds
+    setInterval(playEnemyAmbientSounds, 1200);
+    playInteractionTileSounds();
+
     //Draw Animated World Sprite Sheets
     drawTeleportStones();
 

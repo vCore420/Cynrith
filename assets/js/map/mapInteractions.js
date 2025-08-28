@@ -1,6 +1,12 @@
 let triggeredInteractableTiles = {};
 let triggeredTriggerTiles = {};
 
+// Track looped sounds for interactable/trigger tiles
+let activeLoopedInteractionSounds = {};
+
+// Track triggered loop sounds (persisted in save/load)
+let triggeredLoopedSounds = {}; // { tileId: true }
+
 function spawnInteractableTilesForMap(mapIndex) {
     window.activeInteractableTiles = INTERACTABLE_TILES
         .filter(tile =>
@@ -103,6 +109,7 @@ function checkInteractableTileInteraction() {
             player.frozen = true;
             dialogue(...tile.dialogue);
             triggeredInteractableTiles[tile.id] = true; // <--- Mark as triggered
+            playTriggerTileSound(tile);
             // Give rewards
             tile.rewards.forEach(r => {
                     addItem(r.id, r.amount);
@@ -186,6 +193,7 @@ function checkTriggerTileActivation() {
             if (tile.oneTime) {
                 triggeredTriggerTiles[tile.id] = true;
                 tile.triggered = true;
+                playTriggerTileSound(tile);
                 // Remove from active list
                 window.activeTriggerTiles = window.activeTriggerTiles.filter(t => t.id !== tile.id);
             }
@@ -193,4 +201,115 @@ function checkTriggerTileActivation() {
             console.log(`[TriggerTile] Triggered tile ${tile.id} at (${tile.x}, ${tile.y})`);
         }
     });
+}
+
+// Play interaction/trigger tile sounds (call in main game loop)
+function playInteractionTileSounds() {
+    const playerX = player.tile.x;
+    const playerY = player.tile.y;
+    const RADIUS = 5;
+    const MIN_AMBIENT_INTERVAL = 9000; // ms
+    const AMBIENT_CHANCE = 0.08; // 8% chance per tick
+
+    // Helper to play sound at volume based on distance
+    function playInteractionSound(tile, soundFile, volume) {
+        if (window.SoundManager) {
+            const audio = new Audio(`assets/sound/sfx/interactions/${soundFile}`);
+            audio.volume = volume;
+            audio.play();
+        }
+    }
+
+    // Helper to start looped sound
+    function startLoopedSound(tile, soundFile, volume) {
+        if (!activeLoopedInteractionSounds[tile.id]) {
+            const audio = new Audio(`assets/sound/sfx/interactions/${soundFile}`);
+            audio.loop = true;
+            audio.volume = volume;
+            audio.play();
+            activeLoopedInteractionSounds[tile.id] = audio;
+        } else {
+            activeLoopedInteractionSounds[tile.id].volume = volume;
+        }
+    }
+
+    // Helper to stop looped sound
+    function stopLoopedSound(tile) {
+        if (activeLoopedInteractionSounds[tile.id]) {
+            activeLoopedInteractionSounds[tile.id].pause();
+            activeLoopedInteractionSounds[tile.id] = null;
+        }
+    }
+
+    // Handle interactable tiles
+    if (window.activeInteractableTiles) {
+        window.activeInteractableTiles.forEach(tile => {
+            if (!tile.sound || !tile.sound.enabled) return;
+            const dx = tile.x - playerX;
+            const dy = tile.y - playerY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const minVol = 0.2, maxVol = 1.0;
+            let volume = maxVol - ((dist / RADIUS) * (maxVol - minVol));
+            volume = Math.max(minVol, Math.min(maxVol, volume));
+
+            if (dist > RADIUS) {
+                if (tile.sound.type === "loop" && activeLoopedInteractionSounds[tile.id]) {
+                    stopLoopedSound(tile);
+                }
+                return;
+            }
+
+            if (tile.sound.type === "loop") {
+                startLoopedSound(tile, tile.sound.file, volume);
+            } else if (tile.sound.type === "ambient") {
+                tile._lastAmbientSound = tile._lastAmbientSound || 0;
+                if (Date.now() - tile._lastAmbientSound > MIN_AMBIENT_INTERVAL && Math.random() < AMBIENT_CHANCE) {
+                    playInteractionSound(tile, tile.sound.file, volume);
+                    tile._lastAmbientSound = Date.now();
+                }
+            }
+            // No trigger sound here; handled on interaction
+        });
+    }
+
+    // Handle trigger tiles
+    if (window.activeTriggerTiles) {
+        window.activeTriggerTiles.forEach(tile => {
+            if (!tile.sound || !tile.sound.enabled) return;
+            const dx = tile.x - playerX;
+            const dy = tile.y - playerY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const minVol = 0.2, maxVol = 1.0;
+            let volume = maxVol - ((dist / RADIUS) * (maxVol - minVol));
+            volume = Math.max(minVol, Math.min(maxVol, volume));
+
+            if (dist > RADIUS) {
+                if (tile.sound.type === "loop" && activeLoopedInteractionSounds[tile.id]) {
+                    stopLoopedSound(tile);
+                }
+                return;
+            }
+
+            if (tile.sound.type === "loop") {
+                startLoopedSound(tile, tile.sound.file, volume);
+            } else if (tile.sound.type === "ambient") {
+                tile._lastAmbientSound = tile._lastAmbientSound || 0;
+                if (Date.now() - tile._lastAmbientSound > MIN_AMBIENT_INTERVAL && Math.random() < AMBIENT_CHANCE) {
+                    playInteractionSound(tile, tile.sound.file, volume);
+                    tile._lastAmbientSound = Date.now();
+                }
+            }
+            // No trigger sound here; handled on activation
+        });
+    }
+}
+
+
+// Play trigger sound ONCE at full volume when tile is triggered/interacted with
+function playTriggerTileSound(tile) {
+    if (tile.sound && tile.sound.enabled && tile.sound.type === "trigger") {
+        if (window.SoundManager) {
+            SoundManager.playEffect(`assets/sound/sfx/interactions/${tile.sound.file}`);
+        }
+    }
 }

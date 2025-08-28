@@ -86,6 +86,7 @@ function drawCharacters() {
         // Draw health bar for hostile enemies
         if (char.type === "enemy" && char.state === "hostile" && typeof char.health === "number") {
             anyHostile = true;
+            char._lastAmbientSound = char._lastAmbientSound || 0;
             let barWidth = config.size.char * 0.8;
             let barHeight = 8;
             let healthRatio = Math.max(0, char.health / char.maxHealth);
@@ -179,6 +180,51 @@ function spawnCharactersForMap(mapIndex) {
     if (typeof patchForcedEncounters === "function") {
         patchForcedEncounters();
     }
+}
+
+
+// Ambient enemy sound system
+function playEnemyAmbientSounds() {
+    const now = Date.now();
+    const playerX = player.tile.x;
+    const playerY = player.tile.y;
+    const AMBIENT_RADIUS = 5; // tile radius from player
+    const MIN_INTERVAL = 10000; // ms (minimum time between sounds per enemy)
+    const CHANCE_PER_TICK = 0.08; // 8% chance per eligible enemy per tick
+
+    let nearbyEnemies = characters.filter(char =>
+        char.type === "enemy" &&
+        Math.abs(char.x - playerX) <= AMBIENT_RADIUS &&
+        Math.abs(char.y - playerY) <= AMBIENT_RADIUS
+    );
+
+    let maxSounds = Math.max(1, Math.floor(nearbyEnemies.length / 2));
+    let soundsPlayed = 0;
+
+    nearbyEnemies.forEach(char => {
+        if (soundsPlayed >= maxSounds) return;
+        if (now - (char._lastAmbientSound || 0) < MIN_INTERVAL) return;
+        if (Math.random() < CHANCE_PER_TICK) {
+            // Calculate distance and volume
+            const dx = char.x - playerX;
+            const dy = char.y - playerY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            // Volume fades from 1 (same tile) to 0.2 (at edge of radius)
+            const minVol = 0.2;
+            const maxVol = 1.0;
+            let volume = maxVol - ((dist / AMBIENT_RADIUS) * (maxVol - minVol));
+            volume = Math.max(minVol, Math.min(maxVol, volume));
+
+            // Play the enemy's ambient sound at calculated volume
+            if (window.SoundManager) {
+                const audio = new Audio(`assets/sound/sfx/enemy/${char.id}.wav`);
+                audio.volume = volume;
+                audio.play();
+            }
+            char._lastAmbientSound = now;
+            soundsPlayed++;
+        }
+    });
 }
 
 
