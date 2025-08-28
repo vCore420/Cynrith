@@ -84,7 +84,8 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Notifications and dialogue system
 - Forced encounters and event triggers
 - Trader Npc with buy/sell menus
-- World, Dialogue, Player and Combat sound effects
+- World, Dialogue, Player and Combat sounds effects
+- Expand documentation on how to creat new floor and other game assets
 
 **To DO**
 
@@ -94,7 +95,6 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - trigger tiles for interiors/caves
 - Floor and Storyline expansion 
 - Improved assets and polish
-- Expand documentation
 
 - Planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
@@ -103,6 +103,16 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 <summary>Change Logs</summary>
 
 <p>
+--
+
+28/8 Beta v0.1.3
+
+- Added enemy ambient sounds that increase with player distance to them
+- Added sound types to trigger and interactable tiles with loop, ambient and trigger options
+- Updated definitions templates
+- Updated cat spritesheet asset
+- Created better documention for how to create new floors and all other assets
+
 --
 
 27/8 Beta v0.1.2
