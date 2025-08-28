@@ -6,6 +6,8 @@
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
     <img alt="Github release (latest by date)" src="https://img.shields.io/github/v/release/vCore420/Cynrith?style=for-the-badge">
   </p>
+  <p align="center">Play Cynrith: https://vcore420.github.io/Cynrith/</p>
+  <p align="center">Join the Discord: https://discord.gg/FNVmfMDNZa</p>
 </div>
 
 ![Demo Screenshot](docs/assets/demo1.png)
