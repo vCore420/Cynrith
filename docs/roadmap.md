@@ -80,13 +80,13 @@
 - [x] Player Death sounds
 - [x] Npc Combat sounds
 - [x] Npc Dialogue interaction sounds
-- [ ] Enemy ambient Sounds
+- [x] Enemy ambient Sounds
 - [ ] Title Menu sounds
 - [ ] Player Menu Sounds
 - [x] Item Collection sounds
 - [x] Item Usage sounds
 - [ ] Teleport Stone Interactions and ambient sounds
-- [ ] Interaction and Trigger Tile sound options
+- [x] Interaction and Trigger Tile sound options
 - [ ] World Sprite sound options
 
 ## Docs & Dev work
@@ -102,14 +102,7 @@
 
 ## **New Since Last Commit*
 
-- Sound System started
-- Player Movement sounds attached to map tiles
-- Background music for each floor and title screen
-- Other sound assets added to files
-- Added combat sounds
-- Added dialogue and NPC interaction noises
-- Added sounds for items being added to inventory based off rarity
-- Added sounds for usable items
-- Refined ground sound assets
+- add enemy ambient sounds that increase with player disatnce to them
+- added sound types to trigger and interactable tiles with loop, ambient and trigger options
 
 ---
