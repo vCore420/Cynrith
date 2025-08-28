@@ -42,7 +42,7 @@
 
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
-- [ ] Make all ui more structured and modular for multi device displays
+- [x] Make all ui more structured and modular for multi device displays
 - [ ] Red text for required xp notifications - teleport stone 
 - [ ] Sort out css styling and clean it up
 - [x] Make player stat icons
@@ -57,11 +57,11 @@
 - [x] Buyable items (shop/traders system?) 
 
 ## Settings Menu
-- [ ] Desgin and create the settings menu 
-- [ ] Setting will include, touch controls toggle, sound toggle (sounds to come), log toggle 
+- [ ] Design and create the settings menu
+- [ ] Setting will include, touch controls toggle, sound toggle, log toggle
 
 ## Maps and Dialogue
-- [ ] Create at least 3 floors to start with before first bete release of the game 
+- [x] Create at least 3 floors to start with before first beta release of the game
     - [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
     - [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
     - [x] Floors 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
@@ -90,19 +90,22 @@
 - [ ] World Sprite sound options
 
 ## Docs & Dev work
-- [ ] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
+- [x] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
 - [ ] Add unit test scripts 
 - [ ] Optimize main game loop for mobile performance (reduce DOM updates, avoid resizing canvas every frame, batch sprite/frame updates)
 - [x] Create templates for all Definitions
 - [x] Create reusable content tracker for key NPCs, items, and lore objects
-- [ ] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
+- [x] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
 
 ---
 
 
 ## **New Since Last Commit*
 
-- add enemy ambient sounds that increase with player disatnce to them
-- added sound types to trigger and interactable tiles with loop, ambient and trigger options
+- Added enemy ambient sounds that increase with player distance to them
+- Added sound types to trigger and interactable tiles with loop, ambient and trigger options
+- Updated definitions templates
+- Updated cat spritesdwazex asset
+- Created better documention for how to create new floors and all other assets
 
 ---
