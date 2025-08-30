@@ -1,3 +1,44 @@
+/* PreLoad Screen */
+.preload-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgb(24, 26, 31);
+  z-index: 100003;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preload-content {
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 8px;
+  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  padding: 36px 32px 24px 32px;
+  min-width: 320px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #3af0ff;
+}
+#preload-bar-container {
+  width: 220px;
+  height: 18px;
+  background: #222335;
+  border-radius: 4px;
+  border: 2px solid #3af0ff;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+#preload-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+
 /* Title Screen */
 #title-screen {
   font-family: 'Audiowide';
