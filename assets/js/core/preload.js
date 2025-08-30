@@ -1,5 +1,10 @@
 // Preload logic for Cynrith
 
+let sfxCache = {};
+let loadedCount = 0;
+let totalToLoad = 0;
+let preloadStarted = false;
+
 const SFX_FILES = [
   "player/lvl_up.wav",
   "player/player_death.wav",
@@ -43,10 +48,6 @@ const SFX_FILES = [
   "interactions/glitching_statue.wav",     
 ];
 
-let sfxCache = {};
-let loadedCount = 0;
-let totalToLoad = SFX_FILES.length + 1; // +1 for title map
-
 function updatePreloadBar() {
   const bar = document.getElementById('preload-bar');
   bar.style.width = Math.round((loadedCount / totalToLoad) * 100) + "%";
@@ -86,22 +87,32 @@ function preloadTitleMap() {
 
 function checkPreloadComplete() {
   if (loadedCount >= totalToLoad) {
-    console.log("[PRELOADER] All assets loaded. Ready to enter Cynrith.");
-    document.getElementById('enter-cynrith-btn').style.display = "block";
+    const btn = document.getElementById('enter-cynrith-btn');
+    btn.textContent = "Welcome to Cynrith";
+    setTimeout(() => {
+      document.getElementById('preload-screen').style.display = "none";
+      console.log("[PRELOADER] Entering Cynrith. Starting title screen music.");
+      if (window.SoundManager) {
+        SoundManager.playBgMusic("assets/sound/bg_title.mp3");
+      }
+    }, 1200); // Show "Welcome to Cynrith" for 1.2 seconds
   }
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-  console.log("[PRELOADER] Starting asset preload...");
-  preloadSFX();
-  preloadTitleMap();
+  const btn = document.getElementById('enter-cynrith-btn');
+  btn.textContent = "Enter";
+  btn.style.display = "block";
 
-  document.getElementById('enter-cynrith-btn').onclick = function() {
-    document.getElementById('preload-screen').style.display = "none";
-    console.log("[PRELOADER] Entering Cynrith. Starting title screen music.");
-    // Now play title screen music
-    if (window.SoundManager) {
-      SoundManager.playBgMusic("assets/sound/bg_title.mp3");
-    }
+  btn.onclick = function() {
+    if (preloadStarted) return;
+    preloadStarted = true;
+    btn.textContent = "Loading...";
+    btn.disabled = true;
+    loadedCount = 0;
+    totalToLoad = SFX_FILES.length + 1;
+    updatePreloadBar();
+    preloadSFX();
+    preloadTitleMap();
   };
 });
