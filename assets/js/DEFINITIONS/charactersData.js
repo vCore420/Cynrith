@@ -801,6 +801,7 @@ const NPC_DEFINITIONS = {
         trader: "trader3"
     },
 
+    // First Main Npc for F4 - Forced Interaction & Story Quest
     lyra_lost_chorister: {
         id: "lyra_lost_chorister",
         name: "Lyra the Lost Chorister",

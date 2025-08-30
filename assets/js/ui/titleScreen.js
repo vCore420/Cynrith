@@ -10,11 +10,6 @@ window.addEventListener("DOMContentLoaded", function() {
     loadTitleMap();
     hideGameUI();
 
-    // Play title screen background music
-    if (window.SoundManager) {
-        SoundManager.playBgMusic("assets/sound/bg_title.mp3");
-    }
-
     const overlay = document.createElement("div");
     overlay.id = "title-map-overlay";
     document.body.appendChild(overlay);

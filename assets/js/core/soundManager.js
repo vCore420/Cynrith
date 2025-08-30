@@ -51,7 +51,12 @@ const SoundManager = {
 
     playEffect(src) {
         if (this.muted) return;
-        const effect = new Audio(src);
+        let effect;
+        if (window.sfxCache && window.sfxCache[src.replace("assets/sound/sfx/", "")]) {
+            effect = window.sfxCache[src.replace("assets/sound/sfx/", "")].cloneNode();
+        } else {
+            effect = new Audio(src);
+        }
         effect.volume = this.effectVolume;
         effect.play();
     },
