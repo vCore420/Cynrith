@@ -87,7 +87,7 @@ function preloadTitleMap() {
 function checkPreloadComplete() {
   if (loadedCount >= totalToLoad) {
     console.log("[PRELOADER] All assets loaded. Ready to enter Cynrith.");
-    document.getElementById('enter-cynrith-btn').style.display = "";
+    document.getElementById('enter-cynrith-btn').style.display = "block";
   }
 }
 
