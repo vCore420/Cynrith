@@ -3,8 +3,9 @@
 const SoundManager = {
     bgMusic: null,
     bgMusicVolume: 0.1,
-    effectVolume: 0.6,
+    effectVolume: 0.5,
     muted: false,
+    _lastEffectTimes: {},
 
     playBgMusic(src, loop = true) {
         if (this.bgMusic) {
@@ -51,6 +52,14 @@ const SoundManager = {
 
     playEffect(src) {
         if (this.muted) return;
+
+        // Sword swing and sword hit: allow both, but if player_hit and sword_hit would overlap, only play one
+        if (src.includes("player_hit.wav") || src.includes("sword_hit.wav")) {
+            const now = Date.now();
+            if (this._lastEffectTimes.combat && now - this._lastEffectTimes.combat < 120) return;
+            this._lastEffectTimes.combat = now;
+        }
+
         let effect;
         if (window.sfxCache && window.sfxCache[src.replace("assets/sound/sfx/", "")]) {
             effect = window.sfxCache[src.replace("assets/sound/sfx/", "")].cloneNode();
