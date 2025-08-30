@@ -299,13 +299,17 @@ function updateCharacters() {
             if (dist <= char.distance) {
                 char.state = "hostile";
                 // Pathfinding logic
-                if (!char.path || char.path.length === 0 || char._lastPlayerTile?.x !== player.tile.x || char._lastPlayerTile?.y !== player.tile.y) {
-                    char.path = findPathAStar(
-                        {x: Math.round(char.x), y: Math.round(char.y)},
-                        {x: player.tile.x, y: player.tile.y},
-                        isWalkable
-                    );
-                    char._lastPlayerTile = {x: player.tile.x, y: player.tile.y};
+                const now = Date.now();
+                if (!char._lastPathUpdate || now - char._lastPathUpdate > 100) { // 100ms = ~6 frames at 60fps
+                    if (!char.path || char.path.length === 0 || char._lastPlayerTile?.x !== player.tile.x || char._lastPlayerTile?.y !== player.tile.y) {
+                        char.path = findPathAStar(
+                            {x: Math.round(char.x), y: Math.round(char.y)},
+                            {x: player.tile.x, y: player.tile.y},
+                            isWalkable
+                        );
+                        char._lastPlayerTile = {x: player.tile.x, y: player.tile.y};
+                    }
+                    char._lastPathUpdate = now;
                 }
                 if (char.path && char.path.length > 1) {
                     const next = char.path[1];

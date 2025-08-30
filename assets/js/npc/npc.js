@@ -231,54 +231,47 @@ function playEnemyAmbientSounds() {
 // Handle enemy death
 function handleEnemyDeath(enemy) {
     console.log(`[Npc] ${enemy.typeId} died at (${enemy.x}, ${enemy.y})`);
-    let fadeFrames = 12;
-    let frame = 0;
-    let fadeInterval = setInterval(() => {
-        enemy.sprite.opacity = 1 - frame / fadeFrames;
-        frame++;
-        if (frame >= fadeFrames) {
-            clearInterval(fadeInterval);
-            // Remove enemy from characters array
-            const idx = characters.indexOf(enemy);
-            if (idx !== -1) characters.splice(idx, 1);
 
-            // Give XP
-            if (enemy.xpGain) player.addXP(enemy.xpGain);
+    // Remove enemy from characters array immediately
+    const idx = characters.indexOf(enemy);
+    if (idx !== -1) characters.splice(idx, 1);
 
-            // Give loot
-            if (enemy.loot) {
-                enemy.loot.forEach(drop => {
-                    if (Math.random() * 100 < drop.chance) {
-                        let amt = Array.isArray(drop.amount)
-                            ? Math.floor(Math.random() * (drop.amount[1] - drop.amount[0] + 1)) + drop.amount[0]
-                            : drop.amount;
-                        addItem(drop.item, amt);
-                        notify(`You found ${amt} ${ITEM_DEFINITIONS[drop.item].name}!`, 2000);
-                        console.log(`[Npc] ${amt}x ${ITEM_DEFINITIONS[drop.item].name} Rewarded to player`);
-                    }
-                });
+    // Give XP
+    if (enemy.xpGain) player.addXP(enemy.xpGain);
+
+    // Give loot
+    if (enemy.loot) {
+        enemy.loot.forEach(drop => {
+            if (Math.random() * 100 < drop.chance) {
+                let amt = Array.isArray(drop.amount)
+                    ? Math.floor(Math.random() * (drop.amount[1] - drop.amount[0] + 1)) + drop.amount[0]
+                    : drop.amount;
+                addItem(drop.item, amt);
+                notify(`You found ${amt} ${ITEM_DEFINITIONS[drop.item].name}!`, 2000);
+                console.log(`[Npc] ${amt}x ${ITEM_DEFINITIONS[drop.item].name} Rewarded to player`);
             }
+        });
+    }
 
-            if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
-                Object.values(QUEST_DEFINITIONS).forEach(q => {
-                    if (
-                        q.type === "enemyDefeat" &&
-                        q.enemyId === enemy.typeId &&
-                        playerQuests.active.includes(q.id)
-                    ) {
-                        playerQuestProgress[q.id] = (playerQuestProgress[q.id] || 0) + 1;
-                        console.log(`[Quest] EnemyDefeat: Matched quest ${q.id}, enemy.typeId=${enemy.typeId}, progress=${playerQuestProgress[q.id]}`);
-                        if (typeof updateQuestHUD === "function") updateQuestHUD();
-                    }
-                });
+    // Quest progress
+    if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
+        Object.values(QUEST_DEFINITIONS).forEach(q => {
+            if (
+                q.type === "enemyDefeat" &&
+                q.enemyId === enemy.typeId &&
+                playerQuests.active.includes(q.id)
+            ) {
+                playerQuestProgress[q.id] = (playerQuestProgress[q.id] || 0) + 1;
+                console.log(`[Quest] EnemyDefeat: Matched quest ${q.id}, enemy.typeId=${enemy.typeId}, progress=${playerQuestProgress[q.id]}`);
+                if (typeof updateQuestHUD === "function") updateQuestHUD();
             }
+        });
+    }
 
-            // Respawn enemy after cooldown at its original spawn
-            setTimeout(() => {
-                respawnEnemy(enemy.id, enemy._spawnIndex);
-            }, 8000); // 8 seconds respawn
-        }
-    }, 40);
+    // Respawn enemy after cooldown at its original spawn
+    setTimeout(() => {
+        respawnEnemy(enemy.id, enemy._spawnIndex);
+    }, 8000); // 8 seconds respawn
 }
 
 
@@ -301,4 +294,5 @@ function respawnEnemy(enemyId, spawnIdx) {
     newEnemy._spawnInfo = spawnInfo;
     characters.push(newEnemy);
     console.log(`[Enemy Respawn] ${def.name} respawned at (${spawnInfo.x}, ${spawnInfo.y})`);
+    console.log("Characters count:", characters.length);
 }
