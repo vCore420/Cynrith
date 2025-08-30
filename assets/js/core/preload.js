@@ -87,15 +87,16 @@ function preloadTitleMap() {
 
 function checkPreloadComplete() {
   if (loadedCount >= totalToLoad) {
+    window.sfxCache = sfxCache;
     const btn = document.getElementById('enter-cynrith-btn');
-    btn.textContent = "Welcome to Cynrith";
+    btn.textContent = "Welcome!";
     setTimeout(() => {
       document.getElementById('preload-screen').style.display = "none";
       console.log("[PRELOADER] Entering Cynrith. Starting title screen music.");
       if (window.SoundManager) {
         SoundManager.playBgMusic("assets/sound/bg_title.mp3");
       }
-    }, 1200); // Show "Welcome to Cynrith" for 1.2 seconds
+    }, 1200); // Show "Welcome" for 1.2 seconds
   }
 }
 

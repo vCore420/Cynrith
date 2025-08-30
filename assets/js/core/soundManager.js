@@ -53,16 +53,20 @@ const SoundManager = {
     playEffect(src) {
         if (this.muted) return;
 
+        // Get the relative cache key (strip the base path)
+        let cacheKey = src.replace("assets/sound/sfx/", "");
+
         // Sword swing and sword hit: allow both, but if player_hit and sword_hit would overlap, only play one
         if (src.includes("player_hit.wav") || src.includes("sword_hit.wav")) {
             const now = Date.now();
             if (this._lastEffectTimes.combat && now - this._lastEffectTimes.combat < 120) return;
             this._lastEffectTimes.combat = now;
         }
-
+        
+        // Use cached audio if available
         let effect;
-        if (window.sfxCache && window.sfxCache[src.replace("assets/sound/sfx/", "")]) {
-            effect = window.sfxCache[src.replace("assets/sound/sfx/", "")].cloneNode();
+        if (window.sfxCache && window.sfxCache[cacheKey]) {
+            effect = window.sfxCache[cacheKey].cloneNode();
         } else {
             effect = new Audio(src);
         }

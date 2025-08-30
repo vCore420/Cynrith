@@ -263,7 +263,7 @@ function Loop() {
     player.draw();
     
     // Play Enemy and World Sounds
-    // setInterval(playEnemyAmbientSounds, 1200);
+    playEnemyAmbientSounds();
     playInteractionTileSounds();
 
     //Draw Animated World Sprite Sheets
