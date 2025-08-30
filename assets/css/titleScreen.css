@@ -21,8 +21,18 @@
   align-items: center;
   border: 3px solid #3af0ff;
 }
+#preload-title {
+  margin-top: 0;
+  margin-bottom: 50px;
+  color: var(--title-header);
+  font-family: 'Press Start 2P';
+  font-size: 1.8em;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-align: center;
+}
 #preload-bar-container {
-  width: 220px;
+  width: 420px;
   height: 18px;
   background: #222335;
   border-radius: 4px;
@@ -36,6 +46,10 @@
   background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
   border-radius: 2px;
   transition: width 0.3s;
+}
+#enter-cynrith-btn {
+  display: none;
+  margin-top: 24px;
 }
 
 
@@ -705,6 +719,45 @@ body, #title-screen {
 
 /* Mobile Portrait Styles */
 @media (max-width: 600px) and (orientation: portrait) {
+/* PreLoad Screen */
+  .preload-content {
+    min-width: 80vw;
+    min-height: 120px;
+    padding: 18px 8px 12px 8px;
+    border-radius: 6px;
+    box-shadow: 0 4px 24px #3af0ff44, 0 0 0 2px #3af0ff22;
+    border: 2px solid #3af0ff;
+    background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  }
+  #preload-title {
+    font-size: 1.1em;
+    margin-bottom: 24px;
+    margin-top: 0;
+    max-width: 90vw;
+    padding: 0 8px;
+  }
+  #preload-bar-container {
+    width: 80vw;
+    max-width: 320px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1.4px solid #3af0ff;
+    margin-bottom: 12px;
+  }
+  #preload-bar {
+    border-radius: 2px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+  }
+  #enter-cynrith-btn {
+    font-size: 1em;
+    padding: 10px 18px;
+    margin-top: 18px;
+    border-radius: 3px;
+    border: 1.4px solid #3af0ff;
+  }
+
   #title-screen {
     padding: 0;
     width: 100vw;
