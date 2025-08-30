@@ -21,10 +21,13 @@ function isTileBlockedAtPixel(px, py, direction) {
 
     const tileX = Math.floor((px + offset + tileSize / 2) / tileSize);
     let tileY;
+    
     if (direction === "up") {
-        tileY = Math.floor((py + offset) / tileSize);
+        tileY = Math.floor((py + offset + 32) / tileSize);
+    } else if (direction === "down") {
+        tileY = Math.floor((py + offset + tileSize - 2) / tileSize);
     } else {
-        tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
+        tileY = Math.floor((py + offset + tileSize / 2) / tileSize);
     }
 
     if (
@@ -60,7 +63,7 @@ function isTileBlockedAtPixel(px, py, direction) {
         }
         return false;
     } else {
-        let tileGid = map.data.layout[tileY][tileX];
+        const tileGid = map.data.layout[tileY][tileX];
         let tileIndex = tileGid > 0 ? tileGid - 1 : null;
         return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
     }
@@ -206,11 +209,14 @@ Player.prototype = {
         let newPosX = this.pos.x + x;
         let newPosY = this.pos.y + y;
 
+        // Determine direction for X and Y movement
+        let directionX = x < 0 ? "left" : x > 0 ? "right" : null;
+        let directionY = y < 0 ? "up" : y > 0 ? "down" : null;
+
         // X movement
         // Only move if the new position's collision box is not blocked
-        if (!isTileBlockedAtPixel(newPosX, this.pos.y)) {
+        if (directionX && !isTileBlockedAtPixel(newPosX, this.pos.y, directionX)) {
             this.pos.x = newPosX;
-            // Update tile.x based on the center of the collision box
             const tileSize = config.size.tile;
             const spriteSize = config.size.char;
             const offset = (spriteSize - tileSize) / 2;
@@ -218,7 +224,7 @@ Player.prototype = {
         }
 
         // Y movement
-        if (!isTileBlockedAtPixel(this.pos.x, newPosY)) {
+        if (directionY && !isTileBlockedAtPixel(this.pos.x, newPosY, directionY)) {
             this.pos.y = newPosY;
             const tileSize = config.size.tile;
             const spriteSize = config.size.char;
