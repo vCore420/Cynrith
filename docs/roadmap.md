@@ -85,7 +85,7 @@
 - [ ] Player Menu Sounds
 - [x] Item Collection sounds
 - [x] Item Usage sounds
-- [ ] Teleport Stone Interactions and ambient sounds
+- [x] Teleport Stone Interactions and ambient sounds
 - [x] Interaction and Trigger Tile sound options
 - [ ] World Sprite sound options
 
@@ -102,10 +102,21 @@
 
 ## **New Since Last Commit*
 
-- Added enemy ambient sounds that increase with player distance to them
-- Added sound types to trigger and interactable tiles with loop, ambient and trigger options
-- Updated definitions templates
-- Updated cat spritesdwazex asset
-- Created better documention for how to create new floors and all other assets
+- Added new assets for floor 4 
+  - New floor map and tile assets
+  - New enemy assets and definiens
+  - New Items/loot for F4
+  - Start Npc's and Trader
+  - Started Quests and story hooks
+  - Created finer details about F4 in World Building
+
+- Performance improvements -
+  - Created new Welcome screen to pre load the game assets 
+  - Preload and cache all sfx sounds
+  - Preload title map 
+  - Forces user page interaction before loading sounds
+  - Throttled combat sfx
+  - Stopped sfx clashing with each other
+  - Improved ambient enemy sound logic 
 
 ---

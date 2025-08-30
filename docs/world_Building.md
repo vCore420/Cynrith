@@ -406,6 +406,109 @@ At the summit of the tallest, most fractured spire stands a **Resonance Gate**�
 
 ---
 
+## Finer Floor 4 Details for production
+
+# Map Layout & Key Areas
+
+Spawn Island (CD-shaped, cracked):
+- Player starts here.
+- Lyra, the Lost Chorister, is found near the center, humming fragments of the Choir’s song.
+- First quest and lore introduction.
+
+Bridges & Islands:
+- Wooden bridges link each island in a linear path, with occasional side islands for secrets or lore objects.
+- The “big bridge” is broken, visually impressive, and hints at a shortcut that’s inaccessible.
+
+Grand Hall / Ruined Terminals Island:
+- Large, mostly empty, with shattered thrones and flickering data terminals.
+- Archivist Venn is here, glitching and seeking help to recover lost memories.
+-Main quest hub for memory/data shard collection.
+
+Teleport Stone Island (CD-shaped):
+- Resonance Gate (teleport stone) at the center, surrounded by floating rune-etched shards.
+- The Sundered Echo NPC is found here, offering cryptic lore and a final quest before ascent.
+
+Glitching Circuit Lines:
+- On all islands, some glass brick tiles glitch every few frames, creating circuit-like patterns and reinforcing the fractured theme.
+
+
+## NPC Placement & Dialogue
+
+- Lyra, the Lost Chorister (Spawn Island)
+
+- Dialogue:
+"You hear it, don't you? The song is broken, but its echoes linger. Help me find the missing fragments—perhaps the Spires will remember their harmony."
+
+- Quest:
+Reconstruct the Choir
+Collect 5 Choir Fragments from side islands and bridge ruins. Each fragment triggers a short melody and a line of lost song.
+
+- Archivist Venn (Grand Hall Island)
+
+- Dialogue:
+"My records are corrupted. Data shards flicker in the glass—bring them to me, and I will reveal the Spires' true story."
+
+- Quest:
+Memory Recovery
+Collect 6 Data Shards from glitching circuit lines and ruined terminals. Each shard gives a snippet of Spires lore.
+
+- The Sundered Echo (Teleport Stone Island)
+
+- Dialogue:
+"I saw the Architect here, once. My memories are scattered—find the lost echoes, and I may remember what was said."
+
+- Quest:
+Release the Trapped
+Activate 3 Echo Tiles (interactable tiles on small side islands) to free Displaced Shadows. Each activation reveals a line about the cycles of Cynrith.
+
+## Enemy Placement & Encounters
+
+
+- **Shardlings:**
+Swarm in groups on side islands and near broken bridge sections.
+
+- Visuals:
+Small, jagged constructs made of fractured glass and runed metal. Their bodies shimmer with shifting circuit patterns, and they move in erratic, swarming motions. When struck, they splinter into smaller shards before reforming.
+
+- Quest & Lore Hooks:
+
+Quest:
+Lyra may ask the player to collect Choir Fragments dropped by Shardlings, as they are remnants of the Choir’s shattered song.
+Lore:
+Shardlings are said to be the broken memories of the Choir, animated by the Architect’s lingering will. Their swarming behavior reflects the chaos after the Fracture.
+
+
+- **Displaced Shadows:**
+Appear on isolated islands, sometimes blocking access to quest items.
+
+- Visuals:
+Ghostly, semi-transparent figures resembling past adventurers. Their forms flicker and distort, sometimes splitting into multiple echoes. They emit a faint, sorrowful glow and occasionally repeat fragments of old dialogue.
+
+- Quest & Lore Hooks:
+
+Quest:
+The Sundered Echo may ask the player to free Displaced Shadows by activating Echo Tiles or defeating them, collecting Echo Fragments as proof.
+Lore:
+Displaced Shadows are echoes of failed ascenders, trapped in memory loops by the Architect’s system. Freeing them reveals lines about Cynrith’s cycles and the cost of breaking harmony.
+
+## Story Hooks & Lore Integration
+
+- Choir Fragments:
+Each fragment found triggers a short melody and a line of lost song, hinting at the Spires’ past unity.
+- Data Shards:
+Each shard gives a snippet of lore about the Fracture and the Architect’s Choir.
+- Echo Tiles:
+Activating these tiles frees a Displaced Shadow and reveals a line about the cycles and the Architect’s motives.
+
+## Flavor Texts & Environmental Details
+
+- Glitching Circuit Lines:
+"The ground flickers beneath your feet, lines of light racing through the glass bricks—echoes of a broken system."
+- Broken Bridge:
+"The bridge once spanned the Spires, but now it ends in shattered glass and silence. The long way is the only way forward."
+- Resonance Gate:
+"The shards vibrate in harmony, and for a moment, you hear the echo of a song that is both a welcome and a warning."3
+
 ## Floor 4 Interlude Lore (for Internal Use or Hidden Discovery)
 
 The player, by now, understands that the System is not just a tool—it is a memory palace, a recording of the Architect’s triumphs and failures. The Shattered Spires are revealed as the site of an ancient rebellion: the Choir, once voices of guidance, fractured under the weight of disagreement and grief. Some wanted to free the world from the Architect’s cycles, others to preserve order at any cost.
