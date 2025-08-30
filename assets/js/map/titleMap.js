@@ -5,7 +5,7 @@ let titleMap = null;
 let titleMapReady = false;
 let titleMapFrameIndices = [];
 let lastMapFrameTime = 0;
-const TITLE_MAP_COUNT = 2; // Amount of Title Maps - Update if you add more
+const TITLE_MAP_COUNT = 3; // Amount of Title Maps - Update if you add more
 const chosenTitleMapIdx = Math.floor(Math.random() * TITLE_MAP_COUNT);
 const chosenTitleMapName = "title" + chosenTitleMapIdx;
 
