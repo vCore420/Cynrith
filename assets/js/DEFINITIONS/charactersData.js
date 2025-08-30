@@ -761,6 +761,8 @@ const NPC_DEFINITIONS = {
 
     // -------- Floor 4 --------
 
+    
+
 
 };
 
@@ -941,7 +943,8 @@ const ENEMY_TYPES = {
         speed: 1.2,
         xpGain: 15,
         loot: [
-            { item: "twilight_totem", chance: 10, amount: 1 }
+            { item: "twilight_totem", chance: 10, amount: 1 },
+            { item: "money", chance: 30, amount: [3, 5] }
         ],
         spawns: [
             { map: 2, x: 8, y: 24, wanderArea: { x1: 2, y1: 22, x2: 18, y2: 40 } },
@@ -963,6 +966,88 @@ const ENEMY_TYPES = {
         ]
     },
 
+
+    //-------- Floor 4 ---------
+
+    shardling: {
+        id: "shardling",
+        name: "Shardling",
+        sprite: "assets/img/enemy/shardling.png",
+        moveSpeed: 1.1,
+        distance: 3,
+        maxHealth: 85,
+        attack: 30,
+        defense: 8,
+        speed: 1.5,
+        xpGain: 20,
+        loot: [
+            { item: "choir_fragment", chance: 30, amount: [1, 1] },
+            { item: "glass_shard", chance: 60, amount: [1, 3] },
+            { item: "money", chance: 40, amount: [5, 10] }
+        ],
+        spawns: [
+            { map: 3, x: 23, y: 66, wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 21, y: 72, wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 14, y: 74, wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 14, y: 69, wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 9, y: 64,  wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 6, y: 69,  wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
+            { map: 3, x: 27, y: 53, wanderArea: { x1: 19, y1: 48, x2: 31, y2: 56 } },
+            { map: 3, x: 24, y: 51, wanderArea: { x1: 19, y1: 48, x2: 31, y2: 56 } },
+            { map: 3, x: 22, y: 49, wanderArea: { x1: 19, y1: 48, x2: 31, y2: 56 } },
+            { map: 3, x: 51, y: 61, wanderArea: { x1: 48, y1: 59, x2: 56, y2: 66 } },
+            { map: 3, x: 24, y: 16, wanderArea: { x1: 14, y1: 9, x2: 30, y2: 31 } },
+            { map: 3, x: 23, y: 22, wanderArea: { x1: 14, y1: 9, x2: 30, y2: 31 } },
+            { map: 3, x: 17, y: 29, wanderArea: { x1: 14, y1: 9, x2: 30, y2: 31 } },
+            { map: 3, x: 12, y: 3,  wanderArea: { x1: 6, y1: 0, x2: 40, y2: 7 } },
+            { map: 3, x: 20, y: 2,  wanderArea: { x1: 6, y1: 0, x2: 40, y2: 7 } },
+            { map: 3, x: 28, y: 2,  wanderArea: { x1: 6, y1: 0, x2: 40, y2: 7 } },
+            { map: 3, x: 35, y: 4,  wanderArea: { x1: 6, y1: 0, x2: 40, y2: 7 } },
+            { map: 3, x: 69, y: 16, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 75, y: 18, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 73, y: 21, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 74, y: 29, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 71, y: 34, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 72, y: 43, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 68, y: 48, wanderArea: { x1: 65, y1: 14, x2: 78, y2: 49 } },
+            { map: 3, x: 50, y: 44, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+            { map: 3, x: 43, y: 42, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+            { map: 3, x: 46, y: 40, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+            { map: 3, x: 47, y: 37, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+            { map: 3, x: 42, y: 36, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+            { map: 3, x: 41, y: 32, wanderArea: { x1: 40, y1: 28, x2: 52, y2: 46 } },
+        ]
+    },
+
+    displaced_shadow: {
+        id: "displaced_shadow",
+        name: "Displaced Shadow",
+        sprite: "assets/img/enemy/displaced_shadow.png",
+        moveSpeed: 0.8,
+        distance: 2.5,
+        maxHealth: 95,
+        attack: 26,
+        defense: 8,
+        speed: 1.1,
+        xpGain: 25,
+        loot: [
+            { item: "echo_fragment", chance: 40, amount: [1, 2] },
+            { item: "memory_shard", chance: 25, amount: [1, 1] },
+            { item: "money", chance: 40, amount: [5, 10] }
+        ],
+        spawns: [
+            { map: 3, x: 10, y: 27, wanderArea: { x1: 4, y1: 15, x2: 14, y2: 31 } },
+            { map: 3, x: 6, y: 22,  wanderArea: { x1: 4, y1: 15, x2: 14, y2: 31 } },
+            { map: 3, x: 10, y: 17, wanderArea: { x1: 4, y1: 15, x2: 14, y2: 31 } },
+            { map: 3, x: 40, y: 3,  wanderArea: { x1: 37, y1: 2, x2: 58, y2: 11 } },
+            { map: 3, x: 46, y: 6,  wanderArea: { x1: 37, y1: 2, x2: 58, y2: 11 } },
+            { map: 3, x: 52, y: 10, wanderArea: { x1: 37, y1: 2, x2: 58, y2: 11 } },
+            { map: 3, x: 51, y: 27, wanderArea: { x1: 46, y1: 26, x2: 60, y2: 36 } },
+            { map: 3, x: 56, y: 31, wanderArea: { x1: 46, y1: 26, x2: 60, y2: 36 } },
+            { map: 3, x: 52, y: 35, wanderArea: { x1: 46, y1: 26, x2: 60, y2: 36 } },
+            { map: 3, x: 58, y: 37, wanderArea: { x1: 46, y1: 26, x2: 60, y2: 36 } },
+        ]
+    },
 
 
 };

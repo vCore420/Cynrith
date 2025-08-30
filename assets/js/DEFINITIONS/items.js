@@ -208,6 +208,54 @@ const ITEM_DEFINITIONS = {
         removeable: true
     },
 
+    
+    memory_shard: {
+        id: "memory_shard",
+        name: "Memory Shard",
+        description: "A crystalline shard containing echoes of lost memories. Valuable to lorekeepers.",
+        image: "assets/img/items/memory_shard.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
+    echo_fragment: {
+        id: "echo_fragment",
+        name: "Echo Fragment",
+        description: "A fragment of a lingering echo, pulsing with spectral energy.",
+        image: "assets/img/items/echo_fragment.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
+    glass_shard: {
+        id: "glass_shard",
+        name: "Glass Shard",
+        description: "A sharp piece of fractured glass, shimmering with circuit-like patterns.",
+        image: "assets/img/items/glass_shard.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+
+    choir_fragment: {
+        id: "choir_fragment",
+        name: "Choir Fragment",
+        description: "A fragment of the Architect's Choir, resonating with lost harmony.",
+        image: "assets/img/items/choir_fragment.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
 
 };
 
