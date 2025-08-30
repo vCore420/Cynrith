@@ -764,7 +764,81 @@ const NPC_DEFINITIONS = {
     // -------- Floor 4 --------
 
 
+    // Trader near spawn point (limited range, buys only items from previous floors)
+    glass_isle_vendor: {
+        id: "glass_isle_vendor",
+        name: "Vessel the Glass Isle Vendor",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 68, y: 77, wanderArea: { x1: 65, y1: 74, x2: 74, y2: 78 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome to the Shattered Spires, traveler. My wares are simple, but they may help you survive the glass and echoes.",
+                "I only deal in goods from the lower floors, old roots, dewleaf, and fragments. If you have something from before, I’ll take it off your hands."
+            ],
+        },
+        trader: "trader2"
+    },
 
+
+    // Trader near teleport stone (expanded range, sells advanced items, buys floor 4 loot)
+    spire_gate_merchant: {
+        id: "spire_gate_merchant",
+        name: "Calyx the Spire Gate Merchant",
+        sprite: "assets/img/npc/npc_f_3.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 36, y: 31, wanderArea: { x1: 34, y1: 28, x2: 38, y2: 33 } }
+        ],
+        dialogue: {
+            default: [
+                "You’ve come far, traveler. The Spires reward those who endure.",
+                "Here you’ll find rare items, shards, fragments, and relics only found in this fractured place. I’ll buy what you’ve gathered from the Spires, if you’re willing to part with them."
+            ],
+        },
+        trader: "trader3"
+    },
+
+    lyra_lost_chorister: {
+        id: "lyra_lost_chorister",
+        name: "Lyra the Lost Chorister",
+        sprite: "assets/img/npc/npc_f_1.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 55, y: 75, wanderArea: { x1: 53, y1: 74, x2: 59, y2: 77 } }
+        ],
+        dialogue: {
+            default: [
+                "Wait! Before you go further, listen: The Spires are not as they seem. Glass and song can shatter, and echoes here do not always return. Beware the broken bridges and the shadows that linger, they remember every mistake.",
+                "If you lose your way, follow the melody. It may guide you through the chaos."
+            ],
+            questGiven: [
+                "I am searching for the fragments of the Choir’s song. They are scattered across these islands, hidden among the glass and ruins. Will you help me gather them?",
+                "Each fragment you find will restore a piece of harmony to this place. The Spires may remember their purpose if the song is made whole."
+            ],
+            questIncomplete: [
+                "The song is still broken. There are more fragments out there, lost among the Shardlings and the shattered bridges.",
+                "Listen for the melody, it grows stronger with each piece you recover."
+            ],
+            questComplete: [
+                "You found them! The Choir’s song is clearer now, and the Spires seem to hum in gratitude.",
+                "Thank you, traveler. With harmony returning, perhaps the Architect will show mercy to those who climb."
+            ]
+        },
+        questId: "choir_fragments",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 61, y: 77 },
+                { x: 61, y: 78 },
+                { x: 61, y: 79 },
+            ],
+            triggered: false
+        }
+    },
 
 };
 
@@ -983,7 +1057,7 @@ const ENEMY_TYPES = {
         speed: 1.5,
         xpGain: 20,
         loot: [
-            { item: "choir_fragment", chance: 30, amount: [1, 1] },
+            { item: "choir_fragment", chance: 20, amount: [1, 1] },
             { item: "glass_shard", chance: 60, amount: [1, 3] },
             { item: "money", chance: 40, amount: [5, 10] }
         ],

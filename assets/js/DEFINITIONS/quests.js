@@ -159,7 +159,16 @@ const QUEST_DEFINITIONS = {
 
     // -------- Floor 4 -----------
 
-
+    // Lyra the Lost Chorister
+    choir_fragments: {
+        id: "choir_fragments",
+        name: "Reconstruct the Choir",
+        description: "Collect 8 Choir Fragments for Lyra the Lost Chorister, scattered across the Shattered Spires.",
+        type: "itemCollect",
+        requiredItems: [{ id: "choir_fragment", amount: 8 }],
+        rewards: [{ id: "maxHealth_buff_small", amount: 10 }, { xp: 120 }],
+        redoable: false
+    },
 };
 
 

@@ -1,4 +1,7 @@
 const TRADER_DEFINITIONS = {
+
+    // -------- Floor 3 --------
+
     trader1: {
         buy: [
             { id: "health_buff_small", price: 10 },
@@ -8,7 +11,45 @@ const TRADER_DEFINITIONS = {
             { id: "slime_ball", price: 3 },
             { id: "dewleaf", price: 5 }
         ]
-    }
+    },
+
+    // -------- Floor 4 --------
+
+    trader2: {
+        buy: [
+            { id: "health_buff_small", price: 10 },
+            { id: "atk_buff_small", price: 15 },
+            { id: "def_buff_small", price: 15 }
+        ],
+        sell: [
+            { id: "dewleaf", price: 6 },
+            { id: "dustroot", price: 7 },
+            { id: "slime_ball", price: 4 },
+            { id: "fractured_relic_1", price: 15 }
+        ]
+    },
+
+    trader3: {
+        buy: [
+            { id: "health_buff_small", price: 8 },
+            { id: "atk_buff_small", price: 12 },
+            { id: "def_buff_small", price: 12 },
+            { id: "maxHealth_buff_small", price: 30 },
+            { id: "atkSpeed_buff_small", price: 25 },
+        ],
+        sell: [
+            { id: "glass_shard", price: 15 },
+            { id: "choir_fragment", price: 25 },
+            { id: "memory_shard", price: 20 },
+            { id: "echo_fragment", price: 20 },
+            { id: "dewleaf", price: 10 },
+            { id: "dustroot", price: 12 },
+            { id: "slime_ball", price: 10 },
+            { id: "fractured_relic_1", price: 25 }
+
+        ]
+    },
+
 };
 
 

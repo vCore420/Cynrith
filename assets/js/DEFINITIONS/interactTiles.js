@@ -355,6 +355,37 @@ const INTERACTABLE_TILES = [
 
     // -------- Floor 4 --------
 
+    {
+        id: "shelf_f4_1",
+        map: 3,
+        x: 67,
+        y: 52,
+        spriteSheet: "assets/img/tile/shelf-4.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to search this shelf.",
+        dialogue: [
+            "You rummage through the shelf, finding a Choir Fragment."
+        ],
+        rewards: [{ id: "choir_fragment", amount: 1 }],
+    },
+
+    {
+        id: "shelf_f4_2",
+        map: 3,
+        x: 24,
+        y: 10,
+        spriteSheet: "assets/img/tile/shelf-4.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to search this shelf.",
+        dialogue: [
+            "You search the shelf, finding a Choir Fragment."
+        ],
+        rewards: [{ id: "choir_fragment", amount: 1 }],
+    },
 ];
 
 /*
