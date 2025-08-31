@@ -25,6 +25,7 @@ const SFX_FILES = [
   "items/legendary.wav",
   "items/maxHealth.wav",
   "items/rare.wav",
+  "items/remove.wav",
 
   "world/concrete.wav",
   "world/dirt.wav",

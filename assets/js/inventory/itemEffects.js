@@ -1,33 +1,33 @@
 const ITEM_EFFECTS = {
-    health_buff_small: function(player) {
-        const heal = 10;
+    health_buff_small: function(player, amount = 1) {
+        const heal = 10 * amount;
         const before = player.health;
         player.setHealth(player.health + heal);
-        notify(`Restored ${player.health - before} health!`, 1500);
+        notify(`Restored ${player.health - before} health!`, 1800);
     },
-    atk_buff_small: function(player) {
-        player.addAttack(3);
-        notify("Attack increased by 3!", 1500);
+    atk_buff_small: function(player, amount = 1) {
+        player.addAttack(3 * amount);
+        notify(`Attack increased by ${3 * amount}!`, 1800);
     },
-    def_buff_small: function(player) {
-        player.addDefence(3);
-        notify("Defence increased by 3!", 1500);
+    def_buff_small: function(player, amount = 1) {
+        player.addDefence(3 * amount);
+        notify(`Defence increased by ${3 * amount}!`, 1800);
     },
-    maxHealth_buff_small: function(player) {
-        player.addMaxHealth(10);
-        notify("Max Health increased by 10!", 1500);
+    maxHealth_buff_small: function(player, amount = 1) {
+        player.addMaxHealth(10 * amount);
+        notify(`Max Health increased by ${10 * amount}!`, 1800);
     },
-    atkSpeed_buff_small: function(player) {
-        player.addAttackSpeed(10);
-        notify("Attack Speed increased by 10!", 1500);
+    atkSpeed_buff_small: function(player, amount = 1) {
+        player.addAttackSpeed(10 * amount);
+        notify(`Attack Speed increased by ${10 * amount}!`, 1800);
     }
     // Add more item effects here...
 };
 
-function useItem(itemId) {
+function useItem(itemId, amount = 1) {
     const def = ITEM_DEFINITIONS[itemId];
     if (!def || !def.useable) return false;
-    if (!hasItem(itemId, 1)) return false;
+    if (!hasItem(itemId, amount)) return false;
 
     // Play use sound if defined in item definition
     if (window.SoundManager && def.sound) {
@@ -35,8 +35,8 @@ function useItem(itemId) {
     }
 
     if (ITEM_EFFECTS[itemId]) {
-        ITEM_EFFECTS[itemId](player);
-        removeItem(itemId, 1);
+        ITEM_EFFECTS[itemId](player, amount);
+        removeItem(itemId, amount);
         updateInventoryUI();
         if (typeof updateQuestHUD === "function") updateQuestHUD();
         return true;

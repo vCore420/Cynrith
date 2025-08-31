@@ -194,6 +194,29 @@
   border-radius: 3px;
 }
 
+.inventory-nav-btn {
+    font-size: 1.2em;
+    padding: 6px 18px;
+    margin: 0 4px;
+    background: #222335;
+    color: #3af0ff;
+    border: 2px solid #3af0ff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.inventory-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.inventory-page-num {
+    font-family: 'Press Start 2P', monospace;
+    color: #ffe082;
+    font-size: 1em;
+}
+
 /* Overlay for Item Dropdown */ 
 #item-dropdown-overlay {
   position: fixed;
@@ -287,50 +310,44 @@
 }
 
 /* Item Remove Amount Block */
-.item-dropdown .remove-amount-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 10px;
+.amount-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
 }
-
-/* Item Remove Amount Button */
-.item-dropdown .remove-amount-btn {
-  width: 32px;
-  height: 32px;
-  font-size: 1.2em;
-  background: #444;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
+.amount-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
-.item-dropdown .remove-amount-btn:hover {
-  background: #666;
+.amount-btn:hover {
+    background: #666;
 }
-
-/* Item Remove Amount Number */
-.item-dropdown .remove-amount-num {
-  font-size: 1.1em;
-  min-width: 24px;
-  text-align: center;
+.amount-num {
+    font-size: 1.1em;
+    min-width: 24px;
+    text-align: center;
 }
-
-/* Item Remove Amount Confirm Button */
-.item-dropdown .remove-amount-ok {
-  margin-left: 12px;
-  padding: 6px 18px;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
+.amount-ok {
+    margin-left: 12px;
+    padding: 6px 18px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
-.item-dropdown .remove-amount-ok:hover {
-  background: #555;
+.amount-ok:hover {
+    background: #555;
 }
 
 /* Quests Menu */

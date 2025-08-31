@@ -1,7 +1,10 @@
 // Inventory logic and Ui
 
 const INVENTORY_SIZE = 9; // 3x3 grid
+const INVENTORY_MAX_PAGES = 10; // Max Inventory pages a player can have (90 slots)
+let inventoryPagesUnlocked = 2; // Starting pages for new players
 let inventory = []; // Array of { id, amount }
+let currentInventoryPage = 1;
 
 
 // Add item to players inventory
@@ -13,9 +16,9 @@ function addItem(itemId, amount = 1) {
     let slot = inventory.find(i => i.id === itemId && def.stackable);
     if (slot) {
         slot.amount += amount;
-    } else if (inventory.length < INVENTORY_SIZE) {
+    } else if (inventory.length < INVENTORY_SIZE * inventoryPagesUnlocked) {
         inventory.push({ id: itemId, amount });
-        console.log(`[Inventory] Added ${amount}x ${def.name} to inventory`); 
+        console.log(`[Inventory] Added ${amount}x ${def.name} to inventory`);
     } else {
         notify("Inventory full!", 2000);
         return false;
@@ -28,7 +31,7 @@ function addItem(itemId, amount = 1) {
         const rarity = def.rarity.toLowerCase();
         SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.wav`);
     }
-    
+
     return true;
 }
 
@@ -48,6 +51,7 @@ function removeItem(itemId, amount = 1) {
     inventory = inventory.filter(i => i.amount > 0);
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
+    notify(`Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory.`, 1800);
     return true;
 }
 
@@ -71,10 +75,59 @@ function getItemCount(itemId) {
 function updateInventoryUI() {
     const grid = document.getElementById('inventory-grid');
     grid.innerHTML = "";
+
+    // Add navigation controls
+    let navDiv = document.getElementById('inventory-nav');
+    if (!navDiv) {
+        navDiv = document.createElement('div');
+        navDiv.id = 'inventory-nav';
+        navDiv.style.display = 'flex';
+        navDiv.style.justifyContent = 'center';
+        navDiv.style.alignItems = 'center';
+        navDiv.style.marginBottom = '12px';
+        grid.parentNode.insertBefore(navDiv, grid);
+    }
+    navDiv.innerHTML = "";
+
+    const leftBtn = document.createElement('button');
+    leftBtn.textContent = "◀";
+    leftBtn.className = "inventory-nav-btn";
+    leftBtn.disabled = currentInventoryPage === 1;
+    leftBtn.onclick = () => {
+        if (currentInventoryPage > 1) {
+            currentInventoryPage--;
+            updateInventoryUI();
+        }
+    };
+
+    const rightBtn = document.createElement('button');
+    rightBtn.textContent = "▶";
+    rightBtn.className = "inventory-nav-btn";
+    rightBtn.disabled = currentInventoryPage === inventoryPagesUnlocked;
+    rightBtn.onclick = () => {
+        if (currentInventoryPage < inventoryPagesUnlocked) {
+            currentInventoryPage++;
+            updateInventoryUI();
+        }
+    };
+
+    const pageNum = document.createElement('span');
+    pageNum.textContent = `Page ${currentInventoryPage} / ${inventoryPagesUnlocked}`;
+    pageNum.className = "inventory-page-num";
+    pageNum.style.margin = "0 16px";
+
+    navDiv.appendChild(leftBtn);
+    navDiv.appendChild(pageNum);
+    navDiv.appendChild(rightBtn);
+
+    // Show slots for current page
+    const startIdx = (currentInventoryPage - 1) * INVENTORY_SIZE;
     for (let i = 0; i < INVENTORY_SIZE; i++) {
-        const slot = inventory[i];
+        const slotIdx = startIdx + i;
+        const slot = inventory[slotIdx];
         const div = document.createElement('div');
         div.className = "inventory-slot";
+        div.dataset.slotNum = slotIdx + 1; // For reference
         if (slot) {
             const def = ITEM_DEFINITIONS[slot.id];
             const img = document.createElement('img');
@@ -89,7 +142,7 @@ function updateInventoryUI() {
                 div.appendChild(amt);
             }
 
-            div.onclick = (e) => showItemDropdown(i, slot, def, e);
+            div.onclick = (e) => showItemDropdown(slotIdx, slot, def, e);
         }
         grid.appendChild(div);
     }
@@ -169,18 +222,76 @@ function showItemDropdown(index, slot, def, event) {
     rarityDiv.className = "dropdown-rarity";
     dropdown.appendChild(rarityDiv);
 
+    // Shared amount selector logic
+    function showAmountSelector(action) {
+        // Remove any existing amount blocks
+        const existing = dropdown.querySelector('.amount-block');
+        if (existing) existing.remove();
+
+        const amtBlock = document.createElement('div');
+        amtBlock.className = "amount-block";
+
+        let amt = 1;
+
+        const minusBtn = document.createElement('button');
+        minusBtn.textContent = "−";
+        minusBtn.className = "amount-btn";
+        minusBtn.onclick = () => {
+            if (amt > 1) {
+                amt--;
+                amtNum.textContent = amt;
+            }
+        };
+
+        const amtNum = document.createElement('span');
+        amtNum.textContent = amt;
+        amtNum.className = "amount-num";
+
+        const plusBtn = document.createElement('button');
+        plusBtn.textContent = "+";
+        plusBtn.className = "amount-btn";
+        plusBtn.onclick = () => {
+            if (amt < slot.amount) {
+                amt++;
+                amtNum.textContent = amt;
+            }
+        };
+
+        const okBtn = document.createElement('button');
+        okBtn.textContent = "OK";
+        okBtn.className = "amount-ok";
+        okBtn.onclick = () => {
+            if (action === "use") {
+                if (useItem(slot.id, amt)) {
+                    dropdown.remove();
+                    overlay.remove();
+                    console.log(`[Inventory] Used ${amt}x ${def.name} (ID: ${slot.id})`);
+                }
+            } else if (action === "remove") {
+                // Play SFX for User item removal
+                if (window.SoundManager) {
+                    SoundManager.playEffect("assets/sound/sfx/items/remove.wav");
+                }
+                removeItem(slot.id, amt);
+                dropdown.remove();
+                overlay.remove();
+            }
+        };
+
+        amtBlock.appendChild(minusBtn);
+        amtBlock.appendChild(amtNum);
+        amtBlock.appendChild(plusBtn);
+        amtBlock.appendChild(okBtn);
+
+        dropdown.appendChild(amtBlock);
+    }
+
     // Use button
     if (def.useable) {
         const useBtn = document.createElement('button');
         useBtn.textContent = "Use Item";
         useBtn.className = "dropdown-btn use";
-        useBtn.onclick = () => {
-            if (useItem(slot.id)) {
-                dropdown.remove();
-                overlay.remove();
-                console.log(`[Inventory] Used item ${def.name} (ID: ${slot.id})`);
-            }
-        };
+        useBtn.onclick = () => showAmountSelector("use");
         dropdown.appendChild(useBtn);
     }
 
@@ -189,57 +300,20 @@ function showItemDropdown(index, slot, def, event) {
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove Item";
         removeBtn.className = "dropdown-btn remove";
-        removeBtn.onclick = () => {
-            // Show amount selector below this button
-            if (dropdown.querySelector('.remove-amount-block')) return;
-            const amtBlock = document.createElement('div');
-            amtBlock.className = "remove-amount-block";
-
-            let amt = 1;
-
-            const minusBtn = document.createElement('button');
-            minusBtn.textContent = "−";
-            minusBtn.className = "remove-amount-btn";
-            minusBtn.onclick = () => {
-                if (amt > 1) {
-                    amt--;
-                    amtNum.textContent = amt;
-                }
-            };
-
-            const amtNum = document.createElement('span');
-            amtNum.textContent = amt;
-            amtNum.className = "remove-amount-num";
-
-            const plusBtn = document.createElement('button');
-            plusBtn.textContent = "+";
-            plusBtn.className = "remove-amount-btn";
-            plusBtn.onclick = () => {
-                if (amt < slot.amount) {
-                    amt++;
-                    amtNum.textContent = amt;
-                }
-            };
-
-            const okBtn = document.createElement('button');
-            okBtn.textContent = "OK";
-            okBtn.className = "remove-amount-ok";
-            okBtn.onclick = () => {
-                removeItem(slot.id, amt);
-                dropdown.remove();
-                overlay.remove();
-            };
-
-            amtBlock.appendChild(minusBtn);
-            amtBlock.appendChild(amtNum);
-            amtBlock.appendChild(plusBtn);
-            amtBlock.appendChild(okBtn);
-
-            dropdown.appendChild(amtBlock);
-        };
+        removeBtn.onclick = () => showAmountSelector("remove");
         dropdown.appendChild(removeBtn);
     }
 
     document.body.appendChild(overlay);
     document.body.appendChild(dropdown);
+}
+
+
+// Unlock more inventory pages (call this when player unlocks a new page)
+function unlockInventoryPage() {
+    if (inventoryPagesUnlocked < INVENTORY_MAX_PAGES) {
+        inventoryPagesUnlocked++;
+        updateInventoryUI();
+        notify(`Inventory page ${inventoryPagesUnlocked} unlocked!`, 1800);
+    }
 }
