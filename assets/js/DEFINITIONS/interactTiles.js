@@ -386,6 +386,63 @@ const INTERACTABLE_TILES = [
         ],
         rewards: [{ id: "choir_fragment", amount: 1 }],
     },
+    
+
+    {
+        id: "echo_tile_1",
+        map: 3,
+        x: 30,
+        y: 11,
+        spriteSheet: "assets/img/tile/shelf-4.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Activate this Echo.",
+        dialogue: [
+            "You activate the Tile,",
+            "I remember when the world spun slower, each cycle etched in glass and stone.",
+            "The old drives hummed with stories, but now their voices flicker and fade."
+        ],
+        rewards: [{ id: "echo_fragment", amount: 2 }],
+    },
+
+
+    {
+        id: "echo_tile_2",
+        map: 3,
+        x: 17,
+        y: 72,
+        spriteSheet: "assets/img/tile/shelf-4.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Activate this Echo.",
+        dialogue: [
+            "You activate the Tile,",
+            "Fragments of memory drift through the Spires; lost names, broken codes.",
+            "We cling to what remains, but the Architect’s hand grows restless, rewriting what was once known."
+        ],
+        rewards: [{ id: "echo_fragment", amount: 2 }],
+    },
+    
+
+    {
+        id: "echo_tile_3",
+        map: 3,
+        x: 65,
+        y: 12,
+        spriteSheet: "assets/img/tile/shelf-4.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Activate this Echo.",
+        dialogue: [
+            "You activate the Tile,",
+            "The cycles repeat, but each time, more is forgotten.",
+            "New layers rise, old ones crumble."
+        ],
+        rewards: [{ id: "echo_fragment", amount: 2 }],
+    },
 ];
 
 /*

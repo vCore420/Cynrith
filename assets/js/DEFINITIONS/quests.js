@@ -169,6 +169,18 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "maxHealth_buff_small", amount: 10 }, { xp: 120 }],
         redoable: false
     },
+
+    sundered_echo_release: {
+        id: "sundered_echo_release",
+        name: "Release the Sundered Echoes",
+        description: "Activate 3 Echo Tiles for Lyra the Lost Chorister, scattered across the Shattered Spires.",
+        type: "interactTiles",
+        interactTileIds: ["echo_tile_1", "echo_tile_2", "echo_tile_3"],
+        requiredAmount: 3,
+        rewards: [{ id: "atk_buff_small", amount: 10 }, { xp: 160 }],
+        redoable: false
+    },
+
 };
 
 

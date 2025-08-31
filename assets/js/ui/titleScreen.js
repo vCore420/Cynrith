@@ -225,8 +225,8 @@ window.addEventListener("DOMContentLoaded", function() {
                 setTimeout(() => {
                     loreText.style.opacity = 0;
                     idx++;
-                    setTimeout(showNextLine, 900);
-                }, 4200);
+                    setTimeout(showNextLine, 1800);
+                }, 4800);
             }, 100);
         }
         showNextLine();

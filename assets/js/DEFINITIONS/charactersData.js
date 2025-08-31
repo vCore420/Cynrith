@@ -801,6 +801,7 @@ const NPC_DEFINITIONS = {
         trader: "trader3"
     },
 
+
     // First Main Npc for F4 - Forced Interaction & Story Quest
     lyra_lost_chorister: {
         id: "lyra_lost_chorister",
@@ -839,6 +840,74 @@ const NPC_DEFINITIONS = {
             ],
             triggered: false
         }
+    },
+
+/*
+    // Archivist Venn - Floor 4 Quest NPC
+    archivist_venn: {
+        id: "archivist_venn",
+        name: "Archivist Venn",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 38, y: 54, wanderArea: { x1: 36, y1: 52, x2: 41, y2: 56 } }
+        ],
+        dialogue: {
+            default: [
+                "My records are corrupted. Data shards flicker in the glass—bring them to me, and I will reveal the Spires' true story.",
+                "The Shattered Spires once sang with perfect memory, but now only fragments remain. Each shard you recover restores a piece of our past."
+            ],
+            questGiven: [
+                "Seek out 6 Data Shards among the glitching circuit lines and ruined terminals. Each one holds a snippet of the Spires' lost history.",
+                "Return them to me, and I will piece together the truth for you."
+            ],
+            questIncomplete: [
+                "There are still Data Shards missing. The Spires hide their secrets well—search the glass bridges and broken halls.",
+                "Every shard you find brings us closer to understanding what was lost."
+            ],
+            questComplete: [
+                "You have recovered the Data Shards! Listen as I restore the records:",
+                "\"The Choir once guided the Architect, but the Fracture shattered their unity. Now, only echoes remain.\"",
+                "\"The Spires are a warning: even harmony can be broken, and what is lost may never wish to be repaired.\"",
+                "Thank you, traveler. The Spires remember your efforts."
+            ]
+        },
+        questId: "venn_data_shards",
+        questRedo: false
+    },
+*/
+
+    // The Sundered Echo - Floor 4 Quest NPC
+    sundered_echo: {
+        id: "sundered_echo",
+        name: "The Sundered Echo",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 3, y: 3, wanderArea: { x1: 1, y1: 1, x2: 5, y2: 7 } }
+        ],
+        dialogue: {
+            default: [
+                "I saw the Architect here, once. My memories are scattered, find the lost echoes, and I may remember what was said.",
+                "The Displaced Shadows linger, trapped by cycles and sorrow. Only by freeing them can the Spires move forward."
+            ],
+            questGiven: [
+                "Activate 3 Echo Tiles on the side islands to release the Displaced Shadows. Each freed echo will reveal a line about the cycles of Cynrith.",
+                "Return when you have set them free, and I will share what I remember."
+            ],
+            questIncomplete: [
+                "Some Displaced Shadows remain trapped. The Echo Tiles are hidden among the islands.",
+                "Only when all are freed will my memories return."
+            ],
+            questComplete: [
+                "You have freed the Displaced Shadows. Their voices return, and so do my memories.",
+                "\"We are built on cycles and fragments, each layer holding echoes of what came before.\"",
+                "\"The Architect shapes us, but even it cannot remember everything.\"",
+                "Thank you, traveler. The Spires feel less empty now."
+            ]
+        },
+        questId: "sundered_echo_release",
+        questRedo: false
     },
 
 };

@@ -270,7 +270,7 @@ function handleEnemyDeath(enemy) {
     // Respawn enemy after cooldown at its original spawn
     setTimeout(() => {
         respawnEnemy(enemy.id, enemy._spawnIndex);
-    }, 8000); // 8 seconds respawn
+    }, 12500); // 12.5 seconds respawn
 }
 
 
