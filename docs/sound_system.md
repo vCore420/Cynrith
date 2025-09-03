@@ -24,7 +24,22 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ---
 
-## 2. Where Sounds Can Be Defined
+## 2. Adding New SFX (.wav) Files
+
+**To add a new sound effect:**
+
+1. **Place your `.wav` file** in the correct subfolder under `assets/sound/sfx/`.
+2. **Add the file name** (with subfolder, e.g. `items/remove.wav`) to the `SFX_FILES` array in `assets/js/core/preload.js`:
+    ```javascript
+    const SFX_FILES = [
+      // ...existing files...
+      "items/remove.wav", // <-- Add your new file here
+    ];
+    ```
+
+---
+
+## 3. Where Sounds Can Be Defined
 
 ### **A. Map JSON (assets/json/mapX.json)**
 - **Background Music:**  
@@ -64,19 +79,19 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ---
 
-## 3. How to Add a New Sound
+## 4. How to Add a New Sound
 
 1. **Place your sound file** in the correct folder (`assets/sound/` or `assets/sound/sfx/[type]/`).
 2. **Reference the sound** in the relevant definition:
     - Map asset (`footsteps`)
     - Interactable/trigger tile (`sound` object)
     - Item (`sound` property)
-    - Enemy (ambient sound by ID)
+    - Enemy (ambient sound by Enemy ID)
 3. **Test in-game** to ensure the sound plays as expected.
 
 ---
 
-## 4. SoundManager Usage
+## 5. SoundManager Usage
 
 - **Play background music:**  
   ```javascript
@@ -98,10 +113,11 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ---
 
-## 5. Best Practices
+## 6. Best Practices
 
 - Use `.wav` for SFX and `.mp3` for music.
 - Keep sound file names descriptive and organized.
+- Always add new SFX to the preloader list for caching.
 - Test volume levels for each sound type.
 - Avoid overlapping or looping sounds that clash with background music.
 - Use ambient and trigger sounds for atmosphere, not constant repetition.

@@ -21,16 +21,17 @@
 - [x] Fix redoable quests not removing from active list after repeat completion
 - [x] Add new quest type "interactTiles" for quests requiring specific interactable tiles to be triggered
 - [x] Quest HUD shows correct icons and progress for interactTiles and statBuild quests
+- [ ] Add a '!' above npcs whos quests are ready to be completed
  
 ## Player Logic
-- [ ] Joystick instead of touch buttons?
+- [ ] Joystick instead of D Pad For smoother movement on touch devices
 - [ ] Keyboard support - WASD for movement, left mouse for B button, right mouse for A button
 - [ ] Add collision logic between Player and Npc
 - [ ] Add more logic to player health, regen when below 50% up to 50%
 
-## Inventory 
-- [ ] Allow for pages in the invenotry grid so the player can have up to 4 pages of inventory (36 total items) which we will make expandable from in game
-      
+## Inventory
+- [x] Allow for pages in the inventory grid so the player can have up to 10 pages of inventory (90 total items) which we will make expandable from in game, giving the player 2 pages from a new game 
+
 ## Skills Menu
 - [ ] Recycle my skill menu used for FiveM to suit the style of this game and expand/adapt the system to work with our tile game
 - [ ] Allow for 3 skills to be used to add player buffs/debuffs
@@ -61,10 +62,11 @@
 - [ ] Setting will include, touch controls toggle, sound toggle, log toggle
 
 ## Maps and Dialogue
-- [x] Create at least 3 floors to start with before first beta release of the game
-    - [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
-    - [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-    - [x] Floors 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
+
+- [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
+- [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
+- [x] Floor 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
+- [ ] Floor 4
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
 - [ ] Trigger tiles for tile frames for things like doors opening and closing as well as map warping triggers
@@ -96,27 +98,42 @@
 - [x] Create templates for all Definitions
 - [x] Create reusable content tracker for key NPCs, items, and lore objects
 - [x] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
+- [ ] Create Better Credits section to the readme to showcase where alot of the assets came from
 
 ---
 
+## *New Since Last Release*
 
-## **New Since Last Commit*
-
-- Added new assets for floor 4 
+- Started work on Floor 4 -
   - New floor map and tile assets
-  - New enemy assets and definiens
+  - New enemy assets and definitions
   - New Items/loot for F4
   - Start Npc's and Trader
   - Started Quests and story hooks
   - Created finer details about F4 in World Building
 
-- Performance improvements -
+- Performance Improvements -
   - Created new Welcome screen to pre load the game assets 
   - Preload and cache all sfx sounds
   - Preload title map 
   - Forces user page interaction before loading sounds
   - Throttled combat sfx
-  - Stopped sfx clashing with each other
+  - Combat SFX logic improved to avoid overlap
   - Improved ambient enemy sound logic 
+  - Fixed Lag with enemy deaths
+
+- Ui Improvements -
+  - Inventory menu now has expandable pages
+  - Useable items can now use used in bulk just like removing items
+  - Improved Notifications for inventory usage
+  - Added sfx for inventory menu
+
+- Small Changes -
+  - Increased cooldown for enemy respawn
+  - Increased the time the intro story plays, for better readability
+
+- Documentation
+  - Roadmap and world building docs are up-to-date
+  - Contributor guide and templates for definitions Created
 
 ---
