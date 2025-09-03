@@ -842,40 +842,6 @@ const NPC_DEFINITIONS = {
         }
     },
 
-/*
-    // Archivist Venn - Floor 4 Quest NPC
-    archivist_venn: {
-        id: "archivist_venn",
-        name: "Archivist Venn",
-        sprite: "assets/img/npc/npc_m_3.png",
-        interactive: true,
-        spawns: [
-            { map: 3, x: 38, y: 54, wanderArea: { x1: 36, y1: 52, x2: 41, y2: 56 } }
-        ],
-        dialogue: {
-            default: [
-                "My records are corrupted. Data shards flicker in the glass—bring them to me, and I will reveal the Spires' true story.",
-                "The Shattered Spires once sang with perfect memory, but now only fragments remain. Each shard you recover restores a piece of our past."
-            ],
-            questGiven: [
-                "Seek out 6 Data Shards among the glitching circuit lines and ruined terminals. Each one holds a snippet of the Spires' lost history.",
-                "Return them to me, and I will piece together the truth for you."
-            ],
-            questIncomplete: [
-                "There are still Data Shards missing. The Spires hide their secrets well—search the glass bridges and broken halls.",
-                "Every shard you find brings us closer to understanding what was lost."
-            ],
-            questComplete: [
-                "You have recovered the Data Shards! Listen as I restore the records:",
-                "\"The Choir once guided the Architect, but the Fracture shattered their unity. Now, only echoes remain.\"",
-                "\"The Spires are a warning: even harmony can be broken, and what is lost may never wish to be repaired.\"",
-                "Thank you, traveler. The Spires remember your efforts."
-            ]
-        },
-        questId: "venn_data_shards",
-        questRedo: false
-    },
-*/
 
     // The Sundered Echo - Floor 4 Quest NPC
     sundered_echo: {
@@ -909,6 +875,143 @@ const NPC_DEFINITIONS = {
         questId: "sundered_echo_release",
         questRedo: false
     },
+
+
+    // Archivist Venn - Floor 4 Quest NPC
+    archivist_venn: {
+        id: "archivist_venn",
+        name: "Archivist Venn",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 73, y: 5, wanderArea: { x1: 67, y1: 2, x2: 77, y2: 10 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome, traveler. The Grand Hall used to be full of laughter and stories, but lately, it feels a bit empty.",
+                "I once brewed Glassberry Tea for guests, sweet, warm, and a little tart. The recipe was stored on my favorite Glassberry Leaves, but now they're scattered into the winds.",
+                "If you find any Glassberry Leaves, bring them here. Maybe together, we can restore a little comfort to these halls."
+            ],
+            questGiven: [
+                "Gather 5 Glassberry Leaves from the islands. Each one is a piece of the old recipe and a memory worth saving."
+            ],
+            questIncomplete: [
+                "Still searching? Take your time. The best tea is brewed with patience.",
+                "Glassberry Leaves blew across the bridges."
+            ],
+            questComplete: [
+                "You found them all! Let me brew us a cup...",
+                "The aroma fills the hall, and for a moment, it feels like old times.",
+                "\"In a world of broken glass and fading echoes, it's the small comforts that help us remember who we are.\"",
+                "Thank you, traveler. You're always welcome here."
+            ]
+        },
+        questId: "venn_glassberry_tea",
+        questRedo: false
+    },
+
+
+    // Spires Sentinel - Flor 4 Quest Npc
+    spires_sentinel: {
+        id: "spires_sentinel",
+        name: "Sentinel of the Spires",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 69, y: 54, wanderArea: { x1: 66, y1: 53, x2: 71, y2: 56 } }
+        ],
+        dialogue: {
+            default: [
+                "You feel the tension in the glass, don't you? The Spires are restless, and the Shardlings grow bold.",
+                "Before anyone can ascend to the next floor, we must thin their numbers. It's not just safety, it's tradition.",
+                "Prove your resolve: defeat 40 Shardlings. Only then will the way forward be clear."
+            ],
+            questGiven: [
+                "The Shardlings swarm across the islands and bridges. Defeat 40 of them, and return to me. The Spires will know your strength."
+            ],
+            questIncomplete: [
+                "The Shardlings still linger. Keep going, every one you defeat brings us closer to peace.",
+                "Remember, the Spires watch those who prepare for what comes next."
+            ],
+            questComplete: [
+                "You have done it! The Spires are quieter now, and the path to the next floor feels less uncertain.",
+                "\"Strength is not just in the climb, but in the care for those who follow.\"",
+                "Go on, traveler. The fifth floor awaits, and you have earned your place."
+            ]
+        },
+        questId: "sentinel_shardling_cull",
+        questRedo: true
+    },
+
+
+    // Great Hall Welcomer - Forced Encounter, Lore Npc
+    great_hall_welcomer: {
+        id: "great_hall_welcomer",
+        name: "Keeper of the Hall",
+        sprite: "assets/img/npc/npc_f_5.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 65, y: 3, wanderArea: { x1: 63, y1: 2, x2: 66, y2: 5 } }
+        ],
+        dialogue: {
+            default: [
+                "Ah, you’ve arrived. Welcome to the Great Hall, where the glass remembers every footstep and laughter once echoed from wall to wall.",
+                "I’ve tended these halls for longer than I can recall. Some days, the memories are sharp as crystal; other days, they slip away like mist.",
+                "Sit with me a moment. The Spires are not just stone and glass, they’re a patchwork of stories, old joys, and quiet heartbreaks.",
+                "If you listen closely, you’ll hear the faint hum of the Choir’s song, and maybe, just maybe, a whisper of hope for what’s yet to come.",
+                "You’re part of this place now, traveler. The Hall welcomes you, not just as a guest, but as a new memory worth keeping."
+            ]
+        },
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 62, y: 2 },
+                { x: 62, y: 3 },
+                { x: 62, y: 4 },
+                { x: 62, y: 5 }
+            ],
+            triggered: false
+        }
+    },
+
+
+    // Great Hall Scribe - Lore Npc
+    great_hall_scribe: {
+        id: "great_hall_scribe",
+        name: "Scribe of the Hall",
+        sprite: "assets/img/npc/npc_f_6.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 71, y: 11, wanderArea: { x1: 65, y1: 5, x2: 72, y2: 11 } }
+        ],
+        dialogue: {
+            default: [
+                "Long ago, the Spires rang with the voices of the Choir. Now, only echoes drift through these halls.",
+                "I record what remains, a tale here, a fragment there. Sometimes, the glass remembers more than we do.",
+                "They say the Architect once walked this floor, but left only riddles and reflections behind."
+            ]
+        }
+    },
+
+
+    // Great Hall Reflector - Lore Npc
+    great_hall_reflector: {
+        id: "great_hall_reflector",
+        name: "The Hall’s Reflector",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 3, x: 69, y: 9, wanderArea: { x1: 65, y1: 5, x2: 72, y2: 11 } }
+        ],
+        dialogue: {
+            default: [
+                "The glass in this hall once showed every memory, every hope. Now, it flickers with stories half-told.",
+                "I watch the patterns in the light, sometimes they form faces, sometimes just lines. All are pieces of the Spires’ story.",
+                "If you listen closely, you might hear the song that once held this place together."
+            ]
+        }
+    },
+
 
 };
 

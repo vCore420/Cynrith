@@ -181,6 +181,38 @@ const QUEST_DEFINITIONS = {
         redoable: false
     },
 
+    venn_glassberry_tea: {
+        id: "venn_glassberry_tea",
+        name: "Restoring the Old Record",
+        description: "Help Venn recreate his favorite Glassberry Tea by gathering 5 Glassberry Leaves.",
+        type: "itemCollect",
+        requiredItems: [
+            { id: "glassberry_leaf", amount: 5 }
+        ],
+        rewards: [
+            { id: "maxHealth_buff_small", amount: 3 },
+            { id: "def_buff_small", amount: 4 },
+            { id: "glassberry_tea", amount: 1 },
+            { xp: 80 }
+        ],
+        redoable: false
+    },
+
+    sentinel_shardling_cull: {
+        id: "sentinel_shardling_cull",
+        name: "Shardling Cull",
+        description: "Defeat 40 Shardlings for the Sentinel of the Spires to prepare for the ascent to Floor 5.",
+        type: "enemyDefeat",
+        enemyId: "shardling",
+        requiredAmount: 40,
+        rewards: [
+            { id: "maxHealth_buff_small", amount: 5 },
+            { id: "atk_buff_small", amount: 5 },
+            { xp: 200 }
+        ],
+        redoable: true
+    },
+
 };
 
 

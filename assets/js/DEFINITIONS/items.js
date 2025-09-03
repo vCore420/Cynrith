@@ -256,6 +256,28 @@ const ITEM_DEFINITIONS = {
         removeable: true
     },
 
+    glassberry_leaf: {
+        id: "glassberry_leaf",
+        name: "Glassberry Leaf",
+        description: "A vibrant leaf from the Glassberry plant, known for its comforting properties and rich aroma.",
+        image: "assets/img/items/glassberry_leaf.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+    glassberry_tea: {
+        id: "glassberry_tea",
+        name: "Glassberry Tea",
+        description: "A soothing tea made from Glassberry Leaves, its said that those who drink it feel a calming sensation that regenerates their health fully.",
+        image: "assets/img/items/glassberry_tea.png",
+        rarity: "legendary",
+        stackable: true,
+        useable: true,
+        removeable: true
+    }
+
 
 };
 

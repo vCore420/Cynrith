@@ -78,9 +78,17 @@ function drawSingleInteractableTile(tile) {
             sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),
             px, py, (tile.imageW / tile.cols), (tile.imageH / tile.rows)
         );
-    } else {
-        const img = new Image();
-        img.src = tile.image;
+    } else if (tile.image) {
+        // Cache image for reuse
+        if (!_worldSpriteImages[tile.image]) {
+            const img = new Image();
+            img.src = tile.image;
+            _worldSpriteImages[tile.image] = img;
+        }
+        const img = _worldSpriteImages[tile.image];
+        if (!img || !img.complete) return;
+
+        // Use tile size for width/height
         let px = Math.round(tile.x * config.size.tile - viewport.x);
         let py = Math.round(tile.y * config.size.tile - viewport.y);
         context.drawImage(img, px, py, config.size.tile, config.size.tile);

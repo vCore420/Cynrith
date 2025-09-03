@@ -20,6 +20,11 @@ const ITEM_EFFECTS = {
     atkSpeed_buff_small: function(player, amount = 1) {
         player.addAttackSpeed(10 * amount);
         notify(`Attack Speed increased by ${10 * amount}!`, 1800);
+    },
+    glassberry_tea: function(player, amount = 1) {
+        const before = player.health;
+        player.setHealth(player.maxHealth);
+        notify(`You feel restored! Health fully regenerated (${player.maxHealth - before}).`, 1800);
     }
     // Add more item effects here...
 };

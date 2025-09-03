@@ -360,7 +360,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 67,
         y: 52,
-        spriteSheet: "assets/img/tile/shelf-4.png",
+        image: "assets/img/tile/shelf-4.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,
@@ -376,7 +376,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 24,
         y: 10,
-        spriteSheet: "assets/img/tile/shelf-4.png",
+        image: "assets/img/tile/shelf-4.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,
@@ -393,7 +393,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 30,
         y: 11,
-        spriteSheet: "assets/img/tile/shelf-4.png",
+        image: "assets/img/tile/shelf-4.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,
@@ -412,7 +412,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 17,
         y: 72,
-        spriteSheet: "assets/img/tile/shelf-4.png",
+        image: "assets/img/tile/shelf-4.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,
@@ -431,7 +431,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 65,
         y: 12,
-        spriteSheet: "assets/img/tile/shelf-4.png",
+        image: "assets/img/tile/shelf-4.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,
@@ -442,6 +442,137 @@ const INTERACTABLE_TILES = [
             "New layers rise, old ones crumble."
         ],
         rewards: [{ id: "echo_fragment", amount: 2 }],
+    },
+    
+
+    {
+        id: "glass_tree_1",
+        map: 3,
+        x: 21,
+        y: 10,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "A Leaf falls into your hands."
+        ],
+        rewards: [{ id: "glassberry_leaf", amount: 1 }],
+    },
+    
+
+    {
+        id: "glass_tree_2",
+        map: 3,
+        x: 7,
+        y: 73,
+        image: "assets/img/tile/rock-3.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "A Leaf falls into your hands."
+        ],
+        rewards: [{ id: "glassberry_leaf", amount: 1 }],
+    },
+    
+
+    {
+        id: "glass_tree_3",
+        map: 3,
+        x: 68,
+        y: 59,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "A Leaf falls into your hands."
+        ],
+        rewards: [{ id: "glassberry_leaf", amount: 1 }],
+    },
+    
+
+    {
+        id: "glass_tree_4",
+        map: 3,
+        x: 49,
+        y: 49,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "A Leaf falls into your hands."
+        ],
+        rewards: [{ id: "glassberry_leaf", amount: 1 }],
+    },
+    
+
+    {
+        id: "glass_tree_5",
+        map: 3,
+        x: 46,
+        y: 19,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "A Leaf falls into your hands."
+        ],
+        rewards: [{ id: "glassberry_leaf", amount: 1 }],
+    },
+    
+
+    {
+        id: "glass_tree_6",
+        map: 3,
+        x: 10,
+        y: 46,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "You unfortunately find nothing."
+        ],
+    },
+    
+
+    {
+        id: "glass_tree_6",
+        map: 3,
+        x: 3,
+        y: 1,
+        image: "assets/img/tile/glass-tree.png",
+        collision: true, 
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to Search this Glassberry Tree.",
+        dialogue: [
+            "You search the Glassberry Tree,",
+            "Its crystalline leaves shimmer with an inner light.",
+            "You unfortunately find nothing."
+        ],
     },
 ];
 
