@@ -98,21 +98,21 @@
 - [x] Create templates for all Definitions
 - [x] Create reusable content tracker for key NPCs, items, and lore objects
 - [x] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
-- [ ] Create Better Credits section to the readme to showcase where alot of the assets came from
+- [x] Create Better Credits section to the readme to showcase where alot of the assets came from
 
 ---
 
 ## *New Since Last Release*
 
-- Started work on Floor 4 -
+- #### Floor 4 
   - New floor map and tile assets
   - New enemy assets and definitions
   - New Items/loot for F4
-  - Start Npc's and Trader
-  - Started Quests and story hooks
+  - New Npc's and Traders
+  - New Quests and story hooks
   - Created finer details about F4 in World Building
 
-- Performance Improvements -
+- #### Performance Improvements 
   - Created new Welcome screen to pre load the game assets 
   - Preload and cache all sfx sounds
   - Preload title map 
@@ -122,17 +122,17 @@
   - Improved ambient enemy sound logic 
   - Fixed Lag with enemy deaths
 
-- Ui Improvements -
+- #### Ui Improvements 
   - Inventory menu now has expandable pages
   - Useable items can now use used in bulk just like removing items
   - Improved Notifications for inventory usage
   - Added sfx for inventory menu
 
-- Small Changes -
+- #### Small Changes
   - Increased cooldown for enemy respawn
   - Increased the time the intro story plays, for better readability
 
-- Documentation
+- #### Documentation
   - Roadmap and world building docs are up-to-date
   - Contributor guide and templates for definitions Created
 
