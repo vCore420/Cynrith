@@ -6,8 +6,6 @@
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
     <img alt="Github release (latest by date)" src="https://img.shields.io/github/v/release/vCore420/Cynrith?style=for-the-badge">
   </p>
-  <p align="center">Play Cynrith: https://vcore420.github.io/Cynrith/</p>
-  <p align="center">Join the Discord: https://discord.gg/FNVmfMDNZa</p>
 </div>
 
 ![Demo Screenshot](docs/assets/demo1.png)
@@ -105,6 +103,41 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 <summary>Change Logs</summary>
 
 <p>
+
+4/9 Beta v0.2.0
+
+- Floor 4 
+  - New floor map and tile assets
+  - New enemy assets and definitions
+  - New Items/loot for F4
+  - New Npc's and Traders
+  - New Quests and story hooks
+  - Created finer details about F4 in World Building
+
+- Performance Improvements 
+  - Created new Welcome screen to pre load the game assets 
+  - Preload and cache all sfx sounds
+  - Preload title map 
+  - Forces user page interaction before loading sounds
+  - Throttled combat sfx
+  - Combat SFX logic improved to avoid overlap
+  - Improved ambient enemy sound logic 
+  - Fixed Lag with enemy deaths
+
+- Ui Improvements 
+  - Inventory menu now has expandable pages
+  - Useable items can now use used in bulk just like removing items
+  - Improved Notifications for inventory usage
+  - Added sfx for inventory menu
+
+- Small Changes
+  - Increased cooldown for enemy respawn
+  - Increased the time the intro story plays, for better readability
+
+- Documentation
+  - Roadmap and world building docs are up-to-date
+  - Contributor guide and templates for definitions Created
+
 --
 
 28/8 Beta v0.1.3
@@ -157,23 +190,35 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 ---
 
-## Documentation
+## Contributing & Documentation
+
+Pull requests and suggestions are welcome!
+
+Check out the Documentation below for information needed to contribute:
 
 - [Roadmap](docs/roadmap.md)  
-  _Current goals, plans, and development roadmap for Cynrith._
+  _My Current goals, plans, and development roadmap for Cynrith._
 - [Function Library](docs/function_libary.md)  
-  _Every created function in the project, with explanations and usage._
+  _Every created function in the project so far, with explanations and usage._
 - [World Building](docs/world_Building.md)  
-  _Lore, story, and the evolving world of Cynrith._
+  _Current and upcoming Lore, story, and the evolving world of Cynrith._
 - [Content Tracker](docs/content_tracker.md)  
   _All content (item, characters, lore refs, etc) currently created in the world of Cynrith._
+- [Floor Creation Guide](Floor_Creation_Guide.md)  
+  _Guidelines and best practices for creating new floors and/or other aspects of floors in Cynrith._
 
 ## Credits
-
-A browser-based 2D tile game built with JavaScript, HTML5, and Canvas.  
+ 
 This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with a complete rework to become the game 'Cynrith', orangebles simple concept for the tile base game was the perfect inspiration to create the full blown project it has become.
 
-**⚠️ This project is in early development. All game assets are test/beta and subject to change. Utilising the original assest from orangebles for my beta as i create this game but will all be polished for release**
+Other assets have been made, edited or sourced from the following:
+
+- https://www.pixellab.ai - Used for Editing and Creating Spritesheets and Tile assets utilising their Ai features
+- https://www.piskelapp.com - Used to Edit and Create Spritesheets and Tile Assets
+- https://itch.io/game-assets - Used for sourcing base Spritesheets, tiles and Sfx 
+
+
+**⚠️ This project is in early development. All game assets are test/beta and subject to change.**
 
 ## Contributors 
 
@@ -182,10 +227,6 @@ This project is a fork and extension of [orangeable/javascript-2d-tile-based-gam
 [![Contributors](https://img.shields.io/github/contributors/vCore420/Cynrith?style=for-the-badge)](https://github.com/vCore420/Cynrith/graphs/contributors)
 
 - Designed, extended, customized, and maintained by vCore420
-
-## Contributing
-
-Pull requests and suggestions are welcome!
 
 ---
 
