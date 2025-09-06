@@ -108,6 +108,16 @@ window.addEventListener("DOMContentLoaded", function() {
 
   btn.onclick = function() {
     if (preloadStarted) return;
+
+    // Unlock audio context for iOS/Safari
+    try {
+      const unlockAudio = new Audio("assets/sound/sfx/ui/click.wav");
+      unlockAudio.volume = 0.01;
+      unlockAudio.play().catch(() => {});
+    } catch (e) {
+      // Ignore errors
+    }
+
     preloadStarted = true;
     btn.textContent = "Loading...";
     btn.disabled = true;

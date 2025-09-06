@@ -1,4 +1,4 @@
-const CACHE_NAME = "cynrith-cache-v1"; // Update this on bigger game updateds
+const CACHE_NAME = "cynrith-cache-v1.01"; // Update this on bigger game updateds
 const urlsToCache = [
   "/",
   "/index.html",
