@@ -51,6 +51,7 @@
               <button class="menu-nav-btn" id="btn-inventory">Inventory</button>
               <button class="menu-nav-btn" id="btn-skills">Skills</button>
               <button class="menu-nav-btn" id="btn-quests">Quests</button>
+              <button class="menu-nav-btn" id="btn-map">Map</button>
               <button class="menu-nav-btn" id="btn-save">Save Game</button>
               <button class="menu-nav-btn" id="btn-settings">Settings</button>
             </div>
@@ -63,6 +64,23 @@
             <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
             <h2>Inventory</h2>
             <div id="inventory-grid" class="inventory-grid"></div>
+          </div>
+          <div id="map-menu" class="menu-page">
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Current Floor Map</h2>
+            <div>
+              <div id="map-help-icon">?</div>
+              <div id="map-help-tooltip" class="help-tooltip">
+                <strong>Map Key:</strong><br>
+                <span style="color:#3af07a;">● Green</span> - You (Player)<br>
+                <span style="color:#3af0ff;">● Blue</span> - NPC<br>
+                <span style="color:#ffe082;">● Gold</span> - NPC with quest ready<br>
+                <span style="color:#e33;">● Red</span> - Enemy<br>
+              </div>
+            </div>
+            <div id="map-preview-container">
+              <canvas id="map-preview-canvas" width="320" height="180"></canvas>
+            </div>
           </div>
           <!-- Add other menus here (skills, settings, etc.) -->
         </div>
