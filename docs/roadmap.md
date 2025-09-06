@@ -5,7 +5,6 @@
 - This will be intergrated into githubs issues and requests once the first beta is Released
 
 ## World Logic
-- [x] Forced encounter for just dialouge with no npc, triggers once, used for story building and events
 - [ ] Allow for multi location tiles for trigger tiles
 
 ## NPC Logic 
@@ -17,20 +16,17 @@
 
 ## Quest Logic
 - [ ] quest menu has some overflow on lists and scroll bar needs removing
-- [x] Fix stat quests
-- [x] Fix redoable quests not removing from active list after repeat completion
-- [x] Add new quest type "interactTiles" for quests requiring specific interactable tiles to be triggered
-- [x] Quest HUD shows correct icons and progress for interactTiles and statBuild quests
-- [ ] Add a '!' above npcs whos quests are ready to be completed
+- [x] Add a '!' above npcs whos quests are ready to be completed
  
 ## Player Logic
 - [ ] Joystick instead of D Pad For smoother movement on touch devices
-- [ ] Keyboard support - WASD for movement, left mouse for B button, right mouse for A button
+- [x] Keyboard support - WASD for movement, enter key for interaction, space bar for combat
 - [ ] Add collision logic between Player and Npc
 - [ ] Add more logic to player health, regen when below 50% up to 50%
+- [ ] Change initial player weapon system to use different weapons for different player character choice
 
 ## Inventory
-- [x] Allow for pages in the inventory grid so the player can have up to 10 pages of inventory (90 total items) which we will make expandable from in game, giving the player 2 pages from a new game 
+
 
 ## Skills Menu
 - [ ] Recycle my skill menu used for FiveM to suit the style of this game and expand/adapt the system to work with our tile game
@@ -38,15 +34,12 @@
 
 ## Title Menu
 - [ ] Add more logic for player name input to ensure name is at least 4 charaters long and give overwrite warner if name matches a save file
-- [ ] Add loading screen on window load to hide title screen loading 
-- [ ] Ensure player name input validates minimum length and warns if overwriting a save
+
 
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
-- [x] Make all ui more structured and modular for multi device displays
 - [ ] Red text for required xp notifications - teleport stone 
 - [ ] Sort out css styling and clean it up
-- [x] Make player stat icons
 
 ## New Game
 
@@ -55,17 +48,14 @@
 - [ ] Style load menu scroll bar
  
 ## Item System
-- [x] Buyable items (shop/traders system?) 
+ 
 
 ## Settings Menu
-- [ ] Design and create the settings menu
-- [ ] Setting will include, touch controls toggle, sound toggle, log toggle
+- [x] Design and create the settings menu
+- [x] Setting will include, touch controls toggle, sound toggle, log toggle
 
 ## Maps and Dialogue
 
-- [x] Floor 1: "Tutorial" style floor where the story will start to unfold and the player will be guided into knowing how to play
-- [x] Floor 2: The first "true" floor, fully laid out with quests, enemy battles, boss fight, most things available to the player, but NPCs continue to guide the player
-- [x] Floor 3: Full set standard floor where the NPCs give quests and build story but stop trying to guide the player so much and focus more on story building and the real feel for what the game has to offer
 - [ ] Floor 4
 - [ ] Add transition for teleporting between maps so we don't see the maps unload and load 
 - [ ] Tile-activated teleports for caves, interiors
@@ -73,67 +63,26 @@
 - [ ] Mini map in the player menu, display the floor as a small picture with player location
 
 ## Sounds
-- [x] Stop forgetting that sounds exist
-- [x] Add sound functions to call when sounds need to be played
-- [x] Create sound assets
-- [x] Background music for each map
-- [x] Ground Tile sounds for player movement
-- [x] Player Combat sounds
-- [x] Player Death sounds
-- [x] Npc Combat sounds
-- [x] Npc Dialogue interaction sounds
-- [x] Enemy ambient Sounds
 - [ ] Title Menu sounds
 - [ ] Player Menu Sounds
-- [x] Item Collection sounds
-- [x] Item Usage sounds
-- [x] Teleport Stone Interactions and ambient sounds
-- [x] Interaction and Trigger Tile sound options
 - [ ] World Sprite sound options
 
 ## Docs & Dev work
-- [x] Expand supporting docs, breakdown function libary more, add contributor guide explaining how to create new floors, quests and expand the lore of cynrith
 - [ ] Add unit test scripts 
 - [ ] Optimize main game loop for mobile performance (reduce DOM updates, avoid resizing canvas every frame, batch sprite/frame updates)
-- [x] Create templates for all Definitions
-- [x] Create reusable content tracker for key NPCs, items, and lore objects
-- [x] Create easy to follow plans for adding new floors (docs) to make tracking of new floor aspects easier 
-- [x] Create Better Credits section to the readme to showcase where alot of the assets came from
+- [x] Make Installable for mobile devices
 
 ---
 
 ## *New Since Last Release*
 
-- #### Floor 4 
-  - New floor map and tile assets
-  - New enemy assets and definitions
-  - New Items/loot for F4
-  - New Npc's and Traders
-  - New Quests and story hooks
-  - Created finer details about F4 in World Building
-
-- #### Performance Improvements 
-  - Created new Welcome screen to pre load the game assets 
-  - Preload and cache all sfx sounds
-  - Preload title map 
-  - Forces user page interaction before loading sounds
-  - Throttled combat sfx
-  - Combat SFX logic improved to avoid overlap
-  - Improved ambient enemy sound logic 
-  - Fixed Lag with enemy deaths
-
-- #### Ui Improvements 
-  - Inventory menu now has expandable pages
-  - Useable items can now use used in bulk just like removing items
-  - Improved Notifications for inventory usage
-  - Added sfx for inventory menu
-
-- #### Small Changes
-  - Increased cooldown for enemy respawn
-  - Increased the time the intro story plays, for better readability
-
-- #### Documentation
-  - Roadmap and world building docs are up-to-date
-  - Contributor guide and templates for definitions Created
+- Fixed minor asset loading issues when warping between maps
+- fix minor collision and Npc logic loading issues when warping between maps
+- Moved player spawn location from map warping to the tile below the teleport stone to prevent collision issues
+- Added a '!' above Npcs whos quests are ready to complete 
+- Player movement keys changed to W,S,A,D. Re-Wrote player movement logic to bring key mapping up to date
+- Esc key opens player menu
+- Settings menu Created with touch control toggle and volume sliders
+- Made installable for devices
 
 ---
