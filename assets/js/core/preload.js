@@ -126,5 +126,21 @@ window.addEventListener("DOMContentLoaded", function() {
     updatePreloadBar();
     preloadSFX();
     preloadTitleMap();
+
+    setTimeout(() => {
+  if (loadedCount < totalToLoad) {
+    console.warn("[Preloader] Timeout reached, continuing without all sounds (likely iOS/Safari issue)");
+    loadedCount = totalToLoad; // Force complete
+    checkPreloadComplete();
+
+    // Show message to user
+    const preloadTitle = document.getElementById('preload-title');
+    if (preloadTitle) {
+      preloadTitle.textContent = "Some sounds could not be loaded on your device, but the game will play fine!";
+      preloadTitle.style.color = "#ffe082";
+      preloadTitle.style.fontSize = "1.1em";
+    }
+  }
+}, 5000);
   };
 });
