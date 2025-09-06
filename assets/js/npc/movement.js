@@ -360,7 +360,7 @@ function updateCharacters() {
 
                         // Play Player hit sound
                         if (window.SoundManager) {
-                            SoundManager.playEffect("assets/sound/sfx/player/player_hit.wav");
+                            SoundManager.playEffect("assets/sound/sfx/player/player_hit.mp3");
                         }
 
                         // Handle Player Death when Health Hits 0

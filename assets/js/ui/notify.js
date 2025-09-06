@@ -34,7 +34,7 @@ function dialogue(...lines) {
         SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume * 0.5, 400);
     }
     if (window.SoundManager) {
-        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.wav");
+        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.mp3");
     }
     showDialogueLine(0, name);
 }
@@ -86,7 +86,7 @@ function advanceDialogue() {
 
     // Play dialogue sound effect on each advance
     if (window.SoundManager) {
-        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.wav");
+        SoundManager.playEffect("assets/sound/sfx/ui/dialogue.mp3");
     }
 
     // Quest Given Dialogue

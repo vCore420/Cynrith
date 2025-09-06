@@ -262,7 +262,7 @@ Player.prototype = {
 
         // Play sword slash sound effect
         if (window.SoundManager) {
-            SoundManager.playEffect("assets/sound/sfx/player/sword_slash.wav");
+            SoundManager.playEffect("assets/sound/sfx/player/sword_slash.mp3");
         }
 
         // Play attack animation (jump forward and back)
@@ -302,7 +302,7 @@ Player.prototype = {
 
         // Play sword hit sound if an enemy was hit
         if (hitEnemy && window.SoundManager) {
-            SoundManager.playEffect("assets/sound/sfx/player/sword_hit.wav");
+            SoundManager.playEffect("assets/sound/sfx/player/sword_hit.mp3");
         }
     },
     quickAttackAnim: function() {

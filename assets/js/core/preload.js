@@ -6,47 +6,47 @@ let totalToLoad = 0;
 let preloadStarted = false;
 
 const SFX_FILES = [
-  "player/lvl_up.wav",
-  "player/player_death.wav",
-  "player/player_hit.wav",
-  "player/sword_hit.wav",
-  "player/sword_slash.wav",
+  "player/lvl_up.mp3",
+  "player/player_death.mp3",
+  "player/player_hit.mp3",
+  "player/sword_hit.mp3",
+  "player/sword_slash.mp3",
 
-  "ui/dialogue.wav",
-  "ui/ui_open.wav",
-  "ui/ui_close.wav",
+  "ui/dialogue.mp3",
+  "ui/ui_open.mp3",
+  "ui/ui_close.mp3",
 
-  "items/atk.wav",
-  "items/atkSpeed.wav",
-  "items/common.wav",
-  "items/def.wav",
-  "items/epic.wav",
-  "items/health.wav",
-  "items/legendary.wav",
-  "items/maxHealth.wav",
-  "items/rare.wav",
-  "items/remove.wav",
+  "items/atk.mp3",
+  "items/atkSpeed.mp3",
+  "items/common.mp3",
+  "items/def.mp3",
+  "items/epic.mp3",
+  "items/health.mp3",
+  "items/legendary.mp3",
+  "items/maxHealth.mp3",
+  "items/rare.mp3",
+  "items/remove.mp3",
 
-  "world/concrete.wav",
-  "world/dirt.wav",
-  "world/glass-tile.wav",
-  "world/grass.wav",
-  "world/gravel.wav",
-  "world/sand.wav",
-  "world/warp.wav",
-  "world/wood.wav",
+  "world/concrete.mp3",
+  "world/dirt.mp3",
+  "world/glass-tile.mp3",
+  "world/grass.mp3",
+  "world/gravel.mp3",
+  "world/sand.mp3",
+  "world/warp.mp3",
+  "world/wood.mp3",
 
-  "enemy/plant_01.wav",
-  "enemy/slime_01.wav",
-  "enemy/dustback_beetle.wav",
-  "enemy/echo_wisps.wav",
-  "enemy/mistbound_ork.wav",
-  "enemy/shardling.wav",
-  "enemy/displaced_shadow.wav", 
+  "enemy/plant_01.mp3",
+  "enemy/slime_01.mp3",
+  "enemy/dustback_beetle.mp3",
+  "enemy/echo_wisps.mp3",
+  "enemy/mistbound_ork.mp3",
+  "enemy/shardling.mp3",
+  "enemy/displaced_shadow.mp3", 
 
-  "interactions/buff_pickup.wav",   
-  "interactions/echo.wav",    
-  "interactions/glitching_statue.wav",     
+  "interactions/buff_pickup.mp3",   
+  "interactions/echo.mp3",    
+  "interactions/glitching_statue.mp3",     
 ];
 
 function updatePreloadBar() {
@@ -111,7 +111,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Unlock audio context for iOS/Safari
     try {
-      const unlockAudio = new Audio("assets/sound/sfx/ui/click.wav");
+      const unlockAudio = new Audio("assets/sound/sfx/ui/click.mp3");
       unlockAudio.volume = 0.01;
       unlockAudio.play().catch(() => {});
     } catch (e) {

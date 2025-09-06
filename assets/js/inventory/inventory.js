@@ -29,7 +29,7 @@ function addItem(itemId, amount = 1) {
     // Play item pickup sound based on rarity
     if (window.SoundManager && def.rarity) {
         const rarity = def.rarity.toLowerCase();
-        SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.wav`);
+        SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.mp3`);
     }
 
     return true;
@@ -270,7 +270,7 @@ function showItemDropdown(index, slot, def, event) {
             } else if (action === "remove") {
                 // Play SFX for User item removal
                 if (window.SoundManager) {
-                    SoundManager.playEffect("assets/sound/sfx/items/remove.wav");
+                    SoundManager.playEffect("assets/sound/sfx/items/remove.mp3");
                 }
                 removeItem(slot.id, amt);
                 dropdown.remove();

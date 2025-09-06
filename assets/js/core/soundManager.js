@@ -57,7 +57,7 @@ const SoundManager = {
         let cacheKey = src.replace("assets/sound/sfx/", "");
 
         // Sword swing and sword hit: allow both, but if player_hit and sword_hit would overlap, only play one
-        if (src.includes("player_hit.wav") || src.includes("sword_hit.wav")) {
+        if (src.includes("player_hit.mp3") || src.includes("sword_hit.mp3")) {
             const now = Date.now();
             if (this._lastEffectTimes.combat && now - this._lastEffectTimes.combat < 120) return;
             this._lastEffectTimes.combat = now;

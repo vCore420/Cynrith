@@ -228,7 +228,7 @@ function playEnemyAmbientSounds() {
             volume = Math.max(minVol, Math.min(maxVol, volume));
 
             // Use cached audio and clone for playback
-            const cacheKey = `enemy/${char.typeId}.wav`;
+            const cacheKey = `enemy/${char.typeId}.mp3`;
             if (window.sfxCache && window.sfxCache[cacheKey]) {
                 const effect = window.sfxCache[cacheKey].cloneNode();
                 effect.volume = volume;

@@ -14,7 +14,7 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true,
-        sound: 'health.wav'
+        sound: 'health.mp3'
     },
 
 
@@ -27,7 +27,7 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true,
-        sound: 'atk.wav'
+        sound: 'atk.mp3'
     },
 
 
@@ -40,7 +40,7 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true,
-        sound: 'def.wav'
+        sound: 'def.mp3'
     },
 
 
@@ -53,7 +53,7 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true,
-        sound: 'maxHealth.wav'
+        sound: 'maxHealth.mp3'
     },
 
     atkSpeed_buff_small: {
@@ -65,7 +65,7 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true,
-        sound: 'atkSpeed.wav'
+        sound: 'atkSpeed.mp3'
     },
 
     
@@ -294,7 +294,7 @@ const item_template = {
     stackable: true, // Can stack in inventory
     useable: false, // Can be used (consumed/equipped)
     removeable: true, // Can be removed from inventory
-    sound: 'item_use.wav' // Sound effect played when item is used
+    sound: 'item_use.mp3' // Sound effect played when item is used
 };
 
 */

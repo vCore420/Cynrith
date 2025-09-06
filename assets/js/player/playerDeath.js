@@ -5,7 +5,7 @@ function handlePlayerDeath() {
 
     // Play player death sound
     if (window.SoundManager) {
-        SoundManager.playEffect("assets/sound/sfx/player/player_death.wav");
+        SoundManager.playEffect("assets/sound/sfx/player/player_death.mp3");
     }
 
     let fadeFrames = 12;

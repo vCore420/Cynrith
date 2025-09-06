@@ -163,7 +163,7 @@ function checkTeleport() {
             if (player.xp >= xpRequired) {
                 // Play Warp Sound
                 if (window.SoundManager) {
-                    SoundManager.playEffect("assets/sound/sfx/world/warp.wav");
+                    SoundManager.playEffect("assets/sound/sfx/world/warp.mp3");
                 }
                 // Warp Player to Map
                 warpToMap(currentMapIndex + 1, "spawn");
@@ -192,7 +192,7 @@ function checkBackTeleport() {
         if (actionButtonAPressed) {
             // Play Warp Sound
             if (window.SoundManager) {
-                SoundManager.playEffect("assets/sound/sfx/world/warp.wav");
+                SoundManager.playEffect("assets/sound/sfx/world/warp.mp3");
             }
             // Warp Player to Map
             warpToMap(currentMapIndex - 1, "teleport");
