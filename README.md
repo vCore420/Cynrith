@@ -104,6 +104,20 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 <p>
 
+6/9 Beta v0.2.1
+
+- Player movement fully reworked for WASD keys, with fluent diagonal movement and last-key priority.
+- Action buttons mapped: Enter for interaction, Space for combat, Esc to open/close player menu.
+- Settings menu added: toggle touch controls, show/hide log, adjust music and SFX volume with themed sliders and switches.
+- Settings are saved and restored with your game.
+- Cynrith is now installable as a PWA, add to your device and play offline.
+- NPCs with ready-to-complete quests now show a golden ‘!’ above their heads.
+- Player now spawns below teleport stones to avoid collision issues.
+- UI and settings menu styled for desktop and mobile.
+- Minor fixes for quest/NPC logic and asset loading when warping between maps.
+
+---
+
 4/9 Beta v0.2.0
 
 - Floor 4 
