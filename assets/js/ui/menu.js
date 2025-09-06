@@ -1,6 +1,7 @@
 // Player menu
 
 let statsInterval = null;
+let mapPreviewInterval = null;
 
 // Settings State
 let gameSettings = {
@@ -77,6 +78,10 @@ function updatePlayerMenuStats() {
 function showPlayerMenuMain() {
     document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
     document.querySelector('.player-menu-inner').classList.add('active');
+    if (mapPreviewInterval) {
+        clearInterval(mapPreviewInterval);
+        mapPreviewInterval = null;
+    }
 }
 
 
@@ -271,11 +276,150 @@ function patchSettingsFromSave(data) {
     }
 }
 
+// Show Map Menu
+function showMapMenu() {
+    // Hide all menu pages, show map menu
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    const mapPage = document.getElementById('map-menu');
+    mapPage.classList.add('active');
+
+    // --- Dynamic canvas size ---
+    const layout = map.data._layers ? map.data._layers[0] : map.data.layout;
+    const width = layout[0].length;
+    const height = layout.length;
+    let previewW = Math.min(480, width * 16);
+    let previewH = Math.min(320, height * 16);
+    if (width > height) {
+        previewH = Math.round(previewW * (height / width));
+    } else {
+        previewW = Math.round(previewH * (width / height));
+    }
+    const canvas = document.getElementById('map-preview-canvas');
+    canvas.width = previewW;
+    canvas.height = previewH;
+
+    // --- Start live preview ---
+    drawMapPreview();
+    if (mapPreviewInterval) clearInterval(mapPreviewInterval);
+    mapPreviewInterval = setInterval(drawMapPreview, 300);
+}
+
+// Draw the current map preview
+function drawMapPreview() {
+    const canvas = document.getElementById('map-preview-canvas');
+    if (!canvas || !map || !map.data || !map.data.layout) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Use the bottom layer for preview
+    const layout = map.data._layers ? map.data._layers[0] : map.data.layout;
+    const gidMap = map.data._gidMap || [];
+    const tileImages = map.tiles;
+    const width = layout[0].length;
+    const height = layout.length;
+    const tileSize = Math.min(canvas.width / width, canvas.height / height);
+
+    // Draw each tile
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let gid = layout[y][x];
+            if (gid > 0) {
+                let assetIdx = gidMap[gid];
+                let img = tileImages[assetIdx];
+                if (img && img.complete && img.naturalWidth > 0) {
+                    ctx.drawImage(
+                        img,
+                        0, 0, img.width, img.height,
+                        x * tileSize, y * tileSize, tileSize, tileSize
+                    );
+                } else {
+                    ctx.fillStyle = "#23243a";
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                }
+            } else {
+                ctx.fillStyle = "#23243a";
+                ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            }
+        }
+    }
+
+    // Draw NPC markers (blue or gold if quest ready)
+    if (typeof characters !== "undefined" && Array.isArray(characters)) {
+        characters.forEach(char => {
+            if (char.type === "npc") {
+                ctx.save();
+                // Gold if quest ready, else blue
+                if (typeof npcHasReadyQuest === "function" && npcHasReadyQuest(char)) {
+                    ctx.fillStyle = "#ffe082"; // gold
+                } else {
+                    ctx.fillStyle = "#3af0ff"; // blue
+                }
+                ctx.globalAlpha = 0.85;
+                ctx.beginPath();
+                ctx.arc(
+                    char.x * tileSize + tileSize / 2,
+                    char.y * tileSize + tileSize / 2,
+                    Math.max(4, tileSize / 3),
+                    0, 2 * Math.PI
+                );
+                ctx.fill();
+                ctx.strokeStyle = "#fffbe6";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.restore();
+            }
+        });
+    }
+
+    // Draw Enemy markers (red)
+    if (typeof characters !== "undefined" && Array.isArray(characters)) {
+        characters.forEach(char => {
+            if (char.type === "enemy") {
+                ctx.save();
+                ctx.fillStyle = "#e33";
+                ctx.globalAlpha = 0.85;
+                ctx.beginPath();
+                ctx.arc(
+                    char.x * tileSize + tileSize / 2,
+                    char.y * tileSize + tileSize / 2,
+                    Math.max(4, tileSize / 3),
+                    0, 2 * Math.PI
+                );
+                ctx.fill();
+                ctx.strokeStyle = "#fffbe6";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.restore();
+            }
+        });
+    }
+
+    // Draw player position (green)
+    if (player && player.tile) {
+        ctx.save();
+        ctx.fillStyle = "#3af07a";
+        ctx.globalAlpha = 1;
+        ctx.beginPath();
+        ctx.arc(
+            player.tile.x * tileSize + tileSize / 2,
+            player.tile.y * tileSize + tileSize / 2,
+            Math.max(5, tileSize / 2.5),
+            0, 2 * Math.PI
+        );
+        ctx.fill();
+        ctx.strokeStyle = "#fffbe6";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.restore();
+    }
+}
+
 // Event listeners
 document.getElementById('menu-btn').addEventListener('click', openMenu);
 document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
+document.getElementById('btn-map').addEventListener('click', showMapMenu);
 document.getElementById('btn-save').addEventListener('click', saveGame);
 document.getElementById('btn-settings').addEventListener('click', showSettingsMenu);
 
