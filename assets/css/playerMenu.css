@@ -400,6 +400,158 @@
     opacity: 1;
 }
 
+/* Settings Menu */
+.settings-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
+  padding: 0 8px;
+}
+
+.settings-label {
+  font-family: var(--font-playermenu);
+  font-size: 1.08em;
+  color: #fffbe6;
+  letter-spacing: 0.01em;
+  margin-right: 12px;
+  min-width: 180px;
+  text-align: left;
+}
+
+.settings-slider {
+  width: 160px;
+  margin-left: 12px;
+  height: 22px;
+  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  box-shadow: 0 2px 4px #3af0ff44, 0 0 0 2px #3af0ff22;
+  transition: background 0.2s;
+}
+
+/* Remove default styling for input[type=range] */
+.settings-slider::-webkit-slider-runnable-track {
+  height: 20px;
+  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  border-radius: 4px;
+}
+.settings-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #222335;
+  border: 1px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 4px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-webkit-slider-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: #222335;
+  border: 2px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-moz-range-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider::-ms-thumb {
+  width: 22px;
+  height: 22px;
+  background: #222335;
+  border: 2px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-ms-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3af0ff88;
+}
+
+.settings-slider::-ms-fill-lower {
+  background: #3af0ff;
+  border-radius: 4px;
+}
+.settings-slider::-ms-fill-upper {
+  background: #ffe082;
+  border-radius: 4px;
+}
+
+/* Hide outline for Firefox */
+.settings-slider::-moz-focus-outer {
+  border: 0;
+}
+
+/* For all browsers */
+.settings-slider::-webkit-slider-thumb:hover,
+.settings-slider::-moz-range-thumb:hover,
+.settings-slider::-ms-thumb:hover {
+  background: #3af0ff;
+  border-color: #ffe082;
+}
+
+.settings-switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.settings-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.settings-slider-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #222335;
+  border-radius: 4px;
+  transition: background 0.2s;
+  border: 2px solid #3af0ff;
+}
+.settings-slider-switch:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 2px;
+  background: #3af0ff;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.settings-switch input:checked + .settings-slider-switch:before {
+  transform: translateX(24px);
+  background: #ffe082;
+}
+.settings-slider-switch:active:before {
+  box-shadow: 0 0 8px #3af0ff88;
+}
+
 /* Mobile Portrait Styles */
 @media (max-width: 600px) and (orientation: portrait) {  
 
@@ -560,4 +712,61 @@
     font-size: 0.95em;
   }
 
+  .settings-options-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 12px 0;
+    padding: 0 2px;
+  }
+
+  .settings-label {
+    font-size: 1em;
+    min-width: 120px;
+    margin-bottom: 6px;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .settings-switch {
+    width: 44px;
+    height: 24px;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+  .settings-slider-switch:before {
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+  }
+  .settings-switch input:checked + .settings-slider-switch:before {
+    transform: translateX(18px);
+  }
+
+  .settings-slider {
+    width: 90vw;
+    max-width: 180px;
+    height: 16px;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+  .settings-slider::-webkit-slider-runnable-track {
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
 }

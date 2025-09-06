@@ -15,7 +15,7 @@ function checkNpcInteraction() {
 
             if (inRange) {
                 if (!char.notifShown) {
-                    notify(`Press the A button to talk to ${char.name}`, 2500);
+                    notify(`Press the A button (Enter) to talk to ${char.name}`, 2500);
                     char.notifShown = true;
                 }
                 if (actionButtonAPressed && char.dialogue && char.dialogue.default &&

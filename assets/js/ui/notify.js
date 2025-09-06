@@ -60,7 +60,7 @@ function showDialogueLine(idx, customName = "") {
     if (idx < _dialogueQueue.length) {
         text.textContent = _dialogueQueue[idx];
         block.classList.remove('hidden');
-        footer.textContent = "Press A to continue";
+        footer.textContent = "Press A (Enter) to continue";
         block.onclick = null;
         block.dataset.dialogueIdx = idx;
     } else {

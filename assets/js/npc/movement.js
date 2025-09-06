@@ -88,6 +88,16 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
         tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
     }
 
+    if (
+        tileX < 0 || tileY < 0 ||
+        tileY >= map.height || tileX >= map.width ||
+        !map.data.layout ||
+        !map.data.layout[tileY] ||
+        typeof map.data.layout[tileY][tileX] === "undefined"
+    ) {
+        return true; // Treat out-of-bounds as blocked
+    }
+
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
         return true; 
     }
@@ -117,7 +127,17 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
 
 // Check collision for a tile position
 function isWalkable(tileX, tileY) {
-    
+    // Prevent out-of-bounds errors
+    if (
+        tileX < 0 || tileY < 0 ||
+        !map || !map.data || !map.data.layout ||
+        tileY >= map.height || tileX >= map.width ||
+        !map.data.layout[tileY] ||
+        typeof map.data.layout[tileY][tileX] === "undefined"
+    ) {
+        return false;
+    }
+
     // Block if world sprite collision
     if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(tileX, tileY)) {
         return false;

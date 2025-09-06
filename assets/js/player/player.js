@@ -70,13 +70,13 @@ function isTileBlockedAtPixel(px, py, direction) {
 }
 
 // Stops movement controls for player
-function clearAllMovementKeys() {
-    for (let key in keys) {
-        if (keys.hasOwnProperty(key)) {
-            keys[key].a = false;
-        }
-    }
-}
+// function clearAllMovementKeys() {
+//    for (let key in keys) {
+//        if (keys.hasOwnProperty(key)) {
+//            keys[key].a = false;
+//       }
+//    }
+//}
 
 // Player definition 
 const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png") {

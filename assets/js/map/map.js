@@ -2,11 +2,11 @@
 
 // Floor names to match floor index, used for ui purposes
 const FLOOR_NAMES = [
-    "Verdant Rise",  
-    "Stonewake Expanse",
-    "Gloomroot Thicket",
-    "The Shattered Spires",
-    "Umbracourt"
+    "Verdant Rise",             // Floor 1
+    "Stonewake Expanse",        // Floor 2
+    "Gloomroot Thicket",        // Floor 3
+    "The Shattered Spires",     // Floor 4
+    "Umbracourt"                // Floor 5
 ];
 
 

@@ -26,7 +26,8 @@ function getCurrentSaveData() {
         },
         triggeredInteractableTiles: { ...triggeredInteractableTiles },
         triggeredTriggerTiles: { ...triggeredTriggerTiles },
-        forcedEncounters: { ...triggeredForcedEncounters }
+        forcedEncounters: { ...triggeredForcedEncounters },
+        settings: window.gameSettings ? { ...window.gameSettings } : undefined
     };
 }
 
@@ -108,6 +109,11 @@ function applySaveData(data) {
 
     if (data.triggeredTriggerTiles) {
         triggeredTriggerTiles = { ...data.triggeredTriggerTiles };
+    }
+
+    // Patch settings if present
+    if (data.settings && typeof window.patchSettingsFromSave === "function") {
+        window.patchSettingsFromSave(data);
     }
 }
 

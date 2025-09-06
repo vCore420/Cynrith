@@ -2,6 +2,14 @@
 
 let statsInterval = null;
 
+// Settings State
+let gameSettings = {
+    showTouchControls: true,
+    showLog: true,
+    bgMusicVolume: 0.7,
+    sfxVolume: 0.8
+};
+
 
 // open menu
 function openMenu() {
@@ -164,6 +172,104 @@ function updateQuestsUI(tab = "active") {
     });
 }
 
+// --- Settings Menu ---
+function showSettingsMenu() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    let settingsPage = document.getElementById('settings-menu');
+    if (!settingsPage) {
+        settingsPage = document.createElement('div');
+        settingsPage.id = "settings-menu";
+        settingsPage.className = "menu-page active";
+        settingsPage.innerHTML = `
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Game Settings</h2>
+            <div class="settings-options-row">
+                <span class="settings-label">Show Touch Controls</span>
+                <label class="settings-switch">
+                    <input type="checkbox" id="toggle-touch-controls">
+                    <span class="settings-slider-switch"></span>
+                </label>
+            </div>
+            <div class="settings-options-row">
+                <span class="settings-label">Show FPS & Coords Log</span>
+                <label class="settings-switch">
+                    <input type="checkbox" id="toggle-log">
+                    <span class="settings-slider-switch"></span>
+                </label>
+            </div>
+            <div class="settings-options-row">
+                <span class="settings-label">Background Music Volume</span>
+                <input type="range" id="slider-bg-music" min="0" max="1" step="0.01" class="settings-slider">
+            </div>
+            <div class="settings-options-row">
+                <span class="settings-label">SFX Volume</span>
+                <input type="range" id="slider-sfx" min="0" max="1" step="0.01" class="settings-slider">
+            </div>
+        `;
+        document.querySelector('.player-menu-pages').appendChild(settingsPage);
+
+        // Touch Controls Toggle
+        document.getElementById('toggle-touch-controls').onchange = function() {
+            gameSettings.showTouchControls = this.checked;
+            document.getElementById('touch-controls').style.display = this.checked ? "" : "none";
+            document.getElementById('act-controls').style.display = this.checked ? "" : "none";
+        };
+
+        // Log Toggle
+        document.getElementById('toggle-log').onchange = function() {
+            gameSettings.showLog = this.checked;
+            document.getElementById('log').style.display = this.checked ? "" : "none";
+        };
+
+        // BG Music Volume Slider
+        document.getElementById('slider-bg-music').oninput = function() {
+            gameSettings.bgMusicVolume = parseFloat(this.value);
+            if (window.SoundManager) SoundManager.setBgMusicVolume(gameSettings.bgMusicVolume);
+        };
+
+        // SFX Volume Slider
+        document.getElementById('slider-sfx').oninput = function() {
+            gameSettings.sfxVolume = parseFloat(this.value);
+            if (window.SoundManager) SoundManager.setSfxVolume(gameSettings.sfxVolume);
+        };
+    } else {
+        settingsPage.classList.add('active');
+    }
+
+    // Set controls to current values
+    document.getElementById('toggle-touch-controls').checked = !!gameSettings.showTouchControls;
+    document.getElementById('toggle-log').checked = !!gameSettings.showLog;
+    document.getElementById('slider-bg-music').value = gameSettings.bgMusicVolume;
+    document.getElementById('slider-sfx').oninput = function() {
+    gameSettings.sfxVolume = parseFloat(this.value);
+        if (window.SoundManager) SoundManager.setEffectVolume(gameSettings.sfxVolume);
+    };
+}
+
+function patchSettingsFromSave(data) {
+    if (data.settings) {
+        Object.assign(gameSettings, data.settings);
+
+        // Apply settings to UI and sound
+        document.getElementById('touch-controls').style.display = gameSettings.showTouchControls ? "" : "none";
+        document.getElementById('act-controls').style.display = gameSettings.showTouchControls ? "" : "none";
+        document.getElementById('log').style.display = gameSettings.showLog ? "" : "none";
+        if (window.SoundManager) {
+            SoundManager.setBgMusicVolume(gameSettings.bgMusicVolume);
+            SoundManager.setEffectVolume(gameSettings.sfxVolume);
+        }
+
+        // --- Update settings menu controls if menu is present ---
+        const touchToggle = document.getElementById('toggle-touch-controls');
+        const logToggle = document.getElementById('toggle-log');
+        const bgSlider = document.getElementById('slider-bg-music');
+        const sfxSlider = document.getElementById('slider-sfx');
+        if (touchToggle) touchToggle.checked = !!gameSettings.showTouchControls;
+        if (logToggle) logToggle.checked = !!gameSettings.showLog;
+        if (bgSlider) bgSlider.value = gameSettings.bgMusicVolume;
+        if (sfxSlider) sfxSlider.value = gameSettings.sfxVolume;
+    }
+}
 
 // Event listeners
 document.getElementById('menu-btn').addEventListener('click', openMenu);
@@ -171,6 +277,7 @@ document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
 document.getElementById('btn-save').addEventListener('click', saveGame);
+document.getElementById('btn-settings').addEventListener('click', showSettingsMenu);
 
 function hideGameUI() {
     const ids = [

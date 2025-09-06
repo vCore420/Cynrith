@@ -90,12 +90,19 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
         const spawn = map.data[spawnType];
 
         if (spawn) {
-            console.log("[WarpToMap] Setting player position to:", spawn.x, spawn.y, "for spawnType:", spawnType);
-            console.log("[WarpToMap] CurrentMapIndex:", currentMapIndex);
-            player.pos.x = spawn.x * config.size.tile;
-            player.pos.y = spawn.y * config.size.tile;
-            player.tile.x = spawn.x;
-            player.tile.y = spawn.y;
+            let spawnX = spawn.x;
+            let spawnY = spawn.y;
+
+            // If warping to a teleport stone, spawn player on the tile BELOW the stone
+            if (spawnType === "teleport" || spawnType === "spawn") {
+                spawnY += 1; // Move player to the tile under the stone
+            }
+
+            console.log("[WarpToMap] Setting player position to:", spawnX, spawnY, "for spawnType:", spawnType);
+            player.pos.x = spawnX * config.size.tile;
+            player.pos.y = spawnY * config.size.tile;
+            player.tile.x = spawnX;
+            player.tile.y = spawnY;
         }
 
         if (typeof spawnCharactersForMap === "function") {

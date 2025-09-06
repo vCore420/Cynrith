@@ -107,6 +107,13 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     player = new Player(45, 47, spriteFile); 
     player.playerName = playerName; 
 
+    gameSettings = {
+        showTouchControls: true,
+        showLog: true,
+        bgMusicVolume: 0.7,
+        sfxVolume: 0.8
+    };
+    
     // Load Map
     map = new Map("map" + mapIndex);
 
@@ -260,6 +267,26 @@ function Loop() {
     // Update and Draw Npcs
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
+    
+    // Player Movement logic
+    if (player.movement.moving) {
+        let speed = config.speed;
+        let dx = player.movement.dx;
+        let dy = player.movement.dy;
+
+        // Normalize diagonal movement
+        if (dx !== 0 && dy !== 0) {
+            const norm = Math.sqrt(dx * dx + dy * dy);
+            dx = dx / norm;
+            dy = dy / norm;
+        }
+
+        let moveX = dx * speed;
+        let moveY = dy * speed;
+        player.move(moveX, moveY);
+    }
+    
+    // Draw Player Sprite
     player.draw();
     
     // Play Enemy and World Sounds

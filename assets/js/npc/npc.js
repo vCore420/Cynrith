@@ -83,6 +83,20 @@ function drawCharacters() {
             config.size.char,
             config.size.char
         );
+
+        // Draw '!' above NPCs with ready-to-complete quests
+        if (char.type === "npc" && npcHasReadyQuest(char)) {
+            context.save();
+            context.font = "bold 32px VT323, monospace";
+            context.textAlign = "center";
+            context.fillStyle = "#ffe082";
+            context.strokeStyle = "#222";
+            context.lineWidth = 4;
+            context.strokeText("!", px + config.size.char / 2, py - 18);
+            context.fillText("!", px + config.size.char / 2, py - 18);
+            context.restore();
+        }
+
         // Draw health bar for hostile enemies
         if (char.type === "enemy" && char.state === "hostile" && typeof char.health === "number") {
             anyHostile = true;

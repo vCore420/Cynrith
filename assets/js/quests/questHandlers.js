@@ -141,3 +141,30 @@ function isQuestCompleted(questId) {
     return playerQuests.completed.includes(questId);
 }
 
+function isQuestReadyToComplete(questId) {
+    const quest = QUEST_DEFINITIONS[questId];
+    if (!quest) return false;
+    if (!playerQuests.active.includes(questId)) return false;
+
+    if (quest.type === "itemCollect") {
+        return quest.requiredItems.every(req => hasItem(req.id, req.amount));
+    }
+    if (quest.type === "enemyDefeat") {
+        return (playerQuestProgress[questId] || 0) >= quest.requiredAmount;
+    }
+    if (quest.type === "statBuild") {
+        let statValue = player[quest.stat] || 0;
+        let startValue = statBuildQuestStart[questId] || 0;
+        return (statValue - startValue) >= quest.requiredAmount;
+    }
+    if (quest.type === "interactTiles") {
+        let triggeredCount = quest.interactTileIds.filter(id => triggeredInteractableTiles[id]).length;
+        return triggeredCount >= quest.requiredAmount;
+    }
+    return false;
+}
+
+function npcHasReadyQuest(npc) {
+    if (!npc.questId) return false;
+    return isQuestReadyToComplete(npc.questId);
+}
