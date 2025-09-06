@@ -128,19 +128,27 @@ window.addEventListener("DOMContentLoaded", function() {
     preloadTitleMap();
 
     setTimeout(() => {
-  if (loadedCount < totalToLoad) {
-    console.warn("[Preloader] Timeout reached, continuing without all sounds (likely iOS/Safari issue)");
-    loadedCount = totalToLoad; // Force complete
-    checkPreloadComplete();
+      if (loadedCount < totalToLoad) {
+        console.warn("[Preloader] Timeout reached, continuing without all sounds (likely iOS/Safari issue)");
+        loadedCount = totalToLoad; // Force complete
+        checkPreloadComplete();
 
-    // Show message to user
-    const preloadTitle = document.getElementById('preload-title');
-    if (preloadTitle) {
-      preloadTitle.textContent = "Some sounds could not be loaded on your device, but the game will play fine!";
-      preloadTitle.style.color = "#ffe082";
-      preloadTitle.style.fontSize = "1.1em";
-    }
-  }
-}, 5000);
+        // Show message to user
+        const preloadTitle = document.getElementById('preload-title');
+        if (preloadTitle) {
+          preloadTitle.textContent = "Some sounds could not be loaded on your device, but the game will play fine!";
+          preloadTitle.style.color = "#ffe082";
+          preloadTitle.style.fontSize = "1.1em";
+          // Keep the message visible for 4 seconds before hiding the preload screen
+          setTimeout(() => {
+            document.getElementById('preload-screen').style.display = "none";
+            console.log("[PRELOADER] Entering Cynrith. Starting title screen music.");
+            if (window.SoundManager) {
+              SoundManager.playBgMusic("assets/sound/bg_title.mp3");
+            }
+          }, 3000);
+        }
+      }
+    }, 5000);
   };
 });
