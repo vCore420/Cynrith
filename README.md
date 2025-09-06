@@ -65,6 +65,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 **Completed**
 
+- Floors 1-4 with in depth lore, world building and game play 
 - Dynamic map loading 
 - Real-time combat, death and respawn system
 - Modular sprite sheet loader
@@ -75,7 +76,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - NPCs and enemies with pathfinding, interactions and triggers
 - Quest system with branching lore and dynamic UI
 - Multi types of quest can be given to the player (item collection, enemy defeats, stat gain)
-- Player menu UI
+- Player menu UI with inventory, quests, stats, skills, map and settings
 - Clean Inventory system
 - Save/load system for persistent progress
 - Multi-platform controls (desktop & mobile)
@@ -84,19 +85,19 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Notifications and dialogue system
 - Forced encounters and event triggers
 - Trader Npc with buy/sell menus
-- World, Dialogue, Player and Combat sounds effects
+- World, Dialogue, Player and Combat sounds effects and music
 - Expand documentation on how to creat new floor and other game assets
+- Installable for mobile devices
 
 **To DO**
 
 - Skill System
-- Settings menu
-- Map menu
-- trigger tiles for interiors/caves
-- Floor and Storyline expansion 
+- Trigger tiles for interiors/caves
 - Improved assets and polish
+- Ui Sound effects
+- Boss battles
 
-- Planning to make this a forever expanding propject, something i just wanted to have as my own litle world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+- Planning to make this a forever expanding project, something i just wanted to have as my own little world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
 ---
 <details>
