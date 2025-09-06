@@ -12,6 +12,12 @@
     <link type="text/css" href="assets/css/dialogue.css" rel="stylesheet" />
     <link type="text/css" href="assets/css/playerMenu.css" rel="stylesheet" />
     <link type="text/css" href="assets/css/traderMenu.css" rel="stylesheet" />
+    <link rel="manifest" href="manifest.json">
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("assets/js/core/service-worker.js");
+      }
+    </script>
 </head>
 <body>
     <canvas id="game"></canvas>
