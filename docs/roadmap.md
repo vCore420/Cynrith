@@ -18,9 +18,9 @@
 - [x] Add a '!' above npcs whos quests are ready to be completed
  
 ## Player Logic
-- [ ] Joystick instead of D Pad For smoother movement on touch devices
+- [x] Joystick instead of D Pad For smoother movement on touch devices
 - [x] Keyboard support - WASD for movement, enter key for interaction, space bar for combat
-- [ ] Add collision logic between Player and Npc
+- [x] Add collision logic between Player and Npc
 - [ ] Change initial player weapon system to use different weapons for different player character choice
 
 ## Inventory
@@ -36,7 +36,7 @@
 ## General Ui
 - [ ] Stop text being allowed to be selected in player menus
 - [ ] Red text for required xp notifications - teleport stone 
-- [ ] Sort out css styling and clean it up
+- [ ] Sort out css styling and clean it up, one day
 
 ## New Game
 
@@ -70,6 +70,9 @@
 
 ---
 
+- updated function library
+- fine tune skills and balance
+
 ## *New Since Last Release*
 
 - Fixed Sound issue with iOS/Safari
@@ -83,5 +86,8 @@
 - Gacha system for acquiring skills
 - New skill assets
 - New Currency items for acquiring and upgrading skills
+- Created new Documentation for how to add new skills to the game
+- Touch controls changed from Dpad to joystick
+- Player - Npc collision logic finally created
 
 ---
