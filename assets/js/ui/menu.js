@@ -219,8 +219,10 @@ function showSettingsMenu() {
         // Touch Controls Toggle
         document.getElementById('toggle-touch-controls').onchange = function() {
             gameSettings.showTouchControls = this.checked;
-            document.getElementById('touch-controls').style.display = this.checked ? "" : "none";
-            document.getElementById('act-controls').style.display = this.checked ? "" : "none";
+            const joystick = document.getElementById('touch-joystick');
+            if (joystick) joystick.style.display = this.checked ? "" : "none";
+            const actControls = document.getElementById('act-controls');
+            if (actControls) actControls.style.display = this.checked ? "" : "none";
         };
 
         // Log Toggle

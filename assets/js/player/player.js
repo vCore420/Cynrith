@@ -25,6 +25,24 @@ function getTotalXpGainModifier() {
     return modifier;
 }
 
+function isNpcPixelCollision(npc, px, py) {
+    // px, py = player's pixel position
+    const npcPx = npc.x * config.size.tile;
+    const npcPy = npc.y * config.size.tile;
+    const npcSize = config.size.char;
+    const playerSize = config.size.char;
+
+    // Add padding to shrink the collision area
+    const padding = 18; // Try 8, 12, or 16 pixels for best feel
+
+    return (
+        px + playerSize - padding > npcPx + padding &&
+        px + padding < npcPx + npcSize - padding &&
+        py + playerSize - padding > npcPy + padding &&
+        py + padding < npcPy + npcSize - padding
+    );
+}
+
 // Player collision Logic, check collision at a tile (for all layers)
 function isTileBlockedAtPixel(px, py, direction) {
     const tileSize = config.size.tile;
@@ -49,6 +67,15 @@ function isTileBlockedAtPixel(px, py, direction) {
         typeof map.data.layout[tileY][tileX] === "undefined"
     ) {
         return true;
+    }
+
+    if (typeof characters !== "undefined") {
+        if (characters.some(char =>
+            char.type !== "player" &&
+            isNpcPixelCollision(char, px, py)
+        )) {
+            return true;
+        }
     }
 
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {

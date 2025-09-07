@@ -18,13 +18,13 @@ const NPC_DEFINITIONS = {
             default: [
                 "Ah, another soul steps into the green! Welcome, traveler, to Verdant Rise, the first of many floors beneath the Architect’s gaze.",
                 "Here, every blade of grass and whisper of wind is shaped by laws both seen and unseen.",
-                "Take up this sword, it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
+                "Take up this weapon, it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
                 "Seek out others like myself, we are here to guide, not command. Your journey is your own, but remember, wisdom is often found in simple beginnings."
             ],
             questComplete: [
                 "May the Architect watch over you. The world is wide, and your story has only just begun.",
                 "If you ever feel lost, listen to the wind, or seek out the stones. They remember more than you might think.",
-                "**Press the B Button (Spacebar) to use your Sword!**"
+                "**Press the B Button (Spacebar) to use your Weapon!**"
             ]
         },
         questId: "eldrin_intro",

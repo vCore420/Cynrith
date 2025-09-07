@@ -17,36 +17,36 @@ div#log {
 }
 
 /* Touch Controls */
-#touch-controls {
+#touch-joystick {
   position: fixed;
-  bottom: 30px;
-  left: 12%;
-  transform: translateX(-50%);
+  bottom: 10%;
+  left: 10%;
+  width: 140px;
+  height: 140px;
   z-index: 10;
   user-select: none;
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  touch-action: none;
 }
-
-#touch-controls > div {
-  display: flex;
-  justify-content: center;
-}
-
-/* D-Pad Touch Controls */
-.dpad-btn {
-  width: 80px;
-  height: 80px;
-  margin: 6px;
-  font-size: 3em;
-  opacity: 0.8;
-  background: var(--dk-ctrl);
-  color: var(--dk-txt);
+#joystick-base {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: 5px;
+  top: 5px;
+  background: #22233588;
+  border-radius: 50%;
   border: 2px solid #3af0ff;
-  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
-  border-radius: 8px;
+}
+#joystick-knob {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 35px;
+  top: 35px;
+  background: #3af0ffcc;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: left 0.05s, top 0.05s;
   touch-action: none;
 }
 
@@ -270,18 +270,29 @@ div#log {
     font-size: 0.6em;
     top: 2%;
     left: 3%;
- }
-
-  #touch-controls {
-    left: 25%;
   }
 
-  .dpad-btn {
-   width: 50px;
-   height: 50px;
-   margin: 3px;
-   font-size: 1em;
-   border: 1.4px solid #3af0ff;
+  #touch-joystick {
+    left: 10vw;
+    bottom: 15vw;
+    width: 100px;
+    height: 100px;
+  }
+
+  #joystick-base {
+    width: 80px;
+    height: 80px;
+    left: 15px;
+    top: 15px;
+    border-width: 1.5px;
+  }
+
+  #joystick-knob {
+    width: 40px;
+    height: 40px;
+    left: 20px;
+    top: 20px;
+    border-width: 1.5px;
   }
 
   #act-controls {   

@@ -156,18 +156,88 @@ const dpadMap = {
     right: "KeyD"
 };
 
-['up', 'down', 'left', 'right'].forEach(direction => {
-    const btn = document.getElementById('btn-' + direction);
-    const code = dpadMap[direction];
-    btn.addEventListener('touchstart', e => {
-        if (e.cancelable) e.preventDefault();
-        simulateKey(code, true);
-    });
-    btn.addEventListener('touchend', e => {
-        if (e.cancelable) e.preventDefault();
-        simulateKey(code, false);
-    });
-    btn.addEventListener('mousedown', e => simulateKey(code, true));
-    btn.addEventListener('mouseup', e => simulateKey(code, false));
-    btn.addEventListener('mouseleave', e => simulateKey(code, false));
+// Joystick logic for touch movement
+const joystick = document.getElementById('touch-joystick');
+const knob = document.getElementById('joystick-knob');
+const base = document.getElementById('joystick-base');
+let joystickActive = false;
+let baseRect = null;
+
+function setPlayerJoystickMovement(dx, dy) {
+    if (!controlsEnabled) {
+        player.movement.moving = false;
+        player.movement.dx = 0;
+        player.movement.dy = 0;
+        return;
+    }
+    // Normalize and set player movement
+    const mag = Math.sqrt(dx * dx + dy * dy);
+    if (mag > 10) { // Minimum threshold to avoid accidental movement
+        player.movement.moving = true;
+        player.movement.dx = dx / mag;
+        player.movement.dy = dy / mag;
+    } else {
+        player.movement.moving = false;
+        player.movement.dx = 0;
+        player.movement.dy = 0;
+    }
+}
+
+function resetJoystick() {
+    knob.style.left = "35px";
+    knob.style.top = "35px";
+    setPlayerJoystickMovement(0, 0);
+}
+
+function handleJoystickMove(clientX, clientY) {
+    if (!controlsEnabled) return;
+    if (!baseRect) baseRect = base.getBoundingClientRect();
+    const centerX = baseRect.left + baseRect.width / 2;
+    const centerY = baseRect.top + baseRect.height / 2;
+    let dx = clientX - centerX;
+    let dy = clientY - centerY;
+    // Clamp to radius
+    const maxRadius = baseRect.width / 2 - 10;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > maxRadius) {
+        dx = dx * maxRadius / dist;
+        dy = dy * maxRadius / dist;
+    }
+    knob.style.left = `${35 + dx}px`;
+    knob.style.top = `${35 + dy}px`;
+    setPlayerJoystickMovement(dx, dy);
+}
+
+knob.addEventListener('touchstart', e => {
+    joystickActive = true;
+    baseRect = base.getBoundingClientRect();
+    e.preventDefault();
+});
+knob.addEventListener('mousedown', e => {
+    joystickActive = true;
+    baseRect = base.getBoundingClientRect();
+    e.preventDefault();
+});
+
+document.addEventListener('touchmove', e => {
+    if (!joystickActive) return;
+    const touch = e.touches[0];
+    handleJoystickMove(touch.clientX, touch.clientY);
+});
+document.addEventListener('mousemove', e => {
+    if (!joystickActive) return;
+    handleJoystickMove(e.clientX, e.clientY);
+});
+
+document.addEventListener('touchend', e => {
+    if (joystickActive) {
+        joystickActive = false;
+        resetJoystick();
+    }
+});
+document.addEventListener('mouseup', e => {
+    if (joystickActive) {
+        joystickActive = false;
+        resetJoystick();
+    }
 });

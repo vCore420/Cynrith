@@ -98,6 +98,14 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
         return true; // Treat out-of-bounds as blocked
     }
 
+    if (typeof player !== "undefined") {
+        const playerPx = player.pos.x;
+        const playerPy = player.pos.y;
+        if (isNpcPixelCollision({ x: player.tile.x, y: player.tile.y }, px, py)) {
+            return true;
+        }
+    }
+
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
         return true; 
     }
