@@ -113,7 +113,15 @@ You can contribute at any level, from adding a single sound or sprite, to design
 **See:** [World Building Documentation](./docs/world_building.md)  
 **See:** [Content Tracker](./docs/content_tracker.md)
 
-### 9. Testing & Debugging
+### 9. Skills System
+
+- Add new skills to `assets/js/DEFINITIONS/skills.js` using the skill definition format.
+- Skills can be assigned to specific gacha pools (`blue`, `red`, `pink`) or to all pools (`all`).
+- Each skill should have: `id`, `name`, `img`, `description`, `pool`, `chance`, `buffs`, `drawbacks`, and `rarity`.
+- Skill effects are applied to the player when equipped and can be upgraded using gems (cost and type based on rarity).
+- For advanced skill logic (e.g. regen, xpGain, resistance), see the [Skills Creation Guide](./docs/skills_creation.md).
+
+### 10. Testing & Debugging
 
 - Load your new floor in-game and test all features.
 - Check for missing assets, broken links, or logic errors.
@@ -122,7 +130,7 @@ You can contribute at any level, from adding a single sound or sprite, to design
 
 ---
 
-### 10. Submitting Your Floor for Review
+### 11. Submitting Your Floor for Review
 
 Once you have completed your new floor and tested all features:
 
