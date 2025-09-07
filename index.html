@@ -82,6 +82,40 @@
               <canvas id="map-preview-canvas" width="320" height="180"></canvas>
             </div>
           </div>
+          <div id="skills-menu" class="menu-page">
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Skills</h2>
+            <div class="skills-block" id="equipped-skills-block">
+              <h3>Equipped Skills</h3>
+              <div id="equipped-skills">
+                <div class="skill-slot" data-slot="1"></div>
+                <div class="skill-slot" data-slot="2"></div>
+                <div class="skill-slot" data-slot="3"></div>
+              </div>
+            </div>
+            <div class="skills-block" id="skills-inventory-block">
+              <h3>Inventory</h3>
+              <div id="skills-inventory"></div>
+            </div>
+            <button id="spin-skills-btn" class="menu-nav-btn">Spin for Skills</button>
+            <div id="skills-gacha-screen" class="hidden">
+              <button class="close-btn" onclick="hideSkillsGachaScreen()">✕</button>
+              <h3>Spin for a New Skill</h3>
+              <div id="skills-gacha-reel"></div>
+              <button id="skills-gacha-spin-blue" class="menu-nav-btn">
+                <img src="assets/img/items/blue_gem.png" alt="Blue Gem" style="width:24px;vertical-align:middle;margin-right:8px;">
+                Skills
+              </button>
+              <button id="skills-gacha-spin-red" class="menu-nav-btn">
+                <img src="assets/img/items/red_gem.png" alt="Red Gem" style="width:24px;vertical-align:middle;margin-right:8px;">
+                Skills
+              </button>
+              <button id="skills-gacha-spin-pink" class="menu-nav-btn">
+                <img src="assets/img/items/pink_gem.png" alt="Pink Gem" style="width:24px;vertical-align:middle;margin-right:8px;">
+                Skills
+              </button>
+            </div>
+          </div>
           <!-- Add other menus here (skills, settings, etc.) -->
         </div>
       </div>
@@ -200,6 +234,7 @@
     <script src="assets/js/DEFINITIONS/interactTiles.js"></script>
     <script src="assets/js/DEFINITIONS/triggerTiles.js"></script>
     <script src="assets/js/DEFINITIONS/charactersData.js"></script>
+    <script src="assets/js/DEFINITIONS/skills.js"></script>
     <script src="assets/js/DEFINITIONS/traders.js"></script>
     <script src="assets/js/DEFINITIONS/quests.js"></script>
     <script src="assets/js/DEFINITIONS/worldSprites.js"></script>

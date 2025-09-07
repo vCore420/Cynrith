@@ -6,8 +6,6 @@
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
     <img alt="Github release (latest by date)" src="https://img.shields.io/github/v/release/vCore420/Cynrith?style=for-the-badge">
   </p>
-  <p align="center">Play Cynrith: https://vcore420.github.io/Cynrith/</p>
-  <p align="center">Join the Discord: https://discord.gg/FNVmfMDNZa</p>
 </div>
 
 ![Demo Screenshot](docs/assets/demo1.png)
@@ -80,6 +78,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Multi types of quest can be given to the player (item collection, enemy defeats, stat gain)
 - Player menu UI with inventory, quests, stats, skills, map and settings
 - Clean Inventory system
+- Player Skill System
 - Save/load system for persistent progress
 - Multi-platform controls (desktop & mobile)
 - Lore intro and evolving story
@@ -93,7 +92,6 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 **To DO**
 
-- Skill System
 - Trigger tiles for interiors/caves
 - Improved assets and polish
 - Ui Sound effects
