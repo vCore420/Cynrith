@@ -107,6 +107,21 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 <p>
 
+7/9 Beta v0.2.2
+
+- Skill system Created: Gatcha system for obtain skills, rarity-based upgrade costs, advanced skill logic (regen, xpGain, resistance)
+- Added skills, with templates for easy future additions.
+- Skill menu UI: dropdown details, equip/unequip logic, and stat display updates.
+- Player stats now update live in the menu when skills are equipped, unequipped, or upgraded.
+- Health regeneration logic now supports both healing and draining, with death triggers and health bar display.
+- Touch controls reworked: replaced D-Pad with a draggable joystick for smoother mobile movement.
+- Joystick now respects controlsEnabled flag and is styled for both desktop and mobile.
+- Settings menu updated to toggle new joystick controls.
+- Player-NPC collision logic improved: switched to pixel-based collision with padding for more natural movement and less "stuck" behavior.
+- Roadmap and documentation updated to reflect new systems and guides.
+
+---
+
 6/9 Beta v0.2.1
 
 - Player movement fully reworked for WASD keys, with fluent diagonal movement and last-key priority.
