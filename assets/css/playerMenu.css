@@ -700,18 +700,20 @@
   justify-content: center;
 }
 
-#skills-gacha-spin-btn {
+#skills-gacha-spin-pink, 
+#skills-gacha-spin-blue, 
+#skills-gacha-spin-red {
   padding: 12px 24px;
 }
 
-.skill-card.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12); }
-.skill-card.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18); }
-.skill-card.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18); }
-.skill-card.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18); }
-.skill-slot.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12); }
-.skill-slot.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18); }
-.skill-slot.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18); }
-.skill-slot.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18); }
+.skill-card.rarity-common    { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,255,255,0.12); }
+.skill-card.rarity-rare      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(0,180,255,0.18); }
+.skill-card.rarity-epic      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(180,0,255,0.18); }
+.skill-card.rarity-legendary { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,180,0,0.18); }
+.skill-slot.rarity-common    { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,255,255,0.12); }
+.skill-slot.rarity-rare      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(0,180,255,0.18); }
+.skill-slot.rarity-epic      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(180,0,255,0.18); }
+.skill-slot.rarity-legendary { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,180,0,0.18); }
 
 
 .hidden {

@@ -160,4 +160,22 @@ const Skills = [
         drawbacks: {},
         rarity: "common"
     },
+
 ];
+
+
+// Skill Definition Template
+
+/*
+{
+    id: "unique_skill_id",
+    name: "Skill Name",
+    img: "assets/img/skills/skill_image.png",
+    description: "Describe what the skill does.",
+    pool: "blue", // "blue", "red", "pink", or "all"
+    chance: 1.0, // Higher = more common
+    buffs: { attack: 10, regen: 2 }, // Stat increases
+    drawbacks: { defence: -5 }, // Stat decreases
+    rarity: "common" // "common", "rare", "epic", "legendary"
+},
+*/
