@@ -613,6 +613,111 @@
   box-shadow: 0 2px 12px #3af0ff44;
 }
 
+#skills-menu.menu-page {
+  padding-top: 0;
+}
+
+.skills-block {
+  background: #222335;
+  border-radius: 4px;
+  margin: 18px auto;
+  padding: 12px 12px;
+  box-shadow: 0 2px 12px #3af0ff22;
+  width: 60%;
+  max-width: 420px;
+}
+
+#equipped-skills {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.skill-slot {
+  width: 64px;
+  height: 64px;
+  background: #2d3038;
+  border-radius: 8px;
+  border: 2px solid #3af0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.skill-slot.selected {
+  border: 2px solid #ffe082;
+}
+
+#skills-inventory {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.skill-card {
+  width: 56px;
+  height: 56px;
+  background: #23243a;
+  border-radius: 6px;
+  border: 2px solid #3af0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.skill-card.selected {
+  border: 2px solid #ffe082;
+}
+
+#spin-skills-btn {
+  margin: 24px auto 0 auto;
+  display: block;
+  width: 180px;
+}
+
+#skills-gacha-screen {
+  margin-top: 24px;
+  text-align: center;
+}
+
+#skills-gacha-reel {
+  width: 96px;
+  height: 96px;
+  margin: 18px auto;
+  border: 3px solid #3af0ff;
+  border-radius: 12px;
+  background: #23243a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#skills-gacha-spin-btn {
+  padding: 12px 24px;
+}
+
+.skill-card.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12); }
+.skill-card.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18); }
+.skill-card.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18); }
+.skill-card.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18); }
+.skill-slot.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12); }
+.skill-slot.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18); }
+.skill-slot.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18); }
+.skill-slot.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18); }
+
+
+.hidden {
+  display: none;
+}
+
 /* Mobile Portrait Styles */
 @media (max-width: 600px) and (orientation: portrait) {  
 

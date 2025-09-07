@@ -12,6 +12,18 @@ function isPlayerAdjacentToTeleportStone() {
     );
 }
 
+function getTotalXpGainModifier() {
+    let modifier = 0;
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const skillDef = getSkillDef(skillId);
+        const playerSkill = getPlayerSkill(skillId);
+        if (!skillDef || !playerSkill) return;
+        modifier += (skillDef.buffs.xpGain || 0) + (playerSkill.level * 2);
+        modifier += (skillDef.drawbacks.xpGain || 0) - playerSkill.level;
+    });
+    return modifier;
+}
 
 // Player collision Logic, check collision at a tile (for all layers)
 function isTileBlockedAtPixel(px, py, direction) {
@@ -244,9 +256,11 @@ Player.prototype = {
         } else {
             this.attackSpeed = Math.max(1, val);
         }
+        updatePlayerBaseStats();
     },
     addAttackSpeed: function(val) {
         this.setAttackSpeed(this.attackSpeed + val);
+        updatePlayerBaseStats();
     },
     attackEnemy: function() {
         const now = Date.now();
@@ -351,16 +365,19 @@ Player.prototype = {
     },
 
     getHealth: function() { return this.health; },
-    setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); },
-    addHealth: function(val) { this.setHealth(this.health + val); },
+    setHealth: function(val) { this.health = Math.max(0, Math.min(val, this.maxHealth)); updatePlayerBaseStats(); },
+    
+    addHealth: function(val) { this.setHealth(this.health + val); updatePlayerBaseStats(); },
 
     getMaxHealth: function() { return this.maxHealth; },
-    setMaxHealth: function(val) { this.maxHealth = Math.max(1, val); },
-    addMaxHealth: function(val) { this.setMaxHealth(this.maxHealth + val); },
+    setMaxHealth: function(val) { this.maxHealth = Math.max(1, val); updatePlayerBaseStats(); },
+    addMaxHealth: function(val) { this.setMaxHealth(this.maxHealth + val); updatePlayerBaseStats(); },
 
     getXP: function() { return this.xp; },
     addXP: function(val) {
-        this.xp += val;
+        let xpModifier = getTotalXpGainModifier();
+        let finalXP = val + xpModifier;
+        this.xp += Math.max(0, finalXP);
         console.log(`[Player] Player gained ${val} XP, total: ${this.xp}`);
         if (typeof QUEST_DEFINITIONS !== "undefined" && typeof playerQuests !== "undefined") {
             Object.values(QUEST_DEFINITIONS).forEach(q => {
@@ -373,10 +390,11 @@ Player.prototype = {
                 }
             });
         }
+        updatePlayerBaseStats();
     },
 
     getAttack: function() { return this.attack; },
-    setAttack: function(val) { this.attack = val; },
+    setAttack: function(val) { this.attack = val; updatePlayerBaseStats(); },
     addAttack: function(val) {
         this.attack += val;
         console.log(`[Player] Player attack increased by ${val}, total: ${this.attack}`);
@@ -391,10 +409,11 @@ Player.prototype = {
                 }
             });
         }
+        updatePlayerBaseStats();
     },
 
     getDefence: function() { return this.defence; },
-    setDefence: function(val) { this.defence = val; },
+    setDefence: function(val) { this.defence = val; updatePlayerBaseStats(); },
     addDefence: function(val) {
         this.defence += val;
         console.log(`[Player] Player defence increased by ${val}, total: ${this.defence}`);
@@ -409,6 +428,7 @@ Player.prototype = {
                 }
             });
         }
+        updatePlayerBaseStats();
     },
     
     getAttackSpeed: function() { return this.attackSpeed; },
@@ -420,6 +440,7 @@ Player.prototype = {
         } else {
             this.attackSpeed = Math.max(0, val);
         }
+        updatePlayerBaseStats();
     },
     addAttackSpeed: function(val) {
         this.setAttackSpeed(this.attackSpeed + val);
@@ -436,5 +457,6 @@ Player.prototype = {
                 }
             });
         }
+        updatePlayerBaseStats();
     }
 };

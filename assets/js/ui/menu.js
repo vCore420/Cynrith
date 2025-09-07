@@ -11,6 +11,9 @@ let gameSettings = {
     sfxVolume: 0.8
 };
 
+// Player's skill inventory and equipped skills
+let playerSkills = []; // Array of { id, level }
+let equippedSkills = [null, null, null]; // For equipped slots
 
 // open menu
 function openMenu() {
@@ -414,14 +417,423 @@ function drawMapPreview() {
     }
 }
 
+function showSkillsMenu() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+    document.getElementById('skills-menu').classList.add('active');
+    // Hide gacha screen if open
+    document.getElementById('skills-gacha-screen').classList.add('hidden');
+    // Show main skills blocks
+    document.getElementById('equipped-skills-block').style.display = "";
+    document.getElementById('skills-inventory-block').style.display = "";
+    document.getElementById('spin-skills-btn').style.display = "";
+    renderSkillsMenu();
+}
+
+// Show Gacha Spin Screen
+function showSkillsGachaScreen() {
+    // Hide main skills blocks
+    document.getElementById('equipped-skills-block').style.display = "none";
+    document.getElementById('skills-inventory-block').style.display = "none";
+    document.getElementById('spin-skills-btn').style.display = "none";
+    // Show gacha screen
+    document.getElementById('skills-gacha-screen').classList.remove('hidden');
+}
+
+// Hide Gacha Spin Screen and return to skills menu
+function hideSkillsGachaScreen() {
+    document.getElementById('skills-gacha-screen').classList.add('hidden');
+    document.getElementById('equipped-skills-block').style.display = "";
+    document.getElementById('skills-inventory-block').style.display = "";
+    document.getElementById('spin-skills-btn').style.display = "";
+}
+
+function renderSkillsMenu() {
+    // Equipped Skills 
+    const equippedDivs = document.querySelectorAll('#equipped-skills .skill-slot');
+    equippedDivs.forEach((slotDiv, i) => {
+        slotDiv.innerHTML = "";
+        const skillId = equippedSkills[i];
+        if (skillId) {
+            const skillDef = getSkillDef(skillId);
+            const playerSkill = getPlayerSkill(skillId);
+            slotDiv.innerHTML = `
+                <img src="${skillDef.img}" alt="${skillDef.name}" style="width:48px;height:48px;">
+            `;
+            slotDiv.className = `skill-slot rarity-${skillDef.rarity}`;
+            // Add click to unequip
+            slotDiv.onclick = () => unequipSkill(i);
+        } else {
+            slotDiv.className = "skill-slot";
+            slotDiv.onclick = null;
+        }
+    });
+
+    // Inventory Grid 
+    const invDiv = document.getElementById('skills-inventory');
+    invDiv.innerHTML = "";
+    playerSkills.forEach(skill => {
+        const skillDef = getSkillDef(skill.id);
+        const card = document.createElement('div');
+        card.className = `skill-card rarity-${skillDef.rarity}`;
+        card.innerHTML = `
+            <img src="${skillDef.img}" alt="${skillDef.name}" style="width:40px;height:40px;">
+        `;
+        card.onclick = () => showSkillDropdown(skill.id, card);
+        invDiv.appendChild(card);
+    });
+}
+
+// Skill Dropdown Logic
+function showSkillDropdown(skillId, anchorEl) {
+    const skill = getPlayerSkill(skillId);
+    const skillDef = getSkillDef(skillId);
+    if (!skill || !skillDef) return;
+
+    // Remove any existing dropdown
+    document.querySelectorAll('.skill-dropdown').forEach(el => el.remove());
+
+    // Create dropdown
+    const dropdown = document.createElement('div');
+    dropdown.className = `item-dropdown skill-dropdown rarity-${skillDef.rarity}`;
+    dropdown.innerHTML = `
+        <button class="dropdown-close-btn" onclick="this.parentElement.remove()">✕</button>
+        <div class="dropdown-name">${skillDef.name} <span style="color:#ffe082;">Lv${skill.level + 1}</span></div>
+        <div class="dropdown-desc">${skillDef.description}</div>
+        <div class="dropdown-rarity">${skillDef.rarity.charAt(0).toUpperCase() + skillDef.rarity.slice(1)}</div>
+        <div><b>Buffs:</b> ${Object.entries(skillDef.buffs).map(([k, v]) => `${k}: +${v + skill.level * 2}`).join(', ')}</div>
+        <div><b>Drawbacks:</b> ${Object.entries(skillDef.drawbacks).map(([k, v]) => `${k}: ${v - skill.level}`).join(', ')}</div>
+        <button class="dropdown-btn use" onclick="equipSkill('${skillId}')">Equip</button>
+        <button class="dropdown-btn upgrade" onclick="upgradeSkill('${skillId}')">
+            Upgrade (${getUpgradeCost(skillDef.pool, skill.level, skillDef.rarity).cost}
+            <img src="assets/img/items/${getUpgradeCost(skillDef.pool, skill.level, skillDef.rarity).gemId}.png" style="width:18px;vertical-align:middle;">)
+        </button>
+    `;
+
+    // Position dropdown near the clicked card
+    const rect = anchorEl.getBoundingClientRect();
+    dropdown.style.position = "fixed";
+    dropdown.style.left = `${rect.left + window.scrollX + 60}px`;
+    dropdown.style.top = `${rect.top + window.scrollY - 80}px`;
+    dropdown.style.zIndex = 2000;
+
+    document.body.appendChild(dropdown);
+}
+
+// Track player's base stats and current stats without skills
+function ensurePlayerBaseStats() {
+    if (!player.baseStats) {
+        player.baseStats = {
+            maxHealth: player.maxHealth,
+            health: player.health,
+            xp: player.xp,
+            attack: player.attack,
+            defence: player.defence,
+            attackSpeed: player.attackSpeed,
+            xpGain: player.xpGain || 0,
+            regen: player.regen || 0,
+            speed: player.speed || 3,
+            accuracy: player.accuracy || 0,
+            resistance: player.resistance || 0
+        };
+    }
+}
+
+// Update baseStats if player stats change outside skills (e.g. leveling up)
+function updatePlayerBaseStats() {
+    ensurePlayerBaseStats();
+    for (const stat in player.baseStats) {
+        if (typeof player[stat] !== "undefined") {
+            player.baseStats[stat] = player[stat];
+        }
+    }
+}
+
+// Apply a skill's effects to player stats
+function applySkillEffect(skillId, direction = 1) {
+    const skillDef = getSkillDef(skillId);
+    const playerSkill = getPlayerSkill(skillId);
+    if (!skillDef || !playerSkill) return;
+
+    // Buffs
+    for (const stat in skillDef.buffs) {
+        let value = skillDef.buffs[stat] + playerSkill.level * 2;
+        player[stat] = (player[stat] || 0) + direction * value;
+    }
+    // Drawbacks (reduced by resistance)
+    let resistance = getTotalResistance();
+    for (const stat in skillDef.drawbacks) {
+        let value = skillDef.drawbacks[stat] - playerSkill.level;
+        value += resistance; // Resistance reduces negative effect
+        player[stat] = (player[stat] || 0) + direction * value;
+    }
+}
+
+function getTotalResistance() {
+    let resistance = 0;
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const skillDef = getSkillDef(skillId);
+        const playerSkill = getPlayerSkill(skillId);
+        if (!skillDef || !playerSkill) return;
+        resistance += (skillDef.buffs.resistance || 0) + (playerSkill.level * 2);
+    });
+    return resistance;
+}
+
+let regenInterval = null;
+
+function updateRegenEffect() {
+    // Clear previous interval
+    if (regenInterval) {
+        clearInterval(regenInterval);
+        regenInterval = null;
+    }
+
+    // Calculate total regen from equipped skills
+    let totalRegen = 0;
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const skillDef = getSkillDef(skillId);
+        const playerSkill = getPlayerSkill(skillId);
+        if (!skillDef || !playerSkill) return;
+        totalRegen += (skillDef.buffs.regen || 0) + (playerSkill.level * 2);
+        totalRegen += (skillDef.drawbacks.regen || 0) - playerSkill.level;
+    });
+
+    if (totalRegen !== 0) {
+        regenInterval = setInterval(() => {
+            // Always show health bar while regen effect is active
+            if (typeof drawPlayerHealthHUD === "function") drawPlayerHealthHUD();
+
+            // Positive regen: heal until full
+            if (totalRegen > 0 && player.health < player.maxHealth) {
+                player.setHealth(player.health + totalRegen);
+                // Hide health bar if full
+                if (player.health >= player.maxHealth && typeof drawPlayerHealthHUD === "function") {
+                    setTimeout(() => {
+                        let bar = document.getElementById('player-health-bar-svg');
+                        if (bar) bar.remove();
+                    }, 1200);
+                }
+            }
+            // Negative regen: drain health
+            if (totalRegen < 0 && player.health > 0) {
+                player.setHealth(player.health + totalRegen);
+                // If health reaches 0, trigger death
+                if (player.health <= 0 && typeof handlePlayerDeath === "function") {
+                    handlePlayerDeath();
+                }
+            }
+        }, 1000); // 1 second interval
+    }
+}
+
+// Equip Skill Logic
+function equipSkill(skillId) {
+    if (equippedSkills.includes(skillId)) {
+        notify(`That skill is already equipped!`, 1200);
+        document.querySelectorAll('.skill-dropdown').forEach(el => el.remove());
+        return;
+    }
+    const idx = equippedSkills.findIndex(s => !s);
+    if (idx !== -1) {
+        equippedSkills[idx] = skillId;
+        applySkillEffect(skillId, 1);
+        renderSkillsMenu();
+        updateRegenEffect();
+        updatePlayerMenuStats();
+        document.querySelectorAll('.skill-dropdown').forEach(el => el.remove());
+        notify(`Equipped ${getSkillDef(skillId).name}!`, 1200);
+    }
+}
+
+// Unequip Skill Logic
+function unequipSkill(slotIndex) {
+    const skillId = equippedSkills[slotIndex];
+    if (skillId) {
+        applySkillEffect(skillId, -1);
+        const skillDef = getSkillDef(skillId);
+        equippedSkills[slotIndex] = null;
+        renderSkillsMenu();
+        updateRegenEffect();
+        updatePlayerMenuStats();
+        notify(`Unequipped ${skillDef.name}.`, 1200);
+    }
+}
+
+// Upgrade Skill Logic
+function getUpgradeCost(pool, level, rarity) {
+    // Common: blue gem, Rare: red gem, Epic: pink gem, Legendary: double pink gem
+    let cost = level + 1;
+    let gemId = "blue_gem";
+    if (rarity === "rare") {
+        gemId = "red_gem";
+    } else if (rarity === "epic") {
+        gemId = "pink_gem";
+    } else if (rarity === "legendary") {
+        gemId = "pink_gem";
+        cost *= 2; // Double cost for legendary
+    }
+    return { cost, gemId };
+}
+
+function upgradeSkill(skillId) {
+    const skill = getPlayerSkill(skillId);
+    const skillDef = getSkillDef(skillId);
+    const { cost, gemId } = getUpgradeCost(skillDef.pool, skill.level, skillDef.rarity);
+    if (!hasItem(gemId, cost)) {
+        notify(`You need ${cost} ${ITEM_DEFINITIONS[gemId].name} to upgrade!`, 1800);
+        return;
+    }
+    removeItem(gemId, cost);
+
+    if (equippedSkills.includes(skillId)) {
+        applySkillEffect(skillId, -1);
+    }
+
+    skill.level += 1;
+    notify(`Upgraded ${skillDef.name} to level ${skill.level + 1}!`, 1800);
+
+    if (equippedSkills.includes(skillId)) {
+        applySkillEffect(skillId, 1);
+    }
+
+    renderSkillsMenu();
+    updateRegenEffect();
+    updatePlayerMenuStats();
+    document.querySelectorAll('.skill-dropdown').forEach(el => el.remove());
+}
+
+// Helper: Find skill definition by id
+function getSkillDef(id) {
+    return Skills.find(s => s.id === id);
+}
+
+// Helper: Get player's skill object by id
+function getPlayerSkill(id) {
+    return playerSkills.find(s => s.id === id);
+}
+
+// Helper: Add skill to inventory or upgrade if owned
+function addOrUpgradeSkill(skillId) {
+    let skill = getPlayerSkill(skillId);
+    if (skill) {
+        skill.level = (skill.level ?? 0) + 1;
+        notify(`Upgraded ${getSkillDef(skillId).name} to level ${skill.level + 1}!`, 1800);
+    } else {
+        playerSkills.push({ id: skillId, level: 0 }); // Start at level 0
+        notify(`Gained new skill: ${getSkillDef(skillId).name}!`, 1800);
+    }
+    renderSkillsMenu && renderSkillsMenu();
+}
+
+// Helper: Remove gem from inventory
+function spendGem(gemId) {
+    if (hasItem(gemId, 1)) {
+        removeItem(gemId, 1);
+        return true;
+    } else {
+        notify(`You need a ${ITEM_DEFINITIONS[gemId].name} to spin!`, 1800);
+        return false;
+    }
+}
+
+// Weighted random from pool
+function weightedRandomSkill(pool) {
+    // Include skills from the selected pool and from "all"
+    const poolSkills = Skills.filter(s => s.pool === pool || s.pool === "all");
+    const totalChance = poolSkills.reduce((sum, s) => sum + (s.chance || 1), 0);
+    let rand = Math.random() * totalChance;
+    for (const skill of poolSkills) {
+        rand -= (skill.chance || 1);
+        if (rand <= 0) return skill;
+    }
+    return poolSkills[poolSkills.length - 1];
+}
+
+// Spin animation logic
+function spinGachaReel(pool, callback) {
+    const reel = document.getElementById('skills-gacha-reel');
+    // Include skills from the selected pool and from "all"
+    const poolSkills = Skills.filter(s => s.pool === pool || s.pool === "all");
+    let spinSequence = [];
+    for (let i = 0; i < 18; i++) {
+        spinSequence.push(poolSkills[Math.floor(Math.random() * poolSkills.length)]);
+    }
+    const winner = weightedRandomSkill(pool);
+    spinSequence.push(winner);
+
+    let idx = 0;
+    function spinStep() {
+        const skill = spinSequence[idx];
+        reel.innerHTML = `<img src="${skill.img}" alt="${skill.name}" style="width:72px;height:72px;">`;
+        idx++;
+        if (idx < spinSequence.length) {
+            let delay = 60 + Math.pow(idx, 1.5);
+            setTimeout(spinStep, delay);
+        } else {
+            callback(winner);
+        }
+    }
+    spinStep();
+}
+
+
 // Event listeners
 document.getElementById('menu-btn').addEventListener('click', openMenu);
 document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
+document.getElementById('btn-skills').addEventListener('click', showSkillsMenu);
+document.getElementById('spin-skills-btn').addEventListener('click', showSkillsGachaScreen);
 document.getElementById('btn-map').addEventListener('click', showMapMenu);
 document.getElementById('btn-save').addEventListener('click', saveGame);
 document.getElementById('btn-settings').addEventListener('click', showSettingsMenu);
+
+// Gacha button event handlers
+document.getElementById('skills-gacha-spin-blue').addEventListener('click', function() {
+    if (!spendGem('blue_gem')) return;
+    disableGachaButtons();
+    spinGachaReel('blue', function(winner) {
+        addOrUpgradeSkill(winner.id);
+        enableGachaButtons();
+    });
+});
+document.getElementById('skills-gacha-spin-red').addEventListener('click', function() {
+    if (!spendGem('red_gem')) return;
+    disableGachaButtons();
+    spinGachaReel('red', function(winner) {
+        addOrUpgradeSkill(winner.id);
+        enableGachaButtons();
+    });
+});
+document.getElementById('skills-gacha-spin-pink').addEventListener('click', function() {
+    if (!spendGem('pink_gem')) return;
+    disableGachaButtons();
+    spinGachaReel('pink', function(winner) {
+        addOrUpgradeSkill(winner.id);
+        enableGachaButtons();
+    });
+});
+
+// Remove dropdown on outside click
+document.addEventListener('mousedown', function(e) {
+    if (!e.target.closest('.skill-dropdown') && !e.target.closest('.skill-card')) {
+        document.querySelectorAll('.skill-dropdown').forEach(el => el.remove());
+    }
+});
+
+// Disable/enable gacha buttons during spin
+function disableGachaButtons() {
+    document.getElementById('skills-gacha-spin-blue').disabled = true;
+    document.getElementById('skills-gacha-spin-red').disabled = true;
+    document.getElementById('skills-gacha-spin-pink').disabled = true;
+}
+function enableGachaButtons() {
+    document.getElementById('skills-gacha-spin-blue').disabled = false;
+    document.getElementById('skills-gacha-spin-red').disabled = false;
+    document.getElementById('skills-gacha-spin-pink').disabled = false;
+}
 
 function hideGameUI() {
     const ids = [

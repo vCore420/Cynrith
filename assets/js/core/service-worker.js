@@ -1,4 +1,4 @@
-const CACHE_NAME = "cynrith-cache-v1.01"; // Update this on bigger game updateds
+const CACHE_NAME = "cynrith-cache-v1.02"; // Update this on bigger game updateds
 const urlsToCache = [
   "/",
   "/index.html",
@@ -17,6 +17,7 @@ const urlsToCache = [
   "/assets/js/DEFINITIONS/interactTiles.js",
   "/assets/js/DEFINITIONS/items.js",
   "/assets/js/DEFINITIONS/quests.js",
+  "/assets/js/DEFINITIONS/skills.js",
   "/assets/js/DEFINITIONS/traders.js",
   "/assets/js/DEFINITIONS/triggerTiles.js",
   "/assets/js/DEFINITIONS/worldSprites.js",

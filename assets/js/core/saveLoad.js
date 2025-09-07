@@ -27,7 +27,11 @@ function getCurrentSaveData() {
         triggeredInteractableTiles: { ...triggeredInteractableTiles },
         triggeredTriggerTiles: { ...triggeredTriggerTiles },
         forcedEncounters: { ...triggeredForcedEncounters },
-        settings: window.gameSettings ? { ...window.gameSettings } : undefined
+        settings: window.gameSettings ? { ...window.gameSettings } : undefined,
+        skills: {
+            inventory: playerSkills.map(s => ({ id: s.id, level: s.level })),
+            equipped: [...equippedSkills]
+        },
     };
 }
 
@@ -114,6 +118,25 @@ function applySaveData(data) {
     // Patch settings if present
     if (data.settings && typeof window.patchSettingsFromSave === "function") {
         window.patchSettingsFromSave(data);
+    }
+
+    // Patch skills
+    if (data.skills) {
+        // Restore skill inventory
+        if (Array.isArray(data.skills.inventory)) {
+            playerSkills.length = 0;
+            data.skills.inventory.forEach(s => {
+                if (s && s.id) playerSkills.push({ id: s.id, level: s.level ?? 0 });
+            });
+        }
+        // Restore equipped skills
+        if (Array.isArray(data.skills.equipped)) {
+            equippedSkills.length = 0;
+            data.skills.equipped.forEach((id, i) => {
+                equippedSkills[i] = id || null;
+            });
+        }
+        if (typeof renderSkillsMenu === "function") renderSkillsMenu();
     }
 }
 

@@ -96,6 +96,39 @@ const ITEM_DEFINITIONS = {
         useable: false,
         removeable: false
     },
+
+    blue_gem: {
+        id: "blue_gem",
+        name: "Blue Skill Gem",
+        description: "A gem infused with the essence of water. Unlocks new skills",
+        image: "assets/img/items/blue_gem.png",
+        rarity: "legendary",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+    red_gem: {
+        id: "red_gem",
+        name: "Red Skill Gem",
+        description: "A gem infused with the essence of fire. Unlocks new skills",
+        image: "assets/img/items/red_gem.png",
+        rarity: "legendary",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
+
+    pink_gem: {
+        id: "pink_gem",
+        name: "Pink Skill Gem",
+        description: "A gem infused with the essence of love. Unlocks new skills",
+        image: "assets/img/items/pink_gem.png",
+        rarity: "legendary",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
     
     // --------------- loot, Drops, Quest Items ---------------
 
