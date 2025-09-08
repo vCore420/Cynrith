@@ -176,6 +176,15 @@ function setPlayerJoystickMovement(dx, dy) {
         player.movement.moving = true;
         player.movement.dx = dx / mag;
         player.movement.dy = dy / mag;
+
+        // Set facing direction for animation
+        if (Math.abs(dx) > Math.abs(dy)) {
+            // Horizontal movement dominates
+            player.movement.key = dx > 0 ? 39 : 37; // Right : Left
+        } else if (Math.abs(dy) > 0) {
+            // Vertical movement dominates
+            player.movement.key = dy > 0 ? 40 : 38; // Down : Up
+        }
     } else {
         player.movement.moving = false;
         player.movement.dx = 0;
