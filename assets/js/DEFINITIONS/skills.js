@@ -9,6 +9,7 @@ const Skills = [
         chance: 1.2,
         buffs: { maxHealth: 8, defence: 2 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
     {
@@ -20,6 +21,7 @@ const Skills = [
         chance: 1.0,
         buffs: { speed: 4 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
     {
@@ -31,6 +33,7 @@ const Skills = [
         chance: 1.0,
         buffs: { defence: 5 },
         drawbacks: { attack: -2 },
+        maxLevel: 20,
         rarity: "rare"
     },
     {
@@ -42,6 +45,7 @@ const Skills = [
         chance: 1.0,
         buffs: { regen: 2 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "rare"
     },
 
@@ -55,6 +59,7 @@ const Skills = [
         chance: 0.7,
         buffs: { attack: 18 },
         drawbacks: { defence: -8 },
+        maxLevel: 20,
         rarity: "rare"
     },
     {
@@ -66,6 +71,7 @@ const Skills = [
         chance: 0.5,
         buffs: { speed: 12 },
         drawbacks: { maxHealth: -10 },
+        maxLevel: 20,
         rarity: "epic"
     },
     {
@@ -77,6 +83,7 @@ const Skills = [
         chance: 0.8,
         buffs: { xpGain: 10 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "rare"
     },
 
@@ -90,6 +97,7 @@ const Skills = [
         chance: 0.5,
         buffs: { attack: 20, defence: 20, speed: 10, maxHealth: 30 },
         drawbacks: { regen: -5 },
+        maxLevel: 20,
         rarity: "legendary"
     },
     {
@@ -101,6 +109,7 @@ const Skills = [
         chance: 0.5,
         buffs: { xpGain: 25, attack: 10, defence: 10 },
         drawbacks: { speed: -5 },
+        maxLevel: 20,
         rarity: "legendary"
     },
     {
@@ -112,6 +121,7 @@ const Skills = [
         chance: 0.15,
         buffs: {}, // Logic for random stat boost handled in code
         drawbacks: {},
+        maxLevel: 20,
         rarity: "epic"
     },
 
@@ -125,6 +135,7 @@ const Skills = [
         chance: 1.5,
         buffs: { xpGain: 5 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
     {
@@ -136,6 +147,7 @@ const Skills = [
         chance: 1.5,
         buffs: { resistance: 5 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
     {
@@ -147,6 +159,7 @@ const Skills = [
         chance: 1.5,
         buffs: { speed: 3 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
     {
@@ -158,6 +171,7 @@ const Skills = [
         chance: 1.5,
         buffs: { regen: 1 },
         drawbacks: {},
+        maxLevel: 20,
         rarity: "common"
     },
 

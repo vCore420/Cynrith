@@ -219,6 +219,7 @@ function showSettingsMenu() {
         // Touch Controls Toggle
         document.getElementById('toggle-touch-controls').onchange = function() {
             gameSettings.showTouchControls = this.checked;
+
             const joystick = document.getElementById('touch-joystick');
             if (joystick) joystick.style.display = this.checked ? "" : "none";
             const actControls = document.getElementById('act-controls');
@@ -679,15 +680,28 @@ function getUpgradeCost(pool, level, rarity) {
     return { cost, gemId };
 }
 
+function isMaxLevel(level, maxLevel) { 
+    if (level >= maxLevel) {
+        return true;
+    }
+}
+
 function upgradeSkill(skillId) {
     const skill = getPlayerSkill(skillId);
     const skillDef = getSkillDef(skillId);
     const { cost, gemId } = getUpgradeCost(skillDef.pool, skill.level, skillDef.rarity);
+    const skillLevel = skill.level;
+    const maxLevel = skillDef.maxLevel;
     if (!hasItem(gemId, cost)) {
         notify(`You need ${cost} ${ITEM_DEFINITIONS[gemId].name} to upgrade!`, 1800);
         return;
     }
     removeItem(gemId, cost);
+
+    if (isMaxLevel(skillLevel, maxLevel - 1)) {
+        notify("Max Level Reached");
+        return;
+    }
 
     if (equippedSkills.includes(skillId)) {
         applySkillEffect(skillId, -1);
