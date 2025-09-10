@@ -46,7 +46,6 @@ div#log {
   background: #3af0ffcc;
   border-radius: 50%;
   border: 2px solid #fff;
-  transition: left 0.05s, top 0.05s;
   touch-action: none;
 }
 

@@ -99,12 +99,10 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
     }
 
     if (typeof player !== "undefined") {
-        const playerPx = player.pos.x;
-        const playerPy = player.pos.y;
-        if (isNpcPixelCollision({ x: player.tile.x, y: player.tile.y }, px, py)) {
-            return true;
-        }
+    if (isPlayerPixelCollision(px, py)) {
+        return true;
     }
+}
 
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
         return true; 
@@ -130,6 +128,21 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
         let tileIndex = tileGid > 0 ? tileGid - 1 : null;
         return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
     }
+}
+
+function isPlayerPixelCollision(npcPx, npcPy) {
+    const playerPx = player.pos.x;
+    const playerPy = player.pos.y;
+    const npcSize = config.size.char;
+    const playerSize = config.size.char;
+    const padding = 16; // Adjust for your sprite size
+
+    return (
+        playerPx + playerSize - padding > npcPx + padding &&
+        playerPx + padding < npcPx + npcSize - padding &&
+        playerPy + playerSize - padding > npcPy + padding &&
+        playerPy + padding < npcPy + npcSize - padding
+    );
 }
 
 
@@ -318,6 +331,17 @@ function findPathAStar(start, goal, isWalkable) {
     return null; // No path found
 }
 
+function isAdjacentToPlayer(char) {
+    const px = player.tile.x;
+    const py = player.tile.y;
+    const cx = Math.round(char.x);
+    const cy = Math.round(char.y);
+    // Adjacent horizontally or vertically (not diagonally)
+    return (
+        (Math.abs(px - cx) === 1 && py === cy) ||
+        (Math.abs(py - cy) === 1 && px === cx)
+    );
+}
 
 // Update all NPCs and Enemies
 function updateCharacters() {
@@ -328,7 +352,7 @@ function updateCharacters() {
                 char.state = "hostile";
                 // Pathfinding logic
                 const now = Date.now();
-                if (!char._lastPathUpdate || now - char._lastPathUpdate > 100) { // 100ms = ~6 frames at 60fps
+                if (!char._lastPathUpdate || now - char._lastPathUpdate > 100) {
                     if (!char.path || char.path.length === 0 || char._lastPlayerTile?.x !== player.tile.x || char._lastPlayerTile?.y !== player.tile.y) {
                         char.path = findPathAStar(
                             {x: Math.round(char.x), y: Math.round(char.y)},
@@ -339,41 +363,41 @@ function updateCharacters() {
                     }
                     char._lastPathUpdate = now;
                 }
-                if (char.path && char.path.length > 1) {
-                    const next = char.path[1];
-                    const dx = next.x - char.x;
-                    const dy = next.y - char.y;
-                    
-                    if (dx !== 0 && dy !== 0) {
-                        char.movement.key = dx > 0 ? 39 : 37; 
-                    } else {
-                        char.movement.key = getDirectionKey(char.x, char.y, next.x, next.y);
-                    }
-                    moveEnemyTowardTile(char, next.x, next.y);
-                    if (Math.abs(char.x - next.x) < 0.1 && Math.abs(char.y - next.y) < 0.1) {
-                        char.path.shift();
-                    }
-                }
-                // Attack if on same tile - add a very short delay before their attack on the player
-                if (player.tile.x === Math.round(char.x) && player.tile.y === Math.round(char.y)) {
-                    if (!char._attackTimer || Date.now() - char._attackTimer > 1000 / char.speed) {
+
+                // If adjacent, stop and attack
+                if (isAdjacentToPlayer(char)) {
+                    char.movement.moving = false;
+                    // Face the player
+                    char.movement.key = getDirectionToFace(char, player);
+                    // Attack logic
+                    if (!char._attackTimer || Date.now() - char._attackTimer > 1000 / (char.attackSpeed || 1)) {
                         char._attackTimer = Date.now();
                         let dmg = Math.max(1, char.attack - player.getDefence());
-                        
-                        // Remove Player Health
                         player.addHealth(-dmg);
-
-                        // Draw Damage Popup
                         showDamagePopup(player.tile.x, player.tile.y, dmg, "player");
-
-                        // Play Player hit sound
                         if (window.SoundManager) {
                             SoundManager.playEffect("assets/sound/sfx/player/player_hit.mp3");
                         }
-
-                        // Handle Player Death when Health Hits 0
                         if (player.getHealth() <= 0) handlePlayerDeath();
                         else player.knockbackAnim();
+                    }
+                } else {
+                    // Move toward next tile in path (but don't move onto player's tile)
+                    if (char.path && char.path.length > 1) {
+                        const next = char.path[1];
+                        // Face the next tile
+                        char.movement.key = getDirectionKey(char.x, char.y, next.x, next.y);
+                        // If next tile is player's tile, don't move
+                        if (next.x === player.tile.x && next.y === player.tile.y) {
+                            char.movement.moving = false;
+                        } else {
+                            moveEnemyTowardTile(char, next.x, next.y);
+                            if (Math.abs(char.x - next.x) < 0.1 && Math.abs(char.y - next.y) < 0.1) {
+                                char.path.shift();
+                            }
+                        }
+                    } else {
+                        char.movement.moving = false;
                     }
                 }
             } else {
@@ -399,19 +423,29 @@ function moveEnemyTowardTile(char, tx, ty) {
     let stepY = Math.sign(dy) * Math.min(Math.abs(dy), speed / config.size.tile);
 
     // Try diagonal move first if both dx and dy are nonzero
-    if (dx !== 0 && dy !== 0) {
-        if (isWalkable(Math.round(char.x + Math.sign(dx)), Math.round(char.y + Math.sign(dy)))) {
-            char.x += stepX;
-            char.y += stepY;
-        } else if (isWalkable(Math.round(char.x + Math.sign(dx)), Math.round(char.y))) {
-            char.x += stepX;
-        } else if (isWalkable(Math.round(char.x), Math.round(char.y + Math.sign(dy)))) {
-            char.y += stepY;
+    let newX = char.x + stepX;
+    let newY = char.y + stepY;
+
+    // Check pixel collision with player before moving
+    let wouldCollide = isPlayerPixelCollision(newX * config.size.tile, newY * config.size.tile);
+
+    if (!wouldCollide) {
+        // Try diagonal move
+        if (dx !== 0 && dy !== 0 && isWalkable(Math.round(newX), Math.round(newY))) {
+            char.x = newX;
+            char.y = newY;
+        } else if (dx !== 0 && isWalkable(Math.round(newX), Math.round(char.y))) {
+            if (!isPlayerPixelCollision(newX * config.size.tile, char.y * config.size.tile)) {
+                char.x = newX;
+            }
+        } else if (dy !== 0 && isWalkable(Math.round(char.x), Math.round(newY))) {
+            if (!isPlayerPixelCollision(char.x * config.size.tile, newY * config.size.tile)) {
+                char.y = newY;
+            }
         }
-    } else if (dx !== 0 && isWalkable(Math.round(char.x + Math.sign(dx)), Math.round(char.y))) {
-        char.x += stepX;
-    } else if (dy !== 0 && isWalkable(Math.round(char.x), Math.round(char.y + Math.sign(dy)))) {
-        char.y += stepY;
+        char.movement.moving = true;
+    } else {
+        // Can't move into player, stop
+        char.movement.moving = false;
     }
-    char.movement.moving = true;
 }

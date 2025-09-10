@@ -164,8 +164,8 @@ const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png")
 Player.prototype = {
     draw: function() {
         let frame = (player.movement.moving) ? keys[player.movement.key].f[player.movement.frame] : keys[player.movement.key].f[1];
-        let pos_x = Math.round(player.pos.x - viewport.x);
-        let pos_y = Math.round(player.pos.y - viewport.y);
+        let pos_x = Math.floor(player.pos.x - viewport.x);
+        let pos_y = Math.floor(player.pos.y - viewport.y);
 
         this.light(pos_x, pos_y);
         this.torch_func(pos_x, pos_y);
@@ -252,6 +252,15 @@ Player.prototype = {
         let directionX = x < 0 ? "left" : x > 0 ? "right" : null;
         let directionY = y < 0 ? "up" : y > 0 ? "down" : null;
 
+        // NPC collision check for X movement
+        let blockedByNpcX = false;
+        if (directionX && typeof characters !== "undefined") {
+            blockedByNpcX = characters.some(char =>
+                char.type !== "player" &&
+                isNpcPixelCollision(char, newPosX, this.pos.y)
+            );
+        }
+
         // X movement
         // Only move if the new position's collision box is not blocked
         if (directionX && !isTileBlockedAtPixel(newPosX, this.pos.y, directionX)) {
@@ -260,6 +269,15 @@ Player.prototype = {
             const spriteSize = config.size.char;
             const offset = (spriteSize - tileSize) / 2;
             this.tile.x = Math.floor((this.pos.x + offset + tileSize / 2) / tileSize);
+        }
+
+        // NPC collision check for Y movement
+        let blockedByNpcY = false;
+        if (directionY && typeof characters !== "undefined") {
+            blockedByNpcY = characters.some(char =>
+                char.type !== "player" &&
+                isNpcPixelCollision(char, this.pos.x, newPosY)
+            );
         }
 
         // Y movement

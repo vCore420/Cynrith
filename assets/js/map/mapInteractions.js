@@ -71,8 +71,8 @@ function drawSingleInteractableTile(tile) {
         const row = Math.floor(frameIndex / tile.cols);
         const sx = col * (tile.imageW / tile.cols);
         const sy = row * (tile.imageH / tile.rows);
-        const px = Math.round(tile.x * config.size.tile - viewport.x);
-        const py = Math.round(tile.y * config.size.tile - viewport.y - ((tile.imageH / tile.rows) - config.size.tile));
+        const px = Math.floor(tile.x * config.size.tile - viewport.x);
+        const py = Math.floor(tile.y * config.size.tile - viewport.y - ((tile.imageH / tile.rows) - config.size.tile));
         context.drawImage(
             img,
             sx, sy, (tile.imageW / tile.cols), (tile.imageH / tile.rows),

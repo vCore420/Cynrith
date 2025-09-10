@@ -84,8 +84,8 @@ function drawWorldSprites(zIndex) {
         const sy = row * s.frameH;
 
         // Align base of sprite to (x, y) tile
-        const px = Math.round(s.x * config.size.tile - viewport.x);
-        const py = Math.round(s.y * config.size.tile - viewport.y - (s.frameH - config.size.tile));
+        const px = Math.floor(s.x * config.size.tile - viewport.x);
+        const py = Math.floor(s.y * config.size.tile - viewport.y - (s.frameH - config.size.tile));
 
         context.drawImage(
             img,
