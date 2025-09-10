@@ -36,3 +36,20 @@ function drawScreenFadeOverlay() {
     context.fillRect(0, 0, w, h);
     context.restore();
 }
+
+function showScreenTransition(callback) {
+    const overlay = document.getElementById('screen-transition');
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    setTimeout(() => {
+        if (typeof callback === "function") callback();
+    }, 600); // Wait for fade out
+}
+
+function hideScreenTransition() {
+    const overlay = document.getElementById('screen-transition');
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+        overlay.style.pointerEvents = 'none';
+    }, 600); // Wait for fade in
+}

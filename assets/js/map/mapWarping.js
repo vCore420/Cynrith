@@ -85,6 +85,7 @@ function isPlayerAdjacentToTile(x, y) {
 
 // Warp to a map by index, placing player at a given location
 function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
+    showScreenTransition(() => {
     currentMapIndex = mapIndex;
     map.onLoad = function() {
         const spawn = map.data[spawnType];
@@ -138,10 +139,12 @@ function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
             }, 750);
         }
 
+        hideScreenTransition();
         if (typeof onWarped === "function") onWarped();
         console.log("[WarpToMap] Map loaded successfully:", mapIndex);
     };
     map.load("map" + mapIndex);
+    });
 }
 
 
