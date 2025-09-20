@@ -1,67 +1,299 @@
-# vCynrithToolkit
+<div align="center">
+  <h1 align="center">Cynrith</h1>
+  <p align="center">A mysterious, ever-changing world woven from the dreams and ruins of lost civilizations.</p>
+  <p align="center">
+    <img alt="Github License" src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge">
+    <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
+    <img alt="Github release (latest by date)" src="https://img.shields.io/github/v/release/vCore420/Cynrith?style=for-the-badge">
+  </p>
+  <p align="center">Play Cynrith: https://vcore420.github.io/Cynrith/</p>
+  <p align="center">Join the Discord: https://discord.gg/FNVmfMDNZa</p>
+</div>
 
-**vCynrithToolkit** is an all-in-one browser-based editor and toolkit for creating, managing, and visualizing game content for Cynrith.  
-It provides a modern interface for building NPCs, quests, items, skills, tiles, and more—streamlining the development and customization process for your game.
+![Demo Screenshot](docs/assets/demo1.png)
+
+---
+
+## Enter the World of Cynrith
+
+Welcome to **Cynrith**, a mysterious, ever-changing world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange characters and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
+
+Long before the first Floor rose, Cynrith was a single, boundless realm; flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers 'Floors' each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
 
 ---
 
-## Features
+## Core Features
 
-- **Floor Visualizer:** View and explore game floors, layouts, and all linked entities (NPCs, enemies, quests, interact tiles, trigger tiles).
-- **NPC Creator:** Build and preview NPC definitions, dialogue, spawn areas, forced encounters, and quest links.
-- **Enemy Creator:** Author and preview enemy definitions, stats, loot tables, spawn areas, and wander zones.
-- **Quest Editor:** Create and format quests, including requirements, rewards, and quest types.
-- **Trigger & Interactable Tile Editors:** Manage trigger tiles and interactable tiles with location, dialogue, rewards, and sound.
-- **World Sprite Editor:** Add and configure world sprites, sprite sheets, animation, and placement.
-- **Item & Skill Editors:** Manage game items and skills with live previews, stats, buffs, drawbacks, and images.
-- **Tile Maker:** Generate pixel art tiles with custom palettes, symmetry, patterns, and export options.
-- **Tile Editor:** Import PNG images, edit with pencil, eraser, fill, eyedropper, brush size, grid, undo/redo, and export as PNG.
-- **Live Preview:** Instantly see formatted output matching Cynrith’s game definitions for all entity types.
-- **Download Definitions:** Export definitions for NPCs, enemies, quests, items, skills, triggers, interact tiles, and sprites.
-- **Touch & Pointer Support:** Full mouse/touch/pointer support for map and tile editing, including drag, zoom, and brush preview.
-- **Autosave & Undo/Redo:** Work safely with undo/redo and session autosave (where supported).
-- **Responsive UI:** Modern, responsive layout with tool panels and visual feedback.
-
----
+- **Ascend the world:**  
+  Explore a mysterious, multi-layered world filled with secrets, dangers, and branching lore.
+- **Dynamic Combat System:**  
+  Face a variety of enemies and bosses using real-time movement, attacks, and tactical positioning.
+- **Quest-Driven Exploration:**  
+  Meet unique Characters, unravel their stories, and complete quests that impact your journey and the world.
+- **Rich Worldbuilding:**  
+  Every floor reveals new lore, environmental storytelling, and hidden mysteries to discover.
+- **Relic and Inventory System:**  
+  Find, collect, and use powerful relics—each with their own story and gameplay effect.
+- **Multi-Platform Play:**  
+  Designed for both desktop and mobile, with intuitive controls and a seamless interface.
+- **Ever-Expanding Story:**  
+  Cynrith is a living world—expect frequent updates, new floors, and evolving lore.
+- **Atmospheric Visuals:**  
+  Hand-crafted maps, evocative environments, and unique character designs bring the world to life.
 
 ## Getting Started
 
-1. **Clone or Download** this repository.
-2. Open the project folder in [Visual Studio Code](https://code.visualstudio.com/) or your preferred editor.
-3. Open `index.html` in your browser to launch the toolkit.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/vCore420/Cynrith.git
+   cd Cynrith
+   ```
+2. **Open `index.html` in your browser**  
+   (requires live server, vscode has an extension)
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/assets/demo2.png" width="480"/>
+  <img src="docs/assets/demo3.png" width="480"/>
+  <img src="docs/assets/demo4.png" width="480"/>
+  <img src="docs/assets/demo5.png" width="480"/>
+  <img src="docs/assets/demo6.png" width="480"/>
+  <img src="docs/assets/demo7.png" width="480"/>
+  <img src="docs/assets/demo8.png" width="480"/>
+</p>
+
+## Roadmap
+
+**Completed**
+
+- Floors 1-4 with in depth lore, world building and game play 
+- Dynamic map loading 
+- Real-time combat, death and respawn system
+- Modular sprite sheet loader
+- Animated, interactable teleport stones and map warping
+- Interactable tiles with rewards for hidden secrets 
+- Usable Items 
+- Player Stats, player buffs and dynamic stat adjustments
+- NPCs and enemies with pathfinding, interactions and triggers
+- Quest system with branching lore and dynamic UI
+- Multi types of quest can be given to the player (item collection, enemy defeats, stat gain)
+- Player menu UI with inventory, quests, stats, skills, map and settings
+- Clean Inventory system
+- Player Skill System
+- Save/load system for persistent progress
+- Multi-platform controls (desktop & mobile)
+- Lore intro and evolving story
+- Multi-layered world and floor progression
+- Notifications and dialogue system
+- Forced encounters and event triggers
+- Trader Npc with buy/sell menus
+- World, Dialogue, Player and Combat sounds effects and music
+- Expand documentation on how to creat new floor and other game assets
+- Installable for mobile devices
+
+**To DO**
+
+- Trigger tiles for interiors/caves
+- Improved assets and polish
+- Ui Sound effects
+- Boss battles
+
+- Planning to make this a forever expanding project, something i just wanted to have as my own little world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+
+---
+<details>
+<summary>Change Logs</summary>
+
+<p>
+
+7/9 Beta v0.2.2
+
+- Skill system Created: Gatcha system for obtain skills, rarity-based upgrade costs, advanced skill logic (regen, xpGain, resistance)
+- Added skills, with templates for easy future additions.
+- Skill menu UI: dropdown details, equip/unequip logic, and stat display updates.
+- Player stats now update live in the menu when skills are equipped, unequipped, or upgraded.
+- Health regeneration logic now supports both healing and draining, with death triggers and health bar display.
+- Touch controls reworked: replaced D-Pad with a draggable joystick for smoother mobile movement.
+- Joystick now respects controlsEnabled flag and is styled for both desktop and mobile.
+- Settings menu updated to toggle new joystick controls.
+- Player-NPC collision logic improved: switched to pixel-based collision with padding for more natural movement and less "stuck" behavior.
+- Roadmap and documentation updated to reflect new systems and guides.
 
 ---
 
-## Usage
+6/9 Beta v0.2.1
 
-- Use the sidebar tabs to switch between editors (Floor Visualizer, Items, Skills, Creator, Tile Maker, Tile Editor).
-- Fill out forms and use controls to create or edit game content.
-- Preview output in the right panel; copy and paste definitions directly into your game’s data files.
-- Use the map and tile editors for visual placement, drawing, and asset creation.
-- Download generated definitions and assets for use in Cynrith.
-
----
-
-## Requirements
-
-- Modern web browser (Chrome, Firefox, Edge, etc.)
-- No installation required; runs locally as a static web app.
+- Player movement fully reworked for WASD keys, with fluent diagonal movement and last-key priority.
+- Action buttons mapped: Enter for interaction, Space for combat, Esc to open/close player menu.
+- Settings menu added: toggle touch controls, show/hide log, adjust music and SFX volume with themed sliders and switches.
+- Settings are saved and restored with your game.
+- Cynrith is now installable as a PWA, add to your device and play offline.
+- NPCs with ready-to-complete quests now show a golden ‘!’ above their heads.
+- Player now spawns below teleport stones to avoid collision issues.
+- UI and settings menu styled for desktop and mobile.
+- Minor fixes for quest/NPC logic and asset loading when warping between maps.
 
 ---
 
-## Contributing
+4/9 Beta v0.2.0
 
-Pull requests and suggestions are welcome!  
-If you find a bug or want to request a feature, please open an issue.
+- Floor 4 
+  - New floor map and tile assets
+  - New enemy assets and definitions
+  - New Items/loot for F4
+  - New Npc's and Traders
+  - New Quests and story hooks
+  - Created finer details about F4 in World Building
+
+- Performance Improvements 
+  - Created new Welcome screen to pre load the game assets 
+  - Preload and cache all sfx sounds
+  - Preload title map 
+  - Forces user page interaction before loading sounds
+  - Throttled combat sfx
+  - Combat SFX logic improved to avoid overlap
+  - Improved ambient enemy sound logic 
+  - Fixed Lag with enemy deaths
+
+- Ui Improvements 
+  - Inventory menu now has expandable pages
+  - Useable items can now use used in bulk just like removing items
+  - Improved Notifications for inventory usage
+  - Added sfx for inventory menu
+
+- Small Changes
+  - Increased cooldown for enemy respawn
+  - Increased the time the intro story plays, for better readability
+
+- Documentation
+  - Roadmap and world building docs are up-to-date
+  - Contributor guide and templates for definitions Created
+
+--
+
+28/8 Beta v0.1.3
+
+- Added enemy ambient sounds that increase with player distance to them
+- Added sound types to trigger and interactable tiles with loop, ambient and trigger options
+- Updated definitions templates
+- Updated cat spritesheet asset
+- Created better documention for how to create new floors and all other assets
+
+--
+
+27/8 Beta v0.1.2
+
+- Expanded sound system: contextual background music for each map and title screen, with smooth fade transitions.
+- Player movement now triggers ground tile-specific footstep sounds, supporting multi-layer maps and all defined tile types.
+- Added combat sounds: sword slash and sword hit effects play when attacking and hitting enemies.
+- Player receives a hit sound when damaged by enemies.
+- Player death now triggers a dedicated death sound effect.
+- Dialogue system now fades background music and plays a sound on each dialogue advance.
+- Item pickup sounds play based on item rarity; usable items play their defined sound effect.
+- Improved sound timing for footsteps to better match player movement animation.
+- Fixed ground tile sound logic to support all asset types and multi-layer maps.
+- Ensured background music only starts after user interaction
+
+--
+  
+26/8 Beta v0.1.1
+
+- Added background music for title screen and each map, with smooth transitions.
+- Introduced modular sound system for music and effects.
+- Player footsteps now play and change based on ground tile type.
+- Sound assets integrated for world and player actions.
+
+--
+  
+23/8 Beta v0.1.0
+
+- Added new quest types and improved quest logic (stat tracking, interactTiles, redoable quests)
+- Expanded interactable and trigger tile system (animated tiles, notifications, persistent state)
+- Created reusable content tracker for NPCs, items, and lore objects
+- Added templates for NPCs, enemies, items, traders, interactable/trigger tiles, and quests
+- Implemented modular trader/shop system
+- Improved quest HUD, inventory, and trader UI
+- Expanded documentation for easier contribution and onboarding
+- Finished Creation Floor 3!
+- First Beta Release "Cynrith Beta v0.1.0" pushed!!
+</p> 
+</details>
+
+---
+
+## Contributing & Documentation
+
+Pull requests and suggestions are welcome!
+
+**Cynrith Toolkit:**  
+To contribute new game content (NPCs, quests, items, skills, tiles, sprites, and more), use the [vCynrithToolkit](https://vcore420.github.io/vCynrithToolkit/) — a browser-based editor designed specifically for Cynrith.  
+The toolkit streamlines creation, editing, and export of all game definitions and assets, making it easy for contributors to build and preview content before submitting.
+
+
+Check out the Documentation below for information needed to contribute:
+
+- [vCynrithToolkit](https://vcore420.github.io/vCynrithToolkit/) – **Recommended for all content creation and editing**
+- [Roadmap](docs/roadmap.md)  
+  _My Current goals, plans, and development roadmap for Cynrith._
+- [Function Library](docs/function_libary.md)  
+  _Every created function in the project so far, with explanations and usage._
+- [World Building](docs/world_Building.md)  
+  _Current and upcoming Lore, story, and the evolving world of Cynrith._
+- [Content Tracker](docs/content_tracker.md)  
+  _All content (item, characters, lore refs, etc) currently created in the world of Cynrith._
+- [Floor Creation Guide](Floor_Creation_Guide.md)  
+  _Guidelines and best practices for creating new floors and/or other aspects of floors in Cynrith._
+
+## Credits
+ 
+This project is a fork and extension of [orangeable/javascript-2d-tile-based-game](https://github.com/orangeable/javascript-2d-tile-based-game), with a complete rework to become the game 'Cynrith', orangebles simple concept for the tile base game was the perfect inspiration to create the full blown project it has become.
+
+**Cynrith Toolkit:**  
+Created and maintained by vCore420, the [vCynrithToolkit](https://vcore420.github.io/vCynrithToolkit/) is the official editor for all Cynrith game content.  
+It enables fast, visual creation and editing of NPCs, enemies, quests, items, skills, tiles, sprites, and more, and is recommended for all contributors.
+
+Other assets have been made, edited or sourced from the following:
+
+- https://www.pixellab.ai - Used for Editing and Creating Spritesheets and Tile assets utilising their Ai features
+- https://www.piskelapp.com - Used to Edit and Create Spritesheets and Tile Assets
+- https://itch.io/game-assets - Used for sourcing base Spritesheets, tiles and Sfx 
+
+
+**⚠️ This project is in early development. All game assets are test/beta and subject to change.**
+
+## Contributors 
+
+[![Contributors Display](https://contrib.rocks/image?repo=vCore420/Cynrith)](https://github.com/vCore420/Cynrith/graphs/contributors)
+
+[![Contributors](https://img.shields.io/github/contributors/vCore420/Cynrith?style=for-the-badge)](https://github.com/vCore420/Cynrith/graphs/contributors)
+
+- Designed, extended, customized, and maintained by vCore420
+- **Toolkit:** [vCynrithToolkit](https://vcore420.github.io/vCynrithToolkit/) – for all game content creation and contribution
+
+---
+
+<details>
+<summary>🎨 Concept Art Gallery</summary>
+
+<p align="center">
+  <img src="docs/concept_art/Floor_1a.jpg" alt="Floor_1a" width="200"/>
+  <img src="docs/concept_art/Floor_2b.jpg" alt="Floor_2b" width="200"/>
+  <img src="docs/concept_art/Floor_3b.jpg" alt="Floor_3b" width="200"/>
+  <img src="docs/concept_art/The_Architect_on_Floor_3 .jpg" alt="The_Architect_on_Floor_3" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1c.png" alt="Tile_concept_Floor_1c" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1d.png" alt="Tile_concept_Floor_1d" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1e.png" alt="Tile_concept_Floor_1e" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Floor_1f.png" alt="Tile_concept_Floor_1f" width="200"/>
+  <img src="docs/concept_art/Tile_concept_Teleport_Stone_c.jpg" alt="Tile_concept_Teleport_stone_c" width="200"/>
+  <img src="docs/concept_art/Floor_1_Eldrin_npc_b.png" alt="Floor_1_Eldrin_npc_b" width="200"/>
+</p>
+
+</details>
 
 ---
 
 ## License
 
-This toolkit is provided under the MIT License.
+This project is licensed under the MIT License.
 
----
-
-## Credits
-
-Created by **vCore** for the Cynrith game project.
