@@ -76,7 +76,7 @@ function preloadSFX() {
 }
 
 function preloadTitleMap() {
-  // Simulate map loading (replace with actual map load logic if needed)
+  // Simulate map loading (replace with actual map load logic if needed, Seems to load quicker than the sound assets so it should be okay)
   console.log("[Preloader - MAP] Started loading title map...");
   setTimeout(() => {
     loadedCount++;

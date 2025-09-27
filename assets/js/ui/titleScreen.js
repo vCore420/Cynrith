@@ -45,6 +45,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const charConfirmBtn = document.getElementById('char-confirm-btn');
     const charSelectClose = document.getElementById('char-select-close');
     const titleContent = document.querySelector('.title-content');
+    const titleHeader = titleContent.querySelector('h1');
 
     // Sprite list (replace with actual sprite data, currently beta sprites are used)
     const sprites = [
@@ -182,6 +183,45 @@ window.addEventListener("DOMContentLoaded", function() {
             }, 1200);
         }, 200);
     }
+
+    
+    // Flavour text element
+    const flavourTextDiv = document.createElement('div');
+    flavourTextDiv.id = 'flavour-text';
+    let lastFlavourIdx = -1;
+    function getRandomFlavourText() {
+        if (typeof FLAVOUR_TEXT !== "undefined" && FLAVOUR_TEXT.length) {
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * FLAVOUR_TEXT.length);
+            } while (FLAVOUR_TEXT.length > 1 && idx === lastFlavourIdx);
+            lastFlavourIdx = idx;
+            return FLAVOUR_TEXT[idx];
+        }
+        return "";
+    }
+    flavourTextDiv.textContent = getRandomFlavourText();
+    titleHeader.insertAdjacentElement('afterend', flavourTextDiv);
+
+    // Fade/slide to new flavour text on click
+    flavourTextDiv.style.cursor = "pointer";
+    flavourTextDiv.addEventListener('click', () => {
+        // Fade out and slide left
+        flavourTextDiv.style.transition = "opacity 0.3s, transform 0.3s";
+        flavourTextDiv.style.opacity = "0";
+        flavourTextDiv.style.transform = "translateX(-40px)";
+        setTimeout(() => {
+            // Change text and slide in from right
+            flavourTextDiv.textContent = getRandomFlavourText();
+            flavourTextDiv.style.transition = "none";
+            flavourTextDiv.style.transform = "translateX(40px)";
+            setTimeout(() => {
+                flavourTextDiv.style.transition = "opacity 0.3s, transform 0.3s";
+                flavourTextDiv.style.opacity = "0.82";
+                flavourTextDiv.style.transform = "translateX(0)";
+            }, 10);
+        }, 300);
+    });
 
     // Show skip button after first click/tap
     function showSkipBtn() {

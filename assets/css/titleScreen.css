@@ -112,7 +112,7 @@ body, #title-screen {
   font-weight: 700;
   font-size: 7em;
   letter-spacing: 0.09em;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   background: linear-gradient(90deg, var(--title-header) 40%, #fffbe6 60%, var(--title-header-alt) 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -276,6 +276,35 @@ body, #title-screen {
   background-position: 50% 50%, 50% 50%;
   filter: blur(6vw); 
   animation: lore-aura-swirl 12s ease-in-out infinite alternate;
+}
+
+/* Flavour Text */
+#flavour-text {
+  margin-bottom: 32px;
+  font-family: 'Press Start 2P';
+  font-size: 0.8em;
+  color: #ffd65c;
+  text-align: center;
+  opacity: 0.82;
+  text-shadow:
+    -1px -1px 0 #121212c9,
+     1px -1px 0 #121212c9,
+    -1px  1px 0 #121212c9,
+     1px  1px 0 #121212c9,
+    0 2px 6px #181a1f88;
+  max-width: 70vw;
+  z-index: 40;
+  position: relative;
+  transition: opacity 0.3s;
+  animation: flavour-bounce 2s cubic-bezier(.77,0,.18,1) infinite;
+  will-change: opacity, transform;
+  pointer-events: auto;
+}
+
+@keyframes flavour-bounce {
+  0%   { transform: translateY(0) scale(1);     opacity: 0.6; }
+  50%  { transform: translateY(-6px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(0) scale(1);     opacity: 0.6; }
 }
 
 /* Character Selection Screen */
@@ -821,7 +850,7 @@ body, #title-screen {
 
   #title-screen h1 {
     font-size: 5.5em;
-    margin-bottom: 32px;
+    margin-bottom: 38px;
     margin-top: 0; 
     text-shadow: 0 0 16px #181a1f, 0 0 4px #3af0ffcc;
   }
@@ -836,6 +865,12 @@ body, #title-screen {
     font-size: 1.1em;
     max-width: 90vw;
     padding: 0 8px;
+  }
+
+  #flavour-text {
+    font-size: 0.55em;
+    margin-bottom: 16px;
+    max-width: 80vw;
   }
 
   .char-select-content {
