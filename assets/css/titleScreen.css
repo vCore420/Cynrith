@@ -299,6 +299,10 @@ body, #title-screen {
   animation: flavour-bounce 2s cubic-bezier(.77,0,.18,1) infinite;
   will-change: opacity, transform;
   pointer-events: auto;
+  text-wrap: pretty;
+  user-select: none;          
+  outline: none;               
+  -webkit-tap-highlight-color: transparent; 
 }
 
 @keyframes flavour-bounce {

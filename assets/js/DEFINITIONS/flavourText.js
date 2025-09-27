@@ -155,5 +155,14 @@ const FLAVOUR_TEXT = [
   "No pocket sized monsters here sorry!",
   "Kitty Clickers pretty fun too!",
   "You should really see the sun, its a beautiful thing!",
-
+  "I'm glad we lost!",
+  "381mb/s",
+  "The floor is yours.",
+  "Flavour Text #163",
+  "Who knows where their pants have been!?!?",
+  "Did you know you can click these?",
+  "I Did this because I can I guess.",
+  "I hope you like cats.",
+  "We’re just two lost souls swimmin’ in a fish bowl year after year",
+  "There's nothing scary about chickens"
 ];
