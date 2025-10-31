@@ -2,7 +2,7 @@
  "height":80,
  "infinite":false,
  "spawn": { "x": 71, "y": 75 },
- "teleport": { "x": 42, "y": 22, "xpRequired": 6000 },
+ "teleport": { "x": 42, "y": 22, "xpRequired": 3000 },
  "assets":[
    {"file_name":"glass-01","collision":0,"frames":0, "footsteps": "glass-tile.mp3"},
    {"file_name":"glass-glitch","collision":0,"frames":12, "footsteps": "glass-tile.mp3"},
