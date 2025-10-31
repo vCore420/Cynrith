@@ -213,6 +213,20 @@ const QUEST_DEFINITIONS = {
         redoable: true
     },
 
+    // ---------- Floor 5 -----------
+
+    // Veyra the Pale Archivist
+    veyras_mirrors: {
+        id: "veyras_mirrors",
+        name: "Veyra's Mirrors",
+        description: "Interact with the cracked mirrors to reveal hidden truths.",
+        type: "interactTiles",
+        requiredAmount: 3,
+        interactTileIds: ["cracked_mirror_1", "cracked_mirror_2", "cracked_mirror_3"],
+        rewards: [{ xp: 250 }, { id: "blue_gem", amount: 1 }],
+        redoable: false
+    },
+
 };
 
 

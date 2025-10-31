@@ -1012,6 +1012,50 @@ const NPC_DEFINITIONS = {
         }
     },
 
+    // ----- Floor 5 ----
+
+    veyra_the_pale_archivist: {
+        id: "veyra_the_pale_archivist",
+        name: "Veyra the Pale Archivist",
+        sprite: "assets/img/npc/npc_f_7.png",
+        interactive: true,
+        spawns: [ { map: 4, x: 42, y: 71, wanderArea: { x1: 35, y1: 69, x2: 49, y2: 74 } } ],
+        dialogue: {
+        default: [
+            "Welcome to Umbracourt, traveler. Here, the halls twist and the mirrors do not always show what’s behind you.",
+            "These mirrors are more than glass—they are doors. Some lead forward, some return you to where you began.",
+            "To find your way, you must learn which reflections are true and which are tricks."
+        ],
+        questGiven: [
+            "Scattered through these halls are three Marked Mirrors. Step through each one and return to me. Only then will the path ahead reveal itself."
+        ],
+        questIncomplete: [
+            "The mirrors shift when watched. Have you found all three Marked Mirrors yet?",
+            "Remember: not every reflection leads where you expect."
+        ],
+        questComplete: [
+            "You’ve passed through the Marked Mirrors. The halls recognize your resolve.",
+            "Take this—may it help you face what waits in the deeper shadows."
+        ]
+        },
+        questId: "veyras_mirrors",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+            { x: 37, y: 75 },
+            { x: 37, y: 76 },
+            { x: 37, y: 74 },
+            { x: 38, y: 74 },
+            { x: 39, y: 74 },
+            { x: 39, y: 75 },
+            { x: 39, y: 76 },
+            { x: 38, y: 76 }
+            ],
+            triggered: false
+        },
+    },
+
 
 };
 

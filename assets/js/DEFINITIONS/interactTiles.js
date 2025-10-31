@@ -574,6 +574,56 @@ const INTERACTABLE_TILES = [
             "You unfortunately find nothing."
         ],
     },
+
+    // ----------- Floor 5
+
+    {
+        id: "cracked_mirror_1",
+        map: 4,
+        x: 5,
+        y: 19,
+        image: "assets/img/quests/cracked_mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to interact with this Cracked Mirror",
+        dialogue: [
+            "You reach out, your hand passes through the glass, and the world shifts around you."
+        ],
+        rewards: [{ id: "maxHealth_buff_small", amount: 2 }]
+    },
+
+    {
+        id: "cracked_mirror_2",
+        map: 4,
+        x: 61,
+        y: 17,
+        image: "assets/img/quests/cracked_mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to interact with this Cracked Mirror",
+        dialogue: [
+            "The mirror’s surface ripples. For a moment, you see a path that wasn’t there before."
+        ],
+        rewards: [{ id: "atkSpeed_buff_small", amount: 2 }]
+    },
+
+    {
+        id: "cracked_mirror_3",
+        map: 4,
+        x: 60,
+        y: 2,
+        image: "assets/img/quests/cracked_mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to interact with this Cracked Mirror",
+        dialogue: [
+            "A chill runs through you as your reflection flickers, then vanishes."
+        ],
+        rewards: [{ id: "health_buff_small", amount: 10 }]
+    },
 ];
 
 /*

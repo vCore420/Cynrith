@@ -164,5 +164,13 @@ const FLAVOUR_TEXT = [
   "I Did this because I can I guess.",
   "I hope you like cats.",
   "We’re just two lost souls swimmin’ in a fish bowl year after year",
-  "There's nothing scary about chickens"
+  "There's nothing scary about chickens",
+  "Are you a Weetbix kid?",
+  "I know a guy who'll lend us his metal detector for $100!",
+  "Alway blow on your pie!",
+  "If experencing issues, please remove the disk and give it a clean.",
+  "Technology is a word that describes something that doesn't work yet.",
+  "I used to be an adventurer like you, then I took an arrow in the knee.",
+  "Est 1066",
+  ""
 ];
