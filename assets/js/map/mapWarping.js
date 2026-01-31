@@ -84,66 +84,61 @@ function isPlayerAdjacentToTile(x, y) {
 
 
 // Warp to a map by index, placing player at a given location
-function warpToMap(mapIndex, spawnType = "spawn", onWarped) {
+function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
+    // Accept numeric (0,1,2...) or string ("title1","dungeon1")
+    const isNumericMap = (typeof mapIndex === "number") ||
+        (mapIndex !== null && mapIndex !== "" && !isNaN(mapIndex) && isFinite(Number(mapIndex)));
+    const mapKey = isNumericMap ? `map${mapIndex}` : String(mapIndex);
+
     showScreenTransition(() => {
-    currentMapIndex = mapIndex;
-    map.onLoad = function() {
-        const spawn = map.data[spawnType];
+        currentMapIndex = mapIndex; // keep existing variable for the rest of the game
 
-        if (spawn) {
-            let spawnX = spawn.x;
-            let spawnY = spawn.y;
+        map.onLoad = function() {
+            const spawn = map.data[spawnType];
 
-            // If warping to a teleport stone, spawn player on the tile BELOW the stone
-            if (spawnType === "teleport" || spawnType === "spawn") {
-                spawnY += 1; // Move player to the tile under the stone
+            let spawnX, spawnY;
+            if (targetPos && typeof targetPos.x === "number" && typeof targetPos.y === "number") {
+                spawnX = targetPos.x;
+                spawnY = targetPos.y;
+            } else if (spawn) {
+                spawnX = spawn.x;
+                spawnY = spawn.y;
+                if (spawnType === "teleport" || spawnType === "spawn") {
+                    spawnY += 1; // Move player to the tile under the stone
+                }
             }
 
-            console.log("[WarpToMap] Setting player position to:", spawnX, spawnY, "for spawnType:", spawnType);
-            player.pos.x = spawnX * config.size.tile;
-            player.pos.y = spawnY * config.size.tile;
-            player.tile.x = spawnX;
-            player.tile.y = spawnY;
-        }
+            if (typeof spawnX === "number" && typeof spawnY === "number") {
+                console.log("[WarpToMap] Setting player position to:", spawnX, spawnY, "for spawnType:", spawnType);
+                player.pos.x = spawnX * config.size.tile;
+                player.pos.y = spawnY * config.size.tile;
+                player.tile.x = spawnX;
+                player.tile.y = spawnY;
+            }
 
-        if (typeof spawnCharactersForMap === "function") {
-            spawnCharactersForMap(currentMapIndex);
-        }
+            if (typeof spawnCharactersForMap === "function") spawnCharactersForMap(currentMapIndex);
+            if (typeof spawnInteractableTilesForMap === "function") spawnInteractableTilesForMap(currentMapIndex);
+            if (typeof spawnTriggerTilesForMap === "function") spawnTriggerTilesForMap(currentMapIndex);
+            if (typeof spawnTeleportStonesForMap === "function") spawnTeleportStonesForMap(currentMapIndex);
+            if (typeof spawnWorldSpritesForMap === "function") spawnWorldSpritesForMap(currentMapIndex);
 
-        if (typeof spawnInteractableTilesForMap === "function") {
-            spawnInteractableTilesForMap(currentMapIndex);
-            console.log("[WarpToMap] Interactable tiles spawned for map index:", currentMapIndex);
-        }
+            // Fade out current music and fade in new map music
+            if (window.SoundManager) {
+                SoundManager.fadeBgMusicVolume(0, 700);
+                setTimeout(() => {
+                    SoundManager.stopBgMusic();
+                    const bgMusicSrc = `assets/sound/bg_${mapKey}.mp3`;
+                    SoundManager.playBgMusic(bgMusicSrc);
+                    SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
+                }, 750);
+            }
 
-        if (typeof spawnTriggerTilesForMap === "function") {
-            spawnTriggerTilesForMap(currentMapIndex);
-            console.log("[WarpToMap] Trigger tiles spawned for map index:", currentMapIndex);
-        }
+            hideScreenTransition();
+            if (typeof onWarped === "function") onWarped();
+            console.log("[WarpToMap] Map loaded successfully:", mapIndex);
+        };
 
-        if (typeof spawnTeleportStonesForMap === "function") {
-            spawnTeleportStonesForMap(currentMapIndex);
-        }
-
-        if (typeof spawnWorldSpritesForMap === "function") {
-            spawnWorldSpritesForMap(mapIndex);
-        }
-
-        // Fade out current music and fade in new map music
-        if (window.SoundManager) {
-            SoundManager.fadeBgMusicVolume(0, 700);
-            setTimeout(() => {
-                SoundManager.stopBgMusic();
-                const bgMusicSrc = `assets/sound/bg_map${mapIndex}.mp3`;
-                SoundManager.playBgMusic(bgMusicSrc);
-                SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
-            }, 750);
-        }
-
-        hideScreenTransition();
-        if (typeof onWarped === "function") onWarped();
-        console.log("[WarpToMap] Map loaded successfully:", mapIndex);
-    };
-    map.load("map" + mapIndex);
+        map.load(mapKey);
     });
 }
 

@@ -624,29 +624,67 @@ const INTERACTABLE_TILES = [
         ],
         rewards: [{ id: "health_buff_small", amount: 10 }]
     },
+
+    {
+        id: "mirror_1",
+        map: 4,
+        x: 22,
+        y: 28,
+        image: "assets/img/quests/cracked_mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 18, y: 19 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_2",
+        map: 4,
+        x: 26,
+        y: 59,
+        image: "assets/img/quests/cracked_mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "You reach into the mirror and grab a small vial!"
+        ],
+        rewards: [{ id: "health_buff_small", amount: 5 }],
+    },
 ];
 
 /*
     INTERACTABLE TILE TEMPLATE
 
-    id:           // Unique string identifier
-    map:          // Map index or name (number or string)
-    x:            // Tile X coordinate (number)
-    y:            // Tile Y coordinate (number)
-    image:        // Path to static image (optional, if not using spriteSheet)
-    spriteSheet:  // Path to sprite sheet (optional, for animated tiles)
-    imageW:       // Width of the sprite/sheet in pixels (optional, for spriteSheet)
-    imageH:       // Height of the sprite/sheet in pixels (optional, for spriteSheet)
-    rows:         // Number of rows in sprite sheet (optional, for spriteSheet)
-    cols:         // Number of columns in sprite sheet (optional, for spriteSheet)
-    animSpeed:    // Animation speed (frames per update, optional, for spriteSheet)
-    animOnTrigger:// true/false (optional, if animation starts only after interaction)
-    zIndex:       // 0 (below player) or 1 (above player), optional
-    collision:    // true/false (optional, blocks movement if true)
-    notification: // Text to show when player is adjacent/on tile (optional)
-    dialogue:     // Array of dialogue lines shown on interaction (required)
-    rewards:      // Array of { id: "item_id", amount: n } (optional, items given on interaction)
-    sound: {      // Sound options for this tile (optional)
+    id:                  // Unique string identifier
+    map:                 // Map index or name (number or string)
+    x:                   // Tile X coordinate (number)
+    y:                   // Tile Y coordinate (number)
+    image:               // Path to static image (optional, if not using spriteSheet)
+    spriteSheet:         // Path to sprite sheet (optional, for animated tiles)
+    imageW:              // Width of the sprite/sheet in pixels (optional, for spriteSheet)
+    imageH:              // Height of the sprite/sheet in pixels (optional, for spriteSheet)
+    rows:                // Number of rows in sprite sheet (optional, for spriteSheet)
+    cols:                // Number of columns in sprite sheet (optional, for spriteSheet)
+    animSpeed:           // Animation speed (frames per update, optional, for spriteSheet)
+    animOnTrigger:       // true/false (optional, if animation starts only after interaction)
+    zIndex:              // 0 (below player) or 1 (above player), optional
+    collision:           // true/false (optional, blocks movement if true)
+    teleport:            // optional: { map: n, x: n, y: n } to teleport player on interaction
+    allowRepeat:         // optional: allow multiple interactions (no one-time lock)
+    persistAfterTrigger: // optional: keep tile spawned after interaction (even if static image)
+    notification:        // Text to show when player is adjacent/on tile (optional)
+    dialogue:            // Array of dialogue lines shown on interaction (required)
+    rewards:             // Array of { id: "item_id", amount: n } (optional, items given on interaction)
+    sound: {             // Sound options for this tile (optional)
         enabled: true,                // true/false, whether sound should play
         file: "sound_file.mp3",       // sound file name in assets/sound/sfx/interactions/
         type: "loop"|"ambient"|"trigger" // sound type: loop (continuous), ambient (random), trigger (play once on interaction)
@@ -668,6 +706,9 @@ const INTERACTABLE_TILES = [
         animOnTrigger: true,
         zIndex: 1,
         collision: true,
+        teleport: { map: 2, x: 5, y: 5 },
+        allowRepeat: false,
+        persistAfterTrigger: false,
         notification: "Press A to activate the statue.",
         dialogue: [
             "You touch the statue. It begins to glow and shift, revealing hidden glyphs."

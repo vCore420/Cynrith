@@ -98,38 +98,65 @@ function drawSingleInteractableTile(tile) {
 function checkInteractableTileInteraction() {
     if (!window.activeInteractableTiles) return;
     window.activeInteractableTiles.forEach(tile => {
+        const alreadyTriggered = !!triggeredInteractableTiles[tile.id];
+        const repeatable = tile.allowRepeat === true;
+
         // Check if player is on the tile OR one of the 4 adjacent tiles
         const adjacentOrOn =
-            (player.tile.x === tile.x && player.tile.y === tile.y) || // On the tile
+            (player.tile.x === tile.x && player.tile.y === tile.y) ||
             (player.tile.x === tile.x && Math.abs(player.tile.y - tile.y) === 1) ||
             (player.tile.y === tile.y && Math.abs(player.tile.x - tile.x) === 1);
 
-        // Only show notification if tile has NOT been triggered
-        if (adjacentOrOn && !tile.notifShown && !triggeredInteractableTiles[tile.id]) {
+        // Notification
+        if (adjacentOrOn && !tile.notifShown && (!alreadyTriggered || repeatable)) {
             notify(tile.notification, 2500);
             tile.notifShown = true;
-        } else if (!adjacentOrOn || triggeredInteractableTiles[tile.id]) {
+        } else if (!adjacentOrOn || (alreadyTriggered && !repeatable)) {
             tile.notifShown = false;
         }
 
-        if (adjacentOrOn && actionButtonAPressed && !triggeredInteractableTiles[tile.id]) {
+        // Interaction
+        if (adjacentOrOn && actionButtonAPressed && (!alreadyTriggered || repeatable)) {
             controlsEnabled = false;
             player.frozen = true;
             dialogue(...tile.dialogue);
-            triggeredInteractableTiles[tile.id] = true; // <--- Mark as triggered
+
+            // Mark as triggered only if not repeatable
+            if (!repeatable) {
+                triggeredInteractableTiles[tile.id] = true;
+            }
+
             playTriggerTileSound(tile);
+
             // Give rewards
             tile.rewards.forEach(r => {
-                    addItem(r.id, r.amount);
-                    // Show notification for each item added
-                    const def = ITEM_DEFINITIONS[r.id];
-                    if (def) notify(`Added ${r.amount}x ${def.name} to inventory`, 3500);
+                addItem(r.id, r.amount);
+                const def = ITEM_DEFINITIONS[r.id];
+                if (def) notify(`Added ${r.amount}x ${def.name} to inventory`, 3500);
+            });
+
+            // Teleport after interaction if defined
+            if (tile.teleport && typeof warpToMap === "function") {
+                const dest = tile.teleport;
+                const posOverride =
+                    (typeof dest.x === "number" && typeof dest.y === "number")
+                        ? { x: dest.x, y: dest.y }
+                        : null;
+                warpToMap(dest.map, dest.spawnType || "spawn", posOverride, () => {
+                    player.frozen = false;
+                    controlsEnabled = true;
                 });
-            // Only remove from active list if NOT animOnTrigger
-            if (!tile.animOnTrigger) {
+            } else {
+                player.frozen = false;
+                controlsEnabled = true;
+            }
+
+            // Remove from active list unless told to persist or anim-on-trigger keeps it
+            if (!tile.animOnTrigger && tile.persistAfterTrigger !== true) {
                 window.activeInteractableTiles = window.activeInteractableTiles.filter(t => t.id !== tile.id);
             }
-            actionButtonAPressed = false; 
+
+            actionButtonAPressed = false;
             console.log(`[InteractableTile] Interacted with tile ${tile.id} at (${tile.x}, ${tile.y})`);
         }
     });

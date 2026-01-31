@@ -1027,7 +1027,7 @@ const NPC_DEFINITIONS = {
             "To find your way, you must learn which reflections are true and which are tricks."
         ],
         questGiven: [
-            "Scattered through these halls are three Marked Mirrors. Step through each one and return to me. Only then will the path ahead reveal itself."
+            "Scattered through these halls are three Marked Mirrors. Find and touch each one and return to me. Only then will the halls of Umbracourt reveal the path ahead."
         ],
         questIncomplete: [
             "The mirrors shift when watched. Have you found all three Marked Mirrors yet?",
