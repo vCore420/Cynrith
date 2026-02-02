@@ -1056,6 +1056,60 @@ const NPC_DEFINITIONS = {
         },
     },
 
+    // Umbracourt foyer NPCs (flavor / immersion only)
+
+    kael_mirrorscar: {
+        id: "kael_mirrorscar",
+        name: "Kael the Mirrorscarred",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 48, y: 75, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
+        ],
+        dialogue: {
+            default: [
+                "Careful where you look. These halls remember faces and play them back wrong.",
+                "I once saw myself walking ahead, humming a song I’ve never learned. Been uneasy since.",
+                "If you catch your reflection smiling without you, turn away. Some mirrors are hungry."
+            ]
+        }
+    },
+
+    sura_candlewright: {
+        id: "sura_candlewright",
+        name: "Sura the Candlewright",
+        sprite: "assets/img/npc/npc_f_4.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 46, y: 65, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
+        ],
+        dialogue: {
+            default: [
+                "I craft candles from umbra wax. They burn cold, but they keep the echoes back.",
+                "Each flame holds a name. Some go out on their own. Some never dim. I don’t ask why anymore.",
+                "If you hear a whisper in the light, answer softly. The shadows here dislike being ignored."
+            ]
+        }
+    },
+
+    dorian_gatewatch: {
+        id: "dorian_gatewatch",
+        name: "Dorian the Gatewatch",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 37, y: 64, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
+        ],
+        dialogue: {
+            default: [
+                "You’re late to the party. The Shadowed Hand’s chairs are empty, but their whispers linger.",
+                "I’ve seen doors open for voices I don’t hear. If a wall breathes near you, step aside.",
+                "Ascend if you must. Just remember: every step up was paid for by someone who never came back down."
+            ]
+        }
+    },
+
+
 
 };
 
@@ -1341,7 +1395,36 @@ const ENEMY_TYPES = {
             { map: 3, x: 58, y: 37, wanderArea: { x1: 46, y1: 26, x2: 60, y2: 36 } },
         ]
     },
+ 
+    // -------- Floor 5 ---------
 
+    umbral_slime: {
+        id: "umbral_slime",
+        name: "Umbral Slime",
+        sprite: "assets/img/enemy/slime_03.png",
+        moveSpeed: 0.9,
+        distance: 3 ,
+        maxHealth: 120,
+        attack: 36,
+        defense: 14,
+        speed: 1.1,
+        xpGain: 40,
+        loot: [
+            { item: "maxHealth_buff_small",   chance: 70, amount: [1, 3] },
+            { item: "money",          chance: 40, amount: [6, 12] }
+        ],
+        spawns: [
+            { map: 4, x: 73, y: 39, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 74, y: 30, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 68, y: 34, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 65, y: 39, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 60, y: 36, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 56, y: 32, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 54, y: 38, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 48, y: 40, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 48, y: 30, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+        ]
+    },
 
 };
 

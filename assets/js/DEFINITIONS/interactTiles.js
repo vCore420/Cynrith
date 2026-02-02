@@ -628,9 +628,27 @@ const INTERACTABLE_TILES = [
     {
         id: "mirror_1",
         map: 4,
+        x: 26,
+        y: 59,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "You reach into the mirror and grab a small vial!"
+        ],
+        rewards: [{ id: "health_buff_small", amount: 5 }],
+    },
+
+    {
+        id: "mirror_2", // first teleport mirror goes to M3 and M4
+        map: 4,
         x: 22,
         y: 28,
-        image: "assets/img/quests/cracked_mirror.png",
+        image: "assets/img/quests/mirror.png",
         collision: false,
         zIndex: 0,
         animOnTrigger: false,
@@ -645,19 +663,285 @@ const INTERACTABLE_TILES = [
     },
 
     {
-        id: "mirror_2",
+        id: "mirror_3", // M3 comes from M2 and goes to bottom right of map
         map: 4,
-        x: 26,
-        y: 59,
-        image: "assets/img/quests/cracked_mirror.png",
+        x: 15,
+        y: 15,
+        image: "assets/img/quests/mirror.png",
         collision: false,
         zIndex: 0,
         animOnTrigger: false,
+        teleport: { map: 4, x: 67, y: 62 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
         notification: "Press A to interact with this Mirror",
         dialogue: [
-            "You reach into the mirror and grab a small vial!"
+            "This Mirror seems to be showing you a different room!"
         ],
-        rewards: [{ id: "health_buff_small", amount: 5 }],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_4", // M4 comes from M2 and goes to M5, M6 and M7
+        map: 4,
+        x: 20,
+        y: 15,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 29, y: 74 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_5",  // M5 comes from M4 goes to middle right of map
+        map: 4,
+        x: 23,
+        y: 73,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 75, y: 32 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_6", // M6 comes from M4 goes to non cracked mirror room, M8 to return and a skill gem is here and a hard enemy  
+        map: 4,
+        x: 25,
+        y: 73,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 70, y: 16 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_7", // M7 comes from M4 goes to to cracked mirror room in middle, as well as M10 to return
+        map: 4,
+        x: 27,
+        y: 73,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 59, y: 22 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_8", // M8 comes from M6 goes back to main map 
+        map: 4,
+        x: 69,
+        y: 10,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 67, y: 62 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_9", // M9 comes from M6 and gives a skill gem
+        map: 4,
+        x: 76,
+        y: 12,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to have a skill gem inside of it!"
+        ],
+        rewards: [{ id: "blue_gem", amount: 1 }],
+    },
+    
+    {
+        id: "mirror_10", // M10 comes from M7 goes back to main map 
+        map: 4,
+        x: 64,
+        y: 19,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 75, y: 32 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_11", // Loot Mirror
+        map: 4,
+        x: 62,
+        y: 49,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to have something special inside of it!"
+        ],
+        rewards: [{ id: "atkSpeed_buff_small", amount: 4 }],
+    },
+
+    {
+        id: "mirror_12", // Loot Mirror
+        map: 4,
+        x: 68,
+        y: 48,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to have something special inside of it!"
+        ],
+        rewards: [{ id: "maxHealth_buff_small", amount: 5 }],
+    },
+
+    {
+        id: "mirror_13", // goes to cracked mirror room on left and M14
+        map: 4,
+        x: 70,
+        y: 52,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 8, y: 21 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_14", // Return Mirror to main map
+        map: 4,
+        x: 3,
+        y: 24,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 15, y: 58 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_15", // Loot Mirror
+        map: 4,
+        x: 23,
+        y: 69,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 58, y: 7 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_16", // mirror to teleport room
+        map: 4,
+        x: 62,
+        y: 4,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 9, y: 7 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_17", // Return mirror from teleport room
+        map: 4,
+        x: 10,
+        y: 3,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 42, y: 62 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different room!"
+        ],
+        rewards: [],
     },
 ];
 
