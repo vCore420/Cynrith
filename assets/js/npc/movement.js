@@ -45,36 +45,30 @@ function moveEnemyTowardPlayer(char) {
 
     if (Math.abs(dx) > Math.abs(dy)) {
         if (dx !== 0) {
-            // Pixel-based collision check for X movement
             let tryMoveX = char.x + Math.sign(dx) * speed / config.size.tile;
             let px = tryMoveX * config.size.tile;
             let py = char.y * config.size.tile;
-            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : dx < 0 ? "left" : "down")) {
+            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : "left", char)) {
                 char.x = tryMoveX;
                 moved = true;
             }
         }
     } else if (dy !== 0) {
-        // Pixel-based collision check for Y movement
         let tryMoveY = char.y + Math.sign(dy) * speed / config.size.tile;
         let px = char.x * config.size.tile;
         let py = tryMoveY * config.size.tile;
-        if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down")) {
+        if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down", char)) {
             char.y = tryMoveY;
             moved = true;
         }
     }
 
-    if (moved) {
-        char.movement.moving = true;
-    } else {
-        char.movement.moving = false;
-    }
+    char.movement.moving = moved;
 }
 
 
 // Check collision at a pixel position for NPCs/Enemies
-function isNpcTileBlockedAtPixel(px, py, direction) {
+function isNpcTileBlockedAtPixel(px, py, direction, npcObj = null) {
     const tileSize = config.size.tile;
     const spriteSize = config.size.char;
     const offset = (spriteSize - tileSize) / 2;
@@ -99,10 +93,10 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
     }
 
     if (typeof player !== "undefined") {
-    if (isPlayerPixelCollision(px, py)) {
-        return true;
+        if (isPlayerPixelCollision(px, py, npcObj || {})) {
+            return true;
+        }
     }
-}
 
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
         return true; 
@@ -130,18 +124,20 @@ function isNpcTileBlockedAtPixel(px, py, direction) {
     }
 }
 
-function isPlayerPixelCollision(npcPx, npcPy) {
-    const playerPx = player.pos.x;
-    const playerPy = player.pos.y;
-    const npcSize = config.size.char;
-    const playerSize = config.size.char;
-    const padding = 16; // Adjust for your sprite size
-
+function isPlayerPixelCollision(npcPx, npcPy, npcObj) {
+    const npcBounds = getCharBounds(npcObj || {}, npcPx, npcPy);
+    const playerBounds = {
+        left: player.pos.x,
+        right: player.pos.x + config.size.char,
+        top: player.pos.y,
+        bottom: player.pos.y + config.size.char
+    };
+    const pad = npcBounds.padding;
     return (
-        playerPx + playerSize - padding > npcPx + padding &&
-        playerPx + padding < npcPx + npcSize - padding &&
-        playerPy + playerSize - padding > npcPy + padding &&
-        playerPy + padding < npcPy + npcSize - padding
+        playerBounds.right - pad > npcBounds.left + pad &&
+        playerBounds.left + pad < npcBounds.right - pad &&
+        playerBounds.bottom - pad > npcBounds.top + pad &&
+        playerBounds.top + pad < npcBounds.bottom - pad
     );
 }
 
@@ -215,12 +211,11 @@ function wanderAI(char) {
 
         let movedX = false, movedY = false;
 
-        // Move towards destination
         if (Math.abs(dx) > 0.01) {
             let tryMoveX = char.x + Math.sign(dx) * Math.min(Math.abs(dx), speed / config.size.tile);
             let px = tryMoveX * config.size.tile;
             let py = char.y * config.size.tile;
-            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : dx < 0 ? "left" : "down")) {
+            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : "left", char)) {
                 char.x = tryMoveX;
                 movedX = true;
             }
@@ -229,7 +224,7 @@ function wanderAI(char) {
             let tryMoveY = char.y + Math.sign(dy) * Math.min(Math.abs(dy), speed / config.size.tile);
             let px = char.x * config.size.tile;
             let py = tryMoveY * config.size.tile;
-            if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down")) {
+            if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down", char)) {
                 char.y = tryMoveY;
                 movedY = true;
             }
@@ -237,34 +232,30 @@ function wanderAI(char) {
 
         char.movement.moving = movedX || movedY;
 
-        // If stuck (can't move in either direction), cancel wander and pause
         if ((!movedX && Math.abs(dx) > 0.01) || (!movedY && Math.abs(dy) > 0.01)) {
             char.wanderState.moving = false;
             char.movement.moving = false;
-            char.wanderState.pauseTimer = Math.floor(Math.random() * 20) + 10; // Pause before next move
+            char.wanderState.pauseTimer = Math.floor(Math.random() * 20) + 10;
             return;
         }
 
-        // Arrived at destination tile
         if (Math.abs(dx) <= 0.01 && Math.abs(dy) <= 0.01) {
             char.x = char.wanderState.destX;
             char.y = char.wanderState.destY;
             char.wanderState.moving = false;
             char.movement.moving = false;
-            char.wanderState.pauseTimer = Math.floor(Math.random() * 20) + 10; // Pause before next move
+            char.wanderState.pauseTimer = Math.floor(Math.random() * 20) + 10;
         }
         return;
     }
 
-    // If pausing, count down
     if (char.wanderState.pauseTimer > 0) {
         char.movement.moving = false;
         char.wanderState.pauseTimer--;
         return;
     }
 
-    // Pick a new direction and destination tile
-    if (Math.random() < 0.04) { // Chance to start wandering
+    if (Math.random() < 0.04) {
         const dir = randomDirection();
         const move = keys[dir];
         const destX = Math.round(char.x) + Math.sign(move.x);
@@ -427,7 +418,7 @@ function moveEnemyTowardTile(char, tx, ty) {
     let newY = char.y + stepY;
 
     // Check pixel collision with player before moving
-    let wouldCollide = isPlayerPixelCollision(newX * config.size.tile, newY * config.size.tile);
+    let wouldCollide = isPlayerPixelCollision(newX * config.size.tile, newY * config.size.tile, char);
 
     if (!wouldCollide) {
         // Try diagonal move

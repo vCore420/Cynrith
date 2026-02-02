@@ -1109,7 +1109,51 @@ const NPC_DEFINITIONS = {
         }
     },
 
+    // --- Umbracourt Quartermaster (Trader NPC)
+    umbra_quartermaster: {
+        id: "umbra_quartermaster",
+        name: "Rylin the Quartermaster",
+        sprite: "assets/img/npc/npc_m_1.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 75, y: 69, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } } // foyer side nook
+        ],
+        dialogue: {
+            default: [
+                "Supplies for those who brave the mirrors. I buy what the lower floors gave you, sell what keeps you breathing here.",
+                "If the echoes press too close, take a tonic. Cold light beats cold steel in these halls.",
+                "No refunds if the glass bites back."
+            ]
+        },
+        trader: "trader4"
+    },
 
+    // Boss Warning
+    serin_mirror_warden: {
+        id: "serin_mirror_warden",
+        name: "Serin of the Warded Path",
+        sprite: "assets/img/npc/npc_f_6.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 42, y: 28, wanderArea: { x1: 41, y1: 26, x2: 43, y2: 29 } } 
+        ],
+        dialogue: {
+            default: [
+                "Hold a moment. The hall ahead is not for the unready. Its keeper reflects more than blades.",
+                "Talk to the folk in the foyer; let their echoes settle in you. Strength isn’t only in your arm.",
+                "If you must step forward, do it knowing you’ve gathered all the light you can carry."
+            ]
+        },
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 41, y: 29 }, 
+                { x: 42, y: 29 }, 
+                { x: 43, y: 29 }
+            ],
+            triggered: false
+        }
+    },
 
 };
 
@@ -1121,6 +1165,9 @@ const npc_template = {
     id: "unique_npc_id", // Unique string ID for this NPC
     name: "NPC Name",
     sprite: "assets/img/npc/npc_m_1.png", // Path to NPC sprite image
+    spriteWidth: 128,   // source frame width
+    spriteHeight: 128,  // source frame height
+    drawScale: 1.6,     // render bigger on the map
     interactive: true, // Can the player interact with this NPC?
     spawns: [
         { map: 0, x: 10, y: 10, wanderArea: { x1: 8, y1: 8, x2: 12, y2: 12 } }
@@ -1423,6 +1470,77 @@ const ENEMY_TYPES = {
             { map: 4, x: 54, y: 38, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 48, y: 40, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 48, y: 30, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
+            { map: 4, x: 59, y: 19,  wanderArea: { x1: 58, y1: 18,  x2: 64, y2: 23 } }, 
+        ]
+    },
+
+    // Floor 5 Boss
+    obsidian_mirror_warden: {
+        id: "obsidian_mirror_warden",
+        name: "Obsidian Mirror Warden",
+        sprite: "assets/img/enemy/obsidian_mirror_warden.png",
+        spriteWidth: 128,
+        spriteHeight: 128,
+        drawScale: 1, 
+        isBoss: true,
+        moveSpeed: 0.7,
+        distance: 4.5,
+        maxHealth: 560,
+        attack: 52,
+        defense: 38,
+        speed: 1.3,
+        xpGain: 840,
+        loot: [
+            { item: "glass_shard",    chance: 80, amount: [4, 8] },
+            { item: "echo_fragment",  chance: 40, amount: [1, 2] },
+            { item: "memory_shard",   chance: 22, amount: [1, 1] },
+            { item: "money",          chance: 100, amount: [60, 120] }
+        ],
+        spawns: [
+            { map: 4, x: 38, y: 14, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 19 } }
+        ]
+    },
+
+    warden_phantom: {
+        id: "warden_phantom",
+        name: "Warden Phantom",
+        sprite: "assets/img/enemy/vampire_01.png",
+        moveSpeed: 1.1,
+        distance: 4.5,
+        maxHealth: 145,
+        attack: 34,
+        defense: 14,
+        speed: 1.4,
+        xpGain: 75,
+        loot: [
+            { item: "umbra_tonic",   chance: 30, amount: [1, 2] },
+            { item: "maxHealth_buff_small", chance: 60, amount: [1, 3] },
+            { item: "money",         chance: 80, amount: [10, 18] }
+        ],
+        spawns: [
+            // Upper corridor to boss hall (map 4)
+            { map: 4, x: 42, y: 41, wanderArea: { x1: 41, y1: 39, x2: 43, y2: 49 } },
+            { map: 4, x: 42, y: 43, wanderArea: { x1: 41, y1: 39, x2: 43, y2: 49 } },
+            { map: 4, x: 41,  y: 47,  wanderArea: { x1: 41, y1: 39, x2: 43, y2: 49 } },
+            { map: 4, x: 37, y: 57,  wanderArea: { x1: 30, y1: 57,  x2: 39, y2: 62 } },
+            { map: 4, x: 31, y: 60,  wanderArea: { x1: 30, y1: 57,  x2: 39, y2: 62 } },
+            { map: 4, x: 15, y: 46,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 9, y: 44,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 4, y: 45,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 8, y: 41,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 2, y: 38,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 14, y: 40,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 15, y: 34,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 10, y: 32,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 6, y: 35,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 2, y: 32,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 75, y: 14,  wanderArea: { x1: 68, y1: 9,  x2: 77, y2: 18 } }, 
+            { map: 4, x: 2, y: 32,  wanderArea: { x1: 1, y1: 31,  x2: 17, y2: 47 } }, 
+            { map: 4, x: 74, y: 50,  wanderArea: { x1: 54, y1: 45,  x2: 77, y2: 53 } }, 
+            { map: 4, x: 72, y: 46,  wanderArea: { x1: 54, y1: 45,  x2: 77, y2: 53 } }, 
+            { map: 4, x: 65, y: 48,  wanderArea: { x1: 54, y1: 45,  x2: 77, y2: 53 } }, 
+            { map: 4, x: 57, y: 47,  wanderArea: { x1: 54, y1: 45,  x2: 77, y2: 53 } },
+            { map: 4, x: 3, y: 22,  wanderArea: { x1: 2, y1: 20,  x2: 9, y2: 24 } },  
         ]
     },
 
@@ -1435,6 +1553,10 @@ const enemy_template = {
     id: "unique_enemy_id", // Unique string ID for this enemy
     name: "Enemy Name",
     sprite: "assets/img/enemy/enemy_01.png", // Path to enemy sprite image
+    spriteWidth: 128,   // source frame width
+    spriteHeight: 128,  // source frame height
+    drawScale: 1.6,     // render bigger on the map
+    isBoss: true,    // wont repsawn after death if boss true, only on map loads
     moveSpeed: 1.0, // Movement speed
     distance: 3, // Hostile distance to player
     maxHealth: 20, // Maximum health

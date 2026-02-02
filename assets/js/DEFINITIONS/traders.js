@@ -50,6 +50,31 @@ const TRADER_DEFINITIONS = {
         ]
     },
 
+    // -------- Floor 5 --------
+
+    trader4: {
+        buy: [
+            { id: "health_buff_small",   price: 5 },
+            { id: "def_buff_small",      price: 10 },
+            { id: "atk_buff_small",      price: 12 },
+            { id: "maxHealth_buff_small", price: 26 },
+            { id: "atkSpeed_buff_small", price: 20 },
+            { id: "umbra_tonic",         price: 48 }, 
+            { id: "clarity_tincture",    price: 50 }, 
+            { id: "mirror_tonic",        price: 60 },
+            { id: "blue_gem",            price: 600 }
+        ],
+        sell: [
+            { id: "glass_shard",     price: 16 },
+            { id: "echo_fragment",   price: 18 },
+            { id: "memory_shard",    price: 24 },
+            { id: "choir_fragment",  price: 26 },
+            { id: "slime_ball",      price: 6 },
+            { id: "dewleaf",         price: 14 },
+            { id: "dustroot",        price: 10 }
+        ]
+    },
+
 };
 
 

@@ -25,7 +25,23 @@ const ITEM_EFFECTS = {
         const before = player.health;
         player.setHealth(player.maxHealth);
         notify(`You feel restored! Health fully regenerated (${player.maxHealth - before}).`, 1800);
-    }
+    },
+    umbra_tonic: function(player, amount = 1) {
+        const boost = 8 * amount;
+        player.addDefence(boost);
+        notify(`Defence increased by ${boost}!`, 1800);
+    },
+    clarity_tincture: function(player, amount = 1) {
+        const heal = 30 * amount;
+        const before = player.health;
+        player.setHealth(player.health + heal);
+        notify(`Restored ${player.health - before} health!`, 1800);
+    },
+    mirror_tonic: function(player, amount = 1) {
+        const boost = 15 * amount;
+        player.addAttackSpeed(boost);
+        notify(`Attack Speed increased by ${boost}!`, 1800);
+    },
     // Add more item effects here...
 };
 

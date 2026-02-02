@@ -43,7 +43,6 @@ const ITEM_DEFINITIONS = {
         sound: 'def.mp3'
     },
 
-
     maxHealth_buff_small: {
         id: "maxHealth_buff_small",
         name: "Max Health Buff - Small",
@@ -66,6 +65,42 @@ const ITEM_DEFINITIONS = {
         useable: true,
         removeable: true,
         sound: 'atkSpeed.mp3'
+    },
+
+    umbra_tonic: {
+        id: "umbra_tonic",
+        name: "Umbra Tonic",
+        description: "A cold draught that hardens the skin. Boosts defence by 8.",
+        image: "assets/img/items/umbra_tonic.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "def.mp3"
+    },
+
+    clarity_tincture: {
+        id: "clarity_tincture",
+        name: "Clarity Tincture",
+        description: "Cuts through lingering echoes. Cleanses player health by 30.",
+        image: "assets/img/items/clarity_tincture.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "health.mp3"
+    },
+
+    mirror_tonic: {
+        id: "mirror_tonic",
+        name: "Mirror Tonic",
+        description: "Light-foot brew that heightens Atk Speed by 15, like slipping between reflections.",
+        image: "assets/img/items/mirror_tonic.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "atkSpeed.mp3"
     },
 
     

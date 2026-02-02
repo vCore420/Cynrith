@@ -26,20 +26,20 @@ function getTotalXpGainModifier() {
 }
 
 function isNpcPixelCollision(npc, px, py) {
-    // px, py = player's pixel position
-    const npcPx = npc.x * config.size.tile;
-    const npcPy = npc.y * config.size.tile;
-    const npcSize = config.size.char;
-    const playerSize = config.size.char;
-
-    // Add padding to shrink the collision area
-    const padding = 18; // Try 8, 12, or 16 pixels for best feel
-
+    // npc is the other character (enemy/NPC); px/py are player pixel coords
+    const npcBounds = getCharBounds(npc);
+    const playerBounds = {
+        left: px,
+        right: px + config.size.char,
+        top: py,
+        bottom: py + config.size.char
+    };
+    const pad = npcBounds.padding;
     return (
-        px + playerSize - padding > npcPx + padding &&
-        px + padding < npcPx + npcSize - padding &&
-        py + playerSize - padding > npcPy + padding &&
-        py + padding < npcPy + npcSize - padding
+        playerBounds.right - pad > npcBounds.left + pad &&
+        playerBounds.left + pad < npcBounds.right - pad &&
+        playerBounds.bottom - pad > npcBounds.top + pad &&
+        playerBounds.top + pad < npcBounds.bottom - pad
     );
 }
 

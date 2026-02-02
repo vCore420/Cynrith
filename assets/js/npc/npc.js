@@ -23,6 +23,29 @@ setInterval(() => {
     });
 }, 125);
 
+function getCharDimensions(char) {
+    if (!char) {
+        return { w: config.size.char, h: config.size.char, padding: 18 };
+    }
+    const scale = char.drawScale || 1;
+    const baseW = char.spriteWidth || config.size.char;
+    const baseH = char.spriteHeight || config.size.char;
+    const w = baseW * scale;
+    const h = baseH * scale;
+    const padding = (typeof char.collisionPadding === "number") ? char.collisionPadding : 18;
+    return { w, h, padding };
+}
+
+function getCharBounds(char, overridePx = null, overridePy = null) {
+    const { w, h, padding } = getCharDimensions(char);
+    const baseX = (overridePx !== null ? overridePx : (char ? char.x * config.size.tile : 0));
+    const baseY = (overridePy !== null ? overridePy : (char ? char.y * config.size.tile : 0));
+    const left = baseX - (w - config.size.char) / 2;
+    const right = left + w;
+    const bottom = baseY + config.size.char;
+    const top = bottom - h;
+    return { left, right, top, bottom, padding };
+}
 
 // Base class for both NPC and Enemy
 function Character(x, y, spriteSrc, type = "npc", customData = {}) {
@@ -64,6 +87,10 @@ function drawCharacters() {
     characters.forEach(char => {
         if (!char.sprite || !char.sprite.complete || char.sprite.naturalWidth === 0) return;
 
+        const { w: drawW, h: drawH } = getCharDimensions(char);
+        const srcW = char.spriteWidth || config.size.char;
+        const srcH = char.spriteHeight || config.size.char;
+
         let frame = 1;
         if (char.movement && char.movement.key && keys[char.movement.key]) {
             const frames = keys[char.movement.key].f;
@@ -72,16 +99,20 @@ function drawCharacters() {
 
         let px = Math.floor(char.x * config.size.tile - viewport.x);
         let py = Math.floor(char.y * config.size.tile - viewport.y);
+
+        const dx = px - (drawW - config.size.char) / 2;
+        const dy = py - (drawH - config.size.char);
+
         context.drawImage(
             char.sprite,
-            frame * config.size.char,
+            frame * srcW,
             0,
-            config.size.char,
-            config.size.char,
-            px,
-            py,
-            config.size.char,
-            config.size.char
+            srcW,
+            srcH,
+            dx,
+            dy,
+            drawW,
+            drawH
         );
 
         // Draw '!' above NPCs with ready-to-complete quests
