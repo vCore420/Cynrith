@@ -888,7 +888,7 @@ const INTERACTABLE_TILES = [
     },
 
     {
-        id: "mirror_15", // Loot Mirror
+        id: "mirror_15", // teleport mirror to cracked mirror room and M16
         map: 4,
         x: 23,
         y: 69,
@@ -942,6 +942,265 @@ const INTERACTABLE_TILES = [
             "This Mirror seems to be showing you a different room!"
         ],
         rewards: [],
+    },
+
+    {
+        id: "mirror_18",
+        map: 4,
+        x: 56,
+        y: 62,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "Your reflection blinks a heartbeat after you do.",
+            "\"The halls remember faster than we forget.\""
+        ],
+        rewards: [{ id: "echo_fragment", amount: 1 }]
+    },
+
+    {
+        id: "mirror_19",
+        map: 4,
+        x: 77,
+        y: 63,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "For a moment, you see the foyer, then it fades.",
+            "\"Go back, grow wise, return with steadier hands.\""
+        ],
+        rewards: []
+    },
+
+    {
+        id: "mirror_20",
+        map: 4,
+        x: 59,
+        y: 75,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "Glass hums like a held breath.",
+            "\"The Shadowed Hand bargained here. Their debt is now yours to weigh.\""
+        ],
+        rewards: [{ id: "memory_shard", amount: 1 }]
+    },
+
+    {
+        id: "mirror_21",
+        map: 4,
+        x: 47,
+        y: 58,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "You hear a distant choir, off-key and tired.",
+            "\"If a wall breathes, answer softly. If it sighs, run.\""
+        ],
+        rewards: []
+    },
+
+    {
+        id: "mirror_22",
+        map: 4,
+        x: 71,
+        y: 73,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "A child’s voice: \"Did the Architect love us, once?\"",
+            "The glass fogs, then clears to nothing."
+        ],
+        rewards: [{ id: "health_buff_small", amount: 2 }]
+    },
+
+    {
+        id: "mirror_23",
+        map: 4,
+        x: 31,
+        y: 61,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "\"We left names etched in obsidian. The mirrors learned them, then made their own.\""
+        ],
+        rewards: []
+    },
+
+    {
+        id: "mirror_24",
+        map: 4,
+        x: 27,
+        y: 56,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "Your face shifts to someone older, kinder.",
+            "\"Strength is borrowed; return it with care.\""
+        ],
+        rewards: [{ id: "umbra_tonic", amount: 1 }]
+    },
+
+    {
+        id: "mirror_25",
+        map: 4,
+        x: 16,
+        y: 68,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "A flicker of firelight, then snow.",
+            "\"Some echoes burn, some freeze; both leave glass behind.\""
+        ],
+        rewards: []
+    },
+
+    {
+        id: "mirror_26",
+        map: 4,
+        x: 16,
+        y: 58,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        allowRepeat: false,
+        persistAfterTrigger: true,
+        notification: "Press A to peer into the mirror.",
+        dialogue: [
+            "You see the boss hall for a heartbeat, empty and waiting."
+        ],
+        rewards: [{ id: "mirror_tonic", amount: 1 }]
+    },
+
+    {
+        id: "mirror_27",
+        map: 4,
+        x: 37,
+        y: 24,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 1, x: 21, y: 32 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different FLOOR!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_28",
+        map: 4,
+        x: 29,
+        y: 19,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 49, y: 3 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different location!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_29",
+        map: 4,
+        x: 33,
+        y: 2,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 46, y: 20 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different location!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "mirror_30",
+        map: 4,
+        x: 51,
+        y: 12,
+        image: "assets/img/quests/mirror.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 4, x: 26, y: 6 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to interact with this Mirror",
+        dialogue: [
+            "This Mirror seems to be showing you a different location!"
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "sunny_2",
+        map: 4,
+        x: 29,
+        y: 24,
+        spriteSheet: "assets/img/worldSprites/sunny_man.png",
+        imageW: 1152,
+        imageH: 96,
+        rows: 1,
+        cols: 12,
+        animSpeed: 6,
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to listen to the Sunny Man.",
+        dialogue: [
+            "Sunny’s tail flicks toward the mirror. \"Some doors grin too wide.\"",
+            "\"Mirrors can lift you up... or drop you where you began.\"",
+            "\"If you leap, land on your feet.\""
+        ],
+        rewards: []
     },
 ];
 

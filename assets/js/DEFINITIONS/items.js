@@ -344,9 +344,18 @@ const ITEM_DEFINITIONS = {
         stackable: true,
         useable: true,
         removeable: true
-    }
+    },
 
-
+    command_sigil: {
+        id: "command_sigil",
+        name: "Command Sigil",
+        description: "An etched sigil once used by the Shadowed Hand to bind echoes.",
+        image: "assets/img/items/command_sigil.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: true
+    },
 };
 
 

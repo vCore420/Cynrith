@@ -240,6 +240,20 @@ const QUEST_DEFINITIONS = {
         redoable: true
     },
 
+    sigil_of_the_hand: {
+        id: "sigil_of_the_hand",
+        name: "Sigil of the Hand",
+        description: "Defeat the Shadowed Hand Remnant and claim its Command Sigil.",
+        type: "enemyDefeat",
+        enemyId: "shadowed_hand_remnant",
+        requiredAmount: 1,
+        rewards: [
+            { id: "command_sigil", amount: 1 },
+            { id: "umbra_tonic", amount: 4 },
+            { xp: 220 }
+        ],
+        redoable: false
+    },
 };
 
 

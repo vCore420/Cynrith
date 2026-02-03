@@ -129,6 +129,21 @@ const TRIGGER_TILES = [
         ]
     },
 
+    {
+        id: "remnant_warn_1",
+        map: 4,
+        x: 46,
+        y: 37, // corridor entry to side room
+        type: "dialogue",
+        sound: { enabled: true, file: "echo.mp3", type: "ambient" },
+        dialogue: [
+            "A cold whisper: \"A chair left waiting. A sigil left wanting.\"",
+            "\"Step light; the Hand keeps count.\""
+        ],
+        oneTime: true,
+        rewards: []
+    },
+
     // To Add: { type: "warp", ... }, { type: "frameChange", ... }
 ];
 

@@ -1116,7 +1116,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_m_1.png",
         interactive: true,
         spawns: [
-            { map: 4, x: 75, y: 69, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } } // foyer side nook
+            { map: 4, x: 75, y: 68, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } } // foyer side nook
         ],
         dialogue: {
             default: [
@@ -1161,7 +1161,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_f_4.png",
         interactive: true,
         spawns: [
-            { map: 4, x: 65, y: 72, wanderArea: { x1: 51, y1: 70, x2: 77, y2: 78 } }
+            { map: 4, x: 64, y: 72, wanderArea: { x1: 51, y1: 70, x2: 77, y2: 78 } }
         ],
         dialogue: {
             default: [
@@ -1180,6 +1180,84 @@ const NPC_DEFINITIONS = {
         },
         questId: "umbrafloor_echoes",
         questRedo: true
+    },
+
+    naera_sigilbinder: {
+        id: "naera_sigilbinder",
+        name: "Naera the Sigilbinder",
+        sprite: "assets/img/npc/npc_f_5.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 42, y: 54, wanderArea: { x1: 41, y1: 50, x2: 44, y2: 56 } }
+        ],
+        dialogue: {
+            default: [
+                "The Shadowed Hand left one sentinel in a side hall up ahead. It still clutches a Command Sigil.",
+                "Take it, if you can. The sigil quiets the mirrors, for a time."
+            ],
+            questGiven: [
+                "Face the remnant in the side chamber. Bring me its Command Sigil."
+            ],
+            questIncomplete: [
+                "The remnant still stirs. The sigil belongs in steadier hands."
+            ],
+            questComplete: [
+                "Well taken. The sigil remembers you now. Use its calm wisely."
+            ]
+        },
+        questId: "sigil_of_the_hand",
+        questRedo: false
+    },
+
+    pale_archivist_echo: {
+        id: "pale_archivist_echo",
+        name: "Pale Archivist (Echo)",
+        sprite: "assets/img/npc/npc_f_7.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 69, y: 12, wanderArea: { x1: 68, y1: 10, x2: 77, y2: 18 } }
+        ],
+        dialogue: {
+            default: [
+                "An echo of Veyra lingers here, softer, almost kind.",
+                "\"You’ve seen the Hand’s remnant. Every sigil is a promise unpaid.\"",
+                "\"Keep your name close. The mirrors like to borrow what they cannot return.\""
+            ]
+        }
+    },
+
+    orrin_lost_cartographer: {
+        id: "orrin_lost_cartographer",
+        name: "Orrin the Lost Cartographer",
+        sprite: "assets/img/npc/npc_m_2.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 20, y: 65, wanderArea: { x1: 17, y1: 64, x2: 24, y2: 66 } }
+        ],
+        dialogue: {
+            default: [
+                "The maze redraws itself when you blink. I stopped blinking, and now the walls hum my name.",
+                "I mapped these halls once. The paper turned to glass, the ink to echo. The map still screams in my pack.",
+                "If you get turned around, touch a mirror and listen. Some reflections are compasses, some are traps."
+            ]
+        }
+    },
+
+    isolde_gatebound: {
+        id: "isolde_gatebound",
+        name: "Isolde the Gatebound",
+        sprite: "assets/img/npc/npc_f_6.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 6, y: 5, wanderArea: { x1: 2, y1: 2, x2: 11, y2: 7 } } 
+        ],
+        dialogue: {
+            default: [
+                "The portal hums like a held note, waiting for a voice bold enough to answer.",
+                "I watched the Shadowed Hand step through here, thinking they commanded the mirrors. The mirrors only bowed to see them leave.",
+                "If you go on, carry a memory worth guarding. The next floor will ask you what you’re willing to forget."
+            ]
+        }
     },
 
 };
@@ -1488,16 +1566,17 @@ const ENEMY_TYPES = {
             { item: "money",          chance: 40, amount: [6, 12] }
         ],
         spawns: [
-            { map: 4, x: 73, y: 39, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
-            { map: 4, x: 74, y: 30, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
-            { map: 4, x: 68, y: 34, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
-            { map: 4, x: 65, y: 39, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 60, y: 36, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 56, y: 32, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 54, y: 38, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 48, y: 40, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
             { map: 4, x: 48, y: 30, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
-            { map: 4, x: 59, y: 19,  wanderArea: { x1: 58, y1: 18,  x2: 64, y2: 23 } }, 
+            { map: 4, x: 59, y: 19,  wanderArea: { x1: 58, y1: 18,  x2: 64, y2: 23 } },
+            { map: 4, x: 16, y: 73,  wanderArea: { x1: 1, y1: 53,  x2: 18, y2: 77 } },
+            { map: 4, x: 5, y: 60,  wanderArea: { x1: 1, y1: 53,  x2: 18, y2: 77 } },
+            { map: 4, x: 9, y: 54,  wanderArea: { x1: 1, y1: 53,  x2: 18, y2: 77 } },
+            { map: 4, x: 7, y: 69,  wanderArea: { x1: 1, y1: 53,  x2: 18, y2: 77 } }, 
+            { map: 4, x: 10, y: 76,  wanderArea: { x1: 1, y1: 53,  x2: 18, y2: 77 } },
         ]
     },
 
@@ -1571,6 +1650,64 @@ const ENEMY_TYPES = {
         ]
     },
 
+    shadowed_hand_remnant: {
+        id: "shadowed_hand_remnant",
+        name: "Shadowed Hand Remnant",
+        sprite: "assets/img/enemy/shadow_hand.png",
+        spriteWidth: 128,
+        spriteHeight: 128,
+        drawScale: 1,
+        isBoss: true,
+        moveSpeed: 0.9,
+        distance: 4,
+        maxHealth: 385,
+        attack: 44,
+        defense: 20,
+        speed: 1.2,
+        xpGain: 200,
+        loot: [
+            { item: "command_sigil", chance: 100, amount: 1 },
+            { item: "money", chance: 80, amount: [25, 45] }
+        ],
+        spawns: [
+            { map: 4, x: 72, y: 36, wanderArea: { x1: 66, y1: 30, x2: 77, y2: 43 } } // side room off main hall
+        ]
+    },
+
+    hallbound_brute: {
+        id: "hallbound_brute",
+        name: "Hallbound Brute",
+        sprite: "assets/img/enemy/orc_02.png",
+        moveSpeed: 0.9,
+        distance: 3.5,
+        maxHealth: 160,
+        attack: 42,
+        defense: 18,
+        speed: 1.0,
+        xpGain: 85,
+        loot: [
+            { item: "umbra_tonic",        chance: 30, amount: [1, 1] },
+            { item: "def_buff_small",     chance: 60, amount: [1, 2] },
+            { item: "money",              chance: 80, amount: [12, 22] }
+        ],
+        spawns: [
+            { map: 4, x: 77, y: 74, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 57, y: 70, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 56, y: 59, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 63, y: 66, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 68, y: 65, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 65, y: 56, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 66, y: 63, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 51, y: 68, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },
+            { map: 4, x: 48, y: 16, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 39, y: 17, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 38, y: 11, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 44, y: 5, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 37, y: 7, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 31, y: 11, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+            { map: 4, x: 27, y: 4, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
+        ]
+    },
 };
 
 /*
