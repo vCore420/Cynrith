@@ -227,6 +227,19 @@ const QUEST_DEFINITIONS = {
         redoable: false
     },
 
+    umbrafloor_echoes: {
+        id: "umbrafloor_echoes",
+        name: "Echoes in the Glass",
+        description: "Gather 4 Echo Fragments in Umbracourt’s halls.",
+        type: "itemCollect",
+        requiredItems: [{ id: "echo_fragment", amount: 4 }],
+        rewards: [
+            { id: "mirror_tonic", amount: 3 },
+            { xp: 140 }
+        ],
+        redoable: true
+    },
+
 };
 
 

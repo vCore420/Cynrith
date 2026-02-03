@@ -78,6 +78,57 @@ const TRIGGER_TILES = [
             { id: "glitch_fragment", amount: 1 }
         ]
     },
+
+    // -------- Floor 5 --------
+
+    {
+        id: "echo_f5_1",
+        map: 4,
+        x: 10,
+        y: 64, 
+        type: "dialogue",
+        sound: { enabled: true, file: "echo.mp3", type: "ambient" },
+        dialogue: [
+            "A whisper in the stone: \"Mirrors were built to remember the ones we lost. Sometimes they remember wrong.\""
+        ],
+        oneTime: true,
+        rewards: [
+            { id: "echo_fragment", amount: 1 }
+        ]
+    },
+
+    {
+        id: "echo_f5_2",
+        map: 4,
+        x: 32,
+        y: 64, 
+        type: "dialogue",
+        sound: { enabled: true, file: "echo.mp3", type: "ambient" },
+        dialogue: [
+            "Faint humming: \"The Shadowed Hand met here, chanting over glass and blood. Their chairs are empty, their bargains linger.\""
+        ],
+        oneTime: true,
+        rewards: [
+            { id: "memory_shard", amount: 1 }
+        ]
+    },
+
+    {
+        id: "echo_f5_3",
+        map: 4,
+        x: 57,
+        y: 66, 
+        type: "dialogue",
+        sound: { enabled: true, file: "echo.mp3", type: "ambient" },
+        dialogue: [
+            "A cold draft carries a voice: \"If a wall breathes near you, step aside. Some doors open for names you do not know.\""
+        ],
+        oneTime: true,
+        rewards: [
+            { id: "glass_shard", amount: 2 }
+        ]
+    },
+
     // To Add: { type: "warp", ... }, { type: "frameChange", ... }
 ];
 

@@ -1109,7 +1109,7 @@ const NPC_DEFINITIONS = {
         }
     },
 
-    // --- Umbracourt Quartermaster (Trader NPC)
+    // Umbracourt Quartermaster (Trader NPC)
     umbra_quartermaster: {
         id: "umbra_quartermaster",
         name: "Rylin the Quartermaster",
@@ -1153,6 +1153,33 @@ const NPC_DEFINITIONS = {
             ],
             triggered: false
         }
+    },
+
+    lysa_mirror_scribe: {
+        id: "lysa_mirror_scribe",
+        name: "Lysa the Mirror Scribe",
+        sprite: "assets/img/npc/npc_f_4.png",
+        interactive: true,
+        spawns: [
+            { map: 4, x: 65, y: 72, wanderArea: { x1: 51, y1: 70, x2: 77, y2: 78 } }
+        ],
+        dialogue: {
+            default: [
+                "These halls keep copies of every step. I write what the mirrors whisper and hope they don’t change the endings on me.",
+                "Echo Fragments hum with old names. Bring me a few and I’ll show you how to listen past the static."
+            ],
+            questGiven: [
+                "Find 4 Echo Fragments in Umbracourt. Hold them to your ear, if they buzz, they’re real."
+            ],
+            questIncomplete: [
+                "Not enough echoes yet. The fragments hide near patrols and in quiet corners of the maze."
+            ],
+            questComplete: [
+                "Good. Hear that tone? That’s the hall remembering you. Take this, keep your steps light when the walls start to breathe."
+            ]
+        },
+        questId: "umbrafloor_echoes",
+        questRedo: true
     },
 
 };
