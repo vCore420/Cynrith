@@ -312,6 +312,8 @@ function handleEnemyDeath(enemy) {
         });
     }
 
+    if (enemy.isBoss) return;
+
     // Respawn enemy after cooldown at its original spawn
     setTimeout(() => {
         respawnEnemy(enemy.id, enemy._spawnIndex);
@@ -323,6 +325,7 @@ function handleEnemyDeath(enemy) {
 function respawnEnemy(enemyId, spawnIdx) {
     const def = ENEMY_TYPES[enemyId];
     if (!def || !def.spawns || spawnIdx == null) return;
+    if (def.isBoss) return;
     const spawnInfo = def.spawns[spawnIdx];
     if (!spawnInfo) return;
     const newEnemy = new Enemy(
