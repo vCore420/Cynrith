@@ -67,7 +67,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 **Completed**
 
-- Floors 1-4 with in depth lore, world building and game play 
+- Floors 1-5 with in depth lore, world building and game play 
 - Dynamic map loading 
 - Real-time combat, death and respawn system
 - Modular sprite sheet loader
@@ -91,13 +91,14 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - World, Dialogue, Player and Combat sounds effects and music
 - Expand documentation on how to creat new floor and other game assets
 - Installable for mobile devices
+- Interact tiles for interiors/caves
+- Boss battles
+- Ui Sound effects
 
 **To DO**
 
-- Trigger tiles for interiors/caves
 - Improved assets and polish
-- Ui Sound effects
-- Boss battles
+- Currently working on Floor 6 and onveral QOL 
 
 - Planning to make this a forever expanding project, something i just wanted to have as my own little world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 
@@ -106,6 +107,25 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 <summary>Change Logs</summary>
 
 <p>
+
+3/2 v1.0.0
+
+- Intractable tile mechanics updated, they can now teleport player to different coords on interaction, this works across maps too opening up intractable tiles to more uses. also added the ability to allowing intractable tiles to be re triggered. This will all be first seen in use on floor 5
+- Core Map warping function updated to accept any name or map number, allowing for future dungeon maps to be added - this should work like this for all map referencing across the definitions
+- Floor 5 has been worked on, first Npc quest is under way, npc and quest is made, teleport and loot mirrors are still needing to be set up around the map to marry this quest together - add a couple of story heavy mirors
+- Game is now taking a turn as the original FF7 has opened my eyes to the amazing world of these rpg style games, this is where the story gets deep
+
+- First quest fully set up for floor 5, mirrors all set up for quest, could do with a few more loot and dialouge ones around the map
+- npcs added to foyer of floor 5
+- first enemys added to floor 5 - Umbral Slimes
+- Trader added to floor 5 with new game items and skill gems for sale
+- Upgraded npc/enemy loader to allow for custom sprite size for bosses
+- Floor 5 Boss added, npc to warn about boss added, new enemys added across floor 5
+
+- Added new trigger tiles around flor 5 for lore
+- added new quest giver to floor 5 maze
+- Added new quest npc, lore npc, mini boss, covered the floor in mirrors (loot/lore/teleport) sunny man added and up to no good\
+- World sprites added to floor 5, new enemy sounds added bringing floor 5 to completion
 
 7/9 Beta v0.2.2
 
