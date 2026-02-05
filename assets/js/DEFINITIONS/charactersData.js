@@ -299,7 +299,7 @@ const NPC_DEFINITIONS = {
     mordis_relic_seeker: {
         id: "mordis_relic_seeker",
         name: "Mordis the Relic-Seeker",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_4.png",
         interactive: true,
         spawns: [
             { map: 1, x: 34, y: 21, wanderArea: { x1: 32, y1: 14, x2: 37, y2: 25 } }
@@ -378,7 +378,7 @@ const NPC_DEFINITIONS = {
     bram_the_lorekeeper: {
         id: "bram_the_lorekeeper",
         name: "Bram the Lorekeeper",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_5.png",
         interactive: true,
         spawns: [
             { map: 1, x: 23, y: 18, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
@@ -417,7 +417,7 @@ const NPC_DEFINITIONS = {
     fernix_trader: {
         id: "fernix_trader",
         name: "Fernix the Barterer",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_6.png",
         interactive: true,
         spawns: [
             { map: 2, x: 20, y: 6, wanderArea: { x1: 18, y1: 4, x2: 24, y2: 7 } }
@@ -467,7 +467,7 @@ const NPC_DEFINITIONS = {
     whispering_shade: {
         id: "whispering_shade",
         name: "The Whispering Shade",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_7.png",
         interactive: true,
         spawns: [
             { map: 2, x: 26, y: 17, wanderArea: { x1: 21, y1: 13, x2: 29, y2: 19 } }
@@ -557,7 +557,7 @@ const NPC_DEFINITIONS = {
     myco_luminous: {
         id: "myco_luminous",
         name: "Myco the Luminous",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_2.png",
         interactive: true,
         spawns: [
             { map: 2, x: 33, y: 49, wanderArea: { x1: 29, y1: 40, x2: 40, y2: 56 } }
@@ -643,7 +643,7 @@ const NPC_DEFINITIONS = {
     ork_wanderer: {
         id: "ork_wanderer",
         name: "Ork Wanderer",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_4.png",
         interactive: true,
         spawns: [
             { map: 2, x: 14, y: 37, wanderArea: { x1: 10, y1: 25, x2: 16, y2: 40 } }
@@ -658,7 +658,7 @@ const NPC_DEFINITIONS = {
     lost_adventurer: {
         id: "lost_adventurer",
         name: "Lost Adventurer",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_5.png",
         interactive: true,
         spawns: [
             { map: 2, x: 45, y: 27, wanderArea: { x1: 41, y1: 26, x2: 49, y2: 29 } }
@@ -703,7 +703,7 @@ const NPC_DEFINITIONS = {
     mistbound_shade: {
         id: "mistbound_shade",
         name: "Mistbound Shade",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_6.png",
         interactive: true,
         spawns: [
             { map: 2, x: 22, y: 22, wanderArea: { x1: 18, y1: 22, x2: 25, y2: 23 } }
@@ -733,7 +733,7 @@ const NPC_DEFINITIONS = {
     mushroom_echoer: {
         id: "mushroom_echoer",
         name: "Mushroom Echoer",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_7.png",
         interactive: true,
         spawns: [
             { map: 2, x: 21, y: 52, wanderArea: { x1: 18, y1: 50, x2: 24, y2: 55 } }
@@ -748,7 +748,7 @@ const NPC_DEFINITIONS = {
     forest_watcher: {
         id: "forest_watcher",
         name: "Forest Watcher",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_1.png",
         interactive: true,
         spawns: [
             { map: 2, x: 9, y: 59, wanderArea: { x1: 5, y1: 56, x2: 12, y2: 62 } }
@@ -768,7 +768,7 @@ const NPC_DEFINITIONS = {
     glass_isle_vendor: {
         id: "glass_isle_vendor",
         name: "Vessel the Glass Isle Vendor",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_2.png",
         interactive: true,
         spawns: [
             { map: 3, x: 68, y: 77, wanderArea: { x1: 65, y1: 74, x2: 74, y2: 78 } }
@@ -847,7 +847,7 @@ const NPC_DEFINITIONS = {
     sundered_echo: {
         id: "sundered_echo",
         name: "The Sundered Echo",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_3.png",
         interactive: true,
         spawns: [
             { map: 3, x: 3, y: 3, wanderArea: { x1: 1, y1: 1, x2: 5, y2: 7 } }
@@ -881,7 +881,7 @@ const NPC_DEFINITIONS = {
     archivist_venn: {
         id: "archivist_venn",
         name: "Archivist Venn",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_4.png",
         interactive: true,
         spawns: [
             { map: 3, x: 73, y: 5, wanderArea: { x1: 67, y1: 2, x2: 77, y2: 10 } }
@@ -915,7 +915,7 @@ const NPC_DEFINITIONS = {
     spires_sentinel: {
         id: "spires_sentinel",
         name: "Sentinel of the Spires",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_5.png",
         interactive: true,
         spawns: [
             { map: 3, x: 69, y: 54, wanderArea: { x1: 66, y1: 53, x2: 71, y2: 56 } }
@@ -998,7 +998,7 @@ const NPC_DEFINITIONS = {
     great_hall_reflector: {
         id: "great_hall_reflector",
         name: "The Hall’s Reflector",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_6.png",
         interactive: true,
         spawns: [
             { map: 3, x: 69, y: 9, wanderArea: { x1: 65, y1: 5, x2: 72, y2: 11 } }
@@ -1061,7 +1061,7 @@ const NPC_DEFINITIONS = {
     kael_mirrorscar: {
         id: "kael_mirrorscar",
         name: "Kael the Mirrorscarred",
-        sprite: "assets/img/npc/npc_m_3.png",
+        sprite: "assets/img/npc/npc_m_7.png",
         interactive: true,
         spawns: [
             { map: 4, x: 48, y: 75, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
@@ -1095,7 +1095,7 @@ const NPC_DEFINITIONS = {
     dorian_gatewatch: {
         id: "dorian_gatewatch",
         name: "Dorian the Gatewatch",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_1.png",
         interactive: true,
         spawns: [
             { map: 4, x: 37, y: 64, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
@@ -1113,7 +1113,7 @@ const NPC_DEFINITIONS = {
     umbra_quartermaster: {
         id: "umbra_quartermaster",
         name: "Rylin the Quartermaster",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_m_2.png",
         interactive: true,
         spawns: [
             { map: 4, x: 75, y: 68, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } } // foyer side nook
@@ -1229,7 +1229,7 @@ const NPC_DEFINITIONS = {
     orrin_lost_cartographer: {
         id: "orrin_lost_cartographer",
         name: "Orrin the Lost Cartographer",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_3.png",
         interactive: true,
         spawns: [
             { map: 4, x: 20, y: 65, wanderArea: { x1: 17, y1: 64, x2: 24, y2: 66 } }

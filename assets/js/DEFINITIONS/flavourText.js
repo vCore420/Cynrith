@@ -172,5 +172,9 @@ const FLAVOUR_TEXT = [
   "Technology is a word that describes something that doesn't work yet.",
   "I used to be an adventurer like you, then I took an arrow in the knee.",
   "Est 1066",
-  ""
+  "A Thousand Welcomes!",
+  "30 Seconds, 16, 8, 4 let me tell you why!",
+  "Cloud Strife was here.",
+  "Beauty Mate",
+  "Blue, Red and Pink Gems!!"
 ];
