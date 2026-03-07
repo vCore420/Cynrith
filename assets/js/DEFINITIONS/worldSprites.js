@@ -201,6 +201,37 @@ const WORLD_SPRITES = [
         collision: true   
     },
     
+    {
+        id: "castle_small",    
+        positions: [
+            { map: 5, x: 8, y: 4 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/castle.png",  
+        imageW: 128,     
+        imageH: 256,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "castle_big",    
+        positions: [
+            { map: 5, x: 7, y: 25 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/castle2.png",  
+        imageW: 320,     
+        imageH: 256,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
 ];
 
 

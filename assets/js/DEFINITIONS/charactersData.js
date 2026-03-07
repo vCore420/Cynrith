@@ -1260,6 +1260,27 @@ const NPC_DEFINITIONS = {
         }
     },
 
+    // Floor 6 
+
+    cat_1: {            // Not sure why i hadnt thought of this until now.
+        id: "Cat_1",
+        name: "Wandering Cat",
+        sprite: "assets/img/npc/cat_1.png",
+        spriteWidth: 64,
+        spriteHeight: 64,
+        interactive: true,
+        spawns: [
+            { map: 5, x: 11, y: 28, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+        ],
+        dialogue: {
+            default: [
+                "Meow!",
+                "Meow meow!",
+                "Meow meow meow!!!"
+            ]
+        }
+    },
+
 };
 
 

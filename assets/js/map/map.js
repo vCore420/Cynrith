@@ -6,7 +6,8 @@ const FLOOR_NAMES = [
     "Stonewake Expanse",        // Floor 2
     "Gloomroot Thicket",        // Floor 3
     "The Shattered Spires",     // Floor 4
-    "Umbracourt"                // Floor 5
+    "Umbracourt",               // Floor 5
+    "The Waystation Veil"       // Floor 6
 ];
 
 
