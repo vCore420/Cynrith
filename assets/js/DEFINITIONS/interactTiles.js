@@ -1206,7 +1206,7 @@ const INTERACTABLE_TILES = [
     // Floor 6
 
     {
-        id: "Castle_Entrance",
+        id: "castle_entrance",
         map: 5,
         x: 9,
         y: 26,
@@ -1225,7 +1225,7 @@ const INTERACTABLE_TILES = [
     },
 
     {
-        id: "Castle_Exit",
+        id: "castle_exit",
         map: "castle0",
         x: 6,
         y: 9,
@@ -1241,6 +1241,25 @@ const INTERACTABLE_TILES = [
             "You step through the grand archway."
         ],
         rewards: [],
+    },
+
+    {
+        id: "Castle_chest",
+        map: "castle0",
+        x: 9,
+        y: 3,
+        image: "assets/img/worldSprites/chest.png",
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 5, x: 9, y: 26 },
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to open the Chest",
+        dialogue: [
+            "You Find a Old Parcel."
+        ],
+        rewards: [{ id: "old_parcel", amount: 1 }],
     },
 ];
 

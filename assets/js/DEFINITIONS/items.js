@@ -367,6 +367,17 @@ const ITEM_DEFINITIONS = {
         useable: false,
         removeable: true
     },
+
+    old_parcel: {
+        id: "old_parcel",
+        name: "Old Parcel",
+        description: "A weathered parcel, tied with a faded ribbon.",
+        image: "assets/img/items/old_parcel.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false
+    },
 };
 
 
