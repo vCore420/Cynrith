@@ -1206,7 +1206,7 @@ const INTERACTABLE_TILES = [
     // Floor 6
 
     {
-        id: "castle_entrance",
+        id: "castle_entrance_1",
         map: 5,
         x: 9,
         y: 26,
@@ -1225,7 +1225,7 @@ const INTERACTABLE_TILES = [
     },
 
     {
-        id: "castle_exit",
+        id: "castle_exit_1",
         map: "castle0",
         x: 6,
         y: 9,
@@ -1244,7 +1244,7 @@ const INTERACTABLE_TILES = [
     },
 
     {
-        id: "Castle_chest",
+        id: "castle_chest",
         map: "castle0",
         x: 9,
         y: 3,

@@ -164,6 +164,8 @@ const WORLD_SPRITES = [
         collision: true   
     },
 
+    // ---------- Floor 5 ----------
+    
     {
         id: "umbra_banner",    
         positions: [
@@ -201,6 +203,8 @@ const WORLD_SPRITES = [
         collision: true   
     },
     
+    // ----------- Floor 6 -----------
+
     {
         id: "castle_small",    
         positions: [
@@ -225,6 +229,70 @@ const WORLD_SPRITES = [
         spriteSheet: "assets/img/worldSprites/castle2.png",  
         imageW: 320,     
         imageH: 256,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "house_1",    
+        positions: [
+            { map: 5, x: 33, y: 31 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/house_1.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "house_2",    
+        positions: [
+            { map: 5, x: 18, y: 8 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/house_1.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "sign_2",    
+        positions: [
+            { map: 5, x: 27, y: 16 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/sign_2.png",  
+        imageW: 64,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "sign_1",    
+        positions: [
+            { map: 5, x: 6, y: 4 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/sign_1.png",  
+        imageW: 64,     
+        imageH: 128,      
         rows: 1,        
         cols: 1,          
         row: 0,           
