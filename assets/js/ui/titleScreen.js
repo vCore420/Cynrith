@@ -294,8 +294,22 @@ function showLoadGameMenu() {
         li.className = "save-list-item";
 
         // Floor info
-        const floorNum = (save.mapIndex || 0) + 1;
-        const floorName = FLOOR_NAMES[save.mapIndex] || "Unknown";
+        let floorNum, floorName;
+        if (typeof save.mapIndex === "number" || !isNaN(Number(save.mapIndex))) {
+            // Numeric map (0, 1, 2, etc.)
+            floorNum = (save.mapIndex || 0) + 1;
+            floorName = FLOOR_NAMES[save.mapIndex] || "Unknown";
+        } else {
+            // Named map (castle0, dungeon0, etc.)
+            const mapInfo = NAMED_MAP_INFO[save.mapIndex];
+            if (mapInfo) {
+                floorNum = mapInfo.floor;
+                floorName = mapInfo.name;
+            } else {
+                floorNum = "?";
+                floorName = "Unknown";
+            }
+        }
 
         // Sprite preview
         const spriteCanvas = document.createElement("canvas");

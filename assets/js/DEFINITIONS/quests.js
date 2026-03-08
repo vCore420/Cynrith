@@ -254,6 +254,22 @@ const QUEST_DEFINITIONS = {
         ],
         redoable: false
     },
+
+    // ----------- Floor 6 -----------
+
+    eldrin_f6: {
+        id: "eldrin_f6",
+        name: "Eldrin's Request",
+        description: "Retrieve Eldrin's parcel from the castle.",
+        type: "itemCollect",
+        requiredItems: [{ id: "old_parcel", amount: 1 }],
+        rewards: [
+            { id: "blue_gem", amount: 1 },
+            { id: "mirror_sword", amount: 1 },
+            { xp: 200 }
+        ],
+        redoable: false
+    },
 };
 
 

@@ -1270,7 +1270,8 @@ const NPC_DEFINITIONS = {
         spriteHeight: 64,
         interactive: true,
         spawns: [
-            { map: 5, x: 11, y: 28, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+            { map: 5, x: 11, y: 28, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } },
+            { map: "castle0", x: 9, y: 5, wanderArea: { x1: 1, y1: 3, x2: 12, y2: 8 } }
         ],
         dialogue: {
             default: [
@@ -1278,6 +1279,77 @@ const NPC_DEFINITIONS = {
                 "Meow meow!",
                 "Meow meow meow!!!"
             ]
+        }
+    },
+
+    cat_2: {       
+        id: "Cat_2",
+        name: "Wandering Cat",
+        sprite: "assets/img/npc/cat_2.png",
+        spriteWidth: 64,
+        spriteHeight: 64,
+        interactive: true,
+        spawns: [
+            { map: 5, x: 7, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+        ],
+        dialogue: {
+            default: [
+                "Meow!",
+                "Meow meow!",
+                "Meow meow meow!!!"
+            ]
+        }
+    },
+
+    eldrin_steward_f6: {
+        id: "eldrin_steward_f6",
+        name: "Eldrin the Steward",
+        sprite: "assets/img/npc/eldrin.png",
+        interactive: true, 
+        spawns: [
+            { map: 5,  x: 16, y: 34, wanderArea: { x1: 13, y1: 30, x2: 24, y2: 37 } }
+        ],
+        dialogue: {
+            default: [
+                "Ahh Glad to see a familiar face!",
+                "I’ve been waiting for you. The castle is... different than I remember, but it’s still home.",
+                "You've learnt much by now im sure,",
+                "But there is much to learn still",
+                "The world appers to be.. improving, our surroundings seem to be defferent from before....",
+                "not all that apeares Good means well."
+            ],
+            questGiven: [
+                "Please, Could you grab me the old parcel from my chest in the castle over there.",
+                "I'll explain more when you get back."
+            ],
+            questIncomplete: [
+                "Please, I'm getting old and those cats keep getting under my feet.",
+                "If I fall these days it may be the last"
+            ],
+            questComplete: [
+                "Ahh thank you, not much of a cat person myself.",
+                "This you see, is a reminder of what our world was,",
+                "We cant forget where we have come from, otherwise...",
+                "The Great Frature will happen again and we will all be lost to our memoires of now",
+                "See, you MUST carry on, never forggeting where you have come from, and please,",
+                "Remeber what happened, Make sure we are not lost to the frature again..."
+            ]
+        },
+        questId: "eldrin_f6",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 13, y: 30 },
+                { x: 13, y: 31 },
+                { x: 13, y: 32 },
+                { x: 13, y: 33 },
+                { x: 13, y: 34 },
+                { x: 13, y: 35 },
+                { x: 13, y: 36 },
+                { x: 13, y: 37 }
+            ],
+            triggered: false
         }
     },
 

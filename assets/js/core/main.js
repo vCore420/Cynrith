@@ -115,7 +115,10 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     };
     
     // Load Map
-    map = new Map("map" + mapIndex);
+    const isNumericMap = (typeof mapIndex === "number") ||
+        (mapIndex !== null && mapIndex !== "" && !isNaN(mapIndex) && isFinite(Number(mapIndex)));
+    const mapKey = isNumericMap ? `map${mapIndex}` : String(mapIndex);
+    map = new Map(mapKey);
 
     // We'll wait for both map tiles and sprites before starting Loop
     let mapReady = false;

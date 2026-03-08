@@ -1202,6 +1202,46 @@ const INTERACTABLE_TILES = [
         ],
         rewards: []
     },
+
+    // Floor 6
+
+    {
+        id: "Castle_Entrance",
+        map: 5,
+        x: 9,
+        y: 26,
+        image: null,
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: "castle0", x: 6, y: 8 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to Enter the Castle",
+        dialogue: [
+            "You step through the grand archway."
+        ],
+        rewards: [],
+    },
+
+    {
+        id: "Castle_Exit",
+        map: "castle0",
+        x: 6,
+        y: 9,
+        image: null,
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: 5, x: 9, y: 26 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to Exit the Castle",
+        dialogue: [
+            "You step through the grand archway."
+        ],
+        rewards: [],
+    },
 ];
 
 /*

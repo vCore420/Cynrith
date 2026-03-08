@@ -118,6 +118,17 @@ const ITEM_DEFINITIONS = {
         removeable: false 
     },
 
+    mirror_sword: {
+        id: "mirror_sword",
+        name: "Mirror Sword",
+        description: "A Mirror Blade, reflecting the light as it cuts.",
+        image: "assets/img/items/mirror_sword.png",
+        rarity: "common",
+        stackable: false,
+        useable: false,
+        removeable: false 
+    },
+
 
     // --------------- Currency ---------------
 
@@ -197,7 +208,7 @@ const ITEM_DEFINITIONS = {
         name: "Dustroot",
         description: "A root that thrives in dusty environments. Used in various potions.",
         image: "assets/img/items/dustroot.png",
-        rarity: "Common",
+        rarity: "common",
         stackable: true,
         useable: false,
         removeable: true
