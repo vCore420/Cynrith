@@ -42,6 +42,12 @@ const ITEM_EFFECTS = {
         player.addAttackSpeed(boost);
         notify(`Attack Speed increased by ${boost}!`, 1800);
     },
+    fresh_fish: function(player, amount = 1) {
+        const heal = 50 * amount;
+        const before = player.health;
+        player.setHealth(player.health + heal);
+        notify(`Restored ${player.health - before} health!`, 1800);
+    },
     // Add more item effects here...
 };
 

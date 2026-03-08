@@ -75,6 +75,22 @@ const TRADER_DEFINITIONS = {
         ]
     },
 
+    // -------- Floor 6 --------
+
+    trader5: {
+        buy: [
+            { id: "health_buff_small",   price: 5 },
+            { id: "blue_gem",            price: 500 },
+            { id: "red_gem",             price: 650 },
+            { id: "pink_gem",            price: 800 }
+        ],
+        sell: [
+            { id: "umbra_tonic",         price: 45 }, 
+            { id: "clarity_tincture",    price: 45 }, 
+            { id: "mirror_tonic",        price: 55 }
+        ]
+    },
+
 };
 
 

@@ -1261,6 +1261,34 @@ const INTERACTABLE_TILES = [
         ],
         rewards: [{ id: "old_parcel", amount: 1 }],
     },
+
+    {
+        id: "sunny_3",
+        map: 5,
+        x: 5,
+        y: 13,
+        spriteSheet: "assets/img/worldSprites/sunny_man.png",
+        imageW: 1152,
+        imageH: 96,
+        rows: 1,
+        cols: 12,
+        animSpeed: 6,
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: true,
+        notification: "Press A to Talk to the Sunny Man.",
+        dialogue: [
+            "Hello again!!",
+            "Sorry for dreaming up mirrors that drop you. If you didn't bite, wise paws. If you did, hope you stuck the landing Ha Ha!",
+            "Seriously though, I am sorry for playing tricks, I just like to chomp when I shouldn't!",
+            "I promise, No wise tricks here!",
+            "I too don't want to be kicked out of here, This place is just so great for a cat like me!",
+            "Please take this as an apologie, Just don't tell Eldrin if he comes asking about it!"
+        ],
+        rewards: [{ id: "red_gem", amount: 1 }]
+    },
 ];
 
 /*

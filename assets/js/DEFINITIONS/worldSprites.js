@@ -340,6 +340,97 @@ const WORLD_SPRITES = [
         zIndex: 1,        
         collision: true   
     },
+
+    {
+        id: "bush2",    
+        positions: [
+            { map: 5, x: 4, y: 34 }, 
+            { map: 5, x: 27, y: 26 },
+            { map: 5, x: 10, y: 4 },
+        ],
+        spriteSheet: "assets/img/tile/bush2.png",  
+        imageW: 64,     
+        imageH: 64,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "bush3",    
+        positions: [
+            { map: 5, x: 11, y: 29 }, 
+            { map: 5, x: 12, y: 13 },
+            { map: 5, x: 20, y: 8 },
+        ],
+        spriteSheet: "assets/img/tile/bush3.png",  
+        imageW: 64,     
+        imageH: 64,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "bush4",    
+        positions: [
+            { map: 5, x: 23, y: 31 }, 
+            { map: 5, x: 7, y: 10 },
+            { map: 5, x: 7, y: 16 },
+            { map: 5, x: 28, y: 4 },
+        ],
+        spriteSheet: "assets/img/tile/bush4.png",  
+        imageW: 64,     
+        imageH: 64,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "water_rock1",    
+        positions: [
+            { map: 5, x: 18, y: 27 }, 
+            { map: 5, x: 35, y: 21 },
+            { map: 5, x: 2, y: 19 },
+        ],
+        spriteSheet: "assets/img/tile/water_rock1.png",  
+        imageW: 128,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "water_rock2",    
+        positions: [
+            { map: 5, x: 28, y: 23 }, 
+            { map: 5, x: 18, y: 24 },
+            { map: 5, x: 17, y: 2 },
+        ],
+        spriteSheet: "assets/img/tile/water_rock2.png",  
+        imageW: 128,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
 ];
 
 

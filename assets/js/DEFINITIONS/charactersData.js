@@ -299,7 +299,7 @@ const NPC_DEFINITIONS = {
     mordis_relic_seeker: {
         id: "mordis_relic_seeker",
         name: "Mordis the Relic-Seeker",
-        sprite: "assets/img/npc/npc_m_4.png",
+        sprite: "assets/img/npc/npc_m_4.png",       
         interactive: true,
         spawns: [
             { map: 1, x: 34, y: 21, wanderArea: { x1: 32, y1: 14, x2: 37, y2: 25 } }
@@ -1271,7 +1271,8 @@ const NPC_DEFINITIONS = {
         interactive: true,
         spawns: [
             { map: 5, x: 11, y: 28, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } },
-            { map: "castle0", x: 9, y: 5, wanderArea: { x1: 1, y1: 3, x2: 12, y2: 8 } }
+            { map: "castle0", x: 9, y: 5, wanderArea: { x1: 1, y1: 3, x2: 12, y2: 8 } },
+            { map: 5, x: 11, y: 5, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
         ],
         dialogue: {
             default: [
@@ -1290,7 +1291,9 @@ const NPC_DEFINITIONS = {
         spriteHeight: 64,
         interactive: true,
         spawns: [
-            { map: 5, x: 7, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+            { map: 5, x: 7, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } },
+            { map: 5, x: 5, y: 6, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
+            { map: 5, x: 12, y: 8, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
         ],
         dialogue: {
             default: [
@@ -1307,7 +1310,11 @@ const NPC_DEFINITIONS = {
         spriteHeight: 64,
         interactive: true,
         spawns: [
-            { map: 5, x: 13, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+            { map: 5, x: 13, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } },
+            { map: "castle0", x: 4, y: 7, wanderArea: { x1: 1, y1: 3, x2: 12, y2: 8 } },
+            { map: 5, x: 3, y: 3, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
+            { map: 5, x: 15, y: 6, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
+            { map: 5, x: 28, y: 17, wanderArea: { x1: 26, y1: 13, x2: 33, y2: 19 } },
         ],
         dialogue: {
             default: [
@@ -1366,6 +1373,69 @@ const NPC_DEFINITIONS = {
             ],
             triggered: false
         }
+    },
+
+    waystation_trader: {
+        id: "waystation_trader",
+        name: "Jorin the Waystation Trader",
+        sprite: "assets/img/npc/npc_m_6.png",
+        interactive: true,
+        spawns: [
+            { map: 5, x: 21, y: 8, wanderArea: { x1: 18, y1: 5, x2: 28, y2: 9 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome to the Waystation, traveler. I have Hard to come by items this low in Cynrith,",
+                "But that's not to say they dont come with high price!",
+                "These Gems aren't easy to get ahold of and make it back this far,",
+                "So Please, No Negotiations!"
+            ]
+        },
+        trader: "trader5"
+    },
+
+    lelien_the_grass_keeper: {
+        id: "lelien_the_grass_keeper",
+        name: "Lelien the Grass Keeper",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 5, x: 31, y: 30, wanderArea: { x1: 27, y1: 26, x2: 35, y2: 36 } }
+        ],
+        dialogue: {
+            default: [
+                "The Lands here are so Lush and Green don't you think?",
+                "It's all been untouched by the fracture and so we havn't seen any mosters here before.",
+                "I like to look after the lands here, there are very few floors left as lush as the Waystation",
+                "Please, Enjoy your time here and relax, the people here are all so lovely too!"
+            ]
+        },
+    },
+
+    finik_the_fisherman: {
+        id: "finik_the_fisherman",
+        name: "Finik the Fisherman",
+        sprite: "assets/img/npc/npc_m_7.png",
+        interactive: true,
+        spawns: [
+            { map: 5, x: 32, y: 16, wanderArea: { x1: 31, y1: 16, x2: 33, y2: 18 } }
+        ],
+        dialogue: {
+            default: [
+                "Ah, a fellow fisherman! The waters around here are teeming with life.",
+                "No? fish not your thing?",
+                "Ha Ha Ha Well the cats round here say otherwise!",
+                "I Love to fish here and feed what I catch to all the cats around this floor!",
+                "Its amazing that somehow we are gifted with this peaceful place for them, and us, to all rest!"
+            ],
+            questComplete: [
+                "Here, someone who takes the time to talk to a rambling old fisherman deserves the thanks,",
+                "Take this, there should be enough there for you and some for the cats too should you choose to share!",
+                "Pleace come back anytime for a tail!"
+            ]
+        },
+        questId: "finiks_fish",
+        questRedo: false,
     },
 
 };

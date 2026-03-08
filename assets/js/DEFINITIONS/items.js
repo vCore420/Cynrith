@@ -378,6 +378,18 @@ const ITEM_DEFINITIONS = {
         useable: false,
         removeable: false
     },
+
+    fresh_fish: {
+        id: "fresh_fish",
+        name: "Fresh Fish",
+        description: "Fresh Fish, Recently caught, Restores Health by 50.",
+        image: "assets/img/items/old_parcel.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'maxHealth.mp3'
+    },
 };
 
 

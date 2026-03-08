@@ -270,6 +270,19 @@ const QUEST_DEFINITIONS = {
         ],
         redoable: false
     },
+
+    finiks_fish: {
+        id: "finiks_fish",
+        name: "Finiks Fish",
+        description: "Some Fresh Fish to Share.",
+        type: "gift",
+        requiredItems: [],
+        rewards: [
+            { id: "fresh_fish", amount: 3 },
+            { xp: 100 }
+        ],
+        redoable: false
+    },
 };
 
 
