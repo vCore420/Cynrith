@@ -1438,6 +1438,27 @@ const NPC_DEFINITIONS = {
         questRedo: false,
     },
 
+    valkyrie_the_catfolk: {
+        id: "valkyrie_the_catfolk",
+        name: "Valkyrie the Catfolk",
+        sprite: "assets/img/npc/npc_f_5.png",
+        interactive: true,
+        spawns: [
+            { map: "castle0", x: 3, y: 3, wanderArea: { x1: 3, y1: 3, x2: 4, y2: 4 } }
+        ],
+        dialogue: {
+            default: [
+                "Welcome Adventure! To The Waystation Veil!",
+                "I am Valkyrie, the Catfolk of the Waystation. I am here to guide you through this peaceful floor,",
+                "I also look after all of the Cats around here, they are all so lovely and I want to make sure they are well fed and cared for!",
+                "Here you will find no harm, this is a peaceful place to rest.",
+                "Some Echos that managed to find their way have come here to rest too, Some believe that they are the protectors of this floor, Others believe its because of the Cats.",
+                "Please, Rest here as long as you need, Let the comfort of this place restore your will and allow you to connect with the memories you've lost,",
+                "So they may never be forgotten."
+            ]
+        },
+    },
+
 };
 
 
