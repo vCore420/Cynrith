@@ -11,10 +11,8 @@ const FLOOR_NAMES = [
 ];
 
 const NAMED_MAP_INFO = {
-    "castle0": { floor: 6, name: "Castle Interior" }
-    // Add more named maps here as needed
-    // "dungeon1": { floor: 5, name: "Dark Dungeon" },
-    // etc.
+    "castle0": { floor: 6, name: "Castle Interior" },
+    "portal_island0": { floor: 6, name: "Portal Island" },
 };
 
 

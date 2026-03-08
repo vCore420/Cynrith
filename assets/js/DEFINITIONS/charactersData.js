@@ -1459,6 +1459,25 @@ const NPC_DEFINITIONS = {
         },
     },
 
+    kelin_the_portal_keeper: {
+        id: "kelin_the_portal_keeper",
+        name: "Kelin the Portal Keeper",
+        sprite: "assets/img/npc/npc_m_3.png",
+        interactive: true,
+        spawns: [
+            { map: "portal_island0", x: 18, y: 25, wanderArea: { x1: 17, y1: 22, x2: 23, y2: 27 } }
+        ],
+        dialogue: {
+            default: [
+                "Hey there!",
+                "This is a Portal Island, From time to time you may come across these islands",
+                "Here you will find various portals that will take you back to previous floors you have since come from",
+                "But be warned, The trip back is always an easy one,",
+                "The journey up is nothing but a long road."
+            ]
+        },
+    },
+
 };
 
 
