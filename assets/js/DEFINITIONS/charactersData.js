@@ -1294,9 +1294,24 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Meow!",
-                "Meow meow!",
-                "Meow meow meow!!!"
+                "Meow!"
+            ]
+        }
+    },
+
+    cat_3: {       
+        id: "Cat_3",
+        name: "Wandering Cat",
+        sprite: "assets/img/npc/cat_3.png",
+        spriteWidth: 64,
+        spriteHeight: 64,
+        interactive: true,
+        spawns: [
+            { map: 5, x: 13, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } }
+        ],
+        dialogue: {
+            default: [
+                "Meow meow!"
             ]
         }
     },

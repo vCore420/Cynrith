@@ -165,7 +165,7 @@ const WORLD_SPRITES = [
     },
 
     // ---------- Floor 5 ----------
-    
+
     {
         id: "umbra_banner",    
         positions: [
@@ -217,7 +217,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -233,7 +233,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -249,7 +249,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -265,7 +265,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -281,7 +281,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -297,7 +297,47 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
+        collision: true   
+    },
+
+    {
+        id: "tree_1",    
+        positions: [
+            { map: 5, x: 22, y: 25 }, 
+            { map: 5, x: 32, y: 34 },
+            { map: 5, x: 31, y: 15 },
+            { map: 5, x: 13, y: 5 },
+            { map: 5, x: 4, y: 22 },
+        ],
+        spriteSheet: "assets/img/worldSprites/tree_1.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 1,        
+        collision: true   
+    },
+
+    {
+        id: "tree_2",    
+        positions: [
+            { map: 5, x: 14, y: 26 }, 
+            { map: 5, x: 35, y: 26 },
+            { map: 5, x: 7, y: 16 },
+            { map: 5, x: 28, y: 8 },
+            { map: 5, x: 24, y: 36 },
+        ],
+        spriteSheet: "assets/img/worldSprites/tree_2.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 1,        
         collision: true   
     },
 ];
