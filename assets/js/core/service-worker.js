@@ -1,4 +1,4 @@
-const CACHE_NAME = "cynrith-cache-v1.02"; // Update this on bigger game updateds
+const CACHE_NAME = "cynrith-cache-v1.1.0"; // Update this on bigger game updateds
 const urlsToCache = [
   "/",
   "/index.html",
@@ -74,4 +74,5 @@ self.addEventListener("fetch", event => {
       });
     })
   );
+
 });
