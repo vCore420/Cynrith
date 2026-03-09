@@ -1218,9 +1218,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to Enter the Castle",
-        dialogue: [
-            "You step through the grand archway."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1237,9 +1235,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to Exit the Castle",
-        dialogue: [
-            "You step through the grand archway."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1252,7 +1248,6 @@ const INTERACTABLE_TILES = [
         collision: false,
         zIndex: 0,
         animOnTrigger: false,
-        teleport: { map: 5, x: 9, y: 26 },
         allowRepeat: false,   
         persistAfterTrigger: true,
         notification: "Press A to open the Chest",
@@ -1308,17 +1303,15 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to the Portal Island",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
     {
         id: "f6_teleport_2",
         map: "portal_island0",
-        x: 15,
-        y: 26,
+        x: 16,
+        y: 22,
         spriteSheet: "assets/img/worldSprites/portal_1.png",
         imageW: 512,
         imageH: 192,
@@ -1328,13 +1321,11 @@ const INTERACTABLE_TILES = [
         collision: true,
         zIndex: 1,
         animOnTrigger: false,
-        teleport: { map: 5, x: 3, y: 26 },
+        teleport: { map: 5, x: 8, y: 35 },
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to The Waystation Veil - Floor 6",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1356,9 +1347,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to Umbracourt - Floor 5",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1380,9 +1369,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to The Shattered Spires - Floor 4",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1404,9 +1391,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to Gloomroot Thicket - Floor 3",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1428,9 +1413,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to Stonewake Expanse - Floor 2",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 
@@ -1452,9 +1435,7 @@ const INTERACTABLE_TILES = [
         allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to go to Verdant Rise - Floor 1",
-        dialogue: [
-            "You step through the Portal."
-        ],
+        dialogue: [],
         rewards: [],
     },
 ];

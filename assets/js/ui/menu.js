@@ -4,12 +4,13 @@ let statsInterval = null;
 let mapPreviewInterval = null;
 
 // Settings State
-let gameSettings = {
+window.gameSettings = window.gameSettings || {
     showTouchControls: true,
     showLog: true,
     bgMusicVolume: 0.7,
     sfxVolume: 0.8
 };
+const gameSettings = window.gameSettings;
 
 // Player's skill inventory and equipped skills
 let playerSkills = []; // Array of { id, level }
@@ -241,7 +242,7 @@ function showSettingsMenu() {
         // SFX Volume Slider
         document.getElementById('slider-sfx').oninput = function() {
             gameSettings.sfxVolume = parseFloat(this.value);
-            if (window.SoundManager) SoundManager.setSfxVolume(gameSettings.sfxVolume);
+            if (window.SoundManager) SoundManager.setEffectVolume(gameSettings.sfxVolume);
         };
     } else {
         settingsPage.classList.add('active');
@@ -251,26 +252,28 @@ function showSettingsMenu() {
     document.getElementById('toggle-touch-controls').checked = !!gameSettings.showTouchControls;
     document.getElementById('toggle-log').checked = !!gameSettings.showLog;
     document.getElementById('slider-bg-music').value = gameSettings.bgMusicVolume;
-    document.getElementById('slider-sfx').oninput = function() {
-    gameSettings.sfxVolume = parseFloat(this.value);
-        if (window.SoundManager) SoundManager.setEffectVolume(gameSettings.sfxVolume);
-    };
+    document.getElementById('slider-sfx').value = gameSettings.sfxVolume;
 }
 
 function patchSettingsFromSave(data) {
     if (data.settings) {
         Object.assign(gameSettings, data.settings);
 
-        // Apply settings to UI and sound
-        document.getElementById('touch-controls').style.display = gameSettings.showTouchControls ? "" : "none";
-        document.getElementById('act-controls').style.display = gameSettings.showTouchControls ? "" : "none";
-        document.getElementById('log').style.display = gameSettings.showLog ? "" : "none";
+        // Apply settings to UI and sound (with null checks since elements may not exist during load)
+        const joystick = document.getElementById('touch-joystick');
+        const actControls = document.getElementById('act-controls');
+        const logEl = document.getElementById('log');
+        
+        if (joystick) joystick.style.display = gameSettings.showTouchControls ? "" : "none";
+        if (actControls) actControls.style.display = gameSettings.showTouchControls ? "" : "none";
+        if (logEl) logEl.style.display = gameSettings.showLog ? "" : "none";
+        
         if (window.SoundManager) {
             SoundManager.setBgMusicVolume(gameSettings.bgMusicVolume);
             SoundManager.setEffectVolume(gameSettings.sfxVolume);
         }
 
-        // --- Update settings menu controls if menu is present ---
+        // Update settings menu controls if menu is present
         const touchToggle = document.getElementById('toggle-touch-controls');
         const logToggle = document.getElementById('toggle-log');
         const bgSlider = document.getElementById('slider-bg-music');
@@ -281,6 +284,8 @@ function patchSettingsFromSave(data) {
         if (sfxSlider) sfxSlider.value = gameSettings.sfxVolume;
     }
 }
+
+window.patchSettingsFromSave = patchSettingsFromSave;
 
 // Show Map Menu
 function showMapMenu() {
@@ -317,48 +322,61 @@ function drawMapPreview() {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Use the bottom layer for preview
-    const layout = map.data._layers ? map.data._layers[0] : map.data.layout;
+    // Use all layers except the top layer for preview
     const gidMap = map.data._gidMap || [];
     const tileImages = map.tiles;
-    const width = layout[0].length;
-    const height = layout.length;
+    
+    // Determine which layers to draw (all except the top/last layer)
+    let layersToDraw = [];
+    if (map.data._layers) {
+        // Draw all layers except the last one (top layer)
+        layersToDraw = map.data._layers.slice(0, -1);
+    } else {
+        // Legacy single-layer maps
+        layersToDraw = [map.data.layout];
+    }
+    
+    // Get dimensions from the first available layer
+    const firstLayer = layersToDraw[0];
+    const width = firstLayer[0].length;
+    const height = firstLayer.length;
     const tileSize = Math.min(canvas.width / width, canvas.height / height);
 
-    // Draw each tile
-    for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-            let gid = layout[y][x];
-            if (gid > 0) {
-                let assetIdx = gidMap[gid];
-                let img = tileImages[assetIdx];
-                if (img && img.complete && img.naturalWidth > 0) {
-                    ctx.drawImage(
-                        img,
-                        0, 0, img.width, img.height,
-                        x * tileSize, y * tileSize, tileSize, tileSize
-                    );
+    // Draw each layer
+    layersToDraw.forEach(layout => {
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let gid = layout[y][x];
+                if (gid > 0) {
+                    let assetIdx = gidMap[gid];
+                    let img = tileImages[assetIdx];
+                    if (img && img.complete && img.naturalWidth > 0) {
+                        ctx.drawImage(
+                            img,
+                            0, 0, img.width, img.height,
+                            x * tileSize, y * tileSize, tileSize, tileSize
+                        );
+                    } else {
+                        ctx.fillStyle = "#23243a";
+                        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    }
                 } else {
                     ctx.fillStyle = "#23243a";
                     ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
                 }
-            } else {
-                ctx.fillStyle = "#23243a";
-                ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
             }
         }
-    }
+    });
 
     // Draw NPC markers (blue or gold if quest ready)
     if (typeof characters !== "undefined" && Array.isArray(characters)) {
         characters.forEach(char => {
             if (char.type === "npc") {
                 ctx.save();
-                // Gold if quest ready, else blue
                 if (typeof npcHasReadyQuest === "function" && npcHasReadyQuest(char)) {
-                    ctx.fillStyle = "#ffe082"; // gold
+                    ctx.fillStyle = "#ffe082";
                 } else {
-                    ctx.fillStyle = "#3af0ff"; // blue
+                    ctx.fillStyle = "#3af0ff";
                 }
                 ctx.globalAlpha = 0.85;
                 ctx.beginPath();

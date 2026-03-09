@@ -106,13 +106,6 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
     player = new Player(45, 47, spriteFile); 
     player.playerName = playerName; 
-
-    gameSettings = {
-        showTouchControls: true,
-        showLog: true,
-        bgMusicVolume: 0.7,
-        sfxVolume: 0.8
-    };
     
     // Load Map
     const isNumericMap = (typeof mapIndex === "number") ||

@@ -17,7 +17,7 @@ const wasdDirections = {
 
 // Action button key mapping
 const actionKeyMap = {
-    "Enter": "A",        // Action Button A (interact)
+    "KeyE": "A",        // Action Button A (interact)
     "Space": "B"         // Action Button B (combat)
 };
 

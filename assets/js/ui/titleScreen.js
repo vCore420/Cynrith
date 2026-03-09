@@ -14,6 +14,14 @@ window.addEventListener("DOMContentLoaded", function() {
     overlay.id = "title-map-overlay";
     document.body.appendChild(overlay);
 
+    // Version Watermark
+    const ver = "v1.1.0";  // Set current version here for Title Screen
+
+    const versionWatermark = document.createElement("div");
+    versionWatermark.id = "version-watermark";
+    versionWatermark.textContent = ver;
+    document.body.appendChild(versionWatermark);
+
     // Sparkle effect
     const sparkles = document.getElementById("title-sparkles");
     function spawnSparkle() {
@@ -47,7 +55,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const titleContent = document.querySelector('.title-content');
     const titleHeader = titleContent.querySelector('h1');
 
-    // Sprite list (replace with actual sprite data, currently beta sprites are used)
+    // Sprite list 
     const sprites = [
       { name: "Hero", file: "assets/img/char/hero.png" },
       { name: "Mage", file: "assets/img/char/mage.png" },
