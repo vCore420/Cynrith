@@ -3,7 +3,7 @@
   "height": 80,
   "infinite": false,
   "spawn": { "x": 38, "y": 75 },
-  "teleport": { "x": 3, "y": 3, "xpRequired": 6500 },
+  "teleport": { "x": 3, "y": 3, "xpRequired": 5000 },
   "assets": [
     {"file_name":"obsidian_brick_1","collision":0,"frames":0, "footsteps": "glass-tile.mp3"},
     {"file_name":"obsidian_brick_2","collision":0,"frames":0, "footsteps": "glass-tile.mp3"},
