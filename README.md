@@ -63,7 +63,10 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
   <img src="docs/assets/demo8.png" width="480"/>
 </p>
 
-## Roadmap
+<details>
+<summary>Roadmap</summary>
+
+<p>
 
 **Completed**
 
@@ -101,12 +104,29 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Currently working on Floor 6 and onveral QOL 
 
 - Planning to make this a forever expanding project, something i just wanted to have as my own little world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
+</p> 
+</details>
 
 ---
 <details>
 <summary>Change Logs</summary>
 
 <p>
+
+11/3 v1.1.1
+
+- **Floor 6: Waystation Veil & Castle Interior** - New floor with castle interior tiles, new story elements, and familiar faces from previous floors
+- **Settings Persistence** - Fixed player settings (touch controls, log display, volume sliders) not saving/loading properly
+- **DOM Access Errors** - Resolved "can't access property 'style'" errors during game load by adding null checks
+- **Touch Controls** - Fixed touch controls not restoring visibility properly on game load (joystick was still showing when disabled)
+- **Sound Manager** - Corrected method name from setSfxVolume to setEffectVolume for volume slider functionality
+- **Sprite Collision** - Improved collision detection for world sprites to prevent head clipping using z-index logic
+- **Mini Map Rendering** - Updated mini map to display all layers except the top decorative layer for better navigation
+- **Version Watermark** - Added version watermark to title screen for better version tracking
+- **Settings Management** - Refactored gameSettings to use window.gameSettings for proper scope and persistence
+- **Save/Load System** - Enhanced save data structure to include settings and improved restoration logic
+- **Service Worker** - Updated cache version to v1.1.1 for proper offline functionality
+
 
 3/2 v1.0.0
 
