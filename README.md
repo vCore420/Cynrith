@@ -113,6 +113,8 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 <p>
 
+---
+
 11/3 v1.1.1
 
 - **Floor 6: Waystation Veil & Castle Interior** - New floor with castle interior tiles, new story elements, and familiar faces from previous floors
@@ -127,6 +129,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - **Save/Load System** - Enhanced save data structure to include settings and improved restoration logic
 - **Service Worker** - Updated cache version to v1.1.1 for proper offline functionality
 
+---
 
 3/2 v1.0.0
 
@@ -146,6 +149,8 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - added new quest giver to floor 5 maze
 - Added new quest npc, lore npc, mini boss, covered the floor in mirrors (loot/lore/teleport) sunny man added and up to no good\
 - World sprites added to floor 5, new enemy sounds added bringing floor 5 to completion
+
+---
 
 7/9 Beta v0.2.2
 
@@ -210,7 +215,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
   - Roadmap and world building docs are up-to-date
   - Contributor guide and templates for definitions Created
 
---
+---
 
 28/8 Beta v0.1.3
 
@@ -220,7 +225,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Updated cat spritesheet asset
 - Created better documention for how to create new floors and all other assets
 
---
+---
 
 27/8 Beta v0.1.2
 
@@ -235,7 +240,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Fixed ground tile sound logic to support all asset types and multi-layer maps.
 - Ensured background music only starts after user interaction
 
---
+---
   
 26/8 Beta v0.1.1
 
@@ -244,7 +249,7 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Player footsteps now play and change based on ground tile type.
 - Sound assets integrated for world and player actions.
 
---
+---
   
 23/8 Beta v0.1.0
 
