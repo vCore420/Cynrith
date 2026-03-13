@@ -101,6 +101,10 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     if (typeof statBuildQuestStart !== "undefined") {
         for (let k in statBuildQuestStart) delete statBuildQuestStart[k];
     }
+    if (!window._lastSaveData) {
+        window.playTime = 0;
+        window.startTime = Date.now(); // Start Game Play Count from now
+    }
     
     context = document.getElementById("game").getContext("2d");
     viewport = new Viewport(0, 0, config.win.width, config.win.height);
@@ -113,7 +117,7 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
     const mapKey = isNumericMap ? `map${mapIndex}` : String(mapIndex);
     map = new Map(mapKey);
 
-    // We'll wait for both map tiles and sprites before starting Loop
+    // We'll wait for both map, tiles and sprites before starting Loop
     let mapReady = false;
     let spritesReady = false;
 
@@ -350,6 +354,10 @@ setInterval(function() {
     } else {
         Log("coords", "Coords: --, --");
     }
+    if (window.gameSettings && window.gameSettings.showLog) {
+        const currentPlayTime = window.startTime ? Math.floor((Date.now() - window.startTime) / 1000) : 0;
+        Log("playtime", "Play Time: " + formatPlayTime(currentPlayTime));
+    }
 }, 1000);
 
 
@@ -363,3 +371,11 @@ window.onload = function() {
 window.onresize = function() {
     Sizing();
 };
+
+// Ensure Game play Counter Stops on page exit and resumes on load
+window.addEventListener('beforeunload', () => {
+    if (window.startTime) {
+        window.playTime = Math.floor((Date.now() - window.startTime) / 1000);
+        // Option Here to Implement a Auto save feature if the game ends up needing it
+    }
+});

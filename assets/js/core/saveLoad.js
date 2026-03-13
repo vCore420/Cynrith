@@ -1,8 +1,13 @@
 // Save and Load Game Logic
 let isLoadingSave = false;
+window.playTime = 0;
+window.startTime = null;
 
 // Get current save data as an object
 function getCurrentSaveData() {
+    if (window.startTime) {
+        window.playTime = Math.floor((Date.now() - window.startTime) / 1000);
+    }
     return {
         playerName: player.playerName || player.name || "",
         sprite: player.sprite?.src || "",
@@ -32,6 +37,7 @@ function getCurrentSaveData() {
             inventory: playerSkills.map(s => ({ id: s.id, level: s.level })),
             equipped: [...equippedSkills]
         },
+        playTime: window.playTime,
     };
 }
 
@@ -138,6 +144,11 @@ function applySaveData(data) {
         }
         if (typeof renderSkillsMenu === "function") renderSkillsMenu();
     }
+
+    // Patch play time
+    window.playTime = data.playTime || 0;
+    window.startTime = Date.now() - (window.playTime * 1000); // Resume from saved time
+    console.log("[Save/Load] Play time restored:", window.playTime);
 }
 
 

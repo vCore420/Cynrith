@@ -1,6 +1,14 @@
 let selectedPlayerName = "";
 let selectedPlayerSprite = ""; 
 
+// Utility to format play time in a human-readable format
+function formatPlayTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours}h ${minutes}m ${secs}s`;
+}
+
 window.addEventListener("DOMContentLoaded", function() {
     const loreIntro = document.getElementById("lore-intro");
     const loreText = document.getElementById("lore-text");
@@ -345,6 +353,7 @@ function showLoadGameMenu() {
             <span style="font-size:1.15em;font-weight:700;">${save.playerName}</span>
             <span style="font-size:0.98em;color:#ffe082;">XP: ${save.stats.xp}</span>
             <span style="font-size:0.98em;color:#3af0ff;">Floor ${floorNum} <span style="color:#fff;">${floorName}</span></span>
+            <span style="font-size:0.9em;color:#aaa;">Play Time: ${formatPlayTime(save.playTime || 0)}</span>
         `;
 
         // Layout: info left, sprite right

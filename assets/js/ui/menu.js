@@ -231,7 +231,7 @@ function showSettingsMenu() {
         document.getElementById('toggle-log').onchange = function() {
             gameSettings.showLog = this.checked;
             document.getElementById('log').style.display = this.checked ? "" : "none";
-        };
+        };  
 
         // BG Music Volume Slider
         document.getElementById('slider-bg-music').oninput = function() {
