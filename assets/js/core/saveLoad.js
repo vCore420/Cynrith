@@ -184,7 +184,6 @@ function loadGame(playerName, onLoaded) {
         if (typeof map !== "undefined" && map && map.data && map.data.layout) {
             clearInterval(checkMap);
             console.log("[Save/Load] Map loaded, applying save data...");
-            applySaveData(data);
 
             if (typeof spawnCharactersForMap === "function") {
                 spawnCharactersForMap(data.mapIndex);
