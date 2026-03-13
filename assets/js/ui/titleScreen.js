@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(overlay);
 
     // Version Watermark
-    const ver = "v1.1.1";  // Set current version here for Title Screen
+    const ver = "v1.1.2";  // Set current version here for Title Screen
 
     const versionWatermark = document.createElement("div");
     versionWatermark.id = "version-watermark";
@@ -451,4 +451,5 @@ function showLoadingScreen(onLoaded) {
 
 function hideLoadingScreen() {
     document.getElementById('loading-screen').classList.add('hidden');
+
 }
