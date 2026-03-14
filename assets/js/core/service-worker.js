@@ -14,6 +14,7 @@ const urlsToCache = [
   "/assets/js/core/soundManager.js",
   "/assets/js/core/viewport.js",
   "/assets/js/DEFINITIONS/charactersData.js",
+  "/assets/js/DEFINITIONS/flavourText.js",
   "/assets/js/DEFINITIONS/interactTiles.js",
   "/assets/js/DEFINITIONS/items.js",
   "/assets/js/DEFINITIONS/quests.js",
@@ -74,5 +75,4 @@ self.addEventListener("fetch", event => {
       });
     })
   );
-
 });

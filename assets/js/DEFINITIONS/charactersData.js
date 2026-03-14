@@ -1294,6 +1294,7 @@ const NPC_DEFINITIONS = {
             { map: 5, x: 7, y: 30, wanderArea: { x1: 5, y1: 26, x2: 14, y2: 30 } },
             { map: 5, x: 5, y: 6, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
             { map: 5, x: 12, y: 8, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
+            { map: "title3", x: 19, y: 6, wanderArea: { x1: 2, y1: 2, x2: 23, y2: 10 } }
         ],
         dialogue: {
             default: [
@@ -1315,6 +1316,7 @@ const NPC_DEFINITIONS = {
             { map: 5, x: 3, y: 3, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
             { map: 5, x: 15, y: 6, wanderArea: { x1: 3, y1: 3, x2: 17, y2: 10 } },
             { map: 5, x: 28, y: 17, wanderArea: { x1: 26, y1: 13, x2: 33, y2: 19 } },
+            { map: "title3", x: 5, y: 7, wanderArea: { x1: 2, y1: 2, x2: 23, y2: 10 } }
         ],
         dialogue: {
             default: [
@@ -1418,7 +1420,8 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_m_7.png",
         interactive: true,
         spawns: [
-            { map: 5, x: 32, y: 16, wanderArea: { x1: 31, y1: 16, x2: 33, y2: 18 } }
+            { map: 5, x: 32, y: 16, wanderArea: { x1: 31, y1: 16, x2: 33, y2: 18 } },
+            { map: "title3", x: 15, y: 3, wanderArea: { x1: 2, y1: 2, x2: 23, y2: 10 } }
         ],
         dialogue: {
             default: [
@@ -1444,7 +1447,8 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_f_5.png",
         interactive: true,
         spawns: [
-            { map: "castle0", x: 3, y: 3, wanderArea: { x1: 3, y1: 3, x2: 4, y2: 4 } }
+            { map: "castle0", x: 3, y: 3, wanderArea: { x1: 3, y1: 3, x2: 4, y2: 4 } },
+            { map: "title3", x: 7, y: 3, wanderArea: { x1: 2, y1: 2, x2: 23, y2: 10 } }
         ],
         dialogue: {
             default: [
@@ -1477,6 +1481,11 @@ const NPC_DEFINITIONS = {
             ]
         },
     },
+
+
+    // ---------- Floor 7 ----------
+
+    // Trader Alley NPCs
 
 };
 

@@ -451,5 +451,4 @@ function showLoadingScreen(onLoaded) {
 
 function hideLoadingScreen() {
     document.getElementById('loading-screen').classList.add('hidden');
-
 }

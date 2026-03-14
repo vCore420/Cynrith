@@ -2,12 +2,13 @@
 
 // Floor names to match floor index, used for ui purposes
 const FLOOR_NAMES = [
-    "Verdant Rise",             // Floor 1
-    "Stonewake Expanse",        // Floor 2
-    "Gloomroot Thicket",        // Floor 3
-    "The Shattered Spires",     // Floor 4
-    "Umbracourt",               // Floor 5
-    "The Waystation Veil"       // Floor 6
+    "Verdant Rise",              // Floor 1
+    "Stonewake Expanse",         // Floor 2
+    "Gloomroot Thicket",         // Floor 3
+    "The Shattered Spires",      // Floor 4
+    "Umbracourt",                // Floor 5
+    "The Waystation Veil",       // Floor 6
+    "The Shattered Archipelago", // Floor 7
 ];
 
 const NAMED_MAP_INFO = {

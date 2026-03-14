@@ -121,7 +121,7 @@ const FLAVOUR_TEXT = [
   "U29tZXRpbWVzIHRoZSB3b3JsZCBpcyBqdXN0IGEgdHJpY2sgdG8gZ2V0IHlvdSB0byBsb29rIGRlcGVyIGluc2lkZSB5b3VyIHJvbGUu",
   "Now Mobile Friendly!",
   "Press 'B' (Spacebar) for Combat.",
-  "Press 'A' (Enter) for Interactions.",
+  "Press 'A' (Keyboard E) for Interactions.",
   "W,A, S, D or Joystick to Move.",
   "Why do we have to walk so far to go back to lower floors?",
   "Give me fuel, Give fire, Give me that which I desire!",

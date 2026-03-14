@@ -190,18 +190,20 @@ function drawTitleScreenNPCs() {
             const frames = keys[npc.movement.key].f;
             frame = frames[npc.movement.frame || 0] || frames[0];
         }
+        const sizeW = npc.spriteWidth || config.size.char;
+        const sizeH = npc.spriteHeight || config.size.char;
         let px = Math.round(npc.x * config.size.tile - titleViewport.x);
-        let py = Math.round(npc.y * config.size.tile - titleViewport.y);
+        let py = Math.round(npc.y * config.size.tile - titleViewport.y - (sizeH - config.size.char));
         titleMapContext.drawImage(
             npc.sprite,
-            frame * config.size.char,
+            frame * sizeW,
             0,
-            config.size.char,
-            config.size.char,
+            sizeW,
+            sizeH,
             px,
             py,
-            config.size.char,
-            config.size.char
+            sizeW,
+            sizeH
         );
     });
 }
@@ -255,8 +257,9 @@ function drawTitleWorldSprites(zIndex) {
         const sy = row * s.frameH;
 
         // Align base of sprite to (x, y) tile
-        const px = Math.round(s.x * config.size.tile - titleViewport.x);
-        const py = Math.round(s.y * config.size.tile - titleViewport.y - (s.frameH - config.size.tile));
+        const px = Math.floor(s.x * config.size.tile - titleViewport.x);
+        const offsetY = s.zIndex === 1 ? -16 : 0;
+        const py = Math.floor(s.y * config.size.tile - titleViewport.y - (s.frameH - config.size.tile) + offsetY);
 
         titleMapContext.drawImage(
             img,

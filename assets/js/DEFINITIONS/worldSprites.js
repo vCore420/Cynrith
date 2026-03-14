@@ -57,6 +57,7 @@ const WORLD_SPRITES = [
             { map: 1, x: 46, y: 31 },
             { map: 2, x: 48, y: 60 },
             { map: 2, x: 24, y: 22 },
+            { map: 6, x: 20, y: 36 },
         ],
         spriteSheet: "assets/img/worldSprites/deer_statue.png",  
         imageW: 128,     
@@ -65,7 +66,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -84,6 +85,7 @@ const WORLD_SPRITES = [
             { map: 1, x: 23, y: 32 }, 
             { map: 2, x: 59, y: 50 },
             { map: 2, x: 11, y: 61 },
+            { map: 6, x: 10, y: 43 },
         ],
         spriteSheet: "assets/img/worldSprites/oldman_statue.png",  
         imageW: 128,     
@@ -92,7 +94,7 @@ const WORLD_SPRITES = [
         cols: 1,          
         row: 0,           
         animSpeed: 0,     
-        zIndex: 0,        
+        zIndex: 1,        
         collision: true   
     },
 
@@ -108,6 +110,7 @@ const WORLD_SPRITES = [
             { map: 1, x: 17, y: 16 },
             { map: 2, x: 43, y: 9 },  
             { map: 2, x: 9, y: 26 },
+            { map: 6, x: 35, y: 28 },
         ],
         spriteSheet: "assets/img/worldSprites/dragon_bones.png",  
         imageW: 256,     
@@ -209,6 +212,9 @@ const WORLD_SPRITES = [
         id: "castle_small",    
         positions: [
             { map: 5, x: 8, y: 4 }, 
+            { map: 6, x: 37, y: 33 },
+            { map: 6, x: 44, y: 54 }, 
+            { map: 6, x: 61, y: 40 },
         ],
         spriteSheet: "assets/img/worldSprites/castle.png",  
         imageW: 128,     
@@ -225,6 +231,7 @@ const WORLD_SPRITES = [
         id: "castle_big",    
         positions: [
             { map: 5, x: 7, y: 25 }, 
+            { map: 6, x: 18, y: 56 },
         ],
         spriteSheet: "assets/img/worldSprites/castle2.png",  
         imageW: 320,     
@@ -241,6 +248,7 @@ const WORLD_SPRITES = [
         id: "house_1",    
         positions: [
             { map: 5, x: 33, y: 31 }, 
+            { map: 6, x: 61, y: 60 },
         ],
         spriteSheet: "assets/img/worldSprites/house_1.png",  
         imageW: 128,     
@@ -258,7 +266,7 @@ const WORLD_SPRITES = [
         positions: [
             { map: 5, x: 18, y: 8 }, 
         ],
-        spriteSheet: "assets/img/worldSprites/house_1.png",  
+        spriteSheet: "assets/img/worldSprites/house_2.png",  
         imageW: 128,     
         imageH: 192,      
         rows: 1,        
@@ -431,6 +439,115 @@ const WORLD_SPRITES = [
         zIndex: 0,        
         collision: true   
     },
+
+    // ---------- Floor 7 ----------
+
+    {
+        id: "wharf_market_1",    
+        positions: [
+            { map: 6, x: 58, y: 30 }, 
+            { map: 6, x: 58, y: 12 },
+        ],
+        spriteSheet: "assets/img/worldSprites/house_1.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "wharf_market_2",    
+        positions: [
+            { map: 6, x: 58, y: 27 }, 
+            { map: 6, x: 58, y: 15 }, 
+            { map: 6, x: 50, y: 9 },
+        ],
+        spriteSheet: "assets/img/worldSprites/house_2.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "wharf_market_3",    
+        positions: [
+            { map: 6, x: 58, y: 24 }, 
+            { map: 6, x: 58, y: 9 }, 
+            { map: 6, x: 50, y: 18 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/house_3.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "wharf_market_4",    
+        positions: [
+            { map: 6, x: 58, y: 21 }, 
+            { map: 6, x: 50, y: 15 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/house_4.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "wharf_market_5",    
+        positions: [
+            { map: 6, x: 58, y: 18 }, 
+            { map: 6, x: 50, y: 6 },
+        ],
+        spriteSheet: "assets/img/worldSprites/house_5.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+    {
+        id: "wharf_market_6",    
+        positions: [
+            { map: 6, x: 58, y: 6 }, 
+            { map: 6, x: 50, y: 21 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/house_6.png",  
+        imageW: 128,     
+        imageH: 192,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
+
+
+
 ];
 
 
