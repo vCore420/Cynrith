@@ -68,6 +68,17 @@ body, #title-screen {
   overflow: visible !important;
 }
 
+#version-watermark {
+    position: fixed;
+    top: 22px;
+    left: 12px;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: Arial, sans-serif;
+    z-index: 40;
+    pointer-events: none;
+}
+
 /* Canvas Filter */
 #title-map-canvas {
   position: fixed;
