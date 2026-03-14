@@ -390,6 +390,18 @@ const ITEM_DEFINITIONS = {
         removeable: true,
         sound: 'maxHealth.mp3'
     },
+
+    inventory_page: {
+        id: "inventory_page",
+        name: "Inventory Page",
+        description: "An additional page in your book.",
+        image: "assets/img/items/inventory_page.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'maxHealth.mp3'
+    }
 };
 
 

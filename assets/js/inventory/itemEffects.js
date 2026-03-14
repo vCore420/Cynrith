@@ -48,6 +48,9 @@ const ITEM_EFFECTS = {
         player.setHealth(player.health + heal);
         notify(`Restored ${player.health - before} health!`, 1800);
     },
+    inventory_page: function(player, amount = 1) {
+        unlockInventoryPage(amount);
+    },
     // Add more item effects here...
 };
 

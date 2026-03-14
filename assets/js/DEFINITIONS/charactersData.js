@@ -1487,6 +1487,22 @@ const NPC_DEFINITIONS = {
 
     // Trader Alley NPCs
 
+    wharf_market_trader1: {
+        id: "wharf_market_trader1",
+        name: "Rein A Wharf Market Trader",
+        sprite: "assets/img/npc/npc_f_6.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 54, y: 20, wanderArea: { x1: 52, y1: 19, x2: 55, y2: 21 } }
+        ],
+        dialogue: {
+            default: [
+                "Come to see the Great Whalf Market ae?",
+                "Well you've come to no better trader than I!"
+            ]
+        },
+        trader: "trader6"
+    },
 };
 
 
