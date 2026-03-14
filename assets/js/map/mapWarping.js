@@ -127,7 +127,9 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
                 SoundManager.fadeBgMusicVolume(0, 700);
                 setTimeout(() => {
                     SoundManager.stopBgMusic();
-                    const bgMusicSrc = `assets/sound/bg_${mapKey}.mp3`;
+                    // Check for custom bgMusic in map data, fallback to auto-naming
+                    const bgMusicFile = map.data && map.data.bgMusic ? map.data.bgMusic : `${mapKey}.mp3`;
+                    const bgMusicSrc = `assets/sound/bg/${bgMusicFile}`;
                     SoundManager.playBgMusic(bgMusicSrc);
                     SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
                 }, 750);

@@ -3,6 +3,7 @@
  "infinite":false,
  "spawn": { "x": 45, "y": 47 },
  "teleport": { "x": 44, "y": 24, "xpRequired": 250 },
+ "bgMusic": "bg_map0.mp3",
  "assets":[
    {"file_name":"grass-2","collision":0,"frames":0, "footsteps": "grass.mp3"},
    {"file_name":"bush","collision":1,"frames":0},

@@ -2,6 +2,7 @@
   "compressionlevel": -1,
   "height": 10,
   "infinite": false,
+  "bgMusic": "bg_castle0.mp3",
   "assets": [
     {"file_name":"floor_1","collision":0,"frames":0, "footsteps": "wood.mp3"},
     {"file_name":"floor_2","collision":0,"frames":0, "footsteps": "wood.mp3"},

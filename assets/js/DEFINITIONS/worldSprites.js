@@ -278,6 +278,22 @@ const WORLD_SPRITES = [
     },
 
     {
+        id: "sign_1",    
+        positions: [
+            { map: 5, x: 6, y: 4 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/sign_1.png",  
+        imageW: 64,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 1,        
+        collision: true   
+    },
+
+    {
         id: "sign_2",    
         positions: [
             { map: 5, x: 27, y: 16 }, 
@@ -294,11 +310,33 @@ const WORLD_SPRITES = [
     },
 
     {
-        id: "sign_1",    
+        id: "sign_3",    
         positions: [
-            { map: 5, x: 6, y: 4 }, 
+            { map: 6, x: 51, y: 7 }, 
+            { map: 6, x: 58, y: 28 }, 
+            { map: 6, x: 58, y: 10 },
+            { map: 6, x: 51, y: 19 }, 
         ],
-        spriteSheet: "assets/img/worldSprites/sign_1.png",  
+        spriteSheet: "assets/img/worldSprites/sign_3.png",  
+        imageW: 64,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 1,        
+        collision: true   
+    },
+
+    {
+        id: "sign_4",    
+        positions: [
+            { map: 6, x: 58, y: 19 },  
+            { map: 6, x: 51, y: 13 }, 
+            { map: 6, x: 58, y: 7 }, 
+            
+        ],
+        spriteSheet: "assets/img/worldSprites/sign_4.png",  
         imageW: 64,     
         imageH: 128,      
         rows: 1,        

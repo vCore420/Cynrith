@@ -1,6 +1,7 @@
 { "compressionlevel":-1,
  "height":12,
  "infinite":false,
+ "bgMusic": "bg_title.mp3",
  "assets":[
    {"file_name":"grass-2","collision":0,"frames":0},
    {"file_name":"tree-flash-2","collision":1,"frames":2},

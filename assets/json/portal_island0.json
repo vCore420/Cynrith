@@ -2,6 +2,7 @@
   "compressionlevel": -1,
   "height": 32,
   "infinite": false,
+  "bgMusic": "bg_map6.mp3",
   "assets": [
     {"file_name":"birdge_shadow","collision":0,"frames":0},
     {"file_name":"birdge1","collision":0,"frames":0, "footsteps": "wood.mp3"},
