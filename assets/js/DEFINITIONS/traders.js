@@ -93,7 +93,7 @@ const TRADER_DEFINITIONS = {
 
     trader6: {
         buy: [
-            { id: "inventory_page",   price: 5000 },
+            { id: "inventory_page",   price: 3000 },
         ],
         sell: [
             { id: "umbra_tonic",         price: 45 }

@@ -469,7 +469,7 @@ const INTERACTABLE_TILES = [
         map: 3,
         x: 7,
         y: 73,
-        image: "assets/img/tile/rock-3.png",
+        image: "assets/img/tile/glass-tree.png",
         collision: true, 
         zIndex: 1,
         animOnTrigger: false,

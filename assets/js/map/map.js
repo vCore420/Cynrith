@@ -8,7 +8,7 @@ const FLOOR_NAMES = [
     "The Shattered Spires",      // Floor 4
     "Umbracourt",                // Floor 5
     "The Waystation Veil",       // Floor 6
-    "The Shattered Archipelago", // Floor 7
+    "The Withering Archipelago", // Floor 7
 ];
 
 const NAMED_MAP_INFO = {

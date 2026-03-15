@@ -1485,7 +1485,7 @@ const NPC_DEFINITIONS = {
 
     // ---------- Floor 7 ----------
 
-    // Trader Alley NPCs
+    // Wharf Market NPCs
 
     wharf_market_trader1: {
         id: "wharf_market_trader1",
