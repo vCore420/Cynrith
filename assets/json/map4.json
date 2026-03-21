@@ -3,7 +3,7 @@
   "height": 80,
   "infinite": false,
   "spawn": { "x": 38, "y": 75 },
-  "teleport": { "x": 3, "y": 3, "xpRequired": 5000 },
+  "teleport": { "x": 3, "y": 3, "xpRequired": 8400 },
   "bgMusic": "bg_map4.mp3",
   "assets": [
     {"file_name":"obsidian_brick_1","collision":0,"frames":0, "footsteps": "glass-tile.mp3"},

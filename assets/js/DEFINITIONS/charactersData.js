@@ -1723,9 +1723,9 @@ const ENEMY_TYPES = {
         speed: 1.5,
         xpGain: 20,
         loot: [
-            { item: "choir_fragment", chance: 20, amount: [1, 1] },
-            { item: "glass_shard", chance: 60, amount: [1, 3] },
-            { item: "money", chance: 40, amount: [5, 10] }
+            { item: "choir_fragment", chance: 17, amount: 1 },
+            { item: "glass_shard", chance: 24, amount: 1 },
+            { item: "money", chance: 32, amount: [5, 10] }
         ],
         spawns: [
             { map: 3, x: 23, y: 66, wanderArea: { x1: 4, y1: 60, x2: 29, y2: 77 } },
@@ -1767,15 +1767,15 @@ const ENEMY_TYPES = {
         sprite: "assets/img/enemy/displaced_shadow.png",
         moveSpeed: 0.8,
         distance: 2.5,
-        maxHealth: 95,
-        attack: 26,
-        defense: 8,
+        maxHealth: 115,
+        attack: 38,
+        defense: 12,
         speed: 1.1,
         xpGain: 25,
         loot: [
-            { item: "echo_fragment", chance: 40, amount: [1, 2] },
-            { item: "memory_shard", chance: 25, amount: [1, 1] },
-            { item: "money", chance: 40, amount: [5, 10] }
+            { item: "echo_fragment", chance: 15, amount: 1 },
+            { item: "memory_shard", chance: 15, amount: 1 },
+            { item: "money", chance: 30, amount: [5, 10] }
         ],
         spawns: [
             { map: 3, x: 10, y: 27, wanderArea: { x1: 4, y1: 15, x2: 14, y2: 31 } },
@@ -1800,13 +1800,13 @@ const ENEMY_TYPES = {
         moveSpeed: 0.9,
         distance: 3 ,
         maxHealth: 120,
-        attack: 36,
-        defense: 14,
+        attack: 46,
+        defense: 34,
         speed: 1.1,
         xpGain: 40,
         loot: [
-            { item: "maxHealth_buff_small",   chance: 70, amount: [1, 3] },
-            { item: "money",          chance: 40, amount: [6, 12] }
+            { item: "maxHealth_buff_small",   chance: 10, amount: 1 },
+            { item: "money",          chance: 30, amount: [6, 12] }
         ],
         spawns: [
             { map: 4, x: 60, y: 36, wanderArea: { x1: 47, y1: 30, x2: 77, y2: 43 } },
@@ -1830,19 +1830,19 @@ const ENEMY_TYPES = {
         sprite: "assets/img/enemy/obsidian_mirror_warden.png",
         spriteWidth: 128,
         spriteHeight: 128,
-        drawScale: 1, 
+        drawScale: 2, 
         isBoss: true,
         moveSpeed: 0.7,
         distance: 4.5,
-        maxHealth: 560,
-        attack: 52,
-        defense: 38,
-        speed: 1.3,
+        maxHealth: 860,
+        attack: 148,
+        defense: 74,
+        speed: 1.4,
         xpGain: 840,
         loot: [
-            { item: "glass_shard",    chance: 80, amount: [4, 8] },
+            { item: "glass_shard",    chance: 40, amount: [2, 3] },
             { item: "echo_fragment",  chance: 40, amount: [1, 2] },
-            { item: "memory_shard",   chance: 22, amount: [1, 1] },
+            { item: "memory_shard",   chance: 22, amount: 1 },
             { item: "money",          chance: 100, amount: [60, 120] }
         ],
         spawns: [
@@ -1857,14 +1857,14 @@ const ENEMY_TYPES = {
         moveSpeed: 1.1,
         distance: 4.5,
         maxHealth: 145,
-        attack: 34,
-        defense: 14,
+        attack: 48,
+        defense: 34,
         speed: 1.4,
         xpGain: 75,
         loot: [
-            { item: "umbra_tonic",   chance: 30, amount: [1, 2] },
-            { item: "maxHealth_buff_small", chance: 60, amount: [1, 3] },
-            { item: "money",         chance: 80, amount: [10, 18] }
+            { item: "umbra_tonic",   chance: 10, amount: 1 },
+            { item: "maxHealth_buff_small", chance: 10, amount: 1 },
+            { item: "money",         chance: 60, amount: [6, 10] }
         ],
         spawns: [
             // Upper corridor to boss hall (map 4)
@@ -1899,18 +1899,18 @@ const ENEMY_TYPES = {
         sprite: "assets/img/enemy/shadow_hand.png",
         spriteWidth: 128,
         spriteHeight: 128,
-        drawScale: 1,
+        drawScale: 1.5,
         isBoss: true,
         moveSpeed: 0.9,
         distance: 4,
-        maxHealth: 385,
-        attack: 44,
-        defense: 20,
+        maxHealth: 685,
+        attack: 124,
+        defense: 55,
         speed: 1.2,
         xpGain: 200,
         loot: [
             { item: "command_sigil", chance: 100, amount: 1 },
-            { item: "money", chance: 80, amount: [25, 45] }
+            { item: "money", chance: 80, amount: [15, 35] }
         ],
         spawns: [
             { map: 4, x: 72, y: 36, wanderArea: { x1: 66, y1: 30, x2: 77, y2: 43 } } // side room off main hall
@@ -1924,14 +1924,14 @@ const ENEMY_TYPES = {
         moveSpeed: 0.9,
         distance: 3.5,
         maxHealth: 160,
-        attack: 42,
-        defense: 18,
+        attack: 52,
+        defense: 38,
         speed: 1.0,
         xpGain: 85,
         loot: [
-            { item: "umbra_tonic",        chance: 30, amount: [1, 1] },
-            { item: "def_buff_small",     chance: 60, amount: [1, 2] },
-            { item: "money",              chance: 80, amount: [12, 22] }
+            { item: "umbra_tonic",        chance: 10, amount: 1 },
+            { item: "def_buff_small",     chance: 10, amount: 1 },
+            { item: "money",              chance: 60, amount: [12, 22] }
         ],
         spawns: [
             { map: 4, x: 77, y: 74, wanderArea: { x1: 50, y1: 55, x2: 77, y2: 78 } },

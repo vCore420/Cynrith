@@ -2,7 +2,7 @@
  "height":80,
  "infinite":false,
  "spawn": { "x": 71, "y": 75 },
- "teleport": { "x": 42, "y": 22, "xpRequired": 3000 },
+ "teleport": { "x": 42, "y": 22, "xpRequired": 4800 },
  "bgMusic": "bg_map3.mp3",
  "assets":[
    {"file_name":"glass-01","collision":0,"frames":0, "footsteps": "glass-tile.mp3"},

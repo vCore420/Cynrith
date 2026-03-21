@@ -3,7 +3,7 @@
   "height": 40,
   "infinite": false,
   "spawn": { "x": 6, "y": 35 },
-  "teleport": { "x": 23, "y": 3, "xpRequired": 5500 },
+  "teleport": { "x": 23, "y": 3, "xpRequired": 9000 },
   "bgMusic": "bg_map5.mp3",
   "assets": [
     {"file_name":"birdge_shadow","collision":0,"frames":0},
