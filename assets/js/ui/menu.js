@@ -596,7 +596,9 @@ function getTotalResistance() {
         const skillDef = getSkillDef(skillId);
         const playerSkill = getPlayerSkill(skillId);
         if (!skillDef || !playerSkill) return;
-        resistance += (skillDef.buffs.resistance || 0) + (playerSkill.level * 2);
+        if (Object.prototype.hasOwnProperty.call(skillDef.buffs, "resistance")) {
+            resistance += skillDef.buffs.resistance + (playerSkill.level * 2);
+        }
     });
     return resistance;
 }
@@ -617,8 +619,12 @@ function updateRegenEffect() {
         const skillDef = getSkillDef(skillId);
         const playerSkill = getPlayerSkill(skillId);
         if (!skillDef || !playerSkill) return;
-        totalRegen += (skillDef.buffs.regen || 0) + (playerSkill.level * 2);
-        totalRegen += (skillDef.drawbacks.regen || 0) - playerSkill.level;
+        if (Object.prototype.hasOwnProperty.call(skillDef.buffs, "regen")) {
+            totalRegen += skillDef.buffs.regen + (playerSkill.level * 2);
+        }
+        if (Object.prototype.hasOwnProperty.call(skillDef.drawbacks, "regen")) {
+            totalRegen += skillDef.drawbacks.regen - playerSkill.level;
+        }
     });
 
     if (totalRegen !== 0) {

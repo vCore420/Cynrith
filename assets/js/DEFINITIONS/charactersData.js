@@ -155,8 +155,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Have you ever noticed how the flowers here bloom in patterns? Some say the Architect weaves messages into their petals.",
-                "If you listen closely, you might hear the grass whisper old secrets. This land remembers more than it reveals."
+                "Have you noticed the flowers lean toward places worth checking? If something hums, glows, or seems out of place, step close and press A to inspect it.",
+                "The wilds here are kind, but not harmless. Keep moving in fights, then strike with B when you're in range.",
+                "If your health dips, open your pack from the menu and use what you’ve gathered. Verdant Rise rewards careful travelers.",
+                "This floor teaches gently, but the higher ones will not. Learn the rhythm now, and you’ll climb farther."
             ]
         }
     },
@@ -173,8 +175,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Sometimes, when I close my eyes, I see glimpses of other places; towers in the clouds, forests made of crystal. Do you ever dream of somewhere else?",
-                "I like to watch the sky change. Here, every dawn feels like a new chance, don’t you think?"
+                "Sometimes the sky shifts and I remember paths I haven't walked. When you feel lost, check your quest notes and map in the menu.",
+                "The stones and people here guide more than they speak. Talk often, many paths only open after a conversation.",
+                "If battle feels rough, don't stand still. Move, strike, recover, then move again.",
+                "And save your journey often, memories fade in Cynrith, but your progress doesn't have to."
             ]
         }
     },
@@ -367,8 +371,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Forgotten Forum. Travelers gather here between journeys, some to trade, some to share stories, some just to remember.",
-                "They say the forum returns with every cycle, no matter how the world changes. If you listen, you might hear echoes of old voices in the pillars."
+                "Welcome to the Forgotten Forum. People call it a rest stop, but it is older than the roads around it.",
+                "When the Fracture tore these lower floors of Cynrith apart, places like this survived by becoming anchors, little pockets that remember what the world was.",
+                "Each floor is a layer of that memory. Some are clear, some are damaged, and some rewrite themselves when no one is looking.",
+                "That is why travelers share stories here. In Cynrith, being remembered is a kind of protection."
             ]
         }
     },
@@ -385,8 +391,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Stonewake Expanse is older than most remember. The monoliths are memory anchors, left by the Firstfolk to keep the past from fading.",
-                "When the Fracture came, whole towns vanished. Now, only the bravest seek out the lost places and the stories they hold."
+                "Stonewake Expanse is a graveyard of old foundations. Those monoliths are not monuments, they are memory locks.",
+                "The Firstfolk carved them to keep names, routes, and warnings from vanishing between cycles.",
+                "After the Fracture, whole settlements were erased, but the stones still carried fragments of what stood there.",
+                "If you ever wonder why people speak of levels and quests like weather, it is because Cynrith teaches survival through patterns."
             ]
         }
     },
@@ -403,8 +411,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Cynrith is a world of cycles; layers built on memories and magic. Some say the Architect watches every step, waiting to see who will ascend.",
-                "If you find relics, look closely. Sometimes they whisper secrets from worlds that came before."
+                "Cynrith is layered like a stacked archive. You climb physically, but you also climb through older and stranger records of the world.",
+                "The Architect did not just build a realm, it built rules, and everyone born here learns to live inside them.",
+                "Skills, quests, growth, none of it feels strange to us. It is simply how the world answers effort.",
+                "Relics matter because they carry stable memory. In a place that forgets, anything that remembers is power."
             ]
         }
     },
@@ -986,9 +996,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Long ago, the Spires rang with the voices of the Choir. Now, only echoes drift through these halls.",
-                "I record what remains, a tale here, a fragment there. Sometimes, the glass remembers more than we do.",
-                "They say the Architect once walked this floor, but left only riddles and reflections behind."
+                "The Choir once mapped these halls in song. Now the notes are broken, and the glass answers in fragments.",
+                "If a room feels wrong, pause and read the space. In the Spires, route choice matters as much as raw strength.",
+                "Shardlings gather where echoes are loudest. Clear patrol clusters before you chase objectives, and your return paths stay safer.",
+                "Write this in memory: Cynrith rewards observation. The world always hints before it punishes."
             ]
         }
     },
@@ -1005,9 +1016,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The glass in this hall once showed every memory, every hope. Now, it flickers with stories half-told.",
-                "I watch the patterns in the light, sometimes they form faces, sometimes just lines. All are pieces of the Spires’ story.",
-                "If you listen closely, you might hear the song that once held this place together."
+                "These mirrors do not lie, they prioritize. They show what this floor thinks is important.",
+                "When pressure rises, move first, strike second. Getting surrounded in glass corridors is how most runs end.",
+                "Use what you carry. Tonics and buffs are not for emergencies alone, they are tools for controlled fights.",
+                "The Architect built trials, not fairness. Learn the pattern, keep your rhythm, and the Spires become readable."
             ]
         }
     },

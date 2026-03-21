@@ -162,6 +162,7 @@ const knob = document.getElementById('joystick-knob');
 const base = document.getElementById('joystick-base');
 let joystickActive = false;
 let baseRect = null;
+let joystickTouchId = null;
 
 function setPlayerJoystickMovement(dx, dy) {
     if (!controlsEnabled) {
@@ -220,8 +221,10 @@ function handleJoystickMove(clientX, clientY) {
 knob.addEventListener('touchstart', e => {
     joystickActive = true;
     baseRect = base.getBoundingClientRect();
+    joystickTouchId = e.changedTouches[0].identifier;
     e.preventDefault();
-});
+}, { passive: false });
+
 knob.addEventListener('mousedown', e => {
     joystickActive = true;
     baseRect = base.getBoundingClientRect();
@@ -230,20 +233,26 @@ knob.addEventListener('mousedown', e => {
 
 document.addEventListener('touchmove', e => {
     if (!joystickActive) return;
-    const touch = e.touches[0];
+    const touch = Array.from(e.touches).find(t => t.identifier === joystickTouchId);
+    if (!touch) return;
     handleJoystickMove(touch.clientX, touch.clientY);
-});
+    e.preventDefault();
+}, { passive: false });
+
 document.addEventListener('mousemove', e => {
     if (!joystickActive) return;
     handleJoystickMove(e.clientX, e.clientY);
 });
 
 document.addEventListener('touchend', e => {
-    if (joystickActive) {
-        joystickActive = false;
-        resetJoystick();
-    }
-});
+    if (!joystickActive) return;
+    const endedJoystickTouch = Array.from(e.changedTouches).some(t => t.identifier === joystickTouchId);
+    if (!endedJoystickTouch) return;
+    joystickActive = false;
+    joystickTouchId = null;
+    resetJoystick();
+}, { passive: false });
+
 document.addEventListener('mouseup', e => {
     if (joystickActive) {
         joystickActive = false;

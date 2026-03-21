@@ -19,8 +19,12 @@ function getTotalXpGainModifier() {
         const skillDef = getSkillDef(skillId);
         const playerSkill = getPlayerSkill(skillId);
         if (!skillDef || !playerSkill) return;
-        modifier += (skillDef.buffs.xpGain || 0) + (playerSkill.level * 2);
-        modifier += (skillDef.drawbacks.xpGain || 0) - playerSkill.level;
+        if (Object.prototype.hasOwnProperty.call(skillDef.buffs, "xpGain")) {
+            modifier += skillDef.buffs.xpGain + (playerSkill.level * 2);
+        }
+        if (Object.prototype.hasOwnProperty.call(skillDef.drawbacks, "xpGain")) {
+            modifier += skillDef.drawbacks.xpGain - playerSkill.level;
+        }
     });
     return modifier;
 }

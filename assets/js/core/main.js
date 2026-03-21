@@ -68,13 +68,14 @@ var fps = {
 let actionButtonBPressed = false;
 let actionButtonAPressed = false;
 
-document.getElementById('btn-b').addEventListener('click', function() {
-    actionButtonBPressed = true;
-});
+const btnA = document.getElementById('btn-a');
+const btnB = document.getElementById('btn-b');
 
-document.getElementById('btn-a').addEventListener('click', function() {
-    actionButtonAPressed = true;
-});
+function pressA(e) { e.preventDefault(); actionButtonAPressed = true; }
+function pressB(e) { e.preventDefault(); actionButtonBPressed = true; }
+
+if (btnA) btnA.addEventListener('pointerdown', pressA, { passive: false });
+if (btnB) btnB.addEventListener('pointerdown', pressB, { passive: false });
 
 
 function isPortraitZoomed() {
@@ -147,20 +148,19 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         if (typeof spawnWorldSpritesForMap === "function") {
             spawnWorldSpritesForMap(mapIndex);
         }
+        if (window.SoundManager) {
+            SoundManager.fadeBgMusicVolume(0, 700);
+            setTimeout(() => {
+                SoundManager.stopBgMusic();
+                const bgMusicFile = map.data && map.data.bgMusic ? map.data.bgMusic : `bg_${mapKey}.mp3`;
+                const bgMusicSrc = `assets/sound/${bgMusicFile}`;
+                SoundManager.playBgMusic(bgMusicSrc);
+                SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
+            }, 750);
+        }
         mapReady = true;
         tryStartLoop();
     };
-
-    // Fade out any previous background music, then play new music for this map
-    if (window.SoundManager) {
-        SoundManager.fadeBgMusicVolume(0, 700);
-        setTimeout(() => {
-            SoundManager.stopBgMusic();
-            const bgMusicSrc = `assets/sound/bg_map${mapIndex}.mp3`;
-            SoundManager.playBgMusic(bgMusicSrc);
-            SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
-        }, 750);
-    }
 
     // Wait for all sprites to load before starting Loop
     function waitForSprites() {
