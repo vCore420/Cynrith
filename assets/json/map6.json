@@ -3,7 +3,7 @@
   "height": 64,
   "infinite": false,
   "spawn": { "x": 7, "y": 57 },
-  "teleport": { "x": 43, "y": 4, "xpRequired": 7600 },
+  "teleport": { "x": 43, "y": 4, "xpRequired": 16000 },
   "bgMusic": "bg_map6.mp3",
   "assets": [
     {"file_name":"Cliff1a","collision":1,"frames":0},
