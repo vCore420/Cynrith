@@ -115,7 +115,12 @@ const ITEM_DEFINITIONS = {
         rarity: "common",
         stackable: false,
         useable: false,
-        removeable: false 
+        removeable: false,
+        itemType: "weapon",
+        attackBonus: 0,
+        rangeTiles: 2,
+        slashSfx: "player/sword_slash.mp3",
+        hitSfx: "player/sword_hit.mp3"
     },
 
     mirror_sword: {
@@ -126,7 +131,12 @@ const ITEM_DEFINITIONS = {
         rarity: "common",
         stackable: false,
         useable: false,
-        removeable: false 
+        removeable: false,
+        itemType: "weapon",
+        attackBonus: 3,
+        rangeTiles: 2,
+        slashSfx: "player/sword_slash.mp3",
+        hitSfx: "player/sword_hit.mp3" 
     },
 
 

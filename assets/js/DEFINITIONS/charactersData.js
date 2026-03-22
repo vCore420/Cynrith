@@ -785,8 +785,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Shattered Spires, traveler. My wares are simple, but they may help you survive the glass and echoes.",
-                "I only deal in goods from the lower floors, old roots, dewleaf, and fragments. If you have something from before, I’ll take it off your hands."
+                "Welcome to the Shattered Spires, traveler. Out here, survival is less about luck and more about preparation.",
+                "I buy lower-floor goods because they still hold steady value in fractured places. Dewleaf, roots, and old fragments keep people alive.",
+                "Before long bridge routes, stock healing and one defensive tonic. The Spires punish empty packs.",
+                "If a path looks quiet, expect a fight on the return. Buy for the trip back, not just the trip out."
             ],
         },
         trader: "trader2"
@@ -804,8 +806,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You’ve come far, traveler. The Spires reward those who endure.",
-                "Here you’ll find rare items, shards, fragments, and relics only found in this fractured place. I’ll buy what you’ve gathered from the Spires, if you’re willing to part with them."
+                "You made it to the gate market. Good. Most who arrive unprepared spend more on mistakes than supplies.",
+                "What I sell here is tuned for glass-country: recovery, stability, and tools to end fights quickly.",
+                "Shardlings hit harder in groups. Thin packs, reset your position, then push forward.",
+                "If you plan to step into Floor 5 soon, carry sustain and at least one emergency option. Umbracourt favors the patient."
             ],
         },
         trader: "trader3"

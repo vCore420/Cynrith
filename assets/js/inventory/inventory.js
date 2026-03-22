@@ -23,6 +23,14 @@ function addItem(itemId, amount = 1) {
         notify("Inventory full!", 2000);
         return false;
     }
+    if (def.itemType === "weapon" && typeof player !== "undefined" && player) {
+        const hasEquipped =
+            player.equippedWeaponId &&
+            typeof hasItem === "function" &&
+            hasItem(player.equippedWeaponId, 1);
+
+        if (!hasEquipped) player.equippedWeaponId = itemId;
+    }
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
 
@@ -49,6 +57,18 @@ function removeItem(itemId, amount = 1) {
     console.log(`[Inventory] Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory`);
     // Shift items to fill empty slots
     inventory = inventory.filter(i => i.amount > 0);
+    if (
+        typeof player !== "undefined" &&
+        player &&
+        player.equippedWeaponId === itemId &&
+        !hasItem(itemId, 1)
+    ) {
+        if (typeof player.ensureValidEquippedWeapon === "function") {
+            player.ensureValidEquippedWeapon();
+        } else {
+            player.equippedWeaponId = null;
+        }
+    }
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
     notify(`Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory.`, 1800);
@@ -284,6 +304,28 @@ function showItemDropdown(index, slot, def, event) {
         amtBlock.appendChild(okBtn);
 
         dropdown.appendChild(amtBlock);
+    }
+
+    if (def.itemType === "weapon" && typeof player !== "undefined" && player) {
+        const isEquipped = player.equippedWeaponId === slot.id;
+
+        const equippedDiv = document.createElement('div');
+        equippedDiv.textContent = isEquipped ? "Status: Equipped" : "Status: Not Equipped";
+        equippedDiv.className = "dropdown-rarity";
+        dropdown.appendChild(equippedDiv);
+
+        const equipBtn = document.createElement('button');
+        equipBtn.textContent = isEquipped ? "Equipped" : "Equip Weapon";
+        equipBtn.className = "dropdown-btn use";
+        equipBtn.disabled = isEquipped;
+        equipBtn.onclick = () => {
+            player.equippedWeaponId = slot.id;
+            updateInventoryUI();
+            notify(`${def.name} equipped.`, 1500);
+            dropdown.remove();
+            overlay.remove();
+        };
+        dropdown.appendChild(equipBtn);
     }
 
     // Use button

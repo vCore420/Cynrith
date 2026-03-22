@@ -138,6 +138,7 @@ const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png")
     this.defence = 5;
     this.attackSpeed = 5;
     this.lastAttackTime = 0;
+    this.equippedWeaponId = null;
    
     // Helper to get attacks per second from attackSpeed stat
     Player.prototype.getAttacksPerSecond = function() {
@@ -311,61 +312,74 @@ Player.prototype = {
         this.setAttackSpeed(this.attackSpeed + val);
         updatePlayerBaseStats();
     },
+    getEquippedWeaponDef: function() {
+        if (!this.equippedWeaponId) return null;
+        if (typeof hasItem === "function" && !hasItem(this.equippedWeaponId, 1)) return null;
+        const def = ITEM_DEFINITIONS[this.equippedWeaponId];
+        if (!def || def.itemType !== "weapon") return null;
+        return def;
+    },
+
+    ensureValidEquippedWeapon: function() {
+        const current = this.getEquippedWeaponDef();
+        if (current) return current;
+
+        this.equippedWeaponId = null;
+        const firstWeapon = inventory.find(slot => {
+            if (!slot) return false;
+            const def = ITEM_DEFINITIONS[slot.id];
+            return def && def.itemType === "weapon";
+        });
+
+        if (firstWeapon) this.equippedWeaponId = firstWeapon.id;
+        return this.getEquippedWeaponDef();
+    },
     attackEnemy: function() {
         const now = Date.now();
         const attacksPerSecond = this.getAttacksPerSecond();
         const cooldown = 1000 / attacksPerSecond;
-        if (now - this.lastAttackTime < cooldown) return; 
+        if (now - this.lastAttackTime < cooldown) return;
 
         this.lastAttackTime = now;
 
-        // Only allow attack if player has a basic sword
-        const hasSword = inventory.some(item => item && typeof item.id === "string" && item.id.endsWith("_sword"));
-        if (!hasSword) return;
+        const weapon = this.ensureValidEquippedWeapon();
+        if (!weapon) return;
 
-        // Play sword slash sound effect
         if (window.SoundManager) {
-            SoundManager.playEffect("assets/sound/sfx/player/sword_slash.mp3");
+            SoundManager.playEffect(`assets/sound/sfx/${weapon.slashSfx || "player/sword_slash.mp3"}`);
         }
 
-        // Play attack animation (jump forward and back)
         this.quickAttackAnim();
 
-        // Determine attack direction
         let dir = this.movement.key;
         let dx = keys[dir]?.x ? Math.sign(keys[dir].x) : 0;
         let dy = keys[dir]?.y ? Math.sign(keys[dir].y) : 0;
 
-        // Target tiles: in front of player and two tiles in front
-        let targetTiles = [
-            { x: this.tile.x + dx,     y: this.tile.y + dy },     // 1 tile ahead
-            { x: this.tile.x + dx*2,   y: this.tile.y + dy*2 },   // 2 tiles ahead
-            { x: this.tile.x,          y: this.tile.y }           // player's own tile
-        ];
+        const range = Math.max(1, weapon.rangeTiles || 1);
+        const targetTiles = [{ x: this.tile.x, y: this.tile.y }];
+        for (let i = 1; i <= range; i++) {
+            targetTiles.push({ x: this.tile.x + dx * i, y: this.tile.y + dy * i });
+        }
 
         let hitEnemy = false;
 
-        // Attack any enemy on target tiles
         characters.forEach(char => {
             if (char.type === "enemy" && char.health > 0) {
-                let isTarget = targetTiles.some(t =>
+                const isTarget = targetTiles.some(t =>
                     Math.round(char.x) === t.x && Math.round(char.y) === t.y
                 );
                 if (isTarget) {
                     hitEnemy = true;
-                    let dmg = Math.max(1, this.attack - char.defense);
+                    const dmg = Math.max(1, (this.attack + (weapon.attackBonus || 0)) - char.defense);
                     char.health -= dmg;
                     showDamagePopup(Math.round(char.x), Math.round(char.y), dmg, "enemy");
-                    if (char.health <= 0) {
-                        handleEnemyDeath(char);
-                    }
+                    if (char.health <= 0) handleEnemyDeath(char);
                 }
             }
         });
 
-        // Play sword hit sound if an enemy was hit
         if (hitEnemy && window.SoundManager) {
-            SoundManager.playEffect("assets/sound/sfx/player/sword_hit.mp3");
+            SoundManager.playEffect(`assets/sound/sfx/${weapon.hitSfx || "player/sword_hit.mp3"}`);
         }
     },
     quickAttackAnim: function() {

@@ -22,6 +22,9 @@ function getCurrentSaveData() {
         mapIndex: typeof currentMapIndex !== "undefined" ? currentMapIndex : 0,
         tile: { ...player.tile },
         pos: { ...player.pos },
+        equipment: {
+            weaponId: player.equippedWeaponId || null
+        },
         inventory: inventory.map((slot, i) => slot ? { ...slot, slot: i } : null),
         quests: {
             active: [...playerQuests.active],
@@ -124,6 +127,14 @@ function applySaveData(data) {
     // Patch settings if present
     if (data.settings && typeof window.patchSettingsFromSave === "function") {
         window.patchSettingsFromSave(data);
+    }
+
+    // Patch equipped weapon
+    if (typeof player !== "undefined" && player) {
+        player.equippedWeaponId = data.equipment?.weaponId || null;
+        if (typeof player.ensureValidEquippedWeapon === "function") {
+            player.ensureValidEquippedWeapon();
+        }
     }
 
     // Patch skills
