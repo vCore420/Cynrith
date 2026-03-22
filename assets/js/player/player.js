@@ -137,6 +137,13 @@ const Player = function(tile_x, tile_y, spriteFile = "assets/img/char/hero.png")
     this.attack = 5;
     this.defence = 5;
     this.attackSpeed = 5;
+
+    this.speed = 3;
+    this.regen = 0;
+    this.xpGain = 0;
+    this.luck = 0;
+    this.evasion = 0;
+
     this.lastAttackTime = 0;
     this.equippedWeaponId = null;
    

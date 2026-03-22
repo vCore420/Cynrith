@@ -124,6 +124,55 @@
   font-size: 1.2em;
 }
 
+.full-stats-grid {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #3af0ff55;
+  border-radius: 6px;
+  padding: 8px;
+  background: #0f1118aa;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: 1.8fr 0.8fr 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #ffffff18;
+  font-size: 0.85em;
+  text-align: left;
+}
+
+.stats-row:last-child {
+  border-bottom: none;
+}
+
+.stats-head {
+  font-weight: bold;
+  color: #ffe082;
+  border-bottom: 1px solid #3af0ff88;
+}
+
+.stats-name {
+  color: #fffbe6;
+}
+
+.stats-base {
+  color: #9fb7d9;
+  text-align: right;
+}
+
+.stats-current {
+  color: #dff5ff;
+  text-align: right;
+}
+
+.stats-delta {
+  color: #8df7b1;
+}
+
 /* Close Button for Player Menu */
 .close-btn { 
   position: absolute;

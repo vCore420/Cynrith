@@ -17,7 +17,12 @@ function getCurrentSaveData() {
             xp: player.xp,
             attack: player.attack,
             defence: player.defence,
-            attackSpeed: player.attackSpeed
+            attackSpeed: player.attackSpeed,
+            speed: player.speed ?? 3,
+            regen: player.regen ?? 0,
+            xpGain: player.xpGain ?? 0,
+            luck: player.luck ?? 0,
+            evasion: player.evasion ?? 0
         },
         mapIndex: typeof currentMapIndex !== "undefined" ? currentMapIndex : 0,
         tile: { ...player.tile },

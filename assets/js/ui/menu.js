@@ -16,13 +16,52 @@ const gameSettings = window.gameSettings;
 let playerSkills = []; // Array of { id, level }
 let equippedSkills = [null, null, null]; // For equipped slots
 
+const PLAYER_STAT_LABELS = {
+    maxHealth: "Max Health",
+    health: "Health",
+    xp: "XP",
+    attack: "Attack",
+    defence: "Defence",
+    attackSpeed: "Attack Speed",
+    speed: "Move Speed",
+    regen: "Regen",
+    xpGain: "XP Gain",
+    luck: "Luck",
+    evasion: "Evasion"
+};
+
+const PLAYER_STAT_ORDER = [
+    "maxHealth",
+    "health",
+    "xp",
+    "attack",
+    "defence",
+    "attackSpeed",
+    "speed",
+    "regen",
+    "xpGain",
+    "luck",
+    "evasion"
+];
+
 // open menu
 function openMenu() {
     document.getElementById('player-menu').classList.remove('hidden');
     controlsEnabled = false;
+
+    ensureExtendedPlayerStats();
     updatePlayerMenuSprite();
     updatePlayerMenuStats();
-    statsInterval = setInterval(updatePlayerMenuStats, 300); // Refresh stats every 300ms
+
+    statsInterval = setInterval(() => {
+        updatePlayerMenuStats();
+
+        const statsPage = document.getElementById('stats-menu');
+        if (statsPage && statsPage.classList.contains('active')) {
+            renderFullStatsPage();
+        }
+    }, 300);
+
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
 }
 
@@ -96,6 +135,124 @@ function showInventoryMenu() {
     updateInventoryUI && updateInventoryUI();
 }
 
+// Show Stats Menu
+function ensureExtendedPlayerStats() {
+    if (typeof player === "undefined" || !player) return;
+
+    const defaults = {
+        speed: 3,
+        regen: 0,
+        xpGain: 0,
+        luck: 0,
+        evasion: 0
+    };
+
+    Object.keys(defaults).forEach(stat => {
+        if (typeof player[stat] === "undefined") {
+            player[stat] = defaults[stat];
+        }
+    });
+}
+
+function getEquippedSkillResistanceTotal() {
+    let resistance = 0;
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const skillDef = getSkillDef(skillId);
+        const playerSkill = getPlayerSkill(skillId);
+        if (!skillDef || !playerSkill) return;
+
+        if (Object.prototype.hasOwnProperty.call(skillDef.buffs, "resistance")) {
+            resistance += skillDef.buffs.resistance + (playerSkill.level * 2);
+        }
+    });
+    return resistance;
+}
+
+function getEquippedSkillStatDelta(stat) {
+    let delta = 0;
+    const resistance = getEquippedSkillResistanceTotal();
+
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const skillDef = getSkillDef(skillId);
+        const playerSkill = getPlayerSkill(skillId);
+        if (!skillDef || !playerSkill) return;
+
+        if (Object.prototype.hasOwnProperty.call(skillDef.buffs, stat)) {
+            delta += skillDef.buffs[stat] + (playerSkill.level * 2);
+        }
+
+        if (Object.prototype.hasOwnProperty.call(skillDef.drawbacks, stat)) {
+            let value = skillDef.drawbacks[stat] - playerSkill.level;
+            value += resistance; // mirrors applySkillEffect behavior
+            delta += value;
+        }
+    });
+
+    return delta;
+}
+
+function showStatsMenu() {
+    document.querySelectorAll('.player-menu-pages .menu-page').forEach(el => el.classList.remove('active'));
+
+    let statsPage = document.getElementById('stats-menu');
+    if (!statsPage) {
+        statsPage = document.createElement('div');
+        statsPage.id = "stats-menu";
+        statsPage.className = "menu-page active";
+        statsPage.innerHTML = `
+            <button class="close-btn" onclick="showPlayerMenuMain()">✕</button>
+            <h2>Player Stats</h2>
+            <div id="full-stats-grid" class="full-stats-grid"></div>
+        `;
+        document.querySelector('.player-menu-pages').appendChild(statsPage);
+    } else {
+        statsPage.classList.add('active');
+    }
+
+    renderFullStatsPage();
+}
+
+function renderFullStatsPage() {
+    const grid = document.getElementById('full-stats-grid');
+    if (!grid || typeof player === "undefined" || !player) return;
+
+    ensureExtendedPlayerStats();
+
+    const rows = PLAYER_STAT_ORDER.map(stat => {
+        const label = PLAYER_STAT_LABELS[stat] || stat;
+        const current = Number(player[stat] ?? 0);
+
+        const skillDelta = Number(getEquippedSkillStatDelta(stat) || 0);
+        const base = current - skillDelta;
+
+        const roundedBase = Math.round(base * 100) / 100;
+        const roundedCurrent = Math.round(current * 100) / 100;
+        const roundedDelta = Math.round(skillDelta * 100) / 100;
+
+        const deltaText = roundedDelta === 0
+            ? ""
+            : (roundedDelta > 0 ? ` (+${roundedDelta})` : ` (${roundedDelta})`);
+
+        return `
+            <div class="stats-row">
+                <div class="stats-name">${label}</div>
+                <div class="stats-base">${roundedBase}</div>
+                <div class="stats-current">${roundedCurrent}<span class="stats-delta">${deltaText}</span></div>
+            </div>
+        `;
+    }).join("");
+
+    grid.innerHTML = `
+        <div class="stats-row stats-head">
+            <div>Stat</div>
+            <div>Base</div>
+            <div>Current</div>
+        </div>
+        ${rows}
+    `;
+}
 
 // Show Quest Menu - move styles to css
 function showQuestsMenu() {
@@ -550,11 +707,11 @@ function ensurePlayerBaseStats() {
             attack: player.attack,
             defence: player.defence,
             attackSpeed: player.attackSpeed,
-            xpGain: player.xpGain || 0,
-            regen: player.regen || 0,
             speed: player.speed || 3,
-            accuracy: player.accuracy || 0,
-            resistance: player.resistance || 0
+            regen: player.regen || 0,
+            xpGain: player.xpGain || 0,
+            luck: player.luck || 0,
+            evasion: player.evasion || 0
         };
     }
 }
@@ -824,6 +981,7 @@ document.getElementById('menu-btn').addEventListener('click', openMenu);
 document.getElementById('close-menu').addEventListener('click', closeMenu);
 document.getElementById('btn-inventory').addEventListener('click', showInventoryMenu);
 document.getElementById('btn-quests').addEventListener('click', showQuestsMenu);
+document.getElementById('btn-stats')?.addEventListener('click', showStatsMenu);
 document.getElementById('btn-skills').addEventListener('click', showSkillsMenu);
 document.getElementById('spin-skills-btn').addEventListener('click', showSkillsGachaScreen);
 document.getElementById('btn-map').addEventListener('click', showMapMenu);
