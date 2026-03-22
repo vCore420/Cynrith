@@ -1244,7 +1244,7 @@ const INTERACTABLE_TILES = [
         map: "castle0",
         x: 9,
         y: 3,
-        image: "assets/img/worldSprites/chest1.png",
+        image: "assets/img/worldSprites/chest.png",
         collision: false,
         zIndex: 0,
         animOnTrigger: false,
