@@ -1,0 +1,366 @@
+/* Fps and Coord Counter */
+div#log {
+    background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+    font-family: var(--font-playermenu);
+    font-size: 12pt;
+    color: var(--dk-txt);
+    border-radius: 4px;
+    border: 1px solid #3af0ff;
+    box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+    opacity: 0.8;
+    text-align: left;
+    padding: 5px 9px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+/* Touch Controls */
+#touch-joystick {
+  position: fixed;
+  bottom: 10%;
+  left: 10%;
+  width: 140px;
+  height: 140px;
+  z-index: 10;
+  user-select: none;
+  touch-action: none;
+}
+#joystick-base {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: 5px;
+  top: 5px;
+  background: #22233588;
+  border-radius: 50%;
+  border: 2px solid #3af0ff;
+}
+#joystick-knob {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 35px;
+  top: 35px;
+  background: #3af0ffcc;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  touch-action: none;
+}
+
+/* Action Buttons */
+#act-controls {
+  position: fixed;      
+  bottom: 2vw;              
+  right: 4vw;
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  width: 200px;          
+  height: 200px;
+}
+
+/* Action Button A and B */
+#btn-a, #btn-b {
+  position: absolute;     
+  width: 100px;
+  height: 100px;
+  margin: 6px;
+  font-size: 3em;
+  opacity: 0.8;
+  background: var(--dk-ctrl);
+  border: 2px solid #3af0ff;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  color: var(--dk-txt);
+  border-radius: 100%;
+  touch-action: none;
+}
+
+/* Button A */
+#btn-a {
+  right: 0;
+  bottom: 100px;
+}
+
+#btn-b {
+  right: 80px;   
+  bottom: 0px;  
+}
+
+/* Player Health Bar */
+.player-health-bar-bg {
+  fill: var(--hud-bg, #2e2e38);
+  opacity: 0.92;
+}
+.player-health-bar {
+  fill: #3e3;
+}
+.player-health-bar-border {
+  stroke: #fff;
+  stroke-width: 2;
+  fill: none;
+}
+.player-health-bar-text {
+  font: bold 0.8em var(--font-playermenu);
+  fill: #fff;
+  stroke: #222;
+  stroke-width: 3;
+  paint-order: stroke fill;
+  text-anchor: middle;
+}
+
+/* Enemy Health Bar */
+.enemy-health-bar-bg {
+  fill: #222;
+  opacity: 0.92;
+}
+.enemy-health-bar {
+  fill: #e33;
+}
+.enemy-health-bar-border {
+  stroke: #fff;
+  stroke-width: 1;
+  fill: none;
+}
+.enemy-health-bar-text {
+  font: bold 16px var(--font-playermenu);
+  fill: #fff;
+  stroke: #222;
+  stroke-width: 3;
+  paint-order: stroke fill;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* Damage Popups */
+.damage-popup {
+  font: bold 22px var(--font-playermenu);
+  text-align: center;
+  color: #3e3;
+  text-shadow: 0 1px 2px #fff, 0 0 8px #000;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2001;
+  position: absolute;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.damage-popup.player {
+  color: #e33;
+}
+
+/* Quest HUD */
+.quest-hud {
+    position: fixed;
+    left: 18px;
+    bottom: 55%;
+    width: 200px;
+    max-height: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    border-radius: 4px;
+    z-index: 100;
+}
+.quest-hud::-webkit-scrollbar { display: none; }
+
+.quest-hud-entry {
+    background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+    border-radius: 4px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-playermenu);
+    font-size: 0.75em;
+    color: var(--dk-txt, #fff);
+    border: 1px solid #3af0ff;
+    min-height: 38px;
+    max-height: 38px;
+    opacity: 0.9;
+}
+
+.quest-hud-entry img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 5px;
+    background: transparent;
+    flex-shrink: 0;
+    margin-right: 2px;
+}
+
+.enemy-icon-canvas {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    background: transparent;
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.quest-hud-entry .counter {
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    padding-left: 6px;
+}
+.quest-hud-entry .counter.complete {
+    color: #3af07a;
+}
+
+/* Player Death/Respawn Screen */
+.death-overlay {
+  font-family: 'VT323';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+/* Player Death/Respawn Screen Title */
+.death-overlay h1 {
+  color: #fffbe6;
+  font-size: 8em;
+  margin-bottom: 1em;
+  text-shadow: 0 0 10px #000, 0 0 20px rgb(71, 0, 0);
+}
+
+/* Respawn Button */
+.death-overlay button {
+  font-size: 1.8em;
+  padding: 0.5em 2em;
+  font-family: "VT323";
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 3px;
+  border: 2px solid #3af0ff;
+  color: #fffbe6;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  transition: background 0.2s, color 0.2s;
+}
+.death-overlay button:hover {
+  background: #fffbe6;
+  color: #222335;
+}
+
+/* For Bigger Devices like Tablets */
+@media (orientation: portrait) {
+  #touch-controls {
+    left: 20%;
+  }
+}
+
+/* Mobile Portrait Styles */
+@media (max-width: 600px) and (orientation: portrait) {       
+    
+  div#log {
+    font-size: 0.6em;
+    top: 2%;
+    left: 3%;
+  }
+
+  #touch-joystick {
+    left: 10vw;
+    bottom: 15vw;
+    width: 100px;
+    height: 100px;
+  }
+
+  #joystick-base {
+    width: 80px;
+    height: 80px;
+    left: 15px;
+    top: 15px;
+    border-width: 1.5px;
+  }
+
+  #joystick-knob {
+    width: 40px;
+    height: 40px;
+    left: 20px;
+    top: 20px;
+    border-width: 1.5px;
+  }
+
+  #act-controls {   
+    bottom: 6vw;              
+    right: 4vw;
+    width: 100px;          
+    height: 100px;
+  }
+
+  #btn-a, #btn-b {     
+    width: 65px;
+    height: 65px;
+    margin: 6px;
+    font-size: 1.5em;
+    border: 1.4px solid #3af0ff;
+  }
+
+  #btn-a {
+    right: 0;
+    bottom: 60px;
+  }
+
+  #btn-b {
+    right: 60px;   
+    bottom: 0px;  
+  }
+
+  .quest-hud {
+    left: 18px;
+    bottom: 65%;
+    width: 140px;
+    max-height: 240px;
+  }
+
+  .quest-hud-entry {
+    padding: 1px 6px;
+    gap: 8px;
+    font-size: 0.65em;
+    border: 1.3px solid #3af0ff;
+    min-height: 34px;
+    max-height: 34px;
+  }
+
+  .quest-hud-entry img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .enemy-icon-canvas {
+    width: 20px;
+    height: 20px;
+  }
+
+  .quest-hud-entry .counter {
+    font-size: 0.75em;
+  }
+
+  /* Player Death/Respawn Screen Title */
+  .death-overlay h1 {
+    font-size: 5em;
+    margin-bottom: 1em;
+    text-shadow: 0 0 10px #000, 0 0 20px rgb(71, 0, 0);
+  }
+
+  /* Respawn Button */
+  .death-overlay button {
+    font-size: 2em;
+    border: 1.5px solid #3af0ff;
+  }
+
+}
+

@@ -1,0 +1,989 @@
+/* Player Menu Button on Hud */
+.menu-btn {
+  font-family: var(--font-playermenu);
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+  font-size: 1.6em;
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  opacity: 0.8;
+  color: var(--dk-txt);
+  border: 1px solid #3af0ff;
+  border-radius: 4px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.player-menu.hidden {
+  display: none;
+}
+
+/* Player Menu Styles */
+.player-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.60);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Player Menu Content */
+.player-menu-content {
+  font-family: 'Press Start 2P', var(--font-playermenu);
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border-radius: 8px;
+  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  padding: 36px 32px 24px 32px;
+  width: 500px;
+  min-height: 400px;
+  color: var(--title-header);
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 3px solid #3af0ff;
+}
+
+/* Player Menu Inner Content */
+.player-menu-inner {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+/* Player Menu Header */
+.h1 {
+  font-size: 1.6em;
+  margin-top: 1px;
+  letter-spacing: 0.08em;
+}
+
+/* Left side of Player Menu */
+.menu-left {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-right: 24px;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+/* Right Side of Player Menu */
+.menu-right {
+  flex: 1;
+  display: flex;
+}
+
+/* Menu Buttons */
+.menu-nav-btn {
+  font-family: var(--font-playermenu);
+  padding: 12px 0;
+  margin-bottom: 4px;
+  font-size: 1.4em;
+  background: #8a8e9983;
+  color: #fffbe6;
+  border: 1px solid #3af0ff;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  transition: background 0.2s;
+}
+.menu-nav-btn:hover, .menu-nav-btn.active {
+  background: #3aefff8f;
+  color: #1b3d41;
+  border-color: #3af0ff;
+}
+
+/* Player Sprite Preview for Player Menu */
+#player-sprite-preview {
+  width: 128px;
+  height: 128px;
+  background: transparent;
+  border-radius: 10px;
+  bottom: 40%;
+  right: 12%;
+  display: fixed;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Player Stats Preview for Player Menu */
+#player-stats-preview {
+  font-family: var(--font-playermenu);
+  color: var(--dk-txt);
+  padding: 2px;
+  position: absolute;
+  bottom: 10%;
+  right: 9%;
+  font-size: 1.2em;
+}
+
+.full-stats-grid {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #3af0ff55;
+  border-radius: 6px;
+  padding: 8px;
+  background: #0f1118aa;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: 1.8fr 0.8fr 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #ffffff18;
+  font-size: 0.85em;
+  text-align: left;
+}
+
+.stats-row:last-child {
+  border-bottom: none;
+}
+
+.stats-head {
+  font-weight: bold;
+  color: #ffe082;
+  border-bottom: 1px solid #3af0ff88;
+}
+
+.stats-name {
+  color: #fffbe6;
+}
+
+.stats-base {
+  color: #9fb7d9;
+  text-align: right;
+}
+
+.stats-current {
+  color: #dff5ff;
+  text-align: right;
+}
+
+.stats-delta {
+  color: #8df7b1;
+}
+
+/* Close Button for Player Menu */
+.close-btn { 
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #ffe082;
+  font-size: 1.6em;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: color 0.2s, opacity 0.2s;
+}
+.close-btn:hover {
+  opacity: 1;
+  color: #fffbe6;
+}
+
+/* Hide Menu Pages */
+.menu-page {
+  display: none;
+}
+
+/* Display Menu Pages */
+.menu-page.active {
+  display: block;
+}
+
+/* Inventory Menu */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(3, 64px);
+  gap: 12px;
+  justify-content: center;
+  margin: 24px auto;
+}
+
+/* Inventory Slot */
+.inventory-slot {
+  width: 64px;
+  height: 64px;
+  background: #8a8e9983;
+  border: 1px solid #3af0ff;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Inventory Slot Image */
+.inventory-slot img {
+  width: 48px;
+  height: 48px;
+}
+
+/* Inventory Item Amount Number */
+.inventory-amount {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 1em;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.inventory-nav-btn {
+    font-size: 1.2em;
+    padding: 6px 18px;
+    margin: 0 4px;
+    background: #222335;
+    color: #3af0ff;
+    border: 2px solid #3af0ff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.inventory-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.inventory-page-num {
+    font-family: 'Press Start 2P', monospace;
+    color: #ffe082;
+    font-size: 1em;
+}
+
+/* Overlay for Item Dropdown */ 
+#item-dropdown-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 1999;
+  background: transparent;
+}
+
+/* Dropdown Menu for Items */
+.item-dropdown {
+  position: fixed;
+  width: 240px;
+  background: rgba(30,30,30,0.96);
+  color: #fff;
+  padding: 22px 18px 18px 18px;
+  border-radius: 6px;
+  z-index: 2000;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: var(--font-playermenu);
+  font-size: 1em;
+  transition: box-shadow 0.2s;
+}
+
+/* Item Rarity Glows */
+.item-dropdown.rarity-common    { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,255,255,0.12);}
+.item-dropdown.rarity-rare      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(0,180,255,0.18);}
+.item-dropdown.rarity-epic      { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(180,0,255,0.18);}
+.item-dropdown.rarity-legendary { box-shadow: 0 2px 18px rgba(0,0,0,0.22), 0 0 24px 4px rgba(255,180,0,0.18);}
+
+/* Item Dropdown Close Button */
+.item-dropdown .dropdown-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.item-dropdown .dropdown-close-btn:hover {
+  opacity: 1;
+}
+
+/* Item Name In Dropdown */
+.item-dropdown .dropdown-name {
+  font-weight: bold;
+  font-size: 1.15em;
+  margin-bottom: 6px;
+}
+
+/* Item Description In Dropdown */
+.item-dropdown .dropdown-desc {
+  font-size: 0.98em;
+  color: #ffe082;
+  margin-bottom: 8px;
+}
+
+/* Item Rarity In Dropdown */
+.item-dropdown .dropdown-rarity {
+  font-size: 0.93em;
+  color: #9ff;
+  margin-bottom: 14px;
+}
+
+/* Buttons In Dropdown Menu */
+.item-dropdown .dropdown-btn {
+  margin-bottom: 10px;
+  padding: 8px 0;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.item-dropdown .dropdown-btn.use {
+  background: #3e3;
+  color: #222;
+}
+.item-dropdown .dropdown-btn.remove {
+  background: #c33;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+/* Item Remove Amount Block */
+.amount-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+.amount-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.amount-btn:hover {
+    background: #666;
+}
+.amount-num {
+    font-size: 1.1em;
+    min-width: 24px;
+    text-align: center;
+}
+.amount-ok {
+    margin-left: 12px;
+    padding: 6px 18px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.amount-ok:hover {
+    background: #555;
+}
+
+/* Quests Menu */
+#quests-menu.menu-page {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+/* Quests List */
+.quests-list {
+  font-family: var(--font-playermenu);
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+}
+
+/* Quest List Reward Item Preview */
+.quest-list-item {
+    padding: 12px 0 8px 0;
+    text-align: left;
+}
+
+/* Quest List Divider */
+.quest-divider {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 0 0 0 0;
+}
+
+/* Quest Menu Tab Buttons */
+.quest-tab {
+    background: #8a8e9983;
+    border: none;
+    color: #fffbe6;
+    border-radius: 4px 4px 0 0;
+    padding: 8px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: background 0.2s;
+}
+.quest-tab.active {
+    background: #3aefff8f;
+    color: #1b3d41;
+    opacity: 1;
+}
+
+/* Settings Menu */
+.settings-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
+  padding: 0 8px;
+}
+
+.settings-label {
+  font-family: var(--font-playermenu);
+  font-size: 1.08em;
+  color: #fffbe6;
+  letter-spacing: 0.01em;
+  margin-right: 12px;
+  min-width: 180px;
+  text-align: left;
+}
+
+.settings-slider {
+  width: 160px;
+  margin-left: 12px;
+  height: 22px;
+  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  box-shadow: 0 2px 4px #3af0ff44, 0 0 0 2px #3af0ff22;
+  transition: background 0.2s;
+}
+
+/* Remove default styling for input[type=range] */
+.settings-slider::-webkit-slider-runnable-track {
+  height: 20px;
+  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  border-radius: 4px;
+}
+.settings-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #222335;
+  border: 1px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 4px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-webkit-slider-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: #222335;
+  border: 2px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-moz-range-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider::-ms-thumb {
+  width: 22px;
+  height: 22px;
+  background: #222335;
+  border: 2px solid #3af0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #3af0ff88;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.settings-slider:active::-ms-thumb {
+  background: #ffe082;
+  border-color: #ffe082;
+}
+
+.settings-slider:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3af0ff88;
+}
+
+.settings-slider::-ms-fill-lower {
+  background: #3af0ff;
+  border-radius: 4px;
+}
+.settings-slider::-ms-fill-upper {
+  background: #ffe082;
+  border-radius: 4px;
+}
+
+/* Hide outline for Firefox */
+.settings-slider::-moz-focus-outer {
+  border: 0;
+}
+
+/* For all browsers */
+.settings-slider::-webkit-slider-thumb:hover,
+.settings-slider::-moz-range-thumb:hover,
+.settings-slider::-ms-thumb:hover {
+  background: #3af0ff;
+  border-color: #ffe082;
+}
+
+.settings-switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.settings-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.settings-slider-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #222335;
+  border-radius: 4px;
+  transition: background 0.2s;
+  border: 2px solid #3af0ff;
+}
+.settings-slider-switch:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 2px;
+  background: #3af0ff;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.settings-switch input:checked + .settings-slider-switch:before {
+  transform: translateX(24px);
+  background: #ffe082;
+}
+.settings-slider-switch:active:before {
+  box-shadow: 0 0 8px #3af0ff88;
+}
+
+/* Map Menu Help Icon */
+#map-help-icon {
+  position: absolute;
+  top: 100px; right: 16px;
+  width: 20px; height: 20px;
+  background: none;
+  border-radius: 50%;
+  border: 1px solid #9c9c9c;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-playermenu);
+  font-size: 1em;
+  color: #9c9c9c;
+  z-index: 40;
+}
+#map-help-icon:hover, #map-help-icon:focus {
+  border-color: #fffbe6;
+  color: #fffbe6;
+  box-shadow: 0 0 8px #fffbe6cc;
+}
+
+/* Map Menu Help Tooltip */
+#map-help-tooltip.help-tooltip {
+  position: absolute;
+  top: 128px; 
+  right: 16px;
+  background: #222335;
+  color: #fffbe6;
+  border: 2px solid #3af0ff;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 0.8em;
+  font-family: var(--font-playermenu);
+  box-shadow: 0 2px 12px #3af0ff44;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#map-help-icon:hover + #map-help-tooltip,
+#map-help-icon:focus + #map-help-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Map Preview Container */
+#map-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
+
+/* Map Preview Canvas */
+#map-preview-canvas {
+  border: 2px solid #3af0ff;
+  border-radius: 8px;
+  background: #222335;
+  box-shadow: 0 2px 12px #3af0ff44;
+}
+
+#skills-menu.menu-page {
+  padding-top: 0;
+}
+
+.skills-block {
+  background: #222335;
+  border-radius: 4px;
+  margin: 18px auto;
+  padding: 12px 12px;
+  box-shadow: 0 2px 12px #3af0ff22;
+  width: 60%;
+  max-width: 420px;
+}
+
+#equipped-skills {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.skill-slot {
+  width: 64px;
+  height: 64px;
+  background: #2d3038;
+  border-radius: 8px;
+  border: 2px solid #3af0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.skill-slot.selected {
+  border: 2px solid #ffe082;
+}
+
+#skills-inventory {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.skill-card {
+  width: 56px;
+  height: 56px;
+  background: #23243a;
+  border-radius: 6px;
+  border: 2px solid #3af0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.skill-card.selected {
+  border: 2px solid #ffe082;
+}
+
+#spin-skills-btn {
+  margin: 24px auto 0 auto;
+  display: block;
+  width: 180px;
+}
+
+#skills-gacha-screen {
+  margin-top: 24px;
+  text-align: center;
+}
+
+#skills-gacha-reel {
+  width: 96px;
+  height: 96px;
+  margin: 18px auto;
+  border: 3px solid #3af0ff;
+  border-radius: 12px;
+  background: #23243a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#skills-gacha-spin-pink, 
+#skills-gacha-spin-blue, 
+#skills-gacha-spin-red {
+  padding: 12px 24px;
+}
+
+.skill-card.rarity-common    { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,255,255,0.12); }
+.skill-card.rarity-rare      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(0,180,255,0.18); }
+.skill-card.rarity-epic      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(180,0,255,0.18); }
+.skill-card.rarity-legendary { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,180,0,0.18); }
+.skill-slot.rarity-common    { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,255,255,0.12); }
+.skill-slot.rarity-rare      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(0,180,255,0.18); }
+.skill-slot.rarity-epic      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(180,0,255,0.18); }
+.skill-slot.rarity-legendary { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,180,0,0.18); }
+
+
+.hidden {
+  display: none;
+}
+
+/* Mobile Portrait Styles */
+@media (max-width: 600px) and (orientation: portrait) {  
+
+  /* Player Menu Button on Hud */
+  .menu-btn {
+    top: 2%;
+    right: 4%;
+    font-size: 1em;
+    padding: 6px 10px;
+  }
+
+  /* Player Menu Overlay */
+  .player-menu {
+    padding: 0;
+  }
+
+  /* Player Menu Content */
+  .player-menu-content {
+    width: 85vw;
+    min-height: 200px;
+    padding: 18px 8px 12px 8px;
+  }
+
+  /* Player Menu Inner Content */
+  .player-menu-inner {
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  /* Left side of Player Menu */
+  .menu-left {
+    width: 50%;
+    margin-left: 6px;
+    margin-top: 16px;
+    gap: 6px;
+  }
+
+  /* Menu Buttons */
+  .menu-nav-btn {
+    font-size: 1em;
+    padding: 8px 0;
+    margin-bottom: 6px;
+  }
+
+  /* Player Sprite Preview */
+  #player-sprite-preview {
+    margin: 0 0 8px 0;
+    position: absolute;
+    right: 5%;
+    bottom: 30%;
+  }
+
+  /* Player Stats Preview */
+  #player-stats-preview {
+    font-size: 0.8em;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    right: 8%;
+    bottom: 10%;
+  }
+
+  /* Close Button */
+  .close-btn {
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+    border-radius: 6px;
+  }
+
+  /* Inventory Grid */
+  .inventory-grid {
+    grid-template-columns: repeat(3, 64px);
+    grid-template-rows: repeat(3, 64px);
+    gap: 12px;
+    margin: 20px auto;
+  }
+
+  /* Inventory Slot */
+  .inventory-slot {
+    width: 64px;
+    height: 64px;
+    border-radius: 3px;
+  }
+
+  /* Inventory Slot Image */
+  .inventory-slot img {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Inventory Amount */
+  .inventory-amount {
+    font-size: 0.5em;
+    padding: 1px 4px;
+  }
+
+  /* Item Dropdown */
+  .item-dropdown {
+    width: 70vw;
+    padding: 12px 8px 12px 8px; 
+    font-size: 1em;
+  }
+
+  /* Item Dropdown Buttons */
+  .item-dropdown .dropdown-btn {
+    font-size: 0.95em;
+    padding: 6px 0;
+  }
+
+  /* Remove Amount Block */
+  .item-dropdown .remove-amount-block {
+    gap: 6px;
+  }
+
+  .item-dropdown .remove-amount-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  .item-dropdown .remove-amount-num {
+    font-size: 1em;
+    min-width: 18px;
+  }
+
+  .item-dropdown .remove-amount-ok {
+    padding: 4px 12px;
+    font-size: 0.95em;
+  }
+
+  /* Quests Menu */
+  #quests-menu.menu-page {
+    padding-top: 0;
+  }
+
+  /* Quests List */
+  .quests-list {
+    max-height: 160px;
+    padding: 0 4px;
+    font-size: 0.95em;
+  }
+
+  /* Quest List Item */
+  .quest-list-item {
+    padding: 8px 0 6px 0;
+  }
+
+  /* Quest Divider */
+  .quest-divider {
+    border-top: 1px solid #444;
+  }
+
+  /* Quest Tab Buttons */
+  .quest-tab {
+    padding: 6px 12px;
+    font-size: 0.95em;
+  }
+
+  .settings-options-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 12px 0;
+    padding: 0 2px;
+  }
+
+  .settings-label {
+    font-size: 1em;
+    min-width: 120px;
+    margin-bottom: 6px;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .settings-switch {
+    width: 44px;
+    height: 24px;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+  .settings-slider-switch:before {
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+  }
+  .settings-switch input:checked + .settings-slider-switch:before {
+    transform: translateX(18px);
+  }
+
+  .settings-slider {
+    width: 90vw;
+    max-width: 180px;
+    height: 16px;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+  .settings-slider::-webkit-slider-runnable-track {
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .settings-slider::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+}
