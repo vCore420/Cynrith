@@ -50,6 +50,7 @@
               <button class="menu-nav-btn" id="btn-skills">Skills</button>
               <button class="menu-nav-btn" id="btn-quests">Quests</button>
               <button class="menu-nav-btn" id="btn-map">Map</button>
+              <button class="menu-nav-btn" id="btn-stats">Stats</button>
               <button class="menu-nav-btn" id="btn-save">Save Game</button>
               <button class="menu-nav-btn" id="btn-settings">Settings</button>
             </div>
@@ -208,8 +209,15 @@
     <div id="load-game-menu" class="hidden">
       <div class="char-select-content">
         <button id="loadgame-close" class="close-btn" title="Back to Title Menu">✕</button>
+
+        <button id="loadgame-import-icon" class="load-menu-icon-btn" title="Import Save" aria-label="Import Save">
+          ⤒
+        </button>
+        <input id="loadgame-import-file" type="file" accept=".json,application/json" hidden />
+
         <h2>Load Game</h2>
         <ul id="save-list"></ul>
+
         <div class="load-btn-row">
           <button id="loadgame-confirm-btn" class="confirm-btn" disabled>Load Game</button>
           <button id="loadgame-delete-btn" class="confirm-btn danger-btn" disabled>Delete</button>
