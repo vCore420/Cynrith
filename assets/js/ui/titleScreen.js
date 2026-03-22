@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(overlay);
 
     // Version Watermark
-    const ver = "v1.1.4";  // Set current version here for Title Screen
+    const ver = "v1.1.5";  // Set current version here for Title Screen
 
     const versionWatermark = document.createElement("div");
     versionWatermark.id = "version-watermark";
@@ -289,12 +289,109 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+function sanitizeSaveFileName(name) {
+    return String(name || "player")
+        .trim()
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g, "_")
+        .replace(/\s+/g, "_")
+        .slice(0, 40) || "player";
+}
+
+function buildSaveExportPayload(save) {
+    return {
+        format: "cynrith-save",
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        save
+    };
+}
+
+function downloadJsonFile(data, fileName) {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function normalizeImportedSave(raw) {
+    const save = raw || {};
+    const defaultPos = { x: 45 * 64, y: 47 * 64 };
+
+    return {
+        playerName: save.playerName || "",
+        sprite: save.sprite || "assets/img/char/hero.png",
+        stats: {
+            health: save.stats?.health ?? 100,
+            maxHealth: save.stats?.maxHealth ?? 100,
+            xp: save.stats?.xp ?? 0,
+            attack: save.stats?.attack ?? 5,
+            defence: save.stats?.defence ?? 5,
+            attackSpeed: save.stats?.attackSpeed ?? 5,
+            speed: save.stats?.speed ?? 3,
+            regen: save.stats?.regen ?? 0,
+            xpGain: save.stats?.xpGain ?? 0,
+            luck: save.stats?.luck ?? 0,
+            evasion: save.stats?.evasion ?? 0
+        },
+        mapIndex: save.mapIndex ?? 0,
+        tile: { x: save.tile?.x ?? 45, y: save.tile?.y ?? 47 },
+        pos: { x: save.pos?.x ?? defaultPos.x, y: save.pos?.y ?? defaultPos.y },
+        inventory: Array.isArray(save.inventory) ? save.inventory : [],
+        quests: {
+            active: Array.isArray(save.quests?.active) ? save.quests.active : [],
+            completed: Array.isArray(save.quests?.completed) ? save.quests.completed : [],
+            progress: save.quests?.progress || {},
+            statBuildStart: save.quests?.statBuildStart || {}
+        },
+        triggeredInteractableTiles: save.triggeredInteractableTiles || {},
+        triggeredTriggerTiles: save.triggeredTriggerTiles || {},
+        forcedEncounters: save.forcedEncounters || {},
+        settings: save.settings,
+        skills: {
+            inventory: Array.isArray(save.skills?.inventory) ? save.skills.inventory : [],
+            equipped: Array.isArray(save.skills?.equipped) ? save.skills.equipped : [null, null, null]
+        },
+        playTime: save.playTime ?? 0
+    };
+}
+
+async function importSaveFromFile(file) {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+
+    const rawSave = (parsed && parsed.format === "cynrith-save" && parsed.save) ? parsed.save : parsed;
+    const save = normalizeImportedSave(rawSave);
+
+    if (!save.playerName || !save.playerName.trim()) {
+        throw new Error("Imported save is missing playerName.");
+    }
+
+    const key = "cynrith_save_" + save.playerName;
+    if (localStorage.getItem(key)) {
+        const overwrite = confirm(`Save "${save.playerName}" already exists. Overwrite it?`);
+        if (!overwrite) return { cancelled: true };
+    }
+
+    localStorage.setItem(key, JSON.stringify(save));
+    return { cancelled: false, playerName: save.playerName };
+}
+
 function showLoadGameMenu() {
     const loadMenu = document.getElementById('load-game-menu');
     const saveList = document.getElementById('save-list');
     const confirmBtn = document.getElementById('loadgame-confirm-btn');
     const deleteBtn = document.getElementById('loadgame-delete-btn');
     const closeBtn = document.getElementById('loadgame-close');
+    const importIconBtn = document.getElementById('loadgame-import-icon');
+    const importFileInput = document.getElementById('loadgame-import-file');
 
     const saves = getAllSaves();
 
@@ -356,12 +453,28 @@ function showLoadGameMenu() {
             <span style="font-size:0.9em;color:#aaa;">Play Time: ${formatPlayTime(save.playTime || 0)}</span>
         `;
 
-        // Layout: info left, sprite right
+        const exportIconBtn = document.createElement('button');
+        exportIconBtn.className = "save-export-icon-btn";
+        exportIconBtn.title = `Export ${save.playerName}`;
+        exportIconBtn.setAttribute("aria-label", `Export ${save.playerName}`);
+        exportIconBtn.textContent = "⤓";
+        exportIconBtn.onclick = (e) => {
+            e.stopPropagation();
+            const payload = buildSaveExportPayload(save);
+            const fileName = `cynrith_save_${sanitizeSaveFileName(save.playerName)}.json`;
+            downloadJsonFile(payload, fileName);
+        };
+
+        const rightDiv = document.createElement("div");
+        rightDiv.className = "save-item-right";
+        rightDiv.appendChild(exportIconBtn);
+        rightDiv.appendChild(spriteCanvas);
+
         li.style.display = "flex";
         li.style.alignItems = "center";
         li.style.justifyContent = "space-between";
         li.appendChild(infoDiv);
-        li.appendChild(spriteCanvas);
+        li.appendChild(rightDiv);
 
         li.onclick = () => {
             [...saveList.children].forEach(el => el.classList.remove('selected'));
@@ -370,6 +483,7 @@ function showLoadGameMenu() {
             confirmBtn.disabled = false;
             deleteBtn.disabled = false;
         };
+
         saveList.appendChild(li);
     });
 
@@ -388,6 +502,28 @@ function showLoadGameMenu() {
             localStorage.removeItem("cynrith_save_" + save.playerName);
             console.log(`[titleScreen] Deleted save for ${save.playerName}`);
             showLoadGameMenu();
+        }
+    };
+
+    importIconBtn.onclick = function() {
+        importFileInput.click();
+    };
+
+    importFileInput.onchange = async function() {
+        const file = this.files && this.files[0];
+        if (!file) return;
+
+        try {
+            const result = await importSaveFromFile(file);
+            if (!result.cancelled) {
+                showLoadGameMenu(); // refresh list
+                alert(`Imported save for "${result.playerName}".`);
+            }
+        } catch (err) {
+            console.error("[titleScreen] Save import failed:", err);
+            alert("Import failed. Please check the JSON format.");
+        } finally {
+            this.value = "";
         }
     };
 
