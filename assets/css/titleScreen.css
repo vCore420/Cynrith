@@ -654,6 +654,62 @@ body, #title-screen {
   cursor: not-allowed;
 }
 
+/* Import icon on load menu */
+.load-menu-icon-btn {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #3af0ff;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #222335 0%, #2a2c44 100%);
+  color: #3af0ff;
+  font-size: 1.1em;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0 8px #3af0ff44;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  z-index: 46;
+}
+.load-menu-icon-btn:hover,
+.load-menu-icon-btn:focus {
+  transform: translateY(-1px);
+  background: linear-gradient(90deg, #2a2c44 0%, #35385a 100%);
+  box-shadow: 0 0 12px #3af0ff88;
+  outline: none;
+}
+
+/* Right side of each save item */
+.save-item-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Export icon inside each save row */
+.save-export-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #3af0ff88;
+  border-radius: 6px;
+  background: #1f2235;
+  color: #3af0ff;
+  font-size: 0.95em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s, border-color 0.2s;
+}
+.save-export-icon-btn:hover,
+.save-export-icon-btn:focus {
+  background: #2a2f4a;
+  border-color: #3af0ff;
+  transform: translateY(-1px);
+  outline: none;
+}
+
 /* Load Game Menu Close Button */
 #loadgame-close {
   position: absolute;
