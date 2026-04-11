@@ -1479,25 +1479,6 @@ const NPC_DEFINITIONS = {
         },
     },
 
-    kelin_the_portal_keeper: {
-        id: "kelin_the_portal_keeper",
-        name: "Kelin the Portal Keeper",
-        sprite: "assets/img/npc/npc_m_3.png",
-        interactive: true,
-        spawns: [
-            { map: "portal_island0", x: 18, y: 25, wanderArea: { x1: 17, y1: 22, x2: 23, y2: 27 } }
-        ],
-        dialogue: {
-            default: [
-                "Hey there!",
-                "This is a Portal Island, From time to time you may come across these islands",
-                "Here you will find various portals that will take you back to previous floors you have since come from",
-                "But be warned, The trip back is always an easy one,",
-                "The journey up is nothing but a long road."
-            ]
-        },
-    },
-
 
     // ---------- Floor 7 ----------
 
@@ -1526,7 +1507,7 @@ const NPC_DEFINITIONS = {
         sprite: "assets/img/npc/npc_f_4.png",
         interactive: true, 
         spawns: [
-            { map: 6,  x: 40, y: 5, wanderArea: { x1: 38, y1: 3, x2: 41, y2: 7 } }
+            { map: 6,  x: 12, y: 56, wanderArea: { x1: 11, y1: 54, x2: 14, y2: 58 } }
         ],
         dialogue: {
             default: [
@@ -1545,14 +1526,11 @@ const NPC_DEFINITIONS = {
         forcedEncounter: {
             enabled: true,
             triggerTiles: [
-                { x: 37, y: 2 },
-                { x: 37, y: 3 },
-                { x: 37, y: 4 },
-                { x: 37, y: 5 },
-                { x: 38, y: 9 },
-                { x: 39, y: 9 },
-                { x: 42, y: 7 },
-                { x: 43, y: 7 }
+                { x: 8, y: 58 },
+                { x: 6, y: 58 },
+                { x: 7, y: 59 },
+                { x: 8, y: 59 },
+                { x: 7, y: 59 }
             ],
             triggered: false
         }

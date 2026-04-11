@@ -226,6 +226,57 @@ const ITEM_DEFINITIONS = {
         }
     },
     
+    fence1: {
+        id: "fence1",
+        name: "Oak Fence",
+        description: "A sturdy fence for your Home Plot.",
+        image: "assets/img/worldSprites/fence.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/fence.png",
+            imageW: 96,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 1
+        }
+    },
+
+    gazebo1: {
+        id: "gazebo1",
+        name: "Gazebo",
+        description: "A beautiful gazebo for your Home Plot.",
+        image: "assets/img/worldSprites/gazebo.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/gazebo.png",
+            imageW: 144,
+            imageH: 144,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+    
+    
     // --------------- loot, Drops, Quest Items ---------------
 
 
