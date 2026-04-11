@@ -114,6 +114,32 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 <p>
 
 ---
+12/4 v1.1.7
+
+- Added Floor 7 setup content and progression hooks (new NPC/trader data and supporting map content)
+- Added Home Plot access flow:
+  - New gift quest reward: **Key without a Door**
+  - Using the key now warps player to `home_plot0`
+- Added Home Plot travel system:
+  - Spawn stone on Home Plot opens floor-select menu
+  - Player can only travel to floors already visited
+- Added visited floor tracking and save/load persistence for travel unlocks
+- Added first Home Plot customization framework:
+  - New `homePlot.js` module for Home Plot systems
+  - Place/Edit modes for placing and removing items
+  - Mouse and touch placement preview/confirm behavior
+  - Placement save/load persistence
+- Added Home Plot HUD button:
+  - Appears only while on Home Plot
+  - Opens/closes Home customization menu
+  - Hidden automatically when leaving Home Plot
+- Added Home placeable item definition support in items:
+  - `homePlaceable` + `homeDef` metadata
+  - First item added: `home_chair_oak`
+- Home placeables now route to Home storage (not normal inventory slots)
+- Improved placement rules:
+  - Prevent placement on player tile
+  - Prevent placement on collision/blocked tiles and teleport stone tiles
 
 11/3 v1.1.1
 
