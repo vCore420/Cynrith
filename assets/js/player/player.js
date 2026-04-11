@@ -94,6 +94,10 @@ function isTileBlockedAtPixel(px, py, direction) {
         return true;
     }
 
+    if (typeof isTileBlockedByHomePlacement === "function" && isTileBlockedByHomePlacement(tileX, tileY)) {
+        return true;
+    }
+
     if (map.data._layers) {
         for (let l = 0; l < map.data._layers.length; l++) {
             let gid = map.data._layers[l][tileY][tileX];

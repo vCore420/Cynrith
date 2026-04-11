@@ -51,6 +51,9 @@ function getCurrentSaveData() {
                 ? [...window.progression.visitedFloors]
                 : [1]
         },
+        homePlot: (typeof exportHomePlotState === "function")
+            ? exportHomePlotState()
+            : undefined,
     };
 }
 
@@ -145,6 +148,11 @@ function applySaveData(data) {
         if (typeof player.ensureValidEquippedWeapon === "function") {
             player.ensureValidEquippedWeapon();
         }
+    }
+
+    // Patch home plot state
+    if (data.homePlot && typeof importHomePlotState === "function") {
+        importHomePlotState(data.homePlot);
     }
 
     // Patch skills

@@ -200,6 +200,31 @@ const ITEM_DEFINITIONS = {
         consumeOnUse: false,
         sound: "legendary.mp3"
     },
+
+    home_chair_oak: {
+        id: "home_chair_oak",
+        name: "Oak Chair",
+        description: "A sturdy oak chair for your Home Plot.",
+        image: "assets/img/tile/chair_1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/chair_1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
     
     // --------------- loot, Drops, Quest Items ---------------
 

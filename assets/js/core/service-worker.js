@@ -1,4 +1,4 @@
-const CACHE_NAME = "cynrith-cache-v1.1.6"; // Update this on bigger game updateds
+const CACHE_NAME = "cynrith-cache-v1.1.7"; // Update this on bigger game updateds
 const urlsToCache = [
   "/",
   "/index.html",
@@ -29,6 +29,7 @@ const urlsToCache = [
   "/assets/js/map/mapWarping.js",
   "/assets/js/map/spriteLoader.js",
   "/assets/js/map/titleMap.js",
+  "/assets/js/map/homePlot.js",
   "/assets/js/npc/interactions.js",
   "/assets/js/npc/movement.js",
   "/assets/js/npc/npc.js",

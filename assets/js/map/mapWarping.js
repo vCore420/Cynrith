@@ -136,7 +136,8 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
             if (typeof spawnTriggerTilesForMap === "function") spawnTriggerTilesForMap(currentMapIndex);
             if (typeof spawnTeleportStonesForMap === "function") spawnTeleportStonesForMap(currentMapIndex);
             if (typeof spawnWorldSpritesForMap === "function") spawnWorldSpritesForMap(currentMapIndex);
-
+            if (typeof spawnHomePlacementsForMap === "function") spawnHomePlacementsForMap(currentMapIndex);
+            
             // Fade out current music and fade in new map music
             if (window.SoundManager) {
                 SoundManager.fadeBgMusicVolume(0, 700);

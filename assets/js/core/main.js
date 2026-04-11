@@ -186,6 +186,9 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         if (typeof spawnWorldSpritesForMap === "function") {
             spawnWorldSpritesForMap(mapIndex);
         }
+        if (typeof spawnHomePlacementsForMap === "function") {
+            spawnHomePlacementsForMap(mapIndex);
+        }
         if (typeof markFloorVisited === "function") {
             markFloorVisited(mapIndex);
         }
@@ -305,6 +308,9 @@ function Loop() {
     // Draw interactable tiles below player
     if (typeof drawInteractableTiles === "function") drawInteractableTiles(0);
 
+    // Draw home plot placements below player
+    if (typeof drawHomePlotItems === "function") drawHomePlotItems(0);
+
     // Update and Draw Npcs
     if (typeof updateCharacters === "function") updateCharacters(); 
     if (typeof drawCharacters === "function") drawCharacters();
@@ -343,6 +349,9 @@ function Loop() {
     // Draw interactable tiles above player
     if (typeof drawInteractableTiles === "function") drawInteractableTiles(1);
 
+    // Draw home plot placements above player
+    if (typeof drawHomePlotItems === "function") drawHomePlotItems(1);
+
     // Update and Draw Screen Effects
     if (typeof updateScreenFadeOverlay === "function") updateScreenFadeOverlay();
     if (typeof drawScreenFadeOverlay === "function") drawScreenFadeOverlay();
@@ -366,6 +375,11 @@ function Loop() {
     // Teleport Checks
     checkTeleport();
     checkBackTeleport();
+
+    // Home PLot Check
+    if (typeof updateHomePlotHudButtonVisibility === "function") {
+        updateHomePlotHudButtonVisibility();
+    }
 
     // Npc Interaction Checks
     checkNpcInteraction();

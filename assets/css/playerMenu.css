@@ -18,6 +18,15 @@
   display: none;
 }
 
+.homeplot-btn {
+  top: 84px; /* sits under the main Menu button */
+  right: 24px;
+  font-size: 1.05em;
+  margin-top: 4px;
+  padding: 9px 14px;
+  z-index: 20;
+}
+
 /* Player Menu Styles */
 .player-menu {
   position: fixed;

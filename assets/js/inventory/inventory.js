@@ -12,7 +12,34 @@ function addItem(itemId, amount = 1) {
     const def = ITEM_DEFINITIONS[itemId];
     if (!def) return false;
 
-    // Try to stack first
+    // Route home placeables to Home Plot storage only
+    if (def.homePlaceable) {
+        if (typeof addHomePlotItem !== "function") {
+            console.warn(`[Inventory] Home Plot item ${itemId} could not be added: addHomePlotItem missing`);
+            return false;
+        }
+
+        const ok = addHomePlotItem(itemId, amount);
+        if (!ok) return false;
+
+        console.log(`[HomePlot] Added ${amount}x ${def.name} to Home storage`);
+        if (typeof notify === "function") notify(`Added ${amount}x ${def.name} to Home storage`, 1800);
+
+        if (window.homePlot && window.homePlot.uiOpen && typeof renderHomePlotMenuItems === "function") {
+            renderHomePlotMenuItems();
+        }
+
+        if (typeof updateQuestHUD === "function") updateQuestHUD();
+
+        if (window.SoundManager && def.rarity) {
+            const rarity = String(def.rarity).toLowerCase();
+            SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.mp3`);
+        }
+
+        return true;
+    }
+
+    // Normal inventory flow
     let slot = inventory.find(i => i.id === itemId && def.stackable);
     if (slot) {
         slot.amount += amount;
@@ -23,6 +50,7 @@ function addItem(itemId, amount = 1) {
         notify("Inventory full!", 2000);
         return false;
     }
+
     if (def.itemType === "weapon" && typeof player !== "undefined" && player) {
         const hasEquipped =
             player.equippedWeaponId &&
@@ -31,12 +59,12 @@ function addItem(itemId, amount = 1) {
 
         if (!hasEquipped) player.equippedWeaponId = itemId;
     }
+
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
 
-    // Play item pickup sound based on rarity
     if (window.SoundManager && def.rarity) {
-        const rarity = def.rarity.toLowerCase();
+        const rarity = String(def.rarity).toLowerCase();
         SoundManager.playEffect(`assets/sound/sfx/items/${rarity}.mp3`);
     }
 
@@ -46,17 +74,42 @@ function addItem(itemId, amount = 1) {
 
 // Remove item from players inventory
 function removeItem(itemId, amount = 1) {
+    const def = ITEM_DEFINITIONS[itemId];
+    if (!def) return false;
+
+    // Route home placeables to Home Plot storage only
+    if (def.homePlaceable) {
+        if (typeof removeHomePlotItem !== "function") {
+            console.warn(`[Inventory] Home Plot item ${itemId} could not be removed: removeHomePlotItem missing`);
+            return false;
+        }
+
+        const ok = removeHomePlotItem(itemId, amount);
+        if (!ok) return false;
+
+        console.log(`[HomePlot] Removed ${amount}x ${def.name} from Home storage`);
+        if (window.homePlot && window.homePlot.uiOpen && typeof renderHomePlotMenuItems === "function") {
+            renderHomePlotMenuItems();
+        }
+        if (typeof updateQuestHUD === "function") updateQuestHUD();
+
+        return true;
+    }
+
+    // Normal inventory flow
     let idx = inventory.findIndex(i => i.id === itemId);
     if (idx === -1) return false;
     let slot = inventory[idx];
     if (slot.amount < amount) return false;
+
     slot.amount -= amount;
     if (slot.amount <= 0) {
         inventory.splice(idx, 1);
     }
+
     console.log(`[Inventory] Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory`);
-    // Shift items to fill empty slots
     inventory = inventory.filter(i => i.amount > 0);
+
     if (
         typeof player !== "undefined" &&
         player &&
@@ -69,6 +122,7 @@ function removeItem(itemId, amount = 1) {
             player.equippedWeaponId = null;
         }
     }
+
     updateInventoryUI();
     if (typeof updateQuestHUD === "function") updateQuestHUD();
     notify(`Removed ${amount}x ${ITEM_DEFINITIONS[itemId].name} from inventory.`, 1800);
@@ -78,13 +132,29 @@ function removeItem(itemId, amount = 1) {
 
 // Check if player has item in their inventory
 function hasItem(itemId, amount = 1) {
+    const def = ITEM_DEFINITIONS[itemId];
+    if (!def) return false;
+
+    if (def.homePlaceable) {
+        if (typeof getHomeItemCount !== "function") return false;
+        return getHomeItemCount(itemId) >= amount;
+    }
+
     let slot = inventory.find(i => i.id === itemId);
-    return slot && slot.amount >= amount;
+    return !!slot && slot.amount >= amount;
 }
 
 
 // Get current count of item in player inventory
 function getItemCount(itemId) {
+    const def = ITEM_DEFINITIONS[itemId];
+    if (!def) return 0;
+
+    if (def.homePlaceable) {
+        if (typeof getHomeItemCount !== "function") return 0;
+        return getHomeItemCount(itemId);
+    }
+
     return inventory
         .filter(i => i && i.id === itemId)
         .reduce((sum, i) => sum + (i.amount || 0), 0);

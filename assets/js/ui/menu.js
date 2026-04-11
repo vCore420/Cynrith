@@ -1041,7 +1041,8 @@ function hideGameUI() {
         "notification",
         "dialogue-block",
         "quest-hud",
-        "player-menu"
+        "player-menu",
+        "homeplot-btn"
     ];
     ids.forEach(id => {
         const el = document.getElementById(id);
@@ -1057,7 +1058,8 @@ function showGameUI() {
         "notification",
         "dialogue-block",
         "quest-hud",
-        "player-menu"
+        "player-menu",
+        "homeplot-btn"
     ];
     ids.forEach(id => {
         const el = document.getElementById(id);
