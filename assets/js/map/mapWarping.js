@@ -6,12 +6,27 @@ teleportStoneSprite.src = "assets/img/tile/teleport_stone.png"; // update path a
 let activeTeleportStones = [];
 let teleportStoneFrame = 0;
 let teleportStoneAnimTick = 0;
+let backTeleportNotifShown = false;
+let homePlotTravelMenuOpen = false;
 
 
 // Spawn Teleport stone sprite sheet at spawn and teleport loctions in each maps json
 function spawnTeleportStonesForMap(mapIndex) {
     activeTeleportStones = [];
     if (!map.data) return;
+
+    // Home Plot: only spawn stone should appear
+    if (String(mapIndex) === HOME_PLOT_MAP_KEY) {
+        if (map.data.spawn) {
+            activeTeleportStones.push({
+                x: map.data.spawn.x,
+                y: map.data.spawn.y,
+                mapIndex,
+                type: "spawn"
+            });
+        }
+        return;
+    }
 
     // On map 0, only spawn at teleport location
     if (mapIndex === 0) {
@@ -182,19 +197,36 @@ function checkTeleport() {
 function checkBackTeleport() {
     if (!map.data.spawn) return;
     const s = map.data.spawn;
-    const adjacent = isPlayerAdjacentToTile(s.x, s.y) && currentMapIndex > 0;
+    const adjacent = isPlayerAdjacentToTile(s.x, s.y);
 
-    if (adjacent) {
+    // Home Plot behavior: open floor selector at spawn stone
+    if (isHomePlotMap()) {
+        if (adjacent) {
+            if (!backTeleportNotifShown) {
+                notify("Press the A button to choose a discovered floor", 2500);
+                backTeleportNotifShown = true;
+            }
+            if (actionButtonAPressed && !homePlotTravelMenuOpen) {
+                openHomePlotTravelMenu();
+                actionButtonAPressed = false;
+            }
+        } else {
+            backTeleportNotifShown = false;
+        }
+        return;
+    }
+
+    // Existing behavior for normal maps
+    const normalAdjacent = adjacent && currentMapIndex > 0;
+    if (normalAdjacent) {
         if (!backTeleportNotifShown) {
             notify(`Press the A button to move to Floor ${currentMapIndex}`, 3000);
             backTeleportNotifShown = true;
         }
         if (actionButtonAPressed) {
-            // Play Warp Sound
             if (window.SoundManager) {
                 SoundManager.playEffect("assets/sound/sfx/world/warp.mp3");
             }
-            // Warp Player to Map
             warpToMap(currentMapIndex - 1, "teleport");
         }
     } else {
@@ -202,3 +234,80 @@ function checkBackTeleport() {
     }
 }
 
+function isHomePlotMap() {
+    return String(currentMapIndex) === HOME_PLOT_MAP_KEY;
+}
+
+function getVisitedFloorsForTravel() {
+    const visited = Array.isArray(window.progression?.visitedFloors)
+        ? window.progression.visitedFloors
+        : [1];
+
+    return [...new Set(visited)]
+        .filter(n => Number.isFinite(n) && n >= 1 && n <= FLOOR_NAMES.length)
+        .sort((a, b) => a - b);
+}
+
+function closeHomePlotTravelMenu() {
+    const overlay = document.getElementById("homeplot-travel-overlay");
+    if (overlay) overlay.remove();
+    homePlotTravelMenuOpen = false;
+    player.frozen = false;
+    controlsEnabled = true;
+}
+
+function openHomePlotTravelMenu() {
+    if (homePlotTravelMenuOpen) return;
+    homePlotTravelMenuOpen = true;
+    player.frozen = true;
+    controlsEnabled = false;
+
+    const visitedFloors = getVisitedFloorsForTravel();
+
+    const overlay = document.createElement("div");
+    overlay.id = "homeplot-travel-overlay";
+    overlay.className = "homeplot-travel-overlay";
+
+    const panel = document.createElement("div");
+    panel.className = "homeplot-travel-panel";
+
+    const title = document.createElement("h3");
+    title.textContent = "Home Plot Travel";
+    panel.appendChild(title);
+
+    const subtitle = document.createElement("p");
+    subtitle.textContent = "Choose a discovered floor";
+    panel.appendChild(subtitle);
+
+    const list = document.createElement("div");
+    list.className = "homeplot-travel-list";
+
+    visitedFloors.forEach(floorNum => {
+        const btn = document.createElement("button");
+        btn.className = "homeplot-travel-btn";
+        btn.textContent = `Floor ${floorNum} - ${FLOOR_NAMES[floorNum - 1] || "Unknown"}`;
+        btn.onclick = () => {
+            closeHomePlotTravelMenu();
+            if (window.SoundManager) {
+                SoundManager.playEffect("assets/sound/sfx/world/warp.mp3");
+            }
+            warpToMap(floorNum - 1, "spawn");
+        };
+        list.appendChild(btn);
+    });
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "homeplot-travel-close";
+    closeBtn.textContent = "Cancel";
+    closeBtn.onclick = closeHomePlotTravelMenu;
+
+    panel.appendChild(list);
+    panel.appendChild(closeBtn);
+    overlay.appendChild(panel);
+
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeHomePlotTravelMenu();
+    });
+
+    document.body.appendChild(overlay);
+}

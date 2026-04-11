@@ -185,6 +185,21 @@ const ITEM_DEFINITIONS = {
         useable: false,
         removeable: true
     },
+
+    // --------------- Home Plot Items ---------------
+
+    key_without_a_door: {
+        id: "key_without_a_door",
+        name: "Key without a Door",
+        description: "A key that doesn't open doors.",
+        image: "assets/img/items/key.png",
+        rarity: "legendary",
+        stackable: false,
+        useable: true,
+        removeable: false,
+        consumeOnUse: false,
+        sound: "legendary.mp3"
+    },
     
     // --------------- loot, Drops, Quest Items ---------------
 

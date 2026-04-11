@@ -1519,6 +1519,44 @@ const NPC_DEFINITIONS = {
         },
         trader: "trader6"
     },
+
+    houseKey: {
+        id: "Cyn_house_key",
+        name: "Cyn the Housekeeper",
+        sprite: "assets/img/npc/npc_f_4.png",
+        interactive: true, 
+        spawns: [
+            { map: 6,  x: 40, y: 5, wanderArea: { x1: 38, y1: 3, x2: 41, y2: 7 } }
+        ],
+        dialogue: {
+            default: [
+                "Have you noticed how different this floor feels?",
+                "Like its not trying to be anything"
+            ],
+            questComplete: [
+                "This showed up here...",
+                "It doesn't open anything ive seen.",
+                "...but it feels like it should belong to someone.",
+                "Maybe you'll know what to do with it!"
+            ]
+        },
+        questId: "homeplot_key_gift",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 37, y: 2 },
+                { x: 37, y: 3 },
+                { x: 37, y: 4 },
+                { x: 37, y: 5 },
+                { x: 38, y: 9 },
+                { x: 39, y: 9 },
+                { x: 42, y: 7 },
+                { x: 43, y: 7 }
+            ],
+            triggered: false
+        }
+    },
 };
 
 

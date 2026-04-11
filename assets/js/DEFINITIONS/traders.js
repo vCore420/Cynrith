@@ -91,6 +91,9 @@ const TRADER_DEFINITIONS = {
         ]
     },
 
+
+    // -------- Floor 7 --------
+
     trader6: {
         buy: [
             { id: "inventory_page",   price: 3000 },

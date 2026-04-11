@@ -87,6 +87,44 @@ function getZoom() {
     return (window.innerWidth < 600 && window.innerHeight > window.innerWidth) ? 1.04 : 1;
 }
 
+const HOME_PLOT_MAP_KEY = "home_plot0";
+
+window.progression = window.progression || {
+    visitedFloors: [1] // Floor numbers, not map indexes
+};
+
+function getFloorNumberFromMap(mapIndex) {
+    if (typeof mapIndex === "number" && Number.isFinite(mapIndex)) {
+        return mapIndex + 1;
+    }
+
+    const mapKey = String(mapIndex || "");
+    if (/^map\d+$/i.test(mapKey)) {
+        return Number(mapKey.replace(/^map/i, "")) + 1;
+    }
+
+    if (typeof NAMED_MAP_INFO !== "undefined" && NAMED_MAP_INFO[mapKey]) {
+        return NAMED_MAP_INFO[mapKey].floor || null;
+    }
+
+    return null;
+}
+
+function markFloorVisited(mapIndex) {
+    const floorNum = getFloorNumberFromMap(mapIndex);
+    if (!floorNum) return;
+    if (floorNum < 1 || floorNum > FLOOR_NAMES.length) return;
+
+    if (!Array.isArray(window.progression.visitedFloors)) {
+        window.progression.visitedFloors = [1];
+    }
+
+    if (!window.progression.visitedFloors.includes(floorNum)) {
+        window.progression.visitedFloors.push(floorNum);
+        window.progression.visitedFloors.sort((a, b) => a - b);
+        console.log("[Progression] Floor discovered:", floorNum);
+    }
+}
 
 // Initial Setup:
 function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png") {
@@ -147,6 +185,9 @@ function Setup(playerName, mapIndex = 0, spriteFile = "assets/img/char/hero.png"
         }
         if (typeof spawnWorldSpritesForMap === "function") {
             spawnWorldSpritesForMap(mapIndex);
+        }
+        if (typeof markFloorVisited === "function") {
+            markFloorVisited(mapIndex);
         }
         if (window.SoundManager) {
             SoundManager.fadeBgMusicVolume(0, 700);

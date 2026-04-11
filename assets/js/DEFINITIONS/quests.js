@@ -283,6 +283,16 @@ const QUEST_DEFINITIONS = {
         ],
         redoable: false
     },
+
+    homeplot_key_gift: {
+        id: "homeplot_key_gift",
+        name: "A Key without a Door",
+        description: "A strange key has been entrusted to you.",
+        type: "gift",
+        requiredItems: [],
+        rewards: [{ id: "key_without_a_door", amount: 1 }, { xp: 120 }],
+        redoable: false
+    },
 };
 
 

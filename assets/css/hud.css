@@ -255,6 +255,66 @@ div#log {
   color: #222335;
 }
 
+.homeplot-travel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.homeplot-travel-panel {
+  width: min(420px, 96vw);
+  max-height: 80vh;
+  overflow: auto;
+  background: linear-gradient(120deg, #22252c 80%, #222335 100%);
+  border: 1px solid #3af0ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 22px #3af0ff33;
+  padding: 14px;
+  color: #f1f6ff;
+  font-family: var(--font-playermenu);
+}
+
+.homeplot-travel-panel h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.35rem;
+}
+
+.homeplot-travel-panel p {
+  margin: 0 0 12px 0;
+  opacity: 0.85;
+}
+
+.homeplot-travel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.homeplot-travel-btn,
+.homeplot-travel-close {
+  border: 1px solid #3af0ff;
+  background: #1d2530;
+  color: #eef6ff;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: var(--font-playermenu);
+  cursor: pointer;
+}
+
+.homeplot-travel-close{
+  margin-top: 8px;
+}
+
+.homeplot-travel-btn:hover,
+.homeplot-travel-close:hover {
+  background: #263447;
+}
+
 /* For Bigger Devices like Tablets */
 @media (orientation: portrait) {
   #touch-controls {

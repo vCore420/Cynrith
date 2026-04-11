@@ -1438,6 +1438,25 @@ const INTERACTABLE_TILES = [
         dialogue: [],
         rewards: [],
     },
+
+    // Floor 7
+
+    {
+        id: "mareket1",
+        map: 6,
+        x: 57,
+        y: 26,
+        image: null,
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        teleport: { map: "map6_int1", x: 2, y: 6 },
+        allowRepeat: true,   
+        persistAfterTrigger: true,
+        notification: "Press A to go into the Mareket",
+        dialogue: [],
+        rewards: [],
+    },
 ];
 
 /*

@@ -46,6 +46,11 @@ function getCurrentSaveData() {
             equipped: [...equippedSkills]
         },
         playTime: window.playTime,
+        progression: {
+            visitedFloors: Array.isArray(window.progression?.visitedFloors)
+                ? [...window.progression.visitedFloors]
+                : [1]
+        },
     };
 }
 
@@ -159,6 +164,23 @@ function applySaveData(data) {
             });
         }
         if (typeof renderSkillsMenu === "function") renderSkillsMenu();
+    }
+
+    //Patch Floor progression
+    if (data.progression && Array.isArray(data.progression.visitedFloors)) {
+        window.progression = window.progression || {};
+        window.progression.visitedFloors = [...new Set(data.progression.visitedFloors)]
+            .filter(n => Number.isFinite(n) && n >= 1 && n <= FLOOR_NAMES.length)
+            .sort((a, b) => a - b);
+
+        if (!window.progression.visitedFloors.includes(1)) {
+            window.progression.visitedFloors.unshift(1);
+        }
+    } else {
+        window.progression = window.progression || {};
+        if (!Array.isArray(window.progression.visitedFloors)) {
+            window.progression.visitedFloors = [1];
+        }
     }
 
     // Patch play time
