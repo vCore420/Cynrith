@@ -376,7 +376,10 @@ function Loop() {
     checkTeleport();
     checkBackTeleport();
 
-    // Home PLot Check
+    // Home PLot Checks
+    if (typeof checkHomePlotHouseInteractions === "function") {
+        checkHomePlotHouseInteractions();
+    }
     if (typeof updateHomePlotHudButtonVisibility === "function") {
         updateHomePlotHudButtonVisibility();
     }

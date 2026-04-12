@@ -276,6 +276,34 @@ const ITEM_DEFINITIONS = {
         }
     },
     
+    home_cabin_1: {
+        id: "home_cabin_1",
+        name: "Cabin House",
+        description: "A small cabin. Has a private interior.",
+        image: "assets/img/worldSprites/house_3.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/house_3.png",
+            imageW: 128,
+            imageH: 192,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 3,
+            isHouse: true,
+            doorTiles: [{ x: 0, y: 0 }],
+            interiorTemplateMap: "map6_int1",
+            interiorExitTile: { x: 2, y: 6 }
+        }
+    },
     
     // --------------- loot, Drops, Quest Items ---------------
 

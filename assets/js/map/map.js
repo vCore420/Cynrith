@@ -14,7 +14,8 @@ const FLOOR_NAMES = [
 const NAMED_MAP_INFO = {
     "castle0": { floor: 6, name: "Castle Interior" },
     "portal_island0": { floor: 6, name: "Portal Island" },
-    "home_plot0": { floor: "Home Plot", name: "Home Plot" }
+    "home_plot0": { floor: "Home Plot", name: "Home Plot" },
+    "map6_int1" : { floor: "Cabin", name: "Cabin Interior" },
 };
 
 

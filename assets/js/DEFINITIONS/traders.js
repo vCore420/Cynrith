@@ -100,6 +100,7 @@ const TRADER_DEFINITIONS = {
             { id: "home_chair_oak",   price: 100 },
             { id: "fence1",   price: 100 },
             { id: "gazebo1",   price: 100 },
+            { id: "home_cabin_1",   price: 500 },
         ],
         sell: [
             { id: "umbra_tonic",         price: 35 }

@@ -1,14 +1,18 @@
-// Home Plot System
+// Home Plot + Interior Instance System
 
-const HOME_PLOT_KEY = "home_plot0";
+const HOME_PLOT_BASE_MAP = "home_plot0";
+const HOME_INTERIOR_INSTANCE_PREFIX = "home_int_inst_";
 
 window.homePlot = window.homePlot || {
-    version: 1,
-    mapKey: HOME_PLOT_KEY,
+    version: 2,
+    mapKey: HOME_PLOT_BASE_MAP,
     mode: "none", // "none" | "place" | "edit"
     selectedItemId: null,
-    inventory: {}, // { itemId: count }
-    placed: [], // [{ id, itemId, map, x, y, zIndex, _frame, _animTick }]
+    inventory: {},
+    placed: [],
+    interiorInstances: {}, // { [instanceMapKey]: {...} }
+    nextInteriorId: 1,
+    activeInteriorMapKey: null,
     preview: {
         tileX: null,
         tileY: null,
@@ -21,10 +25,30 @@ window.homePlot = window.homePlot || {
 
 let homePlotActivePlaced = [];
 let homePlotPointerBound = false;
-const homePlotImageCache = {}; // spriteSheet -> Image
+const homePlotImageCache = {};
 
-function isHomePlotMap(mapIndex = currentMapIndex) {
-    return String(mapIndex) === HOME_PLOT_KEY;
+function isHomePlotBaseMap(mapIndex = currentMapIndex) {
+    return String(mapIndex) === HOME_PLOT_BASE_MAP;
+}
+function isHomeInteriorMap(mapIndex = currentMapIndex) {
+    return String(mapIndex).startsWith(HOME_INTERIOR_INSTANCE_PREFIX);
+}
+function isHomeBuildRealm(mapIndex = currentMapIndex) {
+    return isHomePlotBaseMap(mapIndex) || isHomeInteriorMap(mapIndex);
+}
+function getCurrentHomeMapKey() {
+    return String(currentMapIndex);
+}
+function ensureHomePlotSchema() {
+    if (!window.homePlot || typeof window.homePlot !== "object") return;
+    if (!window.homePlot.inventory || typeof window.homePlot.inventory !== "object") window.homePlot.inventory = {};
+    if (!Array.isArray(window.homePlot.placed)) window.homePlot.placed = [];
+    if (!window.homePlot.interiorInstances || typeof window.homePlot.interiorInstances !== "object") {
+        window.homePlot.interiorInstances = {};
+    }
+    if (!Number.isFinite(window.homePlot.nextInteriorId) || window.homePlot.nextInteriorId < 1) {
+        window.homePlot.nextInteriorId = 1;
+    }
 }
 
 function getHomePlaceableDefs() {
@@ -39,10 +63,12 @@ function getHomeItemDef(itemId) {
 }
 
 function getHomeItemCount(itemId) {
+    ensureHomePlotSchema();
     return Number(window.homePlot.inventory[itemId] || 0);
 }
 
 function addHomePlotItem(itemId, amount = 1) {
+    ensureHomePlotSchema();
     if (!getHomeItemDef(itemId)) return false;
     const current = getHomeItemCount(itemId);
     window.homePlot.inventory[itemId] = current + Math.max(1, amount);
@@ -50,6 +76,7 @@ function addHomePlotItem(itemId, amount = 1) {
 }
 
 function removeHomePlotItem(itemId, amount = 1) {
+    ensureHomePlotSchema();
     const current = getHomeItemCount(itemId);
     if (current < amount) return false;
     window.homePlot.inventory[itemId] = current - amount;
@@ -60,11 +87,10 @@ function removeHomePlotItem(itemId, amount = 1) {
 function buildHomePlacement(itemId, x, y) {
     const def = getHomeItemDef(itemId);
     if (!def) return null;
-
     return {
         id: "hp_" + Date.now() + "_" + Math.floor(Math.random() * 9999),
         itemId,
-        map: HOME_PLOT_KEY,
+        map: getCurrentHomeMapKey(),
         x,
         y,
         zIndex: Number(def.homeDef.zIndex || 0),
@@ -74,12 +100,14 @@ function buildHomePlacement(itemId, x, y) {
 }
 
 function spawnHomePlacementsForMap(mapIndex) {
-    if (!isHomePlotMap(mapIndex)) {
+    ensureHomePlotSchema();
+    if (!isHomeBuildRealm(mapIndex)) {
         homePlotActivePlaced = [];
         updateHomePlotHudButtonVisibility();
         return;
     }
-    homePlotActivePlaced = window.homePlot.placed.filter(p => String(p.map) === HOME_PLOT_KEY);
+    const mapKey = String(mapIndex);
+    homePlotActivePlaced = window.homePlot.placed.filter(p => String(p.map) === mapKey);
     updateHomePlotHudButtonVisibility();
 }
 
@@ -100,11 +128,8 @@ function isTileBlockedByHomePlacement(tileX, tileY) {
         const p = homePlotActivePlaced[i];
         const def = getHomeItemDef(p.itemId);
         if (!def || !def.homeDef.collision) continue;
-
         const fp = getHomeFootprintTiles(def, p.x, p.y);
-        if (fp.some(t => t.x === tileX && t.y === tileY)) {
-            return true;
-        }
+        if (fp.some(t => t.x === tileX && t.y === tileY)) return true;
     }
     return false;
 }
@@ -116,10 +141,8 @@ function isMapCollisionTile(tileX, tileY) {
         for (let l = 0; l < map.data._layers.length; l++) {
             const layer = map.data._layers[l];
             if (!layer || !layer[tileY] || typeof layer[tileY][tileX] === "undefined") continue;
-
             const gid = layer[tileY][tileX];
             if (gid <= 0) continue;
-
             const tileIndex = map.data._gidMap ? map.data._gidMap[gid] : (gid - 1);
             if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
                 return true;
@@ -128,7 +151,6 @@ function isMapCollisionTile(tileX, tileY) {
         return false;
     }
 
-    // Legacy single-layer map support
     if (!map.data.layout || !map.data.layout[tileY] || typeof map.data.layout[tileY][tileX] === "undefined") {
         return true;
     }
@@ -138,15 +160,18 @@ function isMapCollisionTile(tileX, tileY) {
 }
 
 function canPlaceHomeItem(itemId, x, y) {
-    if (!isHomePlotMap()) return false;
+    if (!isHomeBuildRealm()) return false;
     const def = getHomeItemDef(itemId);
     if (!def) return false;
+    const isHouseItem = !!def?.homeDef?.isHouse;
+    if (isHomeInteriorMap() && isHouseItem) {
+        return false;
+    }
     if (getHomeItemCount(itemId) < 1) return false;
 
     if (!map || !map.data || !map.data.layout) return false;
     if (x < 0 || y < 0 || !map.data.layout[y] || typeof map.data.layout[y][x] === "undefined") return false;
 
-    // Do not allow placement on teleport stones
     if (typeof activeTeleportStones !== "undefined" && activeTeleportStones.some(s => s.x === x && s.y === y)) {
         return false;
     }
@@ -157,8 +182,6 @@ function canPlaceHomeItem(itemId, x, y) {
         if (t.x < 0 || t.y < 0 || !map.data.layout[t.y] || typeof map.data.layout[t.y][t.x] === "undefined") {
             return false;
         }
-
-        // Blocked by map/world/interactable/home placement
         if (player && player.tile && player.tile.x === t.x && player.tile.y === t.y) return false;
         if (isMapCollisionTile(t.x, t.y)) return false;
         if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(t.x, t.y)) return false;
@@ -169,22 +192,68 @@ function canPlaceHomeItem(itemId, x, y) {
     return true;
 }
 
+function createHouseInteriorInstance(placement) {
+    ensureHomePlotSchema();
+    const def = getHomeItemDef(placement.itemId);
+    if (!def || !def.homeDef || !def.homeDef.isHouse) return;
+
+    const nextId = window.homePlot.nextInteriorId++;
+    const instanceMapKey = HOME_INTERIOR_INSTANCE_PREFIX + nextId;
+    const hd = def.homeDef;
+
+    window.homePlot.interiorInstances[instanceMapKey] = {
+        instanceMapKey,
+        templateMapKey: String(hd.interiorTemplateMap || ""),
+        housePlacementId: placement.id,
+        houseItemId: placement.itemId,
+        exteriorMapKey: String(placement.map),
+        exteriorDoorTile: { x: placement.x, y: placement.y },
+        exitTile: hd.interiorExitTile || { x: 7, y: 8 }
+    };
+
+    placement.houseInteriorMapKey = instanceMapKey;
+}
+
+function reclaimInteriorItemsForHousePlacement(placement) {
+    if (!placement || !placement.houseInteriorMapKey) return;
+    const instanceKey = String(placement.houseInteriorMapKey);
+
+    const reclaimed = window.homePlot.placed.filter(p => String(p.map) === instanceKey);
+    for (let i = 0; i < reclaimed.length; i++) {
+        addHomePlotItem(reclaimed[i].itemId, 1);
+    }
+    window.homePlot.placed = window.homePlot.placed.filter(p => String(p.map) !== instanceKey);
+    delete window.homePlot.interiorInstances[instanceKey];
+
+    if (String(currentMapIndex) === instanceKey) {
+        warpToMap(HOME_PLOT_BASE_MAP, "spawn");
+    }
+}
+
 function placeHomeItemAt(itemId, x, y) {
-    if (!canPlaceHomeItem(itemId, x, y)) return false;
+    if (!canPlaceHomeItem(itemId, x, y)) {
+        const def = getHomeItemDef(itemId);
+        if (isHomeInteriorMap() && def?.homeDef?.isHouse && typeof notify === "function") {
+            notify("Houses can only be placed on your main Home Plot.", 1400);
+        }
+        return false;
+    }
     if (!removeHomePlotItem(itemId, 1)) return false;
 
     const placement = buildHomePlacement(itemId, x, y);
     if (!placement) return false;
 
     window.homePlot.placed.push(placement);
+
+    const def = getHomeItemDef(itemId);
+    if (def?.homeDef?.isHouse) {
+        createHouseInteriorInstance(placement);
+    }
+
     spawnHomePlacementsForMap(currentMapIndex);
 
-    // Keep menu in sync without reopen
     if (window.homePlot.uiOpen && typeof renderHomePlotMenuItems === "function") {
-        // If selected item is now 0, clear selection
-        if (getHomeItemCount(itemId) <= 0) {
-            window.homePlot.selectedItemId = null;
-        }
+        if (getHomeItemCount(itemId) <= 0) window.homePlot.selectedItemId = null;
         renderHomePlotMenuItems();
     }
 
@@ -210,11 +279,16 @@ function removePlacedHomeItemAt(x, y) {
     const idx = window.homePlot.placed.findIndex(p => p.id === found.id);
     if (idx === -1) return false;
 
+    const foundDef = getHomeItemDef(found.itemId);
+
+    if (foundDef?.homeDef?.isHouse) {
+        reclaimInteriorItemsForHousePlacement(found);
+    }
+
     window.homePlot.placed.splice(idx, 1);
     addHomePlotItem(found.itemId, 1);
     spawnHomePlacementsForMap(currentMapIndex);
 
-    // Keep menu in sync without reopen
     if (window.homePlot.uiOpen && typeof renderHomePlotMenuItems === "function") {
         renderHomePlotMenuItems();
     }
@@ -262,7 +336,6 @@ function drawSingleHomePlacement(p) {
 
     const sx = col * frameW;
     const sy = row * frameH;
-
     const px = Math.floor(p.x * config.size.tile - viewport.x);
     const py = Math.floor(p.y * config.size.tile - viewport.y - (frameH - config.size.tile));
 
@@ -270,14 +343,13 @@ function drawSingleHomePlacement(p) {
 }
 
 function drawHomePlotItems(zIndex) {
-    if (!isHomePlotMap()) return;
+    if (!isHomeBuildRealm()) return;
     for (let i = 0; i < homePlotActivePlaced.length; i++) {
         const p = homePlotActivePlaced[i];
         if (typeof zIndex !== "undefined" && Number(p.zIndex || 0) !== zIndex) continue;
         drawSingleHomePlacement(p);
     }
 
-    // Draw preview overlay while in place mode
     if (window.homePlot.mode === "place" && window.homePlot.preview.pointerInside) {
         drawHomePlotPreview();
     }
@@ -317,9 +389,8 @@ function drawHomePlotPreview() {
     }
     const img = homePlotImageCache[imgPath];
 
-    if (img && img.complete) {
-        context.drawImage(img, 0, 0, frameW, frameH, px, py, frameW, frameH);
-    } else {
+    if (img && img.complete) context.drawImage(img, 0, 0, frameW, frameH, px, py, frameW, frameH);
+    else {
         context.fillStyle = valid ? "rgba(58,240,122,0.45)" : "rgba(255,80,80,0.45)";
         context.fillRect(px, py, frameW, frameH);
     }
@@ -343,7 +414,7 @@ function worldTileFromClientPoint(clientX, clientY) {
 }
 
 function handleHomePlacementPointer(clientX, clientY, isTouchTap = false) {
-    if (!isHomePlotMap()) return;
+    if (!isHomeBuildRealm()) return;
     if (window.homePlot.mode === "none") return;
     if (!context || !context.canvas) return;
 
@@ -361,12 +432,10 @@ function handleHomePlacementPointer(clientX, clientY, isTouchTap = false) {
         if (!window.homePlot.selectedItemId) return;
 
         if (!isTouchTap) {
-            // Mouse click: place immediately
             placeHomeItemAt(window.homePlot.selectedItemId, t.tileX, t.tileY);
             return;
         }
 
-        // Touch flow: first tap preview, second tap same tile places.
         const key = t.tileX + ":" + t.tileY;
         if (window.homePlot.preview.lastTouchTileKey === key) {
             placeHomeItemAt(window.homePlot.selectedItemId, t.tileX, t.tileY);
@@ -384,7 +453,7 @@ function bindHomePlotPointerHandlers() {
     const canvas = context.canvas;
 
     canvas.addEventListener("mousemove", (e) => {
-        if (!isHomePlotMap() || window.homePlot.mode !== "place") return;
+        if (!isHomeBuildRealm() || window.homePlot.mode !== "place") return;
         const t = worldTileFromClientPoint(e.clientX, e.clientY);
         window.homePlot.preview.tileX = t.tileX;
         window.homePlot.preview.tileY = t.tileY;
@@ -431,7 +500,7 @@ function ensureHomePlotMenuDom() {
     wrap.style.fontFamily = "var(--font-playermenu)";
 
     const title = document.createElement("h3");
-    title.textContent = "Home Plot";
+    title.textContent = "Home Build";
     title.style.margin = "0 0 8px 0";
     wrap.appendChild(title);
 
@@ -497,6 +566,9 @@ function renderHomePlotMenuItems() {
 
     const defs = getHomePlaceableDefs();
     defs.forEach(def => {
+        if (isHomeInteriorMap() && def?.homeDef?.isHouse) {
+            return;
+        }
         const count = getHomeItemCount(def.id);
         if (count < 1) return;
 
@@ -521,7 +593,7 @@ function renderHomePlotMenuItems() {
         icon.style.flexShrink = "0";
 
         const text = document.createElement("span");
-        text.textContent = `${def.name} x${count}`;
+        text.textContent = def.name + " x" + count;
         text.style.flex = "1";
 
         row.appendChild(icon);
@@ -545,8 +617,8 @@ function renderHomePlotMenuItems() {
 }
 
 function openHomePlotCustomizer() {
-    if (!isHomePlotMap()) {
-        if (typeof notify === "function") notify("Home customizer is only available on your Home Plot.", 1700);
+    if (!isHomeBuildRealm()) {
+        if (typeof notify === "function") notify("Home customizer is only available on your Home Plot or interiors.", 1700);
         return;
     }
 
@@ -574,9 +646,78 @@ function toggleHomePlotCustomizer() {
     else openHomePlotCustomizer();
 }
 
+function getHouseDoorTiles(placement) {
+    const def = getHomeItemDef(placement.itemId);
+    const tiles = [];
+    const offsets = def?.homeDef?.doorTiles || [];
+    for (let i = 0; i < offsets.length; i++) {
+        tiles.push({ x: placement.x + offsets[i].x, y: placement.y + offsets[i].y });
+    }
+    return tiles;
+}
+
+function checkHomePlotHouseInteractions() {
+    if (!isHomeBuildRealm()) return;
+
+    if (isHomePlotBaseMap()) {
+        for (let i = 0; i < homePlotActivePlaced.length; i++) {
+            const p = homePlotActivePlaced[i];
+            const def = getHomeItemDef(p.itemId);
+            if (!def?.homeDef?.isHouse) continue;
+
+            const doorTiles = getHouseDoorTiles(p);
+            const adjacent = doorTiles.some(t => isPlayerAdjacentToTile(t.x, t.y) || (player.tile.x === t.x && player.tile.y === t.y));
+            if (!adjacent) continue;
+
+            notify("Press A to enter house", 400);
+
+            if (actionButtonAPressed && p.houseInteriorMapKey) {
+                const instance = window.homePlot.interiorInstances[String(p.houseInteriorMapKey)];
+                const exit = instance?.exitTile || { x: 7, y: 8 };
+
+                window.homePlot.activeInteriorMapKey = p.houseInteriorMapKey;
+                // Spawn at the same tile the interior uses as its exit anchor
+                warpToMap(p.houseInteriorMapKey, "spawn", { x: Number(exit.x), y: Number(exit.y) });
+
+                actionButtonAPressed = false;
+                return;
+            }
+        }
+    }
+
+    if (isHomeInteriorMap()) {
+        const instance = window.homePlot.interiorInstances[String(currentMapIndex)];
+        if (!instance) return;
+
+        const exit = instance.exitTile || { x: 7, y: 8 };
+        const adjacentExit = isPlayerAdjacentToTile(exit.x, exit.y) || (player.tile.x === exit.x && player.tile.y === exit.y);
+
+        if (!adjacentExit) return;
+
+        notify("Press A to exit house", 400);
+
+        if (actionButtonAPressed) {
+            const backMap = instance.exteriorMapKey || HOME_PLOT_BASE_MAP;
+            const backPos = {
+                x: Number(instance.exteriorDoorTile?.x || 22),
+                y: Number(instance.exteriorDoorTile?.y || 28)
+            };
+            warpToMap(backMap, "spawn", backPos);
+            actionButtonAPressed = false;
+        }
+    }
+}
+
+function resolveHomeMapKeyForLoad(mapKey) {
+    if (!isHomeInteriorMap(mapKey)) return null;
+    const instance = window.homePlot?.interiorInstances?.[String(mapKey)];
+    return instance?.templateMapKey || null;
+}
+
 function exportHomePlotState() {
+    ensureHomePlotSchema();
     return {
-        version: window.homePlot.version,
+        version: 2,
         inventory: { ...window.homePlot.inventory },
         placed: window.homePlot.placed.map(p => ({
             id: p.id,
@@ -584,23 +725,27 @@ function exportHomePlotState() {
             map: p.map,
             x: p.x,
             y: p.y,
-            zIndex: p.zIndex
-        }))
+            zIndex: p.zIndex,
+            houseInteriorMapKey: p.houseInteriorMapKey || null
+        })),
+        interiorInstances: { ...window.homePlot.interiorInstances },
+        nextInteriorId: Number(window.homePlot.nextInteriorId || 1)
     };
 }
 
 function importHomePlotState(data) {
+    ensureHomePlotSchema();
+
     window.homePlot.version = Number(data?.version || 1);
-    window.homePlot.inventory = (data && data.inventory && typeof data.inventory === "object")
-        ? { ...data.inventory }
-        : {};
+    window.homePlot.inventory = (data && data.inventory && typeof data.inventory === "object") ? { ...data.inventory } : {};
     window.homePlot.placed = Array.isArray(data?.placed)
-        ? data.placed.map(p => ({
-            ...p,
-            _frame: 0,
-            _animTick: 0
-        }))
+        ? data.placed.map(p => ({ ...p, _frame: 0, _animTick: 0 }))
         : [];
+    window.homePlot.interiorInstances = (data?.interiorInstances && typeof data.interiorInstances === "object")
+        ? { ...data.interiorInstances }
+        : {};
+    window.homePlot.nextInteriorId = Number(data?.nextInteriorId || 1);
+
     spawnHomePlacementsForMap(currentMapIndex);
 }
 
@@ -610,7 +755,7 @@ function ensureHomePlotHudButton() {
 
     if (!btn.dataset.boundHomeplot) {
         btn.addEventListener("click", () => {
-            if (!isHomePlotMap()) return;
+            if (!isHomeBuildRealm()) return;
             toggleHomePlotCustomizer();
         });
         btn.dataset.boundHomeplot = "1";
@@ -623,7 +768,7 @@ function updateHomePlotHudButtonVisibility() {
     const btn = ensureHomePlotHudButton();
     if (!btn) return;
 
-    const shouldShow = isHomePlotMap() && !_dialogueActive;
+    const shouldShow = isHomeBuildRealm() && !_dialogueActive;
     btn.style.display = shouldShow ? "" : "none";
 
     if (!shouldShow && window.homePlot.uiOpen) {

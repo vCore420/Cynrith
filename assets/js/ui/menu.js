@@ -487,7 +487,7 @@ function drawMapPreview() {
     let layersToDraw = [];
     if (map.data._layers) {
         // Draw all layers except the last one (top layer)
-        layersToDraw = map.data._layers.slice(0, -1);
+        layersToDraw = map.data._layers;
     } else {
         // Legacy single-layer maps
         layersToDraw = [map.data.layout];

@@ -103,7 +103,10 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
     // Accept numeric (0,1,2...) or string ("title1","dungeon1")
     const isNumericMap = (typeof mapIndex === "number") ||
         (mapIndex !== null && mapIndex !== "" && !isNaN(mapIndex) && isFinite(Number(mapIndex)));
-    const mapKey = isNumericMap ? `map${mapIndex}` : String(mapIndex);
+    const rawMapKey = isNumericMap ? `map${mapIndex}` : String(mapIndex);
+    const resolvedMapKey = (typeof resolveHomeMapKeyForLoad === "function")
+        ? (resolveHomeMapKeyForLoad(rawMapKey) || rawMapKey)
+        : rawMapKey;
 
     showScreenTransition(() => {
         currentMapIndex = mapIndex; // keep existing variable for the rest of the game
@@ -137,14 +140,14 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
             if (typeof spawnTeleportStonesForMap === "function") spawnTeleportStonesForMap(currentMapIndex);
             if (typeof spawnWorldSpritesForMap === "function") spawnWorldSpritesForMap(currentMapIndex);
             if (typeof spawnHomePlacementsForMap === "function") spawnHomePlacementsForMap(currentMapIndex);
-            
+
             // Fade out current music and fade in new map music
             if (window.SoundManager) {
                 SoundManager.fadeBgMusicVolume(0, 700);
                 setTimeout(() => {
                     SoundManager.stopBgMusic();
                     // Check for custom bgMusic in map data, fallback to auto-naming
-                    const bgMusicFile = map.data && map.data.bgMusic ? map.data.bgMusic : `bg_${mapKey}.mp3`;
+                    const bgMusicFile = map.data && map.data.bgMusic ? map.data.bgMusic : `bg_${resolvedMapKey}.mp3`;
                     const bgMusicSrc = `assets/sound/${bgMusicFile}`;
                     SoundManager.playBgMusic(bgMusicSrc);
                     SoundManager.fadeBgMusicVolume(SoundManager.bgMusicVolume, 900);
@@ -156,7 +159,7 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
             console.log("[WarpToMap] Map loaded successfully:", mapIndex);
         };
 
-        map.load(mapKey);
+        map.load(resolvedMapKey);
     });
 }
 
