@@ -10,9 +10,9 @@ const TRIGGER_TILES = [
         type: "dialogue",
         sound: { enabled: true, file: "echo.mp3", type: "ambient" },
         dialogue: [
-            "A Echo Flickers: 'Not all who climb return.'"
+            "An Echo Flickers: 'Not all who vanish are gone. Some are only misplaced between versions.'"
         ],
-        oneTime: true // cant be triggered multiple times
+        oneTime: true
     },
 
     {
@@ -23,7 +23,7 @@ const TRIGGER_TILES = [
         type: "dialogue",
         sound: { enabled: true, file: "echo.mp3", type: "ambient" },
         dialogue: [
-            "A Echo Whispers: 'The sound of silence beckons, the architect awaits.'"
+            "An Echo Whispers: 'The forest does not hate you. It is only trying too hard to remember.'"
         ],
         oneTime: true,
         rewards: [
@@ -39,7 +39,7 @@ const TRIGGER_TILES = [
         type: "dialogue",
         sound: { enabled: true, file: "echo.mp3", type: "ambient" },
         dialogue: [
-            "A Echo Murmurs: 'Cycles repeat, but each step is yours alone.'"
+            "An Echo Murmurs: 'Cycles return, but each passing leaves a different mark behind.'"
         ],
         oneTime: true,
         rewards: [
@@ -55,7 +55,7 @@ const TRIGGER_TILES = [
         type: "dialogue",
         sound: { enabled: true, file: "echo.mp3", type: "ambient" },
         dialogue: [
-            "A Echo Glitches: 'Some fragments remember you, even if you forget them.'"
+            "An Echo Glitches: 'Some fragments know your shape before you know theirs.'"
         ],
         oneTime: true,
         rewards: [
@@ -71,7 +71,7 @@ const TRIGGER_TILES = [
         type: "dialogue",
         sound: { enabled: true, file: "echo.mp3", type: "ambient" },
         dialogue: [
-            "A Echo Sings: 'Light flickers, roots entwine. The Thicket keeps its secrets aligned.'"
+            "An Echo Sings: 'Where light catches root and memory, the Thicket opens what it can bear to show.'"
         ],
         oneTime: true,
         rewards: [

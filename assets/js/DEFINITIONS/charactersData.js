@@ -16,14 +16,14 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Ah, another soul steps into the green! Welcome, traveler, to Verdant Rise, the first of many floors beneath the Architect’s gaze.",
-                "Here, every blade of grass and whisper of wind is shaped by laws both seen and unseen.",
-                "Take up this weapon, it is both tool and teacher. Swing it with purpose, and you’ll soon find that strength grows with every challenge.",
-                "Seek out others like myself, we are here to guide, not command. Your journey is your own, but remember, wisdom is often found in simple beginnings."
+                "Ah, there you are. Easy now, traveler, Verdant Rise has a gentle way of meeting new feet.",
+                "Most who arrive stand still a moment. The wind, the stones, the grass, they all seem eager to be noticed here.",
+                "This floor is kind, but not harmless. Take this weapon and keep it close. Out here, even simple things ask to be respected.",
+                "Walk a little. Speak to the people scattered through the fields. Verdant Rise is where many begin, but it is not only a beginning."
             ],
             questComplete: [
-                "May the Architect watch over you. The world is wide, and your story has only just begun.",
-                "If you ever feel lost, listen to the wind, or seek out the stones. They remember more than you might think.",
+                "That sits better in your hands already.",
+                "If you feel unsure, do not rush upward. Learn the shape of this place first. A floor that welcomes you is worth remembering.",
                 "**Press the B Button (Spacebar) to use your Weapon!**"
             ]
         },
@@ -57,14 +57,14 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Ah, the Teleport Stone draws another wanderer. These ruins have seen more cycles than I can count.",
-                "Long ago, the Firstfolk built these stones to mark the path between worlds. Now, only the brave, or the curious, dare use them.",
-                "To travel, simply step close and let your intent guide you. The glyphs will answer, if you’re ready.",
-                "Take these, an old traveler’s tricks. A few potions and a charm for luck. The next floor is never quite what you expect."
+                "So, you've made your way to the old stone. Most do, sooner or later.",
+                "People think these ruins are only for leaving, but that is not quite right. They are for remembering where you stood before you chose to go.",
+                "The Firstfolk raised stones like these between lives, roads, and partings. Step close enough, and it listens for your intent.",
+                "Take these. A traveler should never leave a quiet floor empty-handed, especially one that bothered to welcome them."
             ],
             questComplete: [
-                "The stone hums when you approach. That’s a good sign. Remember, every floor has its own rules, but the Architect is always watching.",
-                "Safe travels, adventurer. May the echoes be kind."
+                "Hear that hum? It is not urging you onward. It is asking whether you are ready to leave well.",
+                "Go if you must, traveler. Verdant Rise will still remember the shape of your steps."
             ]
         },
         questId: "rook_gift",
@@ -91,20 +91,20 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Oh! A new face among the stones. Welcome to Verdant Rise, traveler.",
-                "If you’re looking to prove your mettle, the Vicious Plants around here drop something called Dewleaf. It’s prized by healers and cooks alike.",
-                "Would you mind gathering a few for me? The plants can be tricky, watch for their snapping jaws in the tall grass."
+                "Oh, hello there. You're newly arrived, aren't you? Verdant Rise always looks brighter when someone is seeing it for the first time.",
+                "I'm gathering Dewleaf for the healers and cooks near the stones. The Vicious Plants cling to it like misers.",
+                "If you're heading through the grass anyway, would you bring me a few? It helps to do something useful while you learn the lay of the land."
             ],
             questGiven: [
-                "Bring me 3 Dewleaf from the Vicious Plants. You’ll find them lurking in the grass. Good luck!"
+                "Bring me 3 Dewleaf from the Vicious Plants. Watch the tall grass, those snapping weeds like to pretend they're part of the scenery."
             ],
             questIncomplete: [
-                "Still searching? Take your time, the plants aren’t going anywhere. Just be careful out there."
+                "No rush. Verdant Rise teaches best when you walk it slowly, just keep your eyes open in the grass."
             ],
             questComplete: [
-                "You found them! Thank you, traveler. The healers will be grateful.",
-                "If you ever find more Dewleaf, I’ll always have a reward for you.",
-                "Strange, isn’t it, how the world seems to remember us? Sometimes I find echoes, shimmers in the air, like memories left behind."
+                "You found them, thank you. These will go to good use.",
+                "That is the way of this floor, really. Small help, small kindness, and before long the place starts feeling familiar.",
+                "Sometimes I think the world remembers those little acts better than the grand ones."
             ]
         },
         questId: "dewleaf_gather",
@@ -123,20 +123,20 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Hey there! You’re new, right? Don’t worry, everyone starts somewhere.",
-                "Eldrin says the best way to learn is by doing. Around here, that means facing a few Groovy Slimes.",
-                "They look harmless, but they’ll keep you on your toes. Defeat a few and you’ll feel your skills sharpening already!",
-                "Come back and tell me how it went, I’m always curious to see how newcomers handle their first challenge."
+                "You're the newcomer Eldrin mentioned, right? Good, I was hoping you'd come this way.",
+                "The Groovy Slimes up ahead keep drifting into the walking paths. They're not the worst thing in Cynrith, but they make folk nervous.",
+                "If you can handle a few of them, you'll learn the rhythm of a real fight and do the floor a favor at the same time.",
+                "Come back after, I want to hear how Verdant Rise feels when it starts pushing back."
             ],
             questGiven: [
-                "Defeat 5 Groovy Slimes. They bounce all over the fields, just watch out for their surprise attacks!"
+                "Defeat 5 Groovy Slimes. Keep moving, don't crowd them, and don't let their wobbling fool you."
             ],
             questIncomplete: [
-                "Still working on those slimes? Take your time. Every battle is a lesson."
+                "Still at it? That's fine. First fights are less about winning quickly and more about finding your footing."
             ],
             questComplete: [
-                "You did it! See? You’re already getting stronger. The Architect must have an eye on you.",
-                "If you want more practice, I’m always happy to set another challenge."
+                "Nicely done. See? The fields feel a little safer, and you look a little steadier.",
+                "That's how it starts here. You help the place, and somehow it helps shape you back."
             ]
         },
         questId: "slime_cull",
@@ -155,10 +155,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Have you noticed the flowers lean toward places worth checking? If something hums, glows, or seems out of place, step close and press A to inspect it.",
-                "The wilds here are kind, but not harmless. Keep moving in fights, then strike with B when you're in range.",
-                "If your health dips, open your pack from the menu and use what you’ve gathered. Verdant Rise rewards careful travelers.",
-                "This floor teaches gently, but the higher ones will not. Learn the rhythm now, and you’ll climb farther."
+                "Verdant Rise likes attentive travelers. Flowers bend, stones hum, and odd little corners seem to wait for someone to notice them.",
+                "If something glows, shivers, or simply feels placed with care, step close and press A. The world speaks softly before it speaks loud.",
+                "Even in battle, that still matters. Move, watch, strike when it makes sense. Panic is what turns gentle places cruel.",
+                "People call this the first floor as if that explains it. I think of it as the floor that teaches you how to pay attention."
             ]
         }
     },
@@ -175,10 +175,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Sometimes the sky shifts and I remember paths I haven't walked. When you feel lost, check your quest notes and map in the menu.",
-                "The stones and people here guide more than they speak. Talk often, many paths only open after a conversation.",
-                "If battle feels rough, don't stand still. Move, strike, recover, then move again.",
-                "And save your journey often, memories fade in Cynrith, but your progress doesn't have to."
+                "Sometimes when the sky shifts, I feel as though I've stood here before, waiting for someone I have not met yet.",
+                "Talk to the people you find. Cynrith opens more through conversation than force, especially in places like this.",
+                "If you lose your sense of direction, check your quest notes and map, then slow down. Floors make more sense when you stop treating them like obstacles.",
+                "And save often. Memory slips easily in Cynrith, but that doesn't mean your journey has to."
             ]
         }
     },
@@ -200,20 +200,20 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to Stonewake, traveler. The land remembers more than it reveals.",
-                "These stones once marked the path for pilgrims and dreamers; now, they test the resolve of those who would climb higher.",
-                "Strength is not just in the arm, but in the spirit. To ascend, you must prove your resilience."
+                "Welcome to Stonewake, traveler. Verdant Rise receives people. Stonewake tests what remains once the welcome has passed.",
+                "These stones have outlived roads, homes, and whole names. When the Fractures came, this floor lost pieces of itself and learned to keep standing anyway.",
+                "Many think strength is only what lets you climb. Here, strength is what lets you hold your shape when the world shifts around you."
             ],
             questGiven: [
-                "Stonewake’s trials demand endurance. Return to me when you have increased your maximum health by 20.",
-                "The stones will sense your growth. Seek out relics, potions, or face the dangers of this floor to become stronger."
+                "The way forward does not open for the merely eager. Return to me when you have increased your maximum health by 20.",
+                "Let Stonewake feel your resilience. Potions, relics, battle, whatever path you choose, the floor will know when you have grown into yourself."
             ],
             questIncomplete: [
-                "You have not yet grown strong enough. The stones await your proof—return when your maximum health has increased by 20."
+                "Not yet. Stonewake is old enough to tell the difference between borrowed courage and true endurance."
             ],
             questComplete: [
-                "You have proven your resilience. The stones hum in recognition, and the echoes of past pilgrims whisper their approval.",
-                "With greater strength, new paths will open to you. Remember: every ascent is both a test and a blessing."
+                "There. The stones answer you now.",
+                "Remember this: ascent is not only about becoming greater. Sometimes it is about remaining yourself while everything around you changes."
             ]
         },
         questId: "tharion_echoes",
@@ -242,22 +242,22 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Every cycle, the forum fills with new voices and old stories. I record what I can, but much is lost to the Fracture.",
-                "If you find any pages scattered in the expanse, bring them here. Every fragment helps us remember."
+                "Every cycle, the forum gathers whatever memory the floor has not yet dropped.",
+                "Stonewake forgets in patches. A page vanishes, a name slips, a wall stands where a doorway used to be. Writing things down is how we resist."
             ],
             questGiven: [
-                "Please, gather 3 Lost Pages from the ruins. They're fragile, and often guarded by Echo Wisps.",
-                "Bring them here, and I'll share some history with you."
+                "Please, gather 3 Lost Pages from the ruins. Echo Wisps tend to gather near what the floor is struggling to hold onto.",
+                "Bring them back and I will read what Stonewake almost failed to keep."
             ],
             questIncomplete: [
-                "Still searching? The pages are easily overlooked. Try near the old statues and broken pillars."
+                "Still searching? Look near old statues and broken pillars. Memory likes to cling to places that once mattered."
             ],
             questComplete: [
-                "With these pages, the forum’s record grows. Let me read you what they reveal:",
-                "\"Long ago, the world was shattered and rebuilt in layers by an unknown force. Each floor holds a fragment of the old world’s truth.\"",
-                "\"Occasional flickers of digital distortion are seen as omens or spirits by many, but only a few sense their true meaning.\"",
-                "\"Some say the Towerheart resides on the highest floor, a mythical source of power that can reshape Cynrith itself.\"",
-                "Take this as you will. May your own story be remembered, traveler."
+                "Yes... these are still legible. Listen:",
+                "\"Long ago, the world was broken and laid into layers, each one carrying only part of what came before.\"",
+                "\"Some losses were sudden. Others came slowly, as if the world were being rewritten while people were still living in it.\"",
+                "\"What survives does so because someone, or something, keeps trying to carry it forward.\"",
+                "That is enough for now. A history does not need to be whole to be worth protecting."
             ]
         },
         questId: "forum_pages",
@@ -278,20 +278,20 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The earth here is stubborn, but life finds a way. I’ve seen flowers bloom from cracks in the ancient stones; each one a small miracle.",
-                "But the Dustback Beetles make for a challenging harvest!",
-
+                "Stonewake looks harsh until you notice how hard life keeps trying here.",
+                "Dustroot pushes up through cracks no one would call soil. I think that is why I love it.",
+                "The Dustback Beetles love it too, unfortunately."
             ],
             questGiven: [
-                "Could you gather 10 Dustroot for me? Dustback Beetles seem to favor them as well.",
-                "Be careful, they don't like sharing!"
+                "Could you gather 10 Dustroot for me? The beetles get to most of it before I do.",
+                "I make remedies with it, not just for wounds, but for travelers who have started feeling worn thin by the climb."
             ],
             questIncomplete: [
-                "No luck yet? Dustroot is rare, but look where the ancient stones stand."
+                "No luck yet? Look near the old stones. Even damaged floors leave little pockets where life insists on returning."
             ],
             questComplete: [
-                "Wonderful! With these, I can brew a remedy strong enough for even the toughest wounds.",
-                "Here, take this potion. And if you ever need another, come find me."
+                "Wonderful. This will keep a good few people on their feet.",
+                "That is what I admire most in this world. Things break, yes, but they also persist in forms no one expected."
             ]
         },
         questId: "liraels_dustroot",
@@ -310,20 +310,19 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You’d be surprised what the earth gives up if you know where to look.",
-                "Some say the best treasures are hidden by the Architect itself; reset, reshuffled, waiting for the right hands."
+                "Old floors bury strange things. Not treasure, usually. More like leftovers from versions of the world that did not quite survive.",
+                "Relics interest me because they stay consistent. In a place this weathered, consistency is worth coin."
             ],
             questGiven: [
-                "There's a relic deep in the caves, guarded by Echo Wisps. If you can bring me a Fractured Relic, I'll trade you something rare.",
-                "And if you find any Glitch Fragments from Echo Wisps, I'll make it extra worthwhile."
+                "There is a Fractured Relic somewhere in the caves, watched over by Echo Wisps. Bring it to me and I will make the trade worth your time.",
+                "Those little scraps tell you where the world is still trying to stitch itself together."
             ],
             questIncomplete: [
-                "No sign of the relic yet? The caves are tricky, but persistence pays off.",
-                "Glitch Fragments are always welcome, too."
+                "Nothing yet? The caves are stubborn places. Keep at them. The oldest truths rarely sit near the surface."
             ],
             questComplete: [
-                "A real Fractured Relic! Impressive. Here’s your reward, may it serve you well.",
-                "If you find more fragments or relics, come back. The Architect’s secrets are never truly lost."
+                "A real Fractured Relic. Good. Heavy with memory, this one.",
+                "Never mistake damage for uselessness, traveler. Some things only become valuable after the break."
             ]
         },
         questId: "mordis_relic",
@@ -342,10 +341,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-            "That stone over there has been humming all morning. Sometimes it gets so loud, I wonder if it's trying to say something.",
-            "I've seen travelers touch it and strange things happen! Lights, sounds, even a feeling like the world shifts a little.",
-            "If you're curious, maybe try standing close. Around here, you never know what might respond to a little attention."
-        ]
+                "That stone has been humming all morning. Some days it is quiet as dust, and some days it sounds as though it remembers something important.",
+                "I have seen travelers touch old things here and get more than they expected. Light, sound, a pull in the chest, as if the floor noticed them back.",
+                "If you're curious, stand close. Stonewake answers slowly, but it does answer."
+            ]
         },
         forcedEncounter: {
             enabled: true,
@@ -371,10 +370,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Forgotten Forum. People call it a rest stop, but it is older than the roads around it.",
-                "When the Fracture tore these lower floors of Cynrith apart, places like this survived by becoming anchors, little pockets that remember what the world was.",
-                "Each floor is a layer of that memory. Some are clear, some are damaged, and some rewrite themselves when no one is looking.",
-                "That is why travelers share stories here. In Cynrith, being remembered is a kind of protection."
+                "Welcome to the Forgotten Forum. People call it a rest stop, but that makes it sound smaller than it is.",
+                "When the Fractures tore through the lower floors, places like this survived by holding onto a clear shape of themselves. Anchors, some call them.",
+                "A floor can lose detail, paths, even whole stories, but an anchor resists. It reminds the world what is meant to remain.",
+                "That is why people gather here. In Cynrith, being remembered is not comfort alone. Sometimes it is protection."
             ]
         }
     },
@@ -391,10 +390,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Stonewake Expanse is a graveyard of old foundations. Those monoliths are not monuments, they are memory locks.",
-                "The Firstfolk carved them to keep names, routes, and warnings from vanishing between cycles.",
-                "After the Fracture, whole settlements were erased, but the stones still carried fragments of what stood there.",
-                "If you ever wonder why people speak of levels and quests like weather, it is because Cynrith teaches survival through patterns."
+                "Stonewake Expanse is a graveyard of old foundations. These monoliths are not monuments, they are memory locks.",
+                "The Firstfolk carved names, routes, and warnings into them so the world would have to work harder to erase them.",
+                "After the Fractures, whole settlements were reduced to fragments. The stones kept what they could, though never quite perfectly.",
+                "That is the shape of lower Cynrith: worn, incomplete, but still trying very hard to remain itself."
             ]
         }
     },
@@ -411,11 +410,50 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Cynrith is layered like a stacked archive. You climb physically, but you also climb through older and stranger records of the world.",
-                "The Architect did not just build a realm, it built rules, and everyone born here learns to live inside them.",
-                "Skills, quests, growth, none of it feels strange to us. It is simply how the world answers effort.",
-                "Relics matter because they carry stable memory. In a place that forgets, anything that remembers is power."
+                "Cynrith is layered like a buried archive. The farther you climb, the cleaner the record feels, but nothing is ever truly separate from what came before.",
+                "People curse the Architect often enough, and perhaps fairly. But I am no longer convinced every change is cruelty just because it arrives through loss.",
+                "Some layers fail. Some are repaired badly. Some open into stranger, better shapes than the old world knew how to hold.",
+                "If you keep climbing, hold onto this: survival is not becoming someone else. It is learning how to stay yourself in a world that keeps rewriting the scenery."
             ]
+        }
+    },
+
+    sella_anchorkeeper: {
+        id: "sella_anchorkeeper",
+        name: "Sella the Anchorkeeper",
+        sprite: "assets/img/npc/npc_f_4.png",
+        interactive: true, 
+        spawns: [
+            { map: 1,  x: 21, y: 11, wanderArea: { x1: 11, y1: 10, x2: 30, y2: 13 } }
+        ],
+        dialogue: {
+            default: [
+                "Anchors are rare things in Cynrith. Most places bend when the world shifts, but a few remember themselves well enough to remain.",
+                "The Forum is one such place. It survives because people gather here, speak here, and leave pieces of themselves here.",
+                "If you keep climbing, remember this: not everything worth finding lies ahead of you. Some things matter because they give you somewhere to return to."
+            ],
+            questComplete: [
+                "You have carried yourself well through Stonewake. Better than most.",
+                "Take this key. It does not belong to any door made by hands, yet it answers to a place that has endured every Fracture so far.",
+                "It is an anchor, of a kind. A quiet place outside the usual wearing-down of these lower floors.",
+                "Use it when you are ready. What waits there will not ask you to become someone new, only to make room for who you already are."
+            ]
+        },
+        questId: "homeplot_key_gift",
+        questRedo: false,
+        forcedEncounter: {
+            enabled: true,
+            triggerTiles: [
+                { x: 29, y: 10 },
+                { x: 29, y: 11 },
+                { x: 29, y: 12 },
+                { x: 29, y: 13 },
+                { x: 12, y: 10 },
+                { x: 12, y: 11 },
+                { x: 12, y: 12 },
+                { x: 12, y: 13 }
+            ],
+            triggered: false
         }
     },
     
@@ -434,8 +472,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Looking to trade? I deal in coin and curiosities from your travels for something useful.",
-                "Show me what you’ve found, and I’ll show you what’s for sale. Simple as that."
+                "Trade keeps people steady in a place like this. The Thicket takes more than blood if you let it.",
+                "I buy what you carry out of the dark and sell what helps you come back with your name still in one piece.",
+                "Nothing here stays simple for long. Best to prepare before the forest decides it has noticed you."
             ]
         },
         trader: "trader1"
@@ -453,19 +492,23 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You feel it, don’t you? The air here is thick with memory. The Architect’s hand lingers in every shadow.",
-                "If you see a shimmer, follow it. Echoes hold secrets, sometimes warnings, sometimes gifts.",
-                "Bring me any Glitch Fragments you find. I’m close to understanding the Thicket’s true nature."
+                "Stonewake remembered what was broken. Gloomroot remembers what was changed.",
+                "The air here catches on old versions of things. Sometimes a branch, a voice, or a face lingers half a step behind itself.",
+                "Glitch Fragments gather where the Thicket is failing to decide which memory to keep.",
+                "Bring me a few. I want to know whether this floor is unraveling... or trying to repair itself."
             ],
             questGiven: [
-                "Collect Glitch Fragments from echoes in the Thicket. Each one brings us closer to the truth."
+                "Collect 5 Glitch Fragments from the echoes in the Thicket.",
+                "Do not treat them like scraps. Hold one too long and you may feel a life that was never fully yours."
             ],
             questIncomplete: [
-                "Have you found any Glitch Fragments yet? The echoes are strongest near the mushrooms and flickering trees.",
-                "The Thicket hides its secrets well. Keep searching, every fragment brings us closer to understanding."
+                "Not enough yet? Follow the places where the forest flickers or sounds too crowded for the space you are in.",
+                "The Thicket hides its fractures under beauty, but not perfectly."
             ],
             questComplete: [
-                "These fragments pulse with old power. Thank you, traveler. The Thicket remembers your kindness."
+                "Yes... these are strong with residue.",
+                "The Architect's hand is all over them, though not in the way the old stories warned us.",
+                "I do not think this floor is simply corrupted. I think it is struggling to carry too much memory at once."
             ]
         },
         questId: "eira_echo_fragments",
@@ -484,20 +527,22 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You walk in two worlds, traveler. One remembers, one forgets.",
-                "The Fracture is not a wound, but a door. Will you open it, or pass by?",
-                "{ERROR: MEMORY NOT FOUND}",
-                "The Architect watches. The cycle repeats."
+                "You walk where roots remember more than stone ever could.",
+                "The statues are not broken. They are waiting for someone the cycle has not worn thin.",
+                "{ERROR: MEMORY MISALIGNED}",
+                "Wake them, traveler. Let the buried voices choose what remains."
             ],
             questGiven: [
-                "Activate three glitching statues in the forest. Each holds lost memories."
+                "Activate the 3 glitching statues hidden in the Thicket.",
+                "Each one holds a memory the floor refused to lose, even after the change."
             ],
             questIncomplete: [
-                "The statues remain silent. Their memories are locked away until you activate them.",
-                "Listen for the glitches in the forest. Only then will the echoes reveal their stories."
+                "Not all are awake yet.",
+                "Listen for the places where the forest hums in the wrong rhythm. That is where memory is pushing through."
             ],
             questComplete: [
-                "The echoes grow clearer. You have seen what others have missed."
+                "The old signals answer again.",
+                "Good. You have reminded the Thicket that forgetting is not the same as mercy."
             ]
         },
         questId: "shade_statue_echoes",
@@ -516,18 +561,22 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The pink blossoms remind me of a world I’ve never seen. Do you ever dream of places beyond the Thicket?",
-                "Sometimes, the trees whisper names I don’t remember. Are they yours, or mine?"
+                "This grove feels gentler than the rest of the Thicket, but not safer. Dreams settle here and refuse to leave.",
+                "Sometimes the petals fall in patterns I almost understand, as if they are spelling out a memory just beyond recall.",
+                "If you find a Memory Fragment, bring it to me. I want to know whether these dreams belonged to me... or to this place."
             ],
             questGiven: [
-                "Find a lost memory fragment. It may help me remember my dreams."
+                "Find a Memory Fragment somewhere within the Cherry Grove.",
+                "Look where the petals gather and the air feels briefly warmer, as though something is trying to be remembered kindly."
             ],
             questIncomplete: [
-                "No sign of the lost memory yet? The cherry grove is full of memories, look where the petals gather.",
-                "Sometimes, the wind carries fragments far from home. Keep searching, traveler."
+                "Nothing yet? That is all right. Some memories do not reveal themselves to those who rush them.",
+                "The grove keeps what matters close."
             ],
             questComplete: [
-                "Thank you. This memory feels familiar, somehow. Perhaps in another cycle, I knew its name."
+                "This is it... I can feel the shape of something returning.",
+                "Not the whole memory, only its outline, but that is enough to know it was real.",
+                "Thank you. Sometimes being given back even a fragment is enough to keep going."
             ]
         },
         questId: "sakura_lost_blossom",
@@ -545,18 +594,23 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Most orks here serve the Thicket’s will. I chose another path."
+                "The others call this forest holy. I call it hungry.",
+                "Mistbound orks do not all begin cruel. Stay in the Thicket long enough and it starts speaking louder than your own thoughts.",
+                "I left before it could finish that work on me.",
+                "Help me thin their number and recover my totem. I would rather not let the forest keep every piece of who I was."
             ],
             questGiven: [
-                "Help me sabotage these orcs, and I’ll share what I have of the old pacts.",
-                "Defeat 25 orks to recover my lost totem. The forest hides many dangers."
+                "Defeat 25 Mistbound Orks and recover my lost totem.",
+                "Be careful. Some of them still sound like people right up until they swing."
             ],
             questIncomplete: [
-                "The orks still hold their ground. Sabotage their traps and recover my totem if you can.",
-                "Be careful—the Thicket twists even the bravest. My totem is the key to our old pacts."
+                "Still at it? Good.",
+                "Do not mistake hesitation for safety here. The Thicket exploits both fear and pity if you give it room."
             ],
             questComplete: [
-                "You’ve done it! The old pacts are safe, for now. Take this as thanks."
+                "You did it. Fewer of them roaming, and my totem back in hand.",
+                "This will not undo what the Thicket took, but it helps.",
+                "That matters more than people think. Some victories are only about keeping one true thing from being swallowed."
             ]
         },
         questId: "bruk_sabotage",
@@ -574,18 +628,22 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The mushrooms here pulse with memory. Some say they’re the Architect’s eyes.",
-                "If you gather enough glowing caps, I can brew a potion to reveal hidden paths."
+                "These glowing caps do more than light the dark. They react to what the forest is trying to hide.",
+                "Brewed correctly, they can make false paths stutter and hidden things confess themselves for a moment.",
+                "Bring me enough bioluminescent mushrooms and I will make something useful of them."
             ],
             questGiven: [
-                "Collect bioluminescent mushrooms. With enough, I’ll make a potion to show you secrets."
+                "Collect 6 bioluminescent mushrooms from the deeper Thicket.",
+                "Choose carefully. The brightest ones are usually the ones growing closest to unstable places."
             ],
             questIncomplete: [
-                "Not enough glowing mushrooms yet? The brightest caps grow near the flickering lights.",
-                "The potion needs more ingredients. Search deeper in the forest and bring me what you find."
+                "Need more? Then go where the light feels almost deliberate.",
+                "The Thicket grows lanterns in the same places it grows lies."
             ],
             questComplete: [
-                "Here is the potion. Drink it near the flickering trees where the light is strongest."
+                "Perfect. These will brew well.",
+                "There. Take the potion when you are ready to see more than the floor usually allows.",
+                "Just remember: revelation is not always comfort."
             ]
         },
         questId: "myco_mushroom_potion",
@@ -604,8 +662,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "I’ve seen this forest before, in dreams and in waking. Each time, it changes and yet, it stays the same.",
-                "The Architect’s game is older than any of us. We are pieces, but sometimes, pieces change the board."
+                "I have walked this forest in dreams, in waking, and perhaps in lives that no longer belong to me.",
+                "That is what makes Gloomroot different. It does not only surround you, it overlaps you.",
+                "The Architect feels closer here, though I cannot tell whether that is guidance, maintenance, or regret."
             ]
         }
     },
@@ -621,11 +680,11 @@ const NPC_DEFINITIONS = {
             { map: 2, x: 58, y: 10, wanderArea: { x1: 52, y1: 4, x2: 62, y2: 15 } }
         ],
         dialogue: {
-            default: [
-                "Have you seen them, traveler? The ones who wander with empty eyes, lost in the mist. Some say their minds were claimed by the Thicket itself.",
-                "Others flicker and stutter, caught between moments, glitching, as if the world forgot how to remember them.",
-                "I record their stories, even if they cannot speak. Every broken memory is a clue to the Architect’s design.",
-                "Sometimes, I wonder if we are all just echoes, waiting for the cycle to reset."
+           default: [
+                "The ones wandering here with hollow eyes are not all dead, and not all alive in the usual sense.",
+                "Some were worn thin by the cycles. Some were caught in revisions of the world that did not settle cleanly.",
+                "I write them down because names are anchors. If the world insists on changing, then records become a form of mercy.",
+                "Remember that as you climb. Forgetting is sometimes an accident, but sometimes it is a second death."
             ]
         }
     },
@@ -642,8 +701,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You’ve come far, traveler. The Thicket remembers you, even if you do not remember it.",
-                "Beyond this stone, the world grows stranger. The Architect’s gaze sharpens."
+                "You have come far enough now to feel the pattern, haven't you?",
+                "The lower floors endure. This one questions. By the time you leave Gloomroot, Cynrith should feel less like a place built for you and more like a place still being decided around you.",
+                "Go carefully. The next steps upward are not only harder, they are stranger."
             ]
         }
     },
@@ -705,7 +765,7 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Flowers bloom, then fade. I remember... nothing."
+                "These flowers bloom where the forest is trying to repair a memory."
             ]
         }
     },
@@ -735,7 +795,7 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Pink petals fall, blue leaves flicker. Is this real?"
+                "Petals fall the same way every cycle. I think that is how this place comforts itself."
             ]
         }
     },
@@ -765,7 +825,7 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The Architect... watches... always."
+                "The Architect watches, yes... but lately it feels more like listening."
             ]
         }
     },
@@ -785,10 +845,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Shattered Spires, traveler. Out here, survival is less about luck and more about preparation.",
-                "I buy lower-floor goods because they still hold steady value in fractured places. Dewleaf, roots, and old fragments keep people alive.",
-                "Before long bridge routes, stock healing and one defensive tonic. The Spires punish empty packs.",
-                "If a path looks quiet, expect a fight on the return. Buy for the trip back, not just the trip out."
+                "The Shattered Spires look delicate from a distance. Do not trust that. This floor breaks the careless and preserves the prepared.",
+                "I buy what the lower floors still make reliably. Roots, leaves, relic scraps, anything with enough steadiness left in it to matter.",
+                "Take healing before pride. Bridges fail, glass cuts, and the old systems here rarely break in ways that are fair.",
+                "Out here, you do not pack for the path ahead alone. You pack for the path that changes behind you."
             ],
         },
         trader: "trader2"
@@ -806,10 +866,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You made it to the gate market. Good. Most who arrive unprepared spend more on mistakes than supplies.",
-                "What I sell here is tuned for glass-country: recovery, stability, and tools to end fights quickly.",
-                "Shardlings hit harder in groups. Thin packs, reset your position, then push forward.",
-                "If you plan to step into Floor 5 soon, carry sustain and at least one emergency option. Umbracourt favors the patient."
+                "You reached the gate market. Good. That usually means you learned the Spires are not ruins in the simple sense. They still sort people.",
+                "What I sell is for unstable country: recovery, steadiness, and enough force to end a bad encounter before the floor has time to complicate it.",
+                "Shardlings are worst when they make you hold your ground too long. Reset often. Let the terrain belong to you, not to them.",
+                "If you mean to press on toward Floor 5, carry something that buys time. Higher layers punish panic more cleanly than these ones do."
             ],
         },
         trader: "trader3"
@@ -827,20 +887,24 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Wait! Before you go further, listen: The Spires are not as they seem. Glass and song can shatter, and echoes here do not always return. Beware the broken bridges and the shadows that linger, they remember every mistake.",
-                "If you lose your way, follow the melody. It may guide you through the chaos."
+                "Stop a moment. If you walk these bridges as though they are only broken stone, the Spires will confuse you on purpose.",
+                "This floor was built to preserve accord. Song, memory, record, intention. When that accord failed, the structure remained, but the harmony did not.",
+                "I am trying to gather what is left of the Choir's fragments. Not to make the old order whole again, only to understand what it was trying to hold.",
+                "Help me collect them. The Spires may never sing cleanly again, but they might still remember why they were made."
             ],
             questGiven: [
-                "I am searching for the fragments of the Choir’s song. They are scattered across these islands, hidden among the glass and ruins. Will you help me gather them?",
-                "Each fragment you find will restore a piece of harmony to this place. The Spires may remember their purpose if the song is made whole."
+                "Search the islands and broken routes for 8 Choir Fragments.",
+                "Each one is less a note than a surviving instruction. Gather enough, and the floor may begin to speak in something closer to its true voice."
             ],
             questIncomplete: [
-                "The song is still broken. There are more fragments out there, lost among the Shardlings and the shattered bridges.",
-                "Listen for the melody, it grows stronger with each piece you recover."
+                "There are more fragments still. Listen where the glass hums under your feet or where the air seems to answer itself.",
+                "The Shardlings gather near them because even broken things can sense what the floor is trying to keep."
             ],
             questComplete: [
-                "You found them! The Choir’s song is clearer now, and the Spires seem to hum in gratitude.",
-                "Thank you, traveler. With harmony returning, perhaps the Architect will show mercy to those who climb."
+                "You brought them back... yes, I can hear the shape of it now.",
+                "Not a song of perfection. A song of keeping. Of holding many parts together long enough for meaning to survive.",
+                "That matters. The Choir did not fail because it cared too much. It failed because even care can split when the world changes too hard.",
+                "Take this gratitude with you, traveler. The Spires remember you more clearly now."
             ]
         },
         questId: "choir_fragments",
@@ -868,22 +932,23 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "I saw the Architect here, once. My memories are scattered, find the lost echoes, and I may remember what was said.",
-                "The Displaced Shadows linger, trapped by cycles and sorrow. Only by freeing them can the Spires move forward."
+                "I remember the Architect here, though memory is too whole a word for what remains of me.",
+                "This floor was trying to preserve too much at once. Some voices were stored. Some were stretched. Some were left walking after the moment they belonged to had already passed.",
+                "The Displaced Shadows are not merely trapped. They are unfinished. Free them from the echo points and some of my own record may settle with theirs."
             ],
             questGiven: [
-                "Activate 3 Echo Tiles on the side islands to release the Displaced Shadows. Each freed echo will reveal a line about the cycles of Cynrith.",
-                "Return when you have set them free, and I will share what I remember."
+                "Find and activate the 3 Echo Tiles scattered through the Spires.",
+                "Each release loosens one knot in the floor's memory. Return when the trapped voices have been given room to end properly."
             ],
             questIncomplete: [
-                "Some Displaced Shadows remain trapped. The Echo Tiles are hidden among the islands.",
-                "Only when all are freed will my memories return."
+                "Not all of them are free yet.",
+                "You will know an echo point by the way the air seems to repeat your presence a heartbeat too late."
             ],
             questComplete: [
-                "You have freed the Displaced Shadows. Their voices return, and so do my memories.",
-                "\"We are built on cycles and fragments, each layer holding echoes of what came before.\"",
-                "\"The Architect shapes us, but even it cannot remember everything.\"",
-                "Thank you, traveler. The Spires feel less empty now."
+                "Yes... the pressure eases. Their voices are no longer caught in the same turn.",
+                "\"The world was not shattered only by hatred or ruin, but by too many attempts to carry everything forward at once.\"",
+                "\"The Architect did not spare us pain. It may not have known how.\"",
+                "Take what meaning you can from that. The Spires were never empty. Only overburdened."
             ]
         },
         questId: "sundered_echo_release",
@@ -902,22 +967,24 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome, traveler. The Grand Hall used to be full of laughter and stories, but lately, it feels a bit empty.",
-                "I once brewed Glassberry Tea for guests, sweet, warm, and a little tart. The recipe was stored on my favorite Glassberry Leaves, but now they're scattered into the winds.",
-                "If you find any Glassberry Leaves, bring them here. Maybe together, we can restore a little comfort to these halls."
+                "Welcome to the Grand Hall, traveler. Once this place received choirs, envoys, caretakers. Now it mostly receives dust and whoever still values memory enough to enter quietly.",
+                "I keep records where I can. Not grand revelations, usually. Lists, names, recipes, seating orders, small comforts. Civilizations survive through details more often than through monuments.",
+                "I have been trying to remake an old Glassberry Tea, the sort we served when the Hall still believed it had a future. The leaves were scattered across the islands when the bridges failed.",
+                "Bring me what remains of them. I would like to prove this place can still offer welcome without pretending it is unbroken."
             ],
             questGiven: [
-                "Gather 5 Glassberry Leaves from the islands. Each one is a piece of the old recipe and a memory worth saving."
+                "Gather 5 Glassberry Leaves from the Spires and return them to me.",
+                "Preservation is not only archives and warnings. Sometimes it is the simple work of making one remembered thing well."
             ],
             questIncomplete: [
-                "Still searching? Take your time. The best tea is brewed with patience.",
-                "Glassberry Leaves blew across the bridges."
+                "Still looking? That is fine. The Spires hide gentle things badly, but widely.",
+                "Check the quieter routes and the edges of old gathering spaces. Comfort rarely blows far from where it was once needed."
             ],
             questComplete: [
-                "You found them all! Let me brew us a cup...",
-                "The aroma fills the hall, and for a moment, it feels like old times.",
-                "\"In a world of broken glass and fading echoes, it's the small comforts that help us remember who we are.\"",
-                "Thank you, traveler. You're always welcome here."
+                "You found them. Good. Let us see whether the Hall remembers this much, at least.",
+                "There... the scent is right. Not perfect, but true enough.",
+                "\"People endure by keeping rituals small enough to carry and meaningful enough to repeat.\"",
+                "Sit as long as you like, traveler. A place does not have to be whole to still offer shelter."
             ]
         },
         questId: "venn_glassberry_tea",
@@ -925,7 +992,7 @@ const NPC_DEFINITIONS = {
     },
 
 
-    // Spires Sentinel - Flor 4 Quest Npc
+    // Spires Sentinel - Floor 4 Quest Npc
     spires_sentinel: {
         id: "spires_sentinel",
         name: "Sentinel of the Spires",
@@ -936,21 +1003,22 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You feel the tension in the glass, don't you? The Spires are restless, and the Shardlings grow bold.",
-                "Before anyone can ascend to the next floor, we must thin their numbers. It's not just safety, it's tradition.",
-                "Prove your resolve: defeat 40 Shardlings. Only then will the way forward be clear."
+                "You feel it, don't you? The tension in the glass. The structure is still holding, but not comfortably.",
+                "Shardlings are what happens when maintenance outlives meaning. They keep cutting, gathering, reforming, long after anyone remembers the original command.",
+                "We thin them not for glory, and not as ceremony. We do it so paths remain passable and the next traveler is not greeted by a swarm."
             ],
             questGiven: [
-                "The Shardlings swarm across the islands and bridges. Defeat 40 of them, and return to me. The Spires will know your strength."
+                "Defeat 40 Shardlings across the bridges and islands, then return to me.",
+                "Let the Spires see that strength can still serve preservation instead of simple conquest."
             ],
             questIncomplete: [
-                "The Shardlings still linger. Keep going, every one you defeat brings us closer to peace.",
-                "Remember, the Spires watch those who prepare for what comes next."
+                "There are still too many moving through the routes.",
+                "Keep at it. Every cleared path is one more act of care in a floor that has forgotten how to care gently."
             ],
             questComplete: [
-                "You have done it! The Spires are quieter now, and the path to the next floor feels less uncertain.",
-                "\"Strength is not just in the climb, but in the care for those who follow.\"",
-                "Go on, traveler. The fifth floor awaits, and you have earned your place."
+                "Good work. The routes are quieter now, and the glass has stopped ringing with constant impact.",
+                "\"Not every defense looks noble. Sometimes it is only the repeated labor that keeps a place livable.\"",
+                "Go on when you are ready. You have earned more than passage. You have earned trust."
             ]
         },
         questId: "sentinel_shardling_cull",
@@ -969,11 +1037,11 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Ah, you’ve arrived. Welcome to the Great Hall, where the glass remembers every footstep and laughter once echoed from wall to wall.",
-                "I’ve tended these halls for longer than I can recall. Some days, the memories are sharp as crystal; other days, they slip away like mist.",
-                "Sit with me a moment. The Spires are not just stone and glass, they’re a patchwork of stories, old joys, and quiet heartbreaks.",
-                "If you listen closely, you’ll hear the faint hum of the Choir’s song, and maybe, just maybe, a whisper of hope for what’s yet to come.",
-                "You’re part of this place now, traveler. The Hall welcomes you, not just as a guest, but as a new memory worth keeping."
+                "A visitor. Good. The Hall prefers that people announce themselves by arriving rather than by trespassing in silence.",
+                "Do not mistake this place for a corpse of splendor. It is still doing the work it was made for, only imperfectly now.",
+                "These rooms once held agreement. Records were sung here. Decisions were harmonized here. When that harmony broke, the Hall kept the shape of welcome even after it lost certainty.",
+                "Stay a moment if you wish. Presence matters in the Spires. Some structures remain standing because they are still inhabited, witnessed, and remembered.",
+                "Carry that thought upward: a beautiful failure is still a form of survival."
             ]
         },
         forcedEncounter: {
@@ -1000,10 +1068,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The Choir once mapped these halls in song. Now the notes are broken, and the glass answers in fragments.",
-                "If a room feels wrong, pause and read the space. In the Spires, route choice matters as much as raw strength.",
-                "Shardlings gather where echoes are loudest. Clear patrol clusters before you chase objectives, and your return paths stay safer.",
-                "Write this in memory: Cynrith rewards observation. The world always hints before it punishes."
+                "The Choir did not use song for ornament. It was how they indexed memory, aligned intent, and taught the architecture what mattered.",
+                "Now the notes return in fragments. A hall remembers a threshold. A bridge remembers a procession. A shard remembers only impact.",
+                "That is why records matter. Broken harmony still leaves patterns, and patterns can be read if someone is patient enough.",
+                "Look closely as you move. The Spires still explain themselves. They are simply no longer kind enough to explain twice."
             ]
         }
     },
@@ -1012,7 +1080,7 @@ const NPC_DEFINITIONS = {
     // Great Hall Reflector - Lore Npc
     great_hall_reflector: {
         id: "great_hall_reflector",
-        name: "The Hall’s Reflector",
+        name: "The Hall's Reflector",
         sprite: "assets/img/npc/npc_m_6.png",
         interactive: true,
         spawns: [
@@ -1020,10 +1088,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "These mirrors do not lie, they prioritize. They show what this floor thinks is important.",
-                "When pressure rises, move first, strike second. Getting surrounded in glass corridors is how most runs end.",
-                "Use what you carry. Tonics and buffs are not for emergencies alone, they are tools for controlled fights.",
-                "The Architect built trials, not fairness. Learn the pattern, keep your rhythm, and the Spires become readable."
+                "These mirrors were never meant to flatter. They were made to prioritize. To show the Hall what required attention, correction, or care.",
+                "That is why reflections here can feel wrong. You are not always seeing yourself as you are. Sometimes you are seeing what the floor thinks you are carrying.",
+                "I find that comforting, in an austere sort of way. Even damaged systems can still reveal truth, provided you stop demanding gentleness from them.",
+                "If the Architect touched this place in grief, then the mirrors are grief made orderly: sharp, selective, and difficult to argue with."
             ]
         }
     },
@@ -1038,20 +1106,21 @@ const NPC_DEFINITIONS = {
         spawns: [ { map: 4, x: 42, y: 71, wanderArea: { x1: 35, y1: 69, x2: 49, y2: 74 } } ],
         dialogue: {
         default: [
-            "Welcome to Umbracourt, traveler. Here, the halls twist and the mirrors do not always show what’s behind you.",
-            "These mirrors are more than glass—they are doors. Some lead forward, some return you to where you began.",
-            "To find your way, you must learn which reflections are true and which are tricks."
+            "Welcome to Umbracourt, traveler. The halls have been expecting someone in your shape.",
+            "Do not trust every reflection here. Some mirrors show routes. Some show wishes. Some show the versions of you that never left.",
+            "This floor keeps records in glass. Not only where you walked, but how you hesitated, what you feared, what you were willing to become."
         ],
         questGiven: [
-            "Scattered through these halls are three Marked Mirrors. Find and touch each one and return to me. Only then will the halls of Umbracourt reveal the path ahead."
+            "Three Marked Mirrors still answer clearly. Find and touch them, then return to me.",
+            "Each one holds a truer reflection than the rest. If the halls are willing to recognize you, the way forward will loosen."
         ],
         questIncomplete: [
-            "The mirrors shift when watched. Have you found all three Marked Mirrors yet?",
-            "Remember: not every reflection leads where you expect."
+            "Not all three yet. That is fine.",
+            "Umbracourt does not test speed. It tests whether you can keep your sense of self while the world offers you cleaner, easier lies."
         ],
         questComplete: [
-            "You’ve passed through the Marked Mirrors. The halls recognize your resolve.",
-            "Take this—may it help you face what waits in the deeper shadows."
+            "Yes... the halls know your outline now.",
+            "Take this. Not as a prize, but as proof that you passed through reflection without surrendering yourself to it."
         ]
         },
         questId: "veyras_mirrors",
@@ -1072,8 +1141,6 @@ const NPC_DEFINITIONS = {
         },
     },
 
-    // Umbracourt foyer NPCs (flavor / immersion only)
-
     kael_mirrorscar: {
         id: "kael_mirrorscar",
         name: "Kael the Mirrorscarred",
@@ -1084,9 +1151,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Careful where you look. These halls remember faces and play them back wrong.",
-                "I once saw myself walking ahead, humming a song I’ve never learned. Been uneasy since.",
-                "If you catch your reflection smiling without you, turn away. Some mirrors are hungry."
+                "Careful where you look. These halls do not always reflect what is there. Sometimes they reflect what the floor thinks should be there.",
+                "I once watched myself walk ahead of me, calm as anything, taking a turn I never chose. I still do not know which of us was real in that moment.",
+                "If your reflection moves with too much confidence, do not follow it. Umbracourt loves a traveler who mistakes recognition for truth."
             ]
         }
     },
@@ -1101,9 +1168,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "I craft candles from umbra wax. They burn cold, but they keep the echoes back.",
-                "Each flame holds a name. Some go out on their own. Some never dim. I don’t ask why anymore.",
-                "If you hear a whisper in the light, answer softly. The shadows here dislike being ignored."
+                "I make candles for people who need one steady thing in a hall full of revisions.",
+                "The flames burn cold because heat would make the reflections dance too much. Here, clarity matters more than comfort.",
+                "Each wick is tied to a name. If the candle gutters when you pass, it means the hall is trying to remember someone through you."
             ]
         }
     },
@@ -1118,33 +1185,31 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "You’re late to the party. The Shadowed Hand’s chairs are empty, but their whispers linger.",
-                "I’ve seen doors open for voices I don’t hear. If a wall breathes near you, step aside.",
-                "Ascend if you must. Just remember: every step up was paid for by someone who never came back down."
+                "You are not the first to arrive here carrying resolve like armor.",
+                "The Shadowed Hand used to speak as though these halls could be mastered. Now their certainty lingers longer than they do.",
+                "Climb if you must. Just understand this floor keeps count, and it counts more than victories."
             ]
         }
     },
 
-    // Umbracourt Quartermaster (Trader NPC)
     umbra_quartermaster: {
         id: "umbra_quartermaster",
         name: "Rylin the Quartermaster",
         sprite: "assets/img/npc/npc_m_2.png",
         interactive: true,
         spawns: [
-            { map: 4, x: 75, y: 68, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } } // foyer side nook
+            { map: 4, x: 75, y: 68, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } }
         ],
         dialogue: {
             default: [
-                "Supplies for those who brave the mirrors. I buy what the lower floors gave you, sell what keeps you breathing here.",
-                "If the echoes press too close, take a tonic. Cold light beats cold steel in these halls.",
-                "No refunds if the glass bites back."
+                "Supplies for mirror-country. I sell what helps you stay alive long enough to doubt the right things.",
+                "Out there, brute force works until a reflection hands it back to you. Carry tonics, carry patience, and never trust a corridor simply because it was kind once.",
+                "If the halls start feeling familiar, resupply before you feel relieved. Familiarity is one of Umbracourt's better traps."
             ]
         },
         trader: "trader4"
     },
 
-    // Boss Warning
     serin_mirror_warden: {
         id: "serin_mirror_warden",
         name: "Serin of the Warded Path",
@@ -1155,9 +1220,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Hold a moment. The hall ahead is not for the unready. Its keeper reflects more than blades.",
-                "Talk to the folk in the foyer; let their echoes settle in you. Strength isn’t only in your arm.",
-                "If you must step forward, do it knowing you’ve gathered all the light you can carry."
+                "Stop here. The chamber ahead does not merely test strength. It reflects habits, punishments, and certainties you have leaned on too heavily.",
+                "Its keeper is a warden of recurrence. Strike without reading it, and you will spend the whole battle answering yourself.",
+                "Speak to the others if you need to. In Umbracourt, surviving the truth of a place matters as much as surviving its blade."
             ]
         },
         forcedEncounter: {
@@ -1181,17 +1246,21 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "These halls keep copies of every step. I write what the mirrors whisper and hope they don’t change the endings on me.",
-                "Echo Fragments hum with old names. Bring me a few and I’ll show you how to listen past the static."
+                "These halls record more than footsteps. They keep copies of choices, pauses, and the little turns a life might have taken.",
+                "Echo Fragments are pieces of those discarded records. Bring me a few and I will show you how Umbracourt has begun writing you in among them."
             ],
             questGiven: [
-                "Find 4 Echo Fragments in Umbracourt. Hold them to your ear, if they buzz, they’re real."
+                "Find 4 Echo Fragments in the halls and return them to me.",
+                "Listen before you pocket them. If one hums in a pattern you almost recognize, that is the hall deciding you are part of its archive."
             ],
             questIncomplete: [
-                "Not enough echoes yet. The fragments hide near patrols and in quiet corners of the maze."
+                "Not enough yet.",
+                "They gather near patrol routes, dead ends, and places where a mirror offers more than one honest answer."
             ],
             questComplete: [
-                "Good. Hear that tone? That’s the hall remembering you. Take this, keep your steps light when the walls start to breathe."
+                "Yes, these are strong with residue.",
+                "Do you hear it? The fragments are not only remembering older travelers anymore. Some of them are beginning to remember you.",
+                "Take this and walk carefully. Being recorded is not the same thing as being understood."
             ]
         },
         questId: "umbrafloor_echoes",
@@ -1208,17 +1277,20 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The Shadowed Hand left one sentinel in a side hall up ahead. It still clutches a Command Sigil.",
-                "Take it, if you can. The sigil quiets the mirrors, for a time."
+                "The Shadowed Hand left one remnant active in a side chamber ahead. It still clutches a Command Sigil and still believes order can be forced into obedience.",
+                "Take the sigil if you can. Tools like that were made to quiet reflections, bind echoes, and make unstable things behave long enough to be useful."
             ],
             questGiven: [
-                "Face the remnant in the side chamber. Bring me its Command Sigil."
+                "Face the remnant in the side chamber and bring me its Command Sigil.",
+                "If the Hand could not control Umbracourt in its fullness, I would at least like to see one of their symbols carried by someone less deluded."
             ],
             questIncomplete: [
-                "The remnant still stirs. The sigil belongs in steadier hands."
+                "The remnant still stands, then.",
+                "Be careful. Old authority tends to become cruel after it outlives its purpose."
             ],
             questComplete: [
-                "Well taken. The sigil remembers you now. Use its calm wisely."
+                "Good. The sigil is quieter already.",
+                "Remember this when you carry it: control is not the same thing as understanding, no matter how often the Hand confused the two."
             ]
         },
         questId: "sigil_of_the_hand",
@@ -1235,9 +1307,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "An echo of Veyra lingers here, softer, almost kind.",
-                "\"You’ve seen the Hand’s remnant. Every sigil is a promise unpaid.\"",
-                "\"Keep your name close. The mirrors like to borrow what they cannot return.\""
+                "An echo of Veyra watches you with the calm of someone who has seen this moment many times before.",
+                "\"You have met one remnant of the Hand. There were others once. Certainty ruined them more efficiently than fear ever could.\"",
+                "\"Keep your name close. Umbracourt does not always steal it outright. Sometimes it only asks you to loosen your grip.\""
             ]
         }
     },
@@ -1252,9 +1324,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The maze redraws itself when you blink. I stopped blinking, and now the walls hum my name.",
-                "I mapped these halls once. The paper turned to glass, the ink to echo. The map still screams in my pack.",
-                "If you get turned around, touch a mirror and listen. Some reflections are compasses, some are traps."
+                "I mapped these halls once. Then I learned the mistake: Umbracourt is not interested in where you can go, only in which version of you arrives there.",
+                "My paper became useless. The routes were right, but the mirrors kept changing what it meant to take them.",
+                "If you get lost, listen before you move. A mirror that is eager to help you is usually hoping you will stop asking what it wants in return."
             ]
         }
     },
@@ -1269,9 +1341,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The portal hums like a held note, waiting for a voice bold enough to answer.",
-                "I watched the Shadowed Hand step through here, thinking they commanded the mirrors. The mirrors only bowed to see them leave.",
-                "If you go on, carry a memory worth guarding. The next floor will ask you what you’re willing to forget."
+                "The portal ahead hums like a promise, but not a simple one.",
+                "I watched the Shadowed Hand step through these thresholds believing they could command what came next. The halls let them think so for longer than was kind.",
+                "If you go on, carry one memory you refuse to negotiate away. Higher floors do not always take from the body first."
             ]
         }
     },
@@ -1501,40 +1573,7 @@ const NPC_DEFINITIONS = {
         trader: "trader6"
     },
 
-    houseKey: {
-        id: "Cyn_house_key",
-        name: "Cyn the Housekeeper",
-        sprite: "assets/img/npc/npc_f_4.png",
-        interactive: true, 
-        spawns: [
-            { map: 6,  x: 12, y: 56, wanderArea: { x1: 11, y1: 54, x2: 14, y2: 58 } }
-        ],
-        dialogue: {
-            default: [
-                "Have you noticed how different this floor feels?",
-                "Like its not trying to be anything"
-            ],
-            questComplete: [
-                "This showed up here...",
-                "It doesn't open anything ive seen.",
-                "...but it feels like it should belong to someone.",
-                "Maybe you'll know what to do with it!"
-            ]
-        },
-        questId: "homeplot_key_gift",
-        questRedo: false,
-        forcedEncounter: {
-            enabled: true,
-            triggerTiles: [
-                { x: 8, y: 58 },
-                { x: 6, y: 58 },
-                { x: 7, y: 59 },
-                { x: 8, y: 59 },
-                { x: 7, y: 59 }
-            ],
-            triggered: false
-        }
-    },
+    
 };
 
 

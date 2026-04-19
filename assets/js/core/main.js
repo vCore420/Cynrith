@@ -376,7 +376,7 @@ function Loop() {
     checkTeleport();
     checkBackTeleport();
 
-    // Home PLot Checks
+    // Home Plot Checks
     if (typeof checkHomePlotHouseInteractions === "function") {
         checkHomePlotHouseInteractions();
     }
@@ -385,8 +385,8 @@ function Loop() {
     }
 
     // Npc Interaction Checks
-    checkNpcInteraction();
     checkForcedEncounters();
+    checkNpcInteraction();
 
     // Interactable Tile Check
     if (typeof checkInteractableTileInteraction === "function") checkInteractableTileInteraction();

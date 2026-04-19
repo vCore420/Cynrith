@@ -11,6 +11,12 @@ function notify(text, time = 2000) {
     }, time);
 }
 
+function hideNotification() {
+    const el = document.getElementById('notification');
+    if (!el) return;
+    clearTimeout(el._timeout);
+    el.classList.remove('show');
+}
 
 // Dialogue system
 let _dialogueQueue = [];

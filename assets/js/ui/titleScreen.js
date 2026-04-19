@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(overlay);
 
     // Version Watermark
-    const ver = "v1.1.7";  // Set current version here for Title Screen
+    const ver = "v1.1.8";  // Set current version here for Title Screen
 
     const versionWatermark = document.createElement("div");
     versionWatermark.id = "version-watermark";

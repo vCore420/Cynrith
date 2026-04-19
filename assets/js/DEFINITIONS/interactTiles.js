@@ -118,6 +118,42 @@ const INTERACTABLE_TILES = [
     },
 
     {
+        id: "f2_rock",
+        map: 1,
+        x: 42,
+        y: 17,
+        image: "assets/img/tile/rock-2.png",
+        notification: "Press A to examine this Humming Rock.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
+        dialogue: [
+            "You rest a hand on the stone. Its hum is faint, but steady.",
+            "Most of Stonewake feels weathered by old Fractures, yet this piece has kept its shape.",
+            "You carefully lift it free. It feels less like loot and more like something worth keeping."
+        ],
+        rewards: [{ id: "f2_rock", amount: 3 }],
+    },
+
+    {
+        id: "f2_mushroom",
+        map: 1,
+        x: 16,
+        y: 38,
+        image: "assets/img/tile/mushroom-2.png",
+        notification: "Press A to examine this Mushroom.",
+        collision: true, 
+        zIndex: 0,
+        animOnTrigger: false,
+        dialogue: [
+            "A pale mushroom has rooted itself in the crack between two old stones.",
+            "Somehow it thrives here, soft and living in a place that should have forgotten how to grow.",
+            "You gather it gently. It feels like a little proof that broken ground can still give shelter."
+        ],
+        rewards: [{ id: "f2_mushroom", amount: 4 }],
+    },
+
+    {
         id: "sunny_1",
         map: 1,
         x: 22,
@@ -157,9 +193,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "The mushroom pulses with a patient, blue light.",
+            "For a moment, the shadows around it seem less certain of themselves.",
+            "You gather a bioluminescent mushroom. It feels like the Thicket gave up one of its hidden lanterns."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -178,9 +216,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "A cool glow spills from beneath the cap.",
+            "The surrounding roots look almost rearranged by its light, as if truth briefly mattered here.",
+            "You gather a bioluminescent mushroom."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -199,9 +239,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "The mushroom brightens as you approach, then settles.",
+            "Its light feels less natural than deliberate, like a marker left in the dark.",
+            "You gather a bioluminescent mushroom."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -220,9 +262,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "A soft light beats inside the stalk like a held breath.",
+            "Even here, the Thicket grows things that reveal more than they conceal.",
+            "You gather a bioluminescent mushroom."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -241,9 +285,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "Blue light leaks through the mist in slow pulses.",
+            "The glow makes nearby shadows stutter, as if the forest is being briefly corrected.",
+            "You gather a bioluminescent mushroom."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -262,9 +308,11 @@ const INTERACTABLE_TILES = [
         collision: false, 
         zIndex: 0,
         animOnTrigger: false,
-        notification: "Press A to Inspect Mushroom.",
+        notification: "Press A to inspect the glowing mushroom.",
         dialogue: [
-            "You find a bioluminescent mushroom glowing softly in the shadows.",
+            "This one flickers unevenly, bright then dim, like a memory trying to remain stable.",
+            "You get the sense it grew exactly where the Thicket was hiding something.",
+            "You gather a bioluminescent mushroom."
         ],
         rewards: [{ id: "bioluminescent_mushroom", amount: 1 }],
     },
@@ -280,9 +328,9 @@ const INTERACTABLE_TILES = [
         zIndex: 0,
         animOnTrigger: false,
         dialogue: [
-            "You hear a soft humming sound emanating from the rock.",
-            "As you get closer, the humming grows louder, resonating with a strange energy.",
-            "You found a Lost Memory Fragment, its whispers fill your mind."
+            "The stone hums with a tone that feels almost familiar.",
+            "As you lean closer, a loose fragment slides free, carrying warmth the forest air does not have.",
+            "You found a Memory Fragment. It does not tell you a whole story, only the shape of one worth keeping."
         ],
         rewards: [{ id: "memory_fragment", amount: 1 }],
     },
@@ -302,9 +350,11 @@ const INTERACTABLE_TILES = [
         zIndex: 1,
         animOnTrigger: true,
         sound: { enabled: true, file: "glitching_statue.mp3", type: "trigger" },
-        notification: "Press A to activate the statue.",
+        notification: "Press A to wake the statue.",
         dialogue: [
-            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+            "You place a hand against the cold stone.",
+            "The statue shudders, then answers with a low, layered tone as hidden glyphs flicker into view.",
+            "Something sealed inside it has started speaking again."
         ],
         rewards: [{ id: "money", amount: 10 }],
     },
@@ -324,9 +374,11 @@ const INTERACTABLE_TILES = [
         zIndex: 1,
         animOnTrigger: true,
         sound: { enabled: true, file: "glitching_statue.mp3", type: "trigger" },
-        notification: "Press A to activate the statue.",
+        notification: "Press A to wake the statue.",
         dialogue: [
-            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+            "The surface glitches beneath your touch, stone and signal briefly overlapping.",
+            "Lines of old script flare across its face, unstable but persistent.",
+            "The statue remembers enough to answer."
         ],
         rewards: [{ id: "money", amount: 10 }],
     },
@@ -346,11 +398,100 @@ const INTERACTABLE_TILES = [
         zIndex: 1,
         animOnTrigger: true,
         sound: { enabled: true, file: "glitching_statue.mp3", type: "trigger" },
-        notification: "Press A to activate the statue.",
+        notification: "Press A to wake the statue.",
         dialogue: [
-            "You touch the statue. It begins to glow and shift, revealing hidden glyphs."
+            "For a heartbeat, the statue seems empty.",
+            "Then a buried pulse runs through it and the carved glyphs begin to reorganize themselves.",
+            "Whatever this monument was made to keep, it has not fully forgotten."
         ],
         rewards: [{ id: "money", amount: 10 }],
+    },
+
+    {
+        id: "f3_home_glowcap_1",
+        map: 2,
+        x: 35,
+        y: 3,
+        spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+        imageW: 128,
+        imageH: 64,
+        rows: 1,
+        cols: 2,
+        animSpeed: 10,
+        collision: false,
+        zIndex: 0,
+        animOnTrigger: false,
+        notification: "Press A to inspect the glowcaps.",
+        dialogue: [
+            "A small cluster of glowcaps pulses softly beneath the roots.",
+            "Their light does not brighten the whole path, only enough to make the dark feel less certain.",
+            "You gather a few carefully. They feel like a piece of the Thicket's quieter honesty."
+        ],
+        rewards: [{ id: "f3_glowcap_cluster", amount: 5 }],
+    },
+
+    {
+        id: "f3_home_stone_1",
+        map: 2,
+        x: 29,
+        y: 31,
+        image: "assets/img/tile/rock-1.png",
+        notification: "Press A to examine the humming stone.",
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        dialogue: [
+            "The stone hums with the same low tone you have heard in the Thicket's stranger corners.",
+            "It is worn, but not empty. Something about it still feels anchored.",
+            "You take it with you. It seems worth giving a steadier place to rest."
+        ],
+        rewards: [{ id: "f3_memory_stone", amount: 3 }],
+    },
+
+    {
+        id: "f3_home_deer_statue_1",
+        map: 2,
+        x: 47,
+        y: 20,
+        spriteSheet: "assets/img/worldSprites/deer_statue.png",
+        imageW: 128,
+        imageH: 128,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to examine the weathered statue.",
+        dialogue: [
+            "The deer statue stands half-swallowed by root and moss.",
+            "Even damaged, it keeps a clear shape, as if the forest never quite managed to rewrite it.",
+            "You recover the statue carefully. It feels like something the Home Plot would understand."
+        ],
+        rewards: [{ id: "f3_deer_statue", amount: 1 }],
+    },
+
+    {
+        id: "f3_home_oldman_statue_1",
+        map: 2,
+        x: 6,
+        y: 57,
+        spriteSheet: "assets/img/worldSprites/oldman_statue.png",
+        imageW: 128,
+        imageH: 128,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 1,
+        animOnTrigger: false,
+        notification: "Press A to examine the old watcher statue.",
+        dialogue: [
+            "This old statue looks less decorative than watchful.",
+            "The face is worn smooth in places, but the posture remains deliberate, patient, unyielding.",
+            "You take it with you. Some things deserve to keep watching from somewhere kinder."
+        ],
+        rewards: [{ id: "f3_oldman_statue", amount: 1 }],
     },
 
     // -------- Floor 4 --------
@@ -559,7 +700,7 @@ const INTERACTABLE_TILES = [
     
 
     {
-        id: "glass_tree_6",
+        id: "glass_tree_7",
         map: 3,
         x: 3,
         y: 1,

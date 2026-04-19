@@ -5,7 +5,8 @@ const TRADER_DEFINITIONS = {
     trader1: {
         buy: [
             { id: "health_buff_small", price: 10 },
-            { id: "atk_buff_small", price: 20 }
+            { id: "atk_buff_small", price: 20 },
+            { id: "f3_glowcap_cluster", price: 45 }
         ],
         sell: [
             { id: "slime_ball", price: 3 },
@@ -19,7 +20,8 @@ const TRADER_DEFINITIONS = {
         buy: [
             { id: "health_buff_small", price: 10 },
             { id: "atk_buff_small", price: 22 },
-            { id: "def_buff_small", price: 24 }
+            { id: "def_buff_small", price: 24 },
+            { id: "f4_resonance_glass", price: 40 }
         ],
         sell: [
             { id: "dewleaf", price: 5 },
@@ -36,6 +38,9 @@ const TRADER_DEFINITIONS = {
             { id: "def_buff_small", price: 22 },
             { id: "maxHealth_buff_small", price: 16 },
             { id: "atkSpeed_buff_small", price: 18 },
+            { id: "f4_glassberry_sapling", price: 65 },
+            { id: "f4_archive_shelf", price: 90 },
+            { id: "f4_jar", price: 55 }
         ],
         sell: [
             { id: "glass_shard", price: 7 },

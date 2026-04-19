@@ -32,35 +32,113 @@ function getDirectionToFace(npc, player) {
     return 40; // default down
 }
 
+function getDirectionKeyFromName(direction) {
+    switch (direction) {
+        case "left": return 37;
+        case "up": return 38;
+        case "right": return 39;
+        case "down": return 40;
+        default: return 40;
+    }
+}
+
+function isNpcCharacterCollisionAtPixel(px, py, npcObj) {
+    if (typeof characters === "undefined") return false;
+
+    const npcBounds = getCharBounds(npcObj || {}, px, py);
+
+    return characters.some(char => {
+        if (!char || char === npcObj) return false;
+
+        const otherBounds = getCharBounds(char);
+        const pad = Math.max(npcBounds.padding, otherBounds.padding);
+
+        return (
+            otherBounds.right - pad > npcBounds.left + pad &&
+            otherBounds.left + pad < npcBounds.right - pad &&
+            otherBounds.bottom - pad > npcBounds.top + pad &&
+            otherBounds.top + pad < npcBounds.bottom - pad
+        );
+    });
+}
+
+function tryMoveNpcStep(char, stepX, stepY, direction) {
+    const nextX = char.x + stepX;
+    const nextY = char.y + stepY;
+    const px = nextX * config.size.tile;
+    const py = nextY * config.size.tile;
+
+    if (isNpcTileBlockedAtPixel(px, py, direction, char)) {
+        return false;
+    }
+
+    char.x = nextX;
+    char.y = nextY;
+    char.movement.key = getDirectionKeyFromName(direction);
+    return true;
+}
+
 
 // Move enemy toward player
 function moveEnemyTowardPlayer(char) {
     const speed = char.moveSpeed || 2;
-    let dx = player.tile.x - Math.round(char.x);
-    let dy = player.tile.y - Math.round(char.y);
+    const step = speed / config.size.tile;
 
-    char.movement.key = getDirectionToFace(char, player);
+    const dx = player.tile.x - Math.round(char.x);
+    const dy = player.tile.y - Math.round(char.y);
 
     let moved = false;
+    const attempts = [];
 
-    if (Math.abs(dx) > Math.abs(dy)) {
+    if (Math.abs(dx) >= Math.abs(dy)) {
         if (dx !== 0) {
-            let tryMoveX = char.x + Math.sign(dx) * speed / config.size.tile;
-            let px = tryMoveX * config.size.tile;
-            let py = char.y * config.size.tile;
-            if (!isNpcTileBlockedAtPixel(px, py, dx > 0 ? "right" : "left", char)) {
-                char.x = tryMoveX;
-                moved = true;
-            }
+            attempts.push({
+                stepX: Math.sign(dx) * step,
+                stepY: 0,
+                direction: dx > 0 ? "right" : "left"
+            });
         }
-    } else if (dy !== 0) {
-        let tryMoveY = char.y + Math.sign(dy) * speed / config.size.tile;
-        let px = char.x * config.size.tile;
-        let py = tryMoveY * config.size.tile;
-        if (!isNpcTileBlockedAtPixel(px, py, dy < 0 ? "up" : "down", char)) {
-            char.y = tryMoveY;
+
+        if (dy !== 0) {
+            attempts.push({
+                stepX: 0,
+                stepY: Math.sign(dy) * step,
+                direction: dy > 0 ? "down" : "up"
+            });
+        }
+
+        attempts.push({ stepX: 0, stepY: -step, direction: "up" });
+        attempts.push({ stepX: 0, stepY: step, direction: "down" });
+    } else {
+        if (dy !== 0) {
+            attempts.push({
+                stepX: 0,
+                stepY: Math.sign(dy) * step,
+                direction: dy > 0 ? "down" : "up"
+            });
+        }
+
+        if (dx !== 0) {
+            attempts.push({
+                stepX: Math.sign(dx) * step,
+                stepY: 0,
+                direction: dx > 0 ? "right" : "left"
+            });
+        }
+
+        attempts.push({ stepX: -step, stepY: 0, direction: "left" });
+        attempts.push({ stepX: step, stepY: 0, direction: "right" });
+    }
+
+    for (const attempt of attempts) {
+        if (tryMoveNpcStep(char, attempt.stepX, attempt.stepY, attempt.direction)) {
             moved = true;
+            break;
         }
+    }
+
+    if (!moved) {
+        char.movement.key = getDirectionToFace(char, player);
     }
 
     char.movement.moving = moved;
@@ -75,11 +153,13 @@ function isNpcTileBlockedAtPixel(px, py, direction, npcObj = null) {
 
     const tileX = Math.floor((px + offset + tileSize / 2) / tileSize);
     let tileY;
+
     if (direction === "up") {
         tileY = Math.floor((py + offset) / tileSize);
+    } else if (direction === "down") {
+        tileY = Math.floor((py + offset + tileSize - 2) / tileSize);
     } else {
-        // down or default: triggers a bit sooner for bottom collision
-        tileY = Math.floor((py + offset + tileSize - 9) / tileSize);
+        tileY = Math.floor((py + offset + tileSize / 2) / tileSize);
     }
 
     if (
@@ -89,7 +169,7 @@ function isNpcTileBlockedAtPixel(px, py, direction, npcObj = null) {
         !map.data.layout[tileY] ||
         typeof map.data.layout[tileY][tileX] === "undefined"
     ) {
-        return true; // Treat out-of-bounds as blocked
+        return true;
     }
 
     if (typeof player !== "undefined") {
@@ -98,19 +178,31 @@ function isNpcTileBlockedAtPixel(px, py, direction, npcObj = null) {
         }
     }
 
+    if (isNpcCharacterCollisionAtPixel(px, py, npcObj || {})) {
+        return true;
+    }
+
     if (activeTeleportStones.some(stone => stone.x === tileX && stone.y === tileY)) {
-        return true; 
+        return true;
     }
 
     if (typeof isTileBlockedByWorldSprite === "function" && isTileBlockedByWorldSprite(tileX, tileY)) {
         return true;
     }
 
+    if (typeof isTileBlockedByInteractable === "function" && isTileBlockedByInteractable(tileX, tileY)) {
+        return true;
+    }
+
+    if (typeof isTileBlockedByHomePlacement === "function" && isTileBlockedByHomePlacement(tileX, tileY)) {
+        return true;
+    }
+
     if (map.data._layers) {
         for (let l = 0; l < map.data._layers.length; l++) {
-            let gid = map.data._layers[l][tileY][tileX];
+            const gid = map.data._layers[l][tileY][tileX];
             if (gid > 0) {
-                let tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
+                const tileIndex = map.data._gidMap ? map.data._gidMap[gid] : gid - 1;
                 if (tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision) {
                     return true;
                 }
@@ -119,7 +211,7 @@ function isNpcTileBlockedAtPixel(px, py, direction, npcObj = null) {
         return false;
     } else {
         const tileGid = map.data.layout[tileY][tileX];
-        let tileIndex = tileGid > 0 ? tileGid - 1 : null;
+        const tileIndex = tileGid > 0 ? tileGid - 1 : null;
         return tileIndex !== null && map.data.assets[tileIndex] && map.data.assets[tileIndex].collision;
     }
 }

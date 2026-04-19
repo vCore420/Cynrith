@@ -201,6 +201,8 @@ const ITEM_DEFINITIONS = {
         sound: "legendary.mp3"
     },
 
+    // test tiems
+
     home_chair_oak: {
         id: "home_chair_oak",
         name: "Oak Chair",
@@ -225,6 +227,264 @@ const ITEM_DEFINITIONS = {
             footprintH: 1
         }
     },
+
+    // floor 2 items
+
+    f2_rock: {
+        id: "f2_rock",
+        name: "Humming Rock",
+        description: "A rock that hums with a mysterious energy.",
+        image: "assets/img/tile/rock-2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/rock-2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f2_mushroom: {
+        id: "f2_mushroom",
+        name: "Mushroom",
+        description: "A mushroom that thrives in the cracks between old stones.",
+        image: "assets/img/tile/mushroom-2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/mushroom-2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    // floor 3 items
+
+    f3_glowcap_cluster: {
+        id: "f3_glowcap_cluster",
+        name: "Glowcap Cluster",
+        description: "A cluster of bioluminescent mushrooms gathered from the Gloomroot Thicket.",
+        image: "assets/img/tile/mushroom-flash-1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/mushroom-flash-1.png",
+            imageW: 128,
+            imageH: 64,
+            rows: 1,
+            cols: 2,
+            animSpeed: 10,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f3_memory_stone: {
+        id: "f3_memory_stone",
+        name: "Memory Stone",
+        description: "A humming stone from the Thicket, faintly warm with held memory.",
+        image: "assets/img/tile/rock-1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/rock-1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f3_deer_statue: {
+        id: "f3_deer_statue",
+        name: "Deer Statue",
+        description: "A weathered deer statue like those half-buried through the Thicket.",
+        image: "assets/img/worldSprites/deer_statue.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/deer_statue.png",
+            imageW: 128,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+
+    f3_oldman_statue: {
+        id: "f3_oldman_statue",
+        name: "Old Watcher Statue",
+        description: "A worn statue from an older memory of Cynrith, carried out of the Thicket.",
+        image: "assets/img/worldSprites/oldman_statue.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/oldman_statue.png",
+            imageW: 128,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+
+    // floor 4 items
+
+    f4_glassberry_sapling: {
+        id: "f4_glassberry_sapling",
+        name: "Glassberry Sapling",
+        description: "A small crystalline tree from the Shattered Spires, delicate but still holding its shape.",
+        image: "assets/img/tile/glass-tree.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/glass-tree.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f4_archive_shelf: {
+        id: "f4_archive_shelf",
+        name: "Archive Shelf",
+        description: "A shelf recovered from the Grand Hall, still arranged as though the records matter.",
+        image: "assets/img/tile/shelf-4.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/shelf-4.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f4_jar: {
+        id: "f4_jar",
+        name: "Echo Jar",
+        description: "A jar that softly vibrates with the echoes of the Spires. It seems to hum with quiet potential.",
+        image: "assets/img/tile/jar-1.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/jar-1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f4_resonance_glass: {
+        id: "f4_resonance_glass",
+        name: "Resonance Glass",
+        description: "A cluster of cut glass from the Spires, sharp with old purpose and quiet vibration.",
+        image: "assets/img/tile/glass-rock-2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/glass-rock-2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    // floor 7 items
     
     fence1: {
         id: "fence1",

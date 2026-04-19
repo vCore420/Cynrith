@@ -94,6 +94,16 @@ const QUEST_DEFINITIONS = {
         rewards: [{ id: "maxHealth_buff_small", amount: 1 }, { xp: 40, attackSpeed: 20 }],
         redoable: true
     },
+
+    homeplot_key_gift: {
+        id: "homeplot_key_gift",
+        name: "A Key without a Door",
+        description: "A strange key has been entrusted to you.",
+        type: "gift",
+        requiredItems: [],
+        rewards: [{ id: "key_without_a_door", amount: 1 }, { xp: 120 }],
+        redoable: false
+    },
     
 
     // ---------- Floor 3 -----------
@@ -103,7 +113,7 @@ const QUEST_DEFINITIONS = {
     eira_echo_fragments: {
         id: "eira_echo_fragments",
         name: "Echo Fragments",
-        description: "Collect 5 Glitch Fragments from Echoes for Eira.",
+        description: "Gather 5 Glitch Fragments from unstable echoes in Gloomroot Thicket for Eira.",
         type: "itemCollect",
         requiredItems: [{ id: "glitch_fragment", amount: 5 }],
         rewards: [{ id: "health_buff_small", amount: 3 }, { xp: 35 }],
@@ -114,7 +124,7 @@ const QUEST_DEFINITIONS = {
     shade_statue_echoes: {
         id: "shade_statue_echoes",
         name: "Statue Echoes",
-        description: "Activate 3 glitching statues in the Thicket for the Whispering Shade.",
+        description: "Wake the 3 glitching statues hidden in the Thicket and restore the memories sealed inside them.",
         type: "interactTiles",
         interactTileIds: ["statue_f3_1", "statue_f3_2", "statue_f3_3"], 
         requiredAmount: 3,
@@ -127,7 +137,7 @@ const QUEST_DEFINITIONS = {
     sakura_lost_blossom: {
         id: "sakura_lost_blossom",
         name: "Lost Blossom",
-        description: "Find a Memory Fragment within Cherry Grove for Sakura.",
+        description: "Find the Memory Fragment hidden in the Cherry Grove and return it to Sakura.",
         type: "itemCollect",
         requiredItems: [{ id: "memory_fragment", amount: 1 }],
         rewards: [{ id: "def_buff_small", amount: 2 }, { xp: 50 }],
@@ -138,7 +148,7 @@ const QUEST_DEFINITIONS = {
     bruk_sabotage: {
         id: "bruk_sabotage",
         name: "Sabotage the Orks",
-        description: "Defeat 25 Mistbound Orks and recover Bruk's lost totem.",
+        description: "Defeat 25 Mistbound Orks and recover Bruk's lost totem before the Thicket swallows it for good.",
         type: "enemyDefeat",
         enemyId: "mistbound_ork",
         requiredAmount: 25,
@@ -150,7 +160,7 @@ const QUEST_DEFINITIONS = {
     myco_mushroom_potion: {
         id: "myco_mushroom_potion",
         name: "Luminous Brew",
-        description: "Collect 6 bioluminescent mushrooms for Myco to brew a potion.",
+        description: "Collect 6 bioluminescent mushrooms from the deeper Thicket so Myco can brew a truth-revealing potion.",
         type: "itemCollect",
         requiredItems: [{ id: "bioluminescent_mushroom", amount: 6 }],
         rewards: [{ id: "maxHealth_buff_small", amount: 3 }, { xp: 50 }],
@@ -163,7 +173,7 @@ const QUEST_DEFINITIONS = {
     choir_fragments: {
         id: "choir_fragments",
         name: "Reconstruct the Choir",
-        description: "Collect 8 Choir Fragments for Lyra the Lost Chorister, scattered across the Shattered Spires.",
+        description: "Collect 8 Choir Fragments for Lyra so the Shattered Spires can recover part of their lost harmony and remember what they were meant to preserve.",
         type: "itemCollect",
         requiredItems: [{ id: "choir_fragment", amount: 8 }],
         rewards: [{ id: "maxHealth_buff_small", amount: 10 }, { xp: 120 }],
@@ -173,7 +183,7 @@ const QUEST_DEFINITIONS = {
     sundered_echo_release: {
         id: "sundered_echo_release",
         name: "Release the Sundered Echoes",
-        description: "Activate 3 Echo Tiles for Lyra the Lost Chorister, scattered across the Shattered Spires.",
+        description: "Activate the 3 Echo Tiles scattered through the Spires and free the trapped voices caught in the floor's unfinished memory.",
         type: "interactTiles",
         interactTileIds: ["echo_tile_1", "echo_tile_2", "echo_tile_3"],
         requiredAmount: 3,
@@ -184,7 +194,7 @@ const QUEST_DEFINITIONS = {
     venn_glassberry_tea: {
         id: "venn_glassberry_tea",
         name: "Restoring the Old Record",
-        description: "Help Venn recreate his favorite Glassberry Tea by gathering 5 Glassberry Leaves.",
+        description: "Gather 5 Glassberry Leaves for Archivist Venn so he can restore one small ritual of welcome within the broken Grand Hall.",
         type: "itemCollect",
         requiredItems: [
             { id: "glassberry_leaf", amount: 5 }
@@ -201,7 +211,7 @@ const QUEST_DEFINITIONS = {
     sentinel_shardling_cull: {
         id: "sentinel_shardling_cull",
         name: "Shardling Cull",
-        description: "Defeat 40 Shardlings for the Sentinel of the Spires to prepare for the ascent to Floor 5.",
+        description: "Defeat 40 Shardlings for the Sentinel of the Spires and help keep the fractured routes passable for those who come after you.",
         type: "enemyDefeat",
         enemyId: "shardling",
         requiredAmount: 40,
@@ -219,7 +229,7 @@ const QUEST_DEFINITIONS = {
     veyras_mirrors: {
         id: "veyras_mirrors",
         name: "Veyra's Mirrors",
-        description: "Interact with the cracked mirrors to reveal hidden truths.",
+        description: "Touch the 3 Marked Mirrors of Umbracourt and let the halls decide whether they recognize the self you have carried this far.",
         type: "interactTiles",
         requiredAmount: 3,
         interactTileIds: ["cracked_mirror_1", "cracked_mirror_2", "cracked_mirror_3"],
@@ -230,7 +240,7 @@ const QUEST_DEFINITIONS = {
     umbrafloor_echoes: {
         id: "umbrafloor_echoes",
         name: "Echoes in the Glass",
-        description: "Gather 4 Echo Fragments in Umbracourt’s halls.",
+        description: "Gather 4 Echo Fragments from Umbracourt so Lysa can read the copies, pauses, and discarded turns the halls have begun recording.",
         type: "itemCollect",
         requiredItems: [{ id: "echo_fragment", amount: 4 }],
         rewards: [
@@ -243,7 +253,7 @@ const QUEST_DEFINITIONS = {
     sigil_of_the_hand: {
         id: "sigil_of_the_hand",
         name: "Sigil of the Hand",
-        description: "Defeat the Shadowed Hand Remnant and claim its Command Sigil.",
+        description: "Defeat the Shadowed Hand Remnant and claim its Command Sigil, a relic of old authority that once tried to force order onto Umbracourt.",
         type: "enemyDefeat",
         enemyId: "shadowed_hand_remnant",
         requiredAmount: 1,
@@ -281,16 +291,6 @@ const QUEST_DEFINITIONS = {
             { id: "fresh_fish", amount: 3 },
             { xp: 100 }
         ],
-        redoable: false
-    },
-
-    homeplot_key_gift: {
-        id: "homeplot_key_gift",
-        name: "A Key without a Door",
-        description: "A strange key has been entrusted to you.",
-        type: "gift",
-        requiredItems: [],
-        rewards: [{ id: "key_without_a_door", amount: 1 }, { xp: 120 }],
         redoable: false
     },
 };
