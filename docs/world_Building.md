@@ -2,6 +2,8 @@
 
 ## Cynrith
 
+# This is all barinstorming and just something to work/bounce off of - Read Cynrith_Story_Core.md for true story to follow
+
 ### Short Synopsis
 
 Cynrith is a vast, mystical world forged by the enigmatic and ever-watchful Architect, layered into vertically ascending “floors.” Each floor is a unique realm—shaped from fragments of lost worlds—with its own climate, culture, creatures, and secrets. Ancient magic courses through the land, but faint echoes of a deeper, unsettling design persist: a shimmer in the air, cryptic glyphs carved in stone, or a knowing warning from a seasoned character. Inhabitants speak naturally of quests, skills, and leveling as an accepted part of reality, hinting that Cynrith is more than just legend—and that every step upward draws adventurers deeper into the Architect’s hidden game, where power is earned, but the true cost remains unknown.
@@ -666,3 +668,9 @@ Rumored to reside on the highest floor, a mythical source of power that can resh
 
 - **The Forgotten Players:** 
 Legends tell of adventurers who vanished, leaving behind spectral traces—these could be explained as data remnants or echoes.
+
+
+
+
+
+the world of cynrith is the resemblance of harddrives where each floor is another disk of the harddrive with the first disk being the first floor is old and fragmented, very basic floor, the features spoken about in game are actually references to these old disks (floor) getting old and corrupt and in turn losing data/memory, as the floors go on the player moves through different harddrives and all their layers, all being used in one big server, which is all controlled and run by the architect, who is threatening this world more and more as the harddrives are being replaced with modern day ssd's which will replace these old layers (floors), the npcs have a more or less half knowledge of this giving off they they cant always remember things (which is due to the memory/data lose) slightly and slowly giving off what the world actually is but never too direct about it, the only true being that has all knowledge is the architect which for the most part will remain a anomaly.

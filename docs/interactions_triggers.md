@@ -1,29 +1,54 @@
 # Interactable & Trigger Tiles Guide
 
-This guide explains how to add **interactable tiles** and **trigger tiles** to your Cynrith maps.  
-These tiles are used for events, story moments, rewards, puzzles, and quest objectives.  
-You’ll learn how to define them, place them on your map, and use them for a variety of gameplay features.
+This guide explains the current authored behavior for interactable and trigger tiles in Cynrith.
+
+Use these systems for:
+
+- lore moments
+- rewards and chests
+- world flavor text
+- quest objectives
+- sound zones
+- one-off scripted movement between spaces
 
 ---
 
-## 1. What Are Interactable & Trigger Tiles?
+## 1. Interactable Tiles Versus Trigger Tiles
 
-- **Interactable Tiles:**  
-  Tiles the player can interact with (by pressing the A button when adjacent or on the tile).  
-  Used for dialogue, rewards, lore objects, activating animations, and quest progression.
-  the player will get a notifaction when near these tiles
+### Interactable tiles
 
-- **Trigger Tiles:**  
-  Tiles that automatically trigger an event when the player steps on them.  
-  Used for story events, dialogue, warps (wip), frame changes (wip), or quest objectives.
+Interactable tiles are player-activated.
+
+Current behavior:
+
+- the player can activate them while adjacent or standing on them
+- they can show notifications
+- they can play dialogue
+- they can grant rewards
+- they can play trigger, loop, or ambient sounds
+- they can optionally teleport the player after interaction
+
+### Trigger tiles
+
+Trigger tiles activate when the player steps directly on them.
+
+Current behavior:
+
+- dialogue trigger support is live
+- rewards are live
+- one-time removal is live
+- trigger sound playback is live
+- nearby ambient and loop sound behavior is live
+
+Do not treat trigger warp or frame-change behavior as standard documented runtime behavior yet unless you have also added the required engine support.
 
 ---
 
-## 2. How to Add Interactable Tiles
+## 2. Interactable Tile Definition
 
-### **A. Define in `interactTiles.js`**
+Define interactables in `assets/js/DEFINITIONS/interactTiles.js`.
 
-Add a new object to the `INTERACTABLE_TILES` array:
+Example:
 
 ```javascript
 {
@@ -51,31 +76,39 @@ Add a new object to the `INTERACTABLE_TILES` array:
     ],
     sound: {
         enabled: true,
-        file: "statue_activate.wav",
+        file: "statue_activate.mp3",
         type: "trigger"
     }
 }
 ```
 
-**Key Properties:**
-- `id`: Unique identifier.
-- `map`, `x`, `y`: Location on the map.
-- `image`/`spriteSheet`: Path to image or sprite sheet.
-- `rows`, `cols`, `animSpeed`, `animOnTrigger`: Animation settings.
-- `zIndex`: 0 (below player), 1 (above player).
-- `collision`: true/false.
-- `notification`: Text shown when adjacent.
-- `dialogue`: Array of dialogue lines.
-- `rewards`: Items given on interaction.
-- `sound`: Sound options (`loop`, `ambient`, `trigger`).
+Important fields:
+
+- `id`
+- `map`, `x`, `y`
+- `image` or `spriteSheet`
+- `imageW`, `imageH`, `rows`, `cols`, `animSpeed`
+- `zIndex`
+- `collision`
+- `notification`
+- `dialogue`
+- `rewards`
+- `sound`
+
+Important optional behavior fields:
+
+- `allowRepeat`
+- `persistAfterTrigger`
+- `teleport`
+- `animOnTrigger`
 
 ---
 
-## 3. How to Add Trigger Tiles
+## 3. Trigger Tile Definition
 
-### **A. Define in `triggerTiles.js`**
+Define trigger tiles in `assets/js/DEFINITIONS/triggerTiles.js`.
 
-Add a new object to the `TRIGGER_TILES` array:
+Example:
 
 ```javascript
 {
@@ -84,55 +117,125 @@ Add a new object to the `TRIGGER_TILES` array:
     x: 14,
     y: 11,
     type: "dialogue",
-    sound: { enabled: true, file: "echo.wav", type: "ambient" },
+    sound: { enabled: true, file: "echo.mp3", type: "ambient" },
     dialogue: [
-        "A Echo Flickers: 'Not all who climb return.'"
+        "An echo flickers: 'Not all who climb return.'"
     ],
-    oneTime: true, // Only triggers once
+    oneTime: true,
     rewards: [
         { id: "glitch_fragment", amount: 1 }
     ]
 }
 ```
 
-**Key Properties:**
-- `id`: Unique identifier.
-- `map`, `x`, `y`: Location on the map.
-- `type`: "dialogue", "warp", "frameChange", etc.
-- `dialogue`: Array of dialogue lines (for dialogue triggers).
-- `rewards`: Items given when triggered.
-- `oneTime`: true/false (if only triggers once).
-- `sound`: Sound options (`loop`, `ambient`, `trigger`).
+Important fields:
+
+- `id`
+- `map`, `x`, `y`
+- `type`
+- `dialogue`
+- `rewards`
+- `oneTime`
+- `sound`
+
+At the moment, a floor author should treat `type: "dialogue"` as the stable documented use unless they also confirm the runtime supports more.
 
 ---
 
-## 4. Examples of Uses
+## 4. Rewards and Repeat Behavior
 
-### **Interactable Tiles**
-- **Lore Statues:**  
-  Player presses A to read lore and receive a memory fragment.
-- **Hidden Chests:**  
-  Player interacts to receive loot and play a sound.
-- **Animated Objects:**  
-  Player triggers animation and sound (e.g. glowing runes, opening doors).
+Interactables and triggers can grant normal items and Home Plot items through the same reward flow.
 
-### **Trigger Tiles**
-- **Echoes/Glitches:**  
-  Stepping on tile triggers dialogue and gives a glitch fragment.
-- **Warp Tiles (wip):**  
-  Automatically teleport player to another map or location.
-- **Puzzle Tiles (wip):**  
-  Trigger frame changes, open doors, or activate world events.
+That means a tile reward can:
+
+- add a consumable
+- add a quest item
+- add a utility item
+- route a Home item into Home storage automatically
+
+Repeat and persistence notes:
+
+- use `oneTime: true` on trigger tiles for single-use events
+- use `allowRepeat: true` on interactables if they should remain reusable
+- use `persistAfterTrigger: true` if an interactable should stay visible after being used
+
+---
+
+## 5. Collision and Layering
+
+Interactables can block movement.
+
+Collision behavior depends on:
+
+- the tile's `collision` value
+- the tile's `zIndex`
+- the size of the image or sprite sheet frame
+
+Practical rule:
+
+- if it should feel like scenery the player walks behind, use `zIndex: 1`
+- if it should occupy the ground and fully block, use `zIndex: 0`
+
+Always test oversized interactables after placing them.
 
 ---
 
-## 5. Best Practices
+## 6. Sound Behavior
 
-- Use unique IDs for all tiles.
-- Place interactable tiles at accessible locations (not blocked by collision).
-- Use `oneTime: true` for single-use story events.
-- Test notifications, dialogue, rewards, and sounds in-game.
-- For quest objectives, reference tile IDs in your quest definitions.
+Interactables and triggers support three sound modes:
+
+- `trigger`
+- `ambient`
+- `loop`
+
+Current behavior:
+
+- `trigger` plays once when the tile is activated
+- `ambient` can play randomly while the player is nearby
+- `loop` can fade in and out through distance-based nearby playback behavior
+
+This makes tiles useful as both interaction objects and atmosphere anchors.
 
 ---
+
+## 7. Teleporting Through Interactables
+
+Interactable tiles can optionally teleport the player after interaction.
+
+Use this for:
+
+- mirrors
+- special doors
+- ritual spaces
+- side-room access
+- authored story transitions
+
+If using teleports, test both the dialogue flow and the player's post-warp state.
+
+---
+
+## 8. Quest Integration
+
+Interactable tiles can be used directly by `interactTiles` quest types.
+
+Good uses:
+
+- statue sequences
+- shrine activation
+- scattered memory objects
+- search tasks
+
+Trigger tiles are better for one-step story beats and automatic environmental encounters.
+
+---
+
+## 9. Best Practices
+
+- use unique IDs
+- place tiles where the player can actually reach them
+- keep notifications short and readable
+- test collision on large sprites
+- test repeat behavior and one-time behavior separately
+- use sound intentionally, not on every object
+- use interactables for deliberate action and triggers for inevitable movement-based events
 

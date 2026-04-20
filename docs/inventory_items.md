@@ -1,128 +1,172 @@
 # Inventory & Items Guide
 
-This guide explains how to add new items to Cynrith, including their assets, definitions, usage effects, and sound options.  
-Items are central to gameplay, progression, and quest rewards. You’ll learn how to create consumables, equipment, quest items, and more.
+This guide explains the current item model in Cynrith.
+
+Items are no longer just simple consumables. They can also act as:
+
+- weapons
+- utility items
+- quest requirements
+- trader economy anchors
+- Home Plot rewards and placeables
 
 ---
 
 ## 1. Where to Define Items
 
-- All items are defined in `assets/js/DEFINITIONS/items.js` in the `ITEM_DEFINITIONS` object.
-- Each item is an object with properties for ID, name, description, image, rarity, stackability, usage, and sound.
+Items live in `assets/js/DEFINITIONS/items.js` under `ITEM_DEFINITIONS`.
+
+Use `assets/js/inventory/itemEffects.js` when an item needs custom on-use behavior.
 
 ---
 
-## 2. Item Definition Structure
+## 2. Basic Item Structure
 
-**Template Example:**
+Example:
+
 ```javascript
 {
     id: "health_buff_small",
     name: "Health Buff - Small",
     description: "Restores 10 health.",
     image: "assets/img/items/health_buff_small.png",
-    rarity: "common", // common, rare, epic, legendary
+    rarity: "common",
     stackable: true,
     useable: true,
     removeable: true,
-    sound: "health.wav" // Sound played when used (optional)
+    sound: "health.mp3"
 }
 ```
 
-**Key Properties:**
-- `id`: Unique string identifier.
-- `name`: Display name.
-- `description`: Shown to the player.
-- `image`: Path to item image in `assets/img/items/`.
-- `rarity`: Item rarity (affects pickup sound).
-- `stackable`: Can stack in inventory.
-- `useable`: Can be used (consumed/equipped).
-- `removeable`: Can be removed from inventory.
-- `sound`: Sound file played when used (optional).
+Common fields:
+
+- `id`
+- `name`
+- `description`
+- `image`
+- `rarity`
+- `stackable`
+- `useable`
+- `removeable`
+- `sound`
 
 ---
 
-## 3. Adding Item Assets
+## 3. Current Item Categories
 
-- Place item images in `assets/img/items/`.
-- Use clear, descriptive file names matching the item’s `id`.
-- For new sounds, place `.wav` files in `assets/sound/sfx/items/`.
+### Consumables
 
----
+Typical stat or healing items.
 
-## 4. Making Items Usable
+### Weapons
 
-- Set `useable: true` in the item definition.
-- Add an effect function in `assets/js/inventory/itemEffects.js`:
-    ```javascript
-    ITEM_EFFECTS.health_buff_small = function(player) {
-        player.setHealth(player.health + 10);
-        notify("Restored 10 health!", 1500);
-    };
-    ```
-- The effect function is called when the item is used from the inventory menu.
+Weapons are real item definitions and use `itemType: "weapon"`.
 
----
+Weapon-specific fields can include:
 
-## 5. Adding Item Sounds
+- `attackBonus`
+- `rangeTiles`
+- `slashSfx`
+- `hitSfx`
 
-- Set the `sound` property in the item definition (e.g. `"health.wav"`).
-- The sound will play when the item is used.
-- Pickup sounds are played automatically based on item rarity (`common.wav`, `rare.wav`, etc.).
+### Currency and gems
 
----
+Currency and gem items help drive traders and the skill system.
 
-## 6. Item Types & Uses
+### Quest items and loot
 
-- **Consumables:**  
-  Buffs, potions, stat upgrades. Useable and often stackable.
-- **Equipment:**  
-  Weapons, armor. Usually not stackable, may not be useable.
-- **Quest Items:**  
-  Items required for quests. May be stackable or not, usually not useable.
-- **Currency:**  
-  Coins, trade items. Stackable, not useable.
-- **Loot:**  
-  Drops from enemies, used for quests or trading.
+These support floor quests, enemy drops, and story progression.
+
+### Home Plot items
+
+These are special items that use `homePlaceable: true` and a `homeDef` block.
+
+See `docs/homePlot.md` for the full Home item workflow.
+
+### Utility items
+
+Some items trigger systems instead of acting like normal consumables.
+
+Current examples include:
+
+- inventory expansion items
+- the Home Plot key item
 
 ---
 
-## 7. Example: Adding a New Item
+## 4. On-Use Effects
 
-1. **Create the image:**  
-   Place `my_new_item.png` in `assets/img/items/`.
-2. **Add the definition:**
-    ```javascript
-    my_new_item: {
-        id: "my_new_item",
-        name: "My New Item",
-        description: "A mysterious artifact.",
-        image: "assets/img/items/my_new_item.png",
-        rarity: "epic",
-        stackable: false,
-        useable: true,
-        removeable: true,
-        sound: "artifact.wav"
-    }
-    ```
-3. **Add the effect (if useable):**
-    ```javascript
-    ITEM_EFFECTS.my_new_item = function(player) {
-        player.addAttack(5);
-        notify("Attack increased by 5!", 1500);
-    };
-    ```
-4. **Add the sound file:**  
-   Place `artifact.wav` in `assets/sound/sfx/items/`.
+If an item should do something when used, define its behavior in `assets/js/inventory/itemEffects.js`.
+
+Example:
+
+```javascript
+ITEM_EFFECTS.health_buff_small = function(player, amount = 1) {
+    const heal = 10 * amount;
+    player.setHealth(player.health + heal);
+    notify(`Restored ${heal} health!`, 1800);
+};
+```
+
+Important note:
+
+- `useItem(itemId, amount)` checks `ITEM_EFFECTS`
+- items can opt out of being consumed by setting `consumeOnUse: false`
 
 ---
 
-## 8. Best Practices
+## 5. Special Utility Items
 
-- Use unique IDs for all items.
-- Keep image and sound file names consistent with IDs.
-- Test item pickup, usage, and removal in-game.
-- For quest items, reference the item ID in your quest definitions.
-- For trader/shop items, add them to `traders.js` for buy/sell options.
+Not all usable items are stat consumables.
+
+Current important patterns:
+
+- `inventory_page` expands the inventory instead of healing or buffing
+- `key_without_a_door` warps the player to the Home Plot and is not consumed
+
+This pattern can be reused for future authored utility items.
 
 ---
+
+## 6. Home Plot Item Routing
+
+Home Plot items do not enter the normal inventory.
+
+If an item has `homePlaceable: true`:
+
+- `addItem` routes it to Home storage
+- `removeItem` and `hasItem` also use the Home storage path
+- rewards from quests, tiles, and traders can still use normal item reward flows
+
+This makes Home rewards easy to author without separate reward code.
+
+---
+
+## 7. Sounds and Pickup Behavior
+
+- item use sounds come from the item's `sound` field
+- pickup sounds are driven automatically from item rarity
+
+If an item is meant to feel important, its rarity matters for both economy and feedback.
+
+---
+
+## 8. Example: Adding a New Home Reward Item
+
+If you want a floor to reward a decoration:
+
+1. Add the item definition in `items.js`.
+2. Set `homePlaceable: true`.
+3. Add a valid `homeDef` block.
+4. Give it through a quest, interactable, NPC, or trader.
+5. Test that it routes to Home storage and places correctly.
+
+---
+
+## 9. Best Practices
+
+- use unique IDs
+- keep names and descriptions floor-specific where needed
+- treat weapons and utility items as real authored systems, not edge cases
+- test use behavior, consumption behavior, and sound behavior
+- if an item is meant for the Home Plot, test routing and placement too

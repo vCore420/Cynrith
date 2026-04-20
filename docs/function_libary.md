@@ -1,118 +1,211 @@
 
-## Player Stat Getters/Setters:
+## Player Stat Getters/Setters
 - getHealth(), setHealth(val), addHealth(val)
 - getMaxHealth(), setMaxHealth(val), addMaxHealth(val)
 - getXP(), addXP(val)
 - getAttack(), setAttack(val), addAttack(val)
 - getDefence(), setDefence(val), addDefence(val)
-- getAttackSpeed(), setAttackSpeed(val), addAttackSpeed(val) — Gets/sets/adds to the player's attack speed stat (raw value, e.g. 0–5000).
-- getAttacksPerSecond() — Returns the player's actual attacks per second (1 + attackSpeed * 0.002, capped at 10).
+- getAttackSpeed(), setAttackSpeed(val), addAttackSpeed(val)
+- getAttacksPerSecond() — Returns the player's actual attacks per second.
+- getTotalXpGainModifier() — Returns the player’s total XP gain modifier from equipped skills or future systems.
+- getEquippedWeaponDef() — Returns the definition for the currently equipped weapon, if valid.
+- ensureValidEquippedWeapon() — Ensures the player still has a valid equipped weapon and falls back to the first available one if needed.
 
 
 ## Save & Load System
-- getCurrentSaveData() — Returns an object representing the current game state (player stats, inventory, map, quests, etc.) for saving.
-- saveGame() — Saves the current game state to localStorage under the player's name.
+- getCurrentSaveData() — Returns an object representing the current game state for saving.
+- saveGame() — Saves the current game state to localStorage under the player’s name.
 - getAllSaves() — Returns an array of all saved games found in localStorage.
-- applySaveData(data) — Applies loaded save data to the current game state (player, inventory, quests, etc.).
-- loadGame(playerName, onLoaded) — Loads a saved game by player name, applies the data, and warps the player to the correct map and position.
+- applySaveData(data) — Applies loaded save data to the current game state.
+- loadGame(playerName, onLoaded) — Loads a saved game by player name and warps the player to the correct map and position.
 - patchForcedEncounters() — Patches forced encounter flags for NPCs after loading a save.
+- sanitizeSaveFileName(name) — Cleans a save name for export-safe filenames.
+- buildSaveExportPayload(save) — Wraps a save in the project’s export format.
+- downloadJsonFile(data, fileName) — Downloads save/export data as JSON.
+- normalizeImportedSave(raw) — Normalizes imported save data into the current expected format.
+- importSaveFromFile(file) — Imports a save from a JSON file and writes it to localStorage.
+- showLoadGameMenu() — Builds and opens the load/save management UI.
+- fadeOutTitleAndLoadGame(playerName) — Handles title fade-out and load transition.
+- showLoadingScreen(onLoaded), hideLoadingScreen() — Controls the loading screen UI.
 
 
 ## Data Definitions
-- NPC_DEFINITIONS — Object mapping NPC IDs to their data (name, sprite, wander area, dialogue, quests, etc).
-- ENEMY_TYPES — Object mapping enemy type IDs to their data (name, sprite, stats, wander area, etc).
-- ITEM_DEFINITIONS — Object mapping item IDs to their data (name, description, image, stackable, useable, etc).
-- FLOOR_NAMES - Holds all floor names to their matching map indexs (Used in the UI).
-- WORLD_SPRITES — Array of world sprite definitions for modular animated objects (id, positions, spriteSheet, imageW, imageH, rows, cols, animSpeed, zIndex, collision).
-- INTERACTABLE_TILES — Array of interactable tile definitions (id, map, x, y, image, notification, dialogue, rewards).
-- INVENTORY_SIZE — Constant for inventory grid size.
-- QUEST_DEFINITIONS — Object mapping quest IDs to their data.
+- NPC_DEFINITIONS — NPC data definitions.
+- ENEMY_TYPES — Enemy data definitions.
+- ITEM_DEFINITIONS — Item data definitions.
+- QUEST_DEFINITIONS — Quest data definitions.
+- INTERACTABLE_TILES — Interactable tile definitions.
+- TRIGGER_TILES — Trigger tile definitions.
+- WORLD_SPRITES — World sprite definitions.
+- FLOOR_NAMES — Floor names mapped to map indices.
+- NAMED_MAP_INFO — Named map metadata such as `castle0`.
+- INVENTORY_SIZE — Inventory page size.
+- INVENTORY_MAX_PAGES — Maximum number of unlockable inventory pages.
 
 
-## Control flags
-- controlsEnabled — flag for enabling/disabling input (used by menu).
-- actionButtonAPressed, actionButtonBPressed — flags for A/B button presses (used for interactions).
-- playerAnimating — Flag for controlling player animation and viewport freeze during combat/knockback.
-- deathScreenShown — Flag for showing/hiding the player death overlay.
-- player.frozen — Flag for freezing player movement (used in dialogue, combat, etc.).
+## Core Runtime / Progression Helpers
+- Setup(playerName, mapIndex, spriteFile) — Initializes the main game state and starts the runtime.
+- Loop() — Main game loop.
+- Sizing() — Recalculates canvas sizing and viewport dimensions.
+- Log(type, text) — Writes runtime data to the on-screen log.
+- LoadURL(url, callback) — Loads map/data assets.
+- getFloorNumberFromMap(mapIndex) — Resolves a floor number from a map index or named map.
+- markFloorVisited(mapIndex) — Marks a floor as visited for return travel or progression logic.
+- pressA(e), pressB(e) — Set action-button flags.
+
+
+## Control Flags
+- controlsEnabled — Global flag for enabling/disabling input.
+- actionButtonAPressed, actionButtonBPressed — A/B button press flags.
+- playerAnimating — Controls player animation lock and viewport freeze during combat/knockback.
+- deathScreenShown — Controls death overlay state.
+- player.frozen — Freezes player movement.
+- homePlotTravelMenuOpen — Tracks whether the Home Plot travel selector is open.
 
 
 ## Collision & Movement
-- isTileBlockedAtPixel(px, py, direction) — Checks if a pixel position (with direction) is blocked by a collision tile, using a centered 64x64 collision box for 96x96 sprites.
-- isNpcTileBlockedAtPixel(px, py, direction) — Checks collision for NPCs/enemies at a pixel position, using the same logic as the player.
-- isTileBlockedByWorldSprite(tileX, tileY) — Checks if a tile is blocked by a world sprite with collision enabled.
-- isPlayerAdjacentToTeleportStone() — Checks if the player is adjacent to any teleport stone.
-- isPlayerAdjacentToTile(x, y) — Checks if the player is adjacent to a specific tile (used for teleport/interaction logic).
+- isTileBlockedAtPixel(px, py, direction) — Checks player collision against tiles/world.
+- isNpcTileBlockedAtPixel(px, py, direction, npcObj) — Checks NPC/enemy collision.
+- isTileBlockedByWorldSprite(tileX, tileY) — Checks if a tile is blocked by a world sprite.
+- isTileBlockedByInteractable(tileX, tileY) — Checks if a tile is blocked by an interactable tile.
+- isTileBlockedByHomePlacement(tileX, tileY) — Checks if a tile is blocked by a Home Plot placement.
+- isMapCollisionTile(tileX, tileY) — Checks whether a tile is inherently collidable in the map data.
+- isPlayerAdjacentToTeleportStone() — Checks if the player is adjacent to a teleport stone.
+- isPlayerAdjacentToTile(x, y) — Checks if the player is adjacent to a specific tile.
+- isNpcPixelCollision(npc, px, py) — Checks pixel collision between the player and a specific NPC.
+- isPlayerPixelCollision(npcPx, npcPy, npcObj) — Checks whether an NPC/enemy would collide with the player.
+- isNpcCharacterCollisionAtPixel(px, py, npcObj) — Checks pixel collision between NPCs/enemies.
+- isWalkable(tileX, tileY) — A reusable walkability test used by AI/pathfinding.
+- worldTileFromClientPoint(clientX, clientY) — Converts pointer position to a world tile in Home Plot mode.
 
 
 ## Character System
 - Player(tile_x, tile_y, spriteFile) — Player constructor.
-- player.move(x, y) — Moves the player by x/y pixels, updates tile position.
+- player.move(x, y) — Moves the player by x/y pixels and updates tile position.
 - player.frame() — Advances player animation frame.
-- Character(x, y, spriteSrc, type, customData) — Base class for NPCs and enemies, supports custom data and unique IDs.
+- player.attackEnemy() — Handles player combat attack logic.
+- player.quickAttackAnim() — Attack-lunge animation.
+- player.knockbackAnim() — Knockback animation.
+- Character(x, y, spriteSrc, type, customData) — Base class for NPCs and enemies.
 - NPC(...), Enemy(...) — Friendly and hostile character constructors.
-- respawnEnemy(enemyId, spawnIdx) — Respawns an enemy at its original spawn location after death.
+- getCharDimensions(char) — Returns runtime dimensions for a character.
+- getCharBounds(char, overridePx, overridePy) — Returns runtime bounds for collision checks.
+- respawnEnemy(enemyId, spawnIdx) — Respawns an enemy at its original spawn location.
 
 
 ## Spawning Helpers
-- spawnNPC(npcId, x, y) — Spawns an NPC from NPC_DEFINITIONS at a location.
-- spawnEnemy(typeId, x, y) — Spawns an enemy from ENEMY_TYPES at a location.
-- spawnCharactersForMap(mapIndex) — Spawns all NPCs and enemies for a given map based on their definitions.
-- spawnTeleportStonesForMap(mapIndex) — Spawns teleport stones at defined locations for the current map.
+- spawnNPC(npcId, x, y) — Spawns an NPC from NPC_DEFINITIONS.
+- spawnEnemy(typeId, x, y) — Spawns an enemy from ENEMY_TYPES.
+- spawnCharactersForMap(mapIndex) — Spawns all NPCs and enemies for the current map.
+- spawnTeleportStonesForMap(mapIndex) — Spawns teleport stones for the current map.
 - drawTeleportStones() — Draws teleport stones.
-- spawnWorldSpritesForMap(mapIndex) — Spawns world sprites for the current map based on their definitions.
+- spawnWorldSpritesForMap(mapIndex) — Spawns world sprites for the current map.
+- spawnInteractableTilesForMap(mapIndex) — Spawns interactable tiles for the current map.
+- spawnTriggerTilesForMap(mapIndex) — Spawns trigger tiles for the current map.
+- spawnHomePlacementsForMap(mapIndex) — Spawns Home Plot placements for the current map.
 - spawnTitleScreenNPCs(mapName) — Spawns NPCs for the title screen map.
 - spawnTitleWorldSpritesForMap(mapName) — Spawns world sprites for the title screen map.
 
 
-## Npc Logic
-- updateCharacters() — Updates all NPCs and enemies (AI, movement).
+## NPC Logic
+- updateCharacters() — Updates all NPCs and enemies.
 - drawCharacters() — Draws all NPCs and enemies.
-- wanderAI(char) — Handles wandering AI for NPCs/enemies (respects isInteracting flag).
-- checkNpcInteraction() — Checks if player is in range of an interactive NPC, shows notification, starts dialogue, and handles NPC facing/stop movement during interaction.
-- checkNpcInteraction() — Checks for NPC interactions and handles dialogue and facing logic.
+- wanderAI(char) — Wander logic for NPCs/enemies.
+- randomDirection() — Returns a random facing/movement direction.
+- getDirectionKey(fromX, fromY, toX, toY) — Returns the basic direction key between two points.
+- getDirectionKeyFromName(direction) — Converts direction name to direction key.
+- getDirectionToFace(npc, player) — Returns the direction an NPC/enemy should face.
+- tryMoveNpcStep(char, stepX, stepY, direction) — Attempts a single NPC movement step.
+- moveEnemyTowardPlayer(char) — Moves an enemy toward the player.
+- moveEnemyTowardTile(char, tx, ty) — Moves an enemy toward a specific tile.
+- findPathAStar(start, goal, isWalkable) — Finds a path using A*.
+- isAdjacentToPlayer(char) — Checks whether a character is adjacent to the player.
+- hasPendingForcedEncounter(npc) — Checks whether an NPC still has an untriggered forced encounter.
+- checkNpcInteraction() — Handles NPC interaction checks and dialogue start.
 - checkForcedEncounters() — Handles forced NPC encounters triggered by player position.
+- playEnemyAmbientSounds() — Plays ambient enemy sounds for nearby hostile units.
 
 
-## Warping/Teleportation
-- warpToMap(mapIndex, spawnType) — Warp player to a map and spawn NPCs/enemies.
-- tryWarpToMap(targetMapIndex, spawnType, requiredXP) — Warp if player has enough XP.
-- checkTeleport() — Handles teleport tile logic and notifications.
-- checkBackTeleport() — Handles back-teleport tile logic and notifications.
+## Warping / Teleportation
+- warpToMap(mapIndex, spawnType, targetPos, onWarped) — Warps the player to a map and respawns runtime content.
+- checkTeleport() — Handles forward-teleport logic and notifications.
+- checkBackTeleport() — Handles back-teleport logic and Home Plot travel interaction.
+- isHomePlotMap() — Checks whether the current map is the Home Plot.
+- getVisitedFloorsForTravel() — Returns discovered floors for travel UI.
+- openHomePlotTravelMenu() — Opens the Home Plot floor selector.
+- closeHomePlotTravelMenu() — Closes the Home Plot floor selector.
 
-## Interactable/Trigger Tiles
-- spawnInteractableTilesForMap(mapIndex) — Spawns interactable tiles for the current map.
-- drawInteractableTiles() — Draws interactable tiles.
-- checkInteractableTileInteraction() — Checks for interactable tile interaction.
-- spawnTriggerTilesForMap(mapIndex) — Spawns trigger tiles for the current map.
-- checkTriggerTileActivation() — Checks for trigger tile activation.
+
+## Interactable / Trigger Tile System
+- drawInteractableTiles(zIndex) — Draws interactable tiles, optionally filtered by zIndex.
+- drawSingleInteractableTile(tile) — Draws one interactable tile.
+- checkInteractableTileInteraction() — Handles interactable tile interaction, dialogue, rewards, and optional teleport.
+- checkTriggerTileActivation() — Handles trigger tile activation and rewards.
+- playInteractionTileSounds() — Drives looped and ambient interaction sounds for active tiles.
+- playTriggerTileSound(tile) — Plays trigger SFX when a tile is activated.
 
 
 ## Combat System
-- showDamagePopup(x, y, dmg, type) — Displays a damage popup above the target (enemy or player) with animated slide and fade.
-- handleEnemyDeath(enemy) — Handles enemy defeat, fade-out animation, loot/XP drop, quest progress (for enemyDefeat quests), and respawn logic.
-- handlePlayerDeath() — Triggers player death sequence, fade-out, and shows respawn menu.
-- respawnPlayer() — Respawns the player at the map’s spawn position with half health and resets death screen.
-- getDirectionToFace(npc, player) — Returns the direction key for an NPC/enemy to face the player.
-- moveEnemyTowardPlayer(char) — Moves an enemy toward the player, sets facing direction, and triggers hostile state.
-- drawDamagePopups() — Renders all active damage popups above characters.
-- player.attackEnemy() — Handles player attack logic, enforces attack speed cooldown, and applies damage to enemies.
-- player.quickAttackAnim() — Animates the player's attack lunge.
-- player.knockbackAnim() — Animates the player being knocked back.
-- moveEnemyTowardTile(char, tx, ty) — Moves an enemy toward a specific tile.
-- findPathAStar(start, goal, isWalkable) — Finds a path using A* algorithm.
+- showDamagePopup(x, y, dmg, type) — Displays a damage popup.
+- drawDamagePopups() — Draws all active damage popups.
+- drawPlayerHealthHUD() — Draws the player health HUD.
+- handleEnemyDeath(enemy) — Handles enemy defeat, drops, respawn logic, and quest progress.
+- handlePlayerDeath() — Triggers player death sequence.
+- showDeathScreen() — Shows the death screen overlay.
+- respawnPlayer() — Respawns the player and restores partial health.
 
 
-## Menu/UI
-- openMenu(), closeMenu() — Show/hide the player menu, disables/enables controls, starts/stops stat refresh.
-- showInventoryMenu() — Shows the inventory page in the player menu.
+## Sound System
+- SoundManager.playBgMusic(src, loop) — Starts background music.
+- SoundManager.stopBgMusic() — Stops background music.
+- SoundManager.setBgMusicVolume(vol) — Sets background music volume.
+- SoundManager.fadeBgMusicVolume(targetVol, duration) — Fades background music over time.
+- SoundManager.playEffect(src) — Plays a one-shot sound effect.
+- SoundManager.setEffectVolume(vol) — Sets effect volume.
+- SoundManager.muteAll(mute) — Mutes/unmutes all managed sound.
+- playFootstepSoundForCurrentTile() — Plays floor-specific footstep SFX based on tile data.
+
+
+## Menu / UI
+- openMenu(), closeMenu() — Opens/closes the player menu.
+- updatePlayerMenuSprite() — Draws the player preview sprite in the menu.
+- updatePlayerMenuStats() — Updates the compact player stat UI.
 - showPlayerMenuMain() — Returns to the main player menu page.
-- updatePlayerMenuSprite() — Draws the player sprite in the menu preview.
-- updatePlayerMenuStats() — Displays player stats (health, XP, attack, defence) in the menu, updates regularly.
-- charPreviewCanvas mouseenter/mouseleave — Handles sprite preview animation on hover in the character selection screen.
-- hideGameUI() — Hides all game UI elements.
-- showGameUI() — Shows all game UI elements.
-- showDeathScreen() — Shows player death screen.
+- showInventoryMenu() — Opens the inventory page.
+- showStatsMenu() — Opens the full stats page.
+- renderFullStatsPage() — Renders the extended stats page.
+- showQuestsMenu() — Opens the quests page.
+- showSettingsMenu() — Opens the settings page.
+- patchSettingsFromSave(data) — Applies saved settings to runtime/UI.
+- showMapMenu() — Opens the map preview page.
+- drawMapPreview() — Draws the current map preview, including NPC/enemy/player markers.
+- showSkillsMenu() — Opens the skills page.
+- showSkillsGachaScreen(), hideSkillsGachaScreen() — Toggles the skill gacha screen.
+- renderSkillsMenu() — Renders equipped and owned skills.
+- showSkillDropdown(skillId, anchorEl) — Opens the skill action/details dropdown.
+- hideGameUI(), showGameUI() — Hides/shows game HUD and controls.
+
+
+## Skill / Stat Extension Helpers
+- ensureExtendedPlayerStats() — Ensures newer secondary stats exist on the player.
+- ensurePlayerBaseStats() — Ensures the cached base-stat structure exists.
+- updatePlayerBaseStats() — Updates cached base stats after stat changes.
+- getEquippedSkillResistanceTotal() — Returns resistance granted by equipped skills.
+- getEquippedSkillStatDelta(stat) — Returns the total delta a skill loadout applies to a stat.
+- applySkillEffect(skillId, direction) — Applies or removes a skill’s stat effects.
+- getTotalResistance() — Returns total current skill resistance.
+- updateRegenEffect() — Applies/removes passive regen or degeneration from equipped skills.
+- equipSkill(skillId), unequipSkill(slotIndex) — Equip/unequip a skill.
+- getUpgradeCost(pool, level, rarity) — Returns gem cost and type for a skill upgrade.
+- isMaxLevel(level, maxLevel) — Checks if a skill is maxed out.
+- upgradeSkill(skillId) — Upgrades a skill if resources allow.
+- getSkillDef(id) — Returns a skill definition.
+- getPlayerSkill(id) — Returns the player’s owned skill entry.
+- addOrUpgradeSkill(skillId) — Adds a new skill or upgrades it if already owned.
+- spendGem(gemId) — Consumes a gem for gacha/upgrade use.
+- weightedRandomSkill(pool) — Picks a skill from a weighted pool.
+- spinGachaReel(pool, callback) — Runs the gacha reel animation.
+- disableGachaButtons(), enableGachaButtons() — Protects the gacha UI during spin animations.
 
 
 ## Notification & Dialogue System
@@ -124,38 +217,83 @@
 
 
 ## Inventory System
-- addItem(itemId, amount) — Add an item to the inventory (stacks if possible).
-- removeItem(itemId, amount) — Remove an item from the inventory, shifts items to fill empty slots.
-- hasItem(itemId, amount) — Returns true if player has at least `amount` of the item.
+- addItem(itemId, amount) — Adds an item to inventory or routes Home Plot items to Home storage.
+- removeItem(itemId, amount) — Removes an item from inventory or Home storage.
+- hasItem(itemId, amount) — Checks whether the player has a given item.
+- getItemCount(itemId) — Returns the total count of an item.
 - updateInventoryUI() — Renders the inventory grid.
-- showItemDropdown(index, slot, def) — Shows dropdown menu for inventory item actions.
-- showRemoveAmountPrompt(slot, def) — Shows prompt to remove a specific amount of an item.
-- getItemCount(itemId) — Returns the count of a specific item in the player's inventory (used for itemCollect quests).
+- showItemDropdown(index, slot, def, event) — Opens the inventory item dropdown.
+- unlockInventoryPage() — Unlocks another inventory page.
+- useItem(itemId, amount) — Applies item effects and consumes the item if appropriate.
+- ITEM_EFFECTS — Object mapping item IDs to effect functions.
 
 
 ## Quest System
-- showQuestsMenu() — Opens the quest menu with tabs for active/completed quests.
-- startQuest(questId) — Adds a quest to the player's active quests (except for gift quests).
-- completeQuest(questId) — Moves a quest from active to completed and updates quest state.
-- tryCompleteQuest(questId) — Checks quest requirements and, if met, completes the quest and gives rewards.
-- giveQuestRewards(rewards) — Gives items and XP to the player based on the quest's rewards array.
-- updateQuestsUI(tab) — Updates the quest menu UI for active/completed quests.
-- updateQuestHUD() — Updates the on-screen quest HUD to show current active quests and their progress.
-- getItemCount(itemId) — Returns the number of a specific item in the player's inventory.
+- showQuestsMenu() — Opens the quest menu.
+- startQuest(questId) — Starts a quest.
+- tryCompleteQuest(questId) — Attempts to complete a quest if conditions are met.
+- completeQuest(questId) — Marks a quest completed.
+- giveQuestRewards(rewards) — Gives quest rewards.
+- isQuestCompleted(questId) — Checks if a quest has been completed.
+- isQuestReadyToComplete(questId) — Checks if a quest can currently be turned in.
+- npcHasReadyQuest(npc) — Checks whether an NPC has a quest ready for turn-in.
+- updateQuestsUI(tab) — Updates the quest menu UI.
+- updateQuestHUD() — Updates the on-screen quest HUD.
 - playerQuests — Object holding active and completed quests.
-- playerQuestProgress — Object holding quest progress.
-- statBuildQuestStart — Object holding stat build quest start values.
+- playerQuestProgress — Object holding per-quest progress.
+- statBuildQuestStart — Object holding baseline values for stat-build quests.
 
 
-## Title Screen Map System
+## Home Plot System
+- isHomePlotBaseMap(mapIndex) — Checks if a map is the main Home Plot map.
+- isHomeInteriorMap(mapIndex) — Checks if a map is a generated Home interior instance.
+- isHomeBuildRealm(mapIndex) — Checks whether Home Plot placement/build logic should be active.
+- getCurrentHomeMapKey() — Returns the current Home Plot map key.
+- ensureHomePlotSchema() — Ensures `window.homePlot` has the current expected structure.
+- getHomePlaceableDefs() — Returns all placeable Home Plot item definitions.
+- getHomeItemDef(itemId) — Returns a Home Plot item definition.
+- getHomeItemCount(itemId) — Returns the count of a Home Plot item in Home storage.
+- addHomePlotItem(itemId, amount) — Adds an item to Home storage.
+- removeHomePlotItem(itemId, amount) — Removes an item from Home storage.
+- buildHomePlacement(itemId, x, y) — Builds a placement record for a Home Plot item.
+- getHomeFootprintTiles(itemDef, x, y) — Returns all tiles occupied by a placement.
+- canPlaceHomeItem(itemId, x, y) — Checks whether an item can be placed at a location.
+- createHouseInteriorInstance(placement) — Creates an interior-instance map for a placed house.
+- reclaimInteriorItemsForHousePlacement(placement) — Reclaims items from an interior before removing its parent house.
+- placeHomeItemAt(itemId, x, y) — Places a Home Plot item into the world.
+- getPlacementAtTile(x, y) — Returns the placement at a tile, if any.
+- removePlacedHomeItemAt(x, y) — Removes a placed Home Plot item.
+- drawSingleHomePlacement(p) — Draws a single Home placement.
+- drawHomePlotItems(zIndex) — Draws Home Plot placements by layer.
+- drawHomePlotPreview() — Draws the Home Plot placement preview.
+- handleHomePlacementPointer(clientX, clientY, isTouchTap) — Handles pointer/touch placement input.
+- bindHomePlotPointerHandlers() — Binds Home Plot placement pointer handlers.
+- ensureHomePlotMenuDom() — Builds the Home Plot customizer DOM if missing.
+- renderHomePlotMenuItems() — Renders the Home Plot item list.
+- openHomePlotCustomizer() — Opens the Home Plot customizer.
+- closeHomePlotCustomizer() — Closes the Home Plot customizer.
+- toggleHomePlotCustomizer() — Toggles the Home Plot customizer.
+- getHouseDoorTiles(placement) — Returns door tiles for a placed house.
+- checkHomePlotHouseInteractions() — Checks for house-door interaction.
+- resolveHomeMapKeyForLoad(mapKey) — Resolves dynamic Home interior map keys when loading.
+- exportHomePlotState() — Exports Home Plot data for save serialization.
+- importHomePlotState(data) — Imports Home Plot data from a save.
+- ensureHomePlotHudButton() — Ensures the Home Plot HUD button exists.
+- updateHomePlotHudButtonVisibility() — Updates the HUD button visibility for Home Plot mode.
+
+
+## Title Screen / Intro System
+- formatPlayTime(seconds) — Formats playtime for save/load UI.
 - loadTitleMap() — Loads the title screen map.
 - centerTitleViewport() — Centers the title screen viewport.
-- startTitleScreenLoop() — Starts the animation loop for the title screen.
-- drawTitleMap() — Draws the title screen map.
-- drawTitleScreenNPCs() — Draws NPCs on the title screen map.
-- drawTitleWorldSprites(zIndex) — Draws world sprites on the title screen map.
-- unloadTitleMap() — Unloads the title screen map and cleans up.
-- resizeTitleMapCanvasAndViewport() — Resizes the title map canvas and viewport.
+- startTitleScreenLoop() — Starts the title map animation loop.
+- drawTitleMap() — Draws the title map.
+- updateTitleScreenNPCs() — Updates title screen NPC movement.
+- drawTitleScreenNPCs() — Draws title screen NPCs.
+- drawTitleWorldSprites(zIndex) — Draws title-screen world sprites.
+- unloadTitleMap() — Unloads the title map.
+- resizeTitleMapCanvasAndViewport() — Resizes title map canvas and viewport.
+- getTitleZoom() — Returns title map zoom level.
 
 
 ## Trader Shop System
@@ -184,17 +322,36 @@
 
 
 ## Utility
-- Sizing() — Updates window/canvas size and viewport dimensions.
-- Log(type, text) — Log data to screen (e.g. FPS, coords).
-- LoadURL(url, callback) — AJAX call for loading map and other data.
-- clearAllMovementKeys() — Sets all movement key flags to false (used to stop player movement instantly).
-- simulateKey(keyCode, isDown) — Simulates key events for touch controls.
+- clearAllMovementKeys() — Clears all movement key states.
+- simulateKey(keyCode, isDown) — Simulates movement/action keys.
+- canUseActionButtons() — Checks whether action buttons are currently allowed.
+- updatePlayerMovementDirection() — Updates player movement direction state.
+- setPlayerJoystickMovement(dx, dy) — Applies joystick movement.
+- resetJoystick() — Resets joystick state.
+- handleJoystickMove(clientX, clientY) — Updates joystick movement from pointer input.
 - isPortraitZoomed() — Returns true if device is portrait and zoomed.
-- getZoom() — Returns the current zoom factor.
+- getZoom() — Returns current zoom factor.
 
 
 ## World Sprite System
 - drawWorldSprites(zIndex) — Draws all active world sprites, optionally filtered by zIndex (layer).
 
+
+## Reusable / Broader-Than-Intended Uses
+
+- warpToMap(...) — Not just for teleport stones. Can be used for special items, cutscenes, dream sequences, Home Plot returns, boss-room sends, or one-off story events.
+- dialogue(...lines) — Not just for NPCs. Useful for environmental text, echo events, item memories, floor-entry flavor, and hidden lore discoveries.
+- notify(text, time) — Can be used as a lightweight feedback layer for systems that do not need a full UI panel.
+- addItem(itemId, amount) — Because it routes `homePlaceable` items to Home storage, it can be used as a generic reward function for both normal loot and housing/decor systems.
+- updateQuestHUD() — Useful as a general “refresh player-facing progression state” call after systems beyond quests, such as Home Plot rewards or item use.
+- npcHasReadyQuest(npc) — Useful outside direct NPC interaction, such as map previews, marker systems, or future quest-highlighting logic.
+- isWalkable(tileX, tileY) / findPathAStar(...) — Can be reused for escort logic, scripted NPC movement, puzzle entities, or non-enemy moving hazards.
+- SoundManager.fadeBgMusicVolume(...) — Useful for scene transitions, interludes, forced encounters, dreamlike moments, or floor-entry pacing shifts.
+- playInteractionTileSounds() — Can support ambient “sound zones” and nearby environmental storytelling, not just obvious interactables.
+- markFloorVisited(mapIndex) / getVisitedFloorsForTravel() — Useful for revisit systems, descent systems, trader unlock logic, or future floor-based achievements.
+- buildSaveExportPayload(...) / normalizeImportedSave(...) — Useful for any future backup, migration, or version-patching tools.
+- drawMapPreview() — Already works as more than a static map; it can support quest markers, trader markers, danger markers, and route planning.
+- applySkillEffect(...) — Can be repurposed for temporary blessings, curses, floor modifiers, or boss-debuff systems if those follow the same stat model.
+- useItem(itemId, amount) — Useful for special utility items that trigger world behavior, not just consumables, as shown by `key_without_a_door`.
 
 ---

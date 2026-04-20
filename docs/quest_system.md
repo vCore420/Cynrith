@@ -128,7 +128,13 @@ Quests are a core part of the game, driving story progression, rewarding explora
 - Combine quest types for multi-step objectives (e.g. collect items, defeat enemies, trigger tiles).
 - Use rewards to encourage exploration and progression (items, XP, stat boosts).
 - Write engaging dialogue and lore for quest givers.
-- Reference key NPCs, items, and lore objects from [Content Tracker](content_tracker.md) and [World Building](world_building.md).
+- Reference key NPCs, items, and lore objects from [Content Tracker](content_tracker.md) and [World Building](world_Building.md).
+
+### Reward Notes
+
+- Quest rewards can grant items, XP, and direct stat increases.
+- Because quest rewards use the normal item reward flow, they can also grant Home Plot items.
+- This makes quests a good place to give decor, structures, or special utility items tied to a floor's identity.
 
 ---
 

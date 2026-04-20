@@ -13,7 +13,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
   Used for title screen and floors Background tracks.
 
 - **Sound Effects (SFX):**  
-  Place `.wav` files in `assets/sound/sfx/`  
+  Place `.mp3` files in `assets/sound/sfx/`  
   Organized by subfolders:
     - `world/` (tile footsteps, warps, ambient world sounds)
     - `items/` (item pickup, usage, rarity)
@@ -24,16 +24,16 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ---
 
-## 2. Adding New SFX (.wav) Files
+## 2. Adding New SFX (.mp3) Files
 
 **To add a new sound effect:**
 
-1. **Place your `.wav` file** in the correct subfolder under `assets/sound/sfx/`.
-2. **Add the file name** (with subfolder, e.g. `items/remove.wav`) to the `SFX_FILES` array in `assets/js/core/preload.js`:
+1. **Place your `.mp3` file** in the correct subfolder under `assets/sound/sfx/`.
+2. **Add the file name** (with subfolder, e.g. `items/remove.mp3`) to the `SFX_FILES` array in `assets/js/core/preload.js`:
     ```javascript
     const SFX_FILES = [
       // ...existing files...
-      "items/remove.wav", // <-- Add your new file here
+      "items/remove.mp3", // <-- Add your new file here
     ];
     ```
 
@@ -47,7 +47,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 - **Tile Footsteps:**  
   In the `assets` array, set the `footsteps` property:
   ```json
-  {"file_name":"grass-2","collision":0,"frames":0, "footsteps": "grass.wav"}
+  {"file_name":"grass-2","collision":0,"frames":0, "footsteps": "grass.mp3"}
   ```
 
 ### **B. Tile Definitions**
@@ -56,7 +56,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
   ```javascript
   sound: {
       enabled: true,
-      file: "statue_activate.wav",
+      file: "statue_activate.mp3",
       type: "trigger" // "loop", "ambient", or "trigger"
   }
   ```
@@ -74,7 +74,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ### **E. Items**
 - **Usage Sounds:**  
-  Defined in item definition (`sound: 'health.wav'`), played when item is used.
+  Defined in item definition (`sound: 'health.mp3'`), played when item is used.
 
 
 ---
@@ -99,7 +99,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
   ```
 - **Play sound effect:**  
   ```javascript
-  SoundManager.playEffect("assets/sound/sfx/items/rare.wav");
+  SoundManager.playEffect("assets/sound/sfx/items/rare.mp3");
   ```
 - **Fade music volume:**  
   ```javascript
@@ -115,7 +115,7 @@ You can add background music, ambient sounds, interaction effects, combat sounds
 
 ## 6. Best Practices
 
-- Use `.wav` for SFX and `.mp3` for music.
+- Use `.mp3` for SFX and `.mp3` for music.
 - Keep sound file names descriptive and organized.
 - Always add new SFX to the preloader list for caching.
 - Test volume levels for each sound type.

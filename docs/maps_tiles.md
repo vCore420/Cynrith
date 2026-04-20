@@ -1,109 +1,194 @@
 # Maps & Tiles Guide
 
-This guide explains how to create a layered map for Cynrith using [Tiled Map Editor](https://www.mapeditor.org/), export it as JSON, add tile definitions, set up spawn/teleport/xp requirements, and theme your map. It also covers best practices for animation, collision, and pathfinding.
+This guide covers how Cynrith maps are authored and loaded.
+
+It applies to:
+
+- numbered floor maps such as `map0.json`
+- named maps such as `castle0.json` or `home_plot0.json`
+- supporting spaces such as interiors and side areas
 
 ---
 
-## 1. Designing Your Map in Tiled
+## 1. Building Maps in Tiled
 
-### **A. Setting Up Your Project**
-- Open Tiled and create a new map (choose "orthogonal" for Cynrith).
-- Set the map size (width/height in tiles) and tile size (64x64 pixels).
-- Name your layers (e.g. "Ground", "Objects").
-- Make animation tiles from sprite sheets
+### Setup
 
-### **B. Adding Layers**
-- **Ground Layer:** Base terrain (grass, dirt, stone, etc.).
-- **Object Layers:** Trees, rocks, water, buildings, etc, the games base map loader only loads 64 x 64px tiles, bigger tiles need to be added onto the base map in the worldSprites.js.
-- **Collision Layer:** You choose where the collsions go so pick something to use as a base like a bush or wall to set it above the ground layer, you can then make other object tiles likes tress and rocks have collisons too, these are set when making the maps json so just keep them in mind here
-- **Interactable/Trigger/World Sprite Layers:** These tiles are all add in javescript definitons, when using tiles you just need to focus on making a base map for your floor
+- Use orthogonal maps.
+- Use 64x64 tiles.
+- Build the navigable base map first.
+- Keep large decorative objects out of the base map if they should behave like layered sprites.
 
-### **C. Importing Tilesets**
-- Add your tileset images to `assets/img/tile/`.
-- In Tiled, create a new tileset for each image and assign the name the asset is.
-- Use these tilesets to paint your map.
+### Layers
 
----
+The engine supports Tiled multi-layer JSON as well as older single-layer maps.
 
-## 2. Exporting Your Map as JSON
+Typical layer use:
 
-- When your map is ready, go to **File > Export As** and choose JSON format.
-- Save the file as `mapX.json` in `assets/json/` (replace X with your floor number).
+- ground and terrain layers
+- object layers for normal tile-based structures
+- visual detail layers
+
+Important note:
+
+- interactables, trigger tiles, NPCs, enemies, traders, and world sprites are not authored directly through Tiled placement logic in the main runtime system
+- they are placed through JavaScript definitions and then spawned onto the map
 
 ---
 
-## 3. Adding Tile Definitions
+## 2. File Naming and Map Types
 
-- In your exported JSON, add an `"assets"` array at the top of the json listing each tile used:
-    ```json
-    "assets": [
-      {"file_name":"grass-2a","collision":0,"frames":0, "footsteps": "sand.wav"},
-      {"file_name":"rock-1","collision":1,"frames":0},
-      {"file_name":"water-1","collision":1,"frames":4}
-    ]
-    ```
-    - `file_name`: matches the tileset image name (without extension).
-    - `collision`: `1` for blocking, `0` for walkable.
-    - `frames`: number of animation frames (0 for static).
-    - `footsteps`: optional, sound file for player movement.
+### Numbered maps
 
-- **Tip:** Animated tiles need multiple frames in their asset definition and a matching sprite sheet.
-- The order of the tiles you list as assets here must be the same order as seen at the bottom of your json file, refer to current maps in assets/json
+Standard floors usually follow the `mapX.json` pattern.
 
----
+### Named maps
 
-## 4. Setting Spawn, Teleport, and XP Requirements
+The engine also supports named maps. Current examples include:
 
-- Add a `"spawn"` object for player start position:
-    ```json
-    "spawn": { "x": 35, "y": 42 }
-    ```
-- Add a `"teleport"` object for map exits or warps:
-    ```json
-    "teleport": { "x": 21, "y": 25, "xpRequired": 600 }
-    ```
-    - `x`, `y`: tile coordinates for teleport.
-    - `xpRequired`: XP needed to use the teleport.
+- `castle0`
+- `portal_island0`
+- `home_plot0`
+- interior-style maps such as `map6_int1`
 
+Named maps can still be associated with a floor through engine metadata.
+
+Use named maps when a space is:
+
+- an interior
+- a branch location
+- a narrative side space
+- a hub such as the Home Plot
 
 ---
 
-## 5. Theming Your Map
+## 3. Exporting JSON
 
-- Choose a consistent visual theme (e.g. forest, ruins, cave).
-- Use color, tile selection, and object placement to reinforce the theme.
-- Add ambient sounds to be used with npcs, trigger tiles, interactions etc
-- Add background music in assets/sound named to match your map JSON for immersion.
+- Export the map as JSON.
+- Place it in `assets/json/`.
+- Make sure the file name matches the name you intend the engine to load.
 
----
+For numbered floors, use the next available `mapX.json`.
 
-## 6. Animation & Collision Considerations
-
-### **A. Animation**
-- Set the `frames` property for animated tiles.
-- Ensure sprite sheets are correctly formatted (frame width = tile size).
-- Use animation for water, torches, magical effects, etc.
-
-### **B. Collision**
-- Mark blocking tiles with `collision: 1` in the asset definition.
-- Avoid placing collision tiles where the player could get stuck (tight corners, narrow passages).
-- Test player movement and enemy pathfinding to ensure smooth navigation.
-
-### **C. Pathfinding**
-- Ensure collision areas do not block critical paths or quest locations.
-- For enemies, leave enough open space for wandering and chasing the player.
-- Use the collision layer to guide both player and enemy movement.
+For named spaces, use a stable descriptive name.
 
 ---
 
-## 7. Final Checklist
+## 4. Tile Asset Metadata
 
-- [ ] Map exported as JSON and placed in `assets/json/`.
-- [ ] All tile images in `assets/img/tile/`.
-- [ ] Asset definitions updated in map JSON.
-- [ ] Spawn and teleport points set.
-- [ ] Collision and animation frames defined.
-- [ ] Map tested for stuck spots and pathfinding issues.
-- [ ] Theme, sounds, and music added for atmosphere.
+Each map JSON must include an `assets` array describing the tiles used by the map.
+
+Example:
+
+```json
+"assets": [
+    {"file_name":"grass-2a","collision":0,"frames":0,"footsteps":"sand.mp3"},
+    {"file_name":"rock-1","collision":1,"frames":0},
+    {"file_name":"water-1","collision":1,"frames":4}
+]
+```
+
+Important fields:
+
+- `file_name`
+- `collision`
+- `frames`
+- `footsteps`
+
+Notes:
+
+- `file_name` must match the tile image name without the extension.
+- animated tiles need a matching sprite sheet layout and correct frame count.
+- the asset order must still line up with the tileset order expected by the exported JSON.
 
 ---
+
+## 5. Spawn and Teleport Data
+
+### Spawn
+
+Use a `spawn` object for the map's entry point.
+
+```json
+"spawn": { "x": 35, "y": 42 }
+```
+
+### Forward teleport
+
+Use a `teleport` object for progression exits.
+
+```json
+"teleport": { "x": 21, "y": 25, "xpRequired": 600 }
+```
+
+Current forward teleport behavior:
+
+- the player gets a notification when adjacent
+- the player uses the A button
+- the engine checks `xpRequired`
+- success warps the player forward to the next floor map
+
+### Backward travel and Home Plot travel
+
+Backward travel is also part of the engine flow.
+
+- on normal maps, the spawn stone can return the player to the previous floor
+- on the Home Plot, the spawn stone opens the discovered-floor travel menu instead
+
+When designing a map, think about how it fits into this travel loop.
+
+---
+
+## 6. World Sprites Versus Base Tiles
+
+Use base tiles when something is part of the ground or standard tile structure.
+
+Use world sprites when something is:
+
+- larger than a normal tile
+- layered above or below the player
+- better handled as a reusable placed object
+- easier to animate or collide as a sprite than as raw tile art
+
+See `docs/worldSprites.md` for the sprite definition format.
+
+---
+
+## 7. Collision and Pathing
+
+Collision comes from more than the base map.
+
+During play, movement can be blocked by:
+
+- collidable map tiles
+- world sprites
+- interactable tiles with collision
+- Home Plot placements
+- other characters
+
+Because of that, a floor should be tested after all authored systems are present, not just after the map JSON loads.
+
+---
+
+## 8. Sound Hooks in Maps
+
+Map-level sound hooks include:
+
+- background music by map
+- tile footstep sounds through asset metadata
+
+Additional nearby ambience often comes from interactables, triggers, NPCs, and enemies instead of the map file itself.
+
+---
+
+## 9. Final Checklist
+
+- [ ] JSON exported into `assets/json/`
+- [ ] file naming matches intended runtime use
+- [ ] `assets` metadata block added and checked
+- [ ] spawn point added
+- [ ] teleport point added if needed
+- [ ] tile collisions tested
+- [ ] pathing tested with NPCs and enemies present
+- [ ] world sprites moved out of the base tile layer where appropriate
+- [ ] footstep and map music behavior tested

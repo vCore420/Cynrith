@@ -1,20 +1,33 @@
 # Trader System Guide
 
-This guide explains how to add and configure traders (shop NPCs) in Cynrith.  
-Traders allow players to buy and sell items, providing a key source of progression, resource management, and quest rewards.
+This guide explains how traders work in Cynrith.
+
+Traders are part of floor identity. They are not only generic shops.
+
+Current trader roles include:
+
+- floor-specific consumables
+- gems for the skill system
+- Home Plot decor
+- inventory expansion items
 
 ---
 
 ## 1. Where to Define Traders
 
-- All traders are defined in `assets/js/DEFINITIONS/traders.js` in the `TRADER_DEFINITIONS` object.
-- Each trader is an object with arrays for items they buy and sell, including prices.
+Traders live in `assets/js/DEFINITIONS/traders.js` under `TRADER_DEFINITIONS`.
+
+Each trader has:
+
+- `buy`: items sold to the player
+- `sell`: items the trader buys from the player
 
 ---
 
 ## 2. Trader Definition Structure
 
-**Template Example:**
+Example:
+
 ```javascript
 const TRADER_DEFINITIONS = {
     trader1: {
@@ -30,75 +43,78 @@ const TRADER_DEFINITIONS = {
 };
 ```
 
-**Key Properties:**
-- `buy`: Array of items the trader sells to the player, with prices.
-- `sell`: Array of items the trader buys from the player, with prices.
-
 ---
 
 ## 3. Linking Traders to NPCs
 
-- In your NPC definition (`charactersData.js`), set the `trader` property to the trader’s ID:
-    ```javascript
-    eldrin_steward: {
-        id: "eldrin_steward",
-        name: "Eldrin the Steward",
-        sprite: "assets/img/npc/eldrin.png",
-        trader: "trader1", // Links to trader definition
-        // ...other NPC properties
-    }
-    ```
-- When the player interacts with this NPC, the trader shop menu will open.
+Link the trader ID from an NPC definition in `charactersData.js`.
+
+Example:
+
+```javascript
+mordis_the_relic_seeker: {
+    id: "mordis_the_relic_seeker",
+    name: "Mordis the Relic-Seeker",
+    sprite: "assets/img/npc/mordis.png",
+    trader: "trader2"
+}
+```
+
+When the player interacts with that NPC, the trader UI opens.
 
 ---
 
-## 4. Adding Items to Traders
+## 4. Current Economy Expectations
 
-- Add new items to the `buy` or `sell` arrays in the trader definition.
-- Make sure the item exists in `ITEM_DEFINITIONS` and has an image and description.
+The current trader system uses the `money` item as currency.
+
+Trader stock can include more than regular inventory items.
+
+Live examples already include:
+
+- blue, red, and pink gems
+- `inventory_page`
+- Home Plot furniture and structures
+
+That means traders can support progression loops, build loops, and revisit loops, not just healing.
 
 ---
 
-## 5. Trader Shop UI
+## 5. Stock Design by Floor Role
 
-- The trader shop menu displays buy and sell tabs.
-- Players can purchase items if they have enough coins (`money` item).
-- Players can sell items they own for coins.
+When designing a new trader, decide what role they serve:
+
+- progression support
+- rare resource exchange
+- Home Plot furnishing
+- floor-specific flavor merchant
+- revisit incentive
+
+Examples:
+
+- a deeper floor trader may sell gems
+- a calm hub trader may sell decor and expansion items
+- a faction or archive trader may buy lore-heavy drops at better prices
 
 ---
 
-## 6. Example: Adding a New Trader
+## 6. Shop Behavior Notes
 
-1. **Define the trader:**
-    ```javascript
-    TRADER_DEFINITIONS.trader2 = {
-        buy: [
-            { id: "maxHealth_buff_small", price: 25 },
-            { id: "def_buff_small", price: 18 }
-        ],
-        sell: [
-            { id: "fractured_relic_1", price: 12 }
-        ]
-    };
-    ```
-2. **Link to an NPC:**
-    ```javascript
-    mordis_the_relic_seeker: {
-        id: "mordis_the_relic_seeker",
-        name: "Mordis the Relic-Seeker",
-        sprite: "assets/img/npc/mordis.png",
-        trader: "trader2",
-        // ...other NPC properties
-    }
-    ```
+Current UI behavior:
+
+- the UI shows current coin count using the `money` item
+- buy buttons disable when the player cannot afford the item
+- buying removes money and adds the item
+- selling removes the item and adds money
+
+If a trader sells Home Plot items, those rewards will still route correctly into Home storage because that logic lives in the item and inventory system.
 
 ---
 
 ## 7. Best Practices
 
-- Use unique IDs for traders and items.
-- Set fair prices for buying and selling.
-- Test trader interactions and shop UI in-game.
-- For quest rewards, consider giving coins or shop items.
-
----
+- make stock reflect the floor's identity
+- do not make every trader interchangeable
+- use traders as revisit anchors when helpful
+- test both buy and sell flows
+- test Home item stock if the trader sells decor or buildings

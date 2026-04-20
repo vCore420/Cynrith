@@ -1,12 +1,14 @@
 # Cynrith Skills Creation Guide
 
-This guide explains how to add new skills to Cynrith, define their effects, pools, rarity, and advanced logic.
+This guide explains the current skill definition format and what floor authors should keep in mind when adding skills, gems, or trader support for the skill system.
 
 ---
 
 ## 1. Skill Definition Format
 
-Add new skills to `assets/js/DEFINITIONS/skills.js` using this template:
+Skills are defined in `assets/js/DEFINITIONS/skills.js`.
+
+Current template:
 
 ```javascript
 {
@@ -14,80 +16,103 @@ Add new skills to `assets/js/DEFINITIONS/skills.js` using this template:
     name: "Skill Name",
     img: "assets/img/skills/skill_image.png",
     description: "Describe what the skill does.",
-    pool: "blue", // "blue", "red", "pink", or "all"
-    chance: 1.0, // Higher = more common
-    buffs: { attack: 10, regen: 2 }, // Stat increases
-    drawbacks: { defence: -5 }, // Stat decreases
-    rarity: "common" // "common", "rare", "epic", "legendary"
+    pool: "blue",
+    chance: 1.0,
+    buffs: { attack: 10, regen: 2 },
+    drawbacks: { defence: -5 },
+    maxLevel: 20,
+    rarity: "common"
 }
 ```
 
-- **id:** Unique string identifier.
-- **name:** Display name.
-- **img:** Path to skill image.
-- **description:** What the skill does.
-- **pool:** Which gacha pool(s) the skill appears in.
-- **chance:** Drop rate weight.
-- **buffs:** Stat increases (health, attack, speed, etc.).
-- **drawbacks:** Stat decreases.
-- **rarity:** Determines upgrade cost and gem type.
+Important fields:
+
+- `id`
+- `name`
+- `img`
+- `description`
+- `pool`
+- `chance`
+- `buffs`
+- `drawbacks`
+- `maxLevel`
+- `rarity`
 
 ---
 
-## 2. Skill Effects
+## 2. Supported Stat Patterns
 
-- **Buffs** and **drawbacks** are applied when the skill is equipped.
-- Effects stack additively.
-- Upgrading a skill increases its effects.
+Current skills already use effects such as:
 
-### Special Effects
+- `attack`
+- `defence`
+- `speed`
+- `maxHealth`
+- `regen`
+- `xpGain`
+- `resistance`
 
-- **regen:** Regenerates or drains health per second.
-- **xpGain:** Adds or subtracts XP from all XP gained.
-- **resistance:** Reduces the negative effects of other equipped skills.
-
-For custom logic, coordinate with the game’s skill system in `menu.js`.
-
----
-
-## 3. Skill Pools & Rarity
-
-- **blue:** Early game, common skills.
-- **red:** Mid game, rare/epic skills.
-- **pink:** Late game, epic/legendary skills.
-- **all:** Appears in every pool.
-
-- **common:** Upgrades with blue gems.
-- **rare:** Upgrades with red gems.
-- **epic:** Upgrades with pink gems.
-- **legendary:** Upgrades with double pink gems.
+Use the existing stat language where possible instead of inventing new keys casually.
 
 ---
 
-## 4. Adding Skill Images
+## 3. Pools and Gems
 
-- Place skill images in `assets/img/skills/`.
-- Use PNG format, 64x64px recommended.
+Current pools:
+
+- `blue`
+- `red`
+- `pink`
+- `all`
+
+Current rarity-to-gem expectations:
+
+- `common` -> blue gem upgrades
+- `rare` -> red gem upgrades
+- `epic` -> pink gem upgrades
+- `legendary` -> high-cost late-game upgrades
+
+This matters for floors because traders and rewards can feed gem progression directly.
 
 ---
 
-## 5. Advanced Skill Logic
+## 4. Advanced Logic
 
-- For skills requiring special logic (e.g. random stat boosts, conditional effects), add handling in `menu.js` or a dedicated skill logic file.
-- Document any new stat types or effects in this guide for future contributors.
+Most skills work through additive buffs and drawbacks.
+
+Some effects require runtime support beyond raw numbers.
+
+Examples:
+
+- regen-based passive effects
+- xp gain modifiers
+- resistance interactions
+- special-case skills whose main logic is handled in code rather than raw numeric buffs
+
+If you add a skill that needs special runtime handling, document that clearly in the skill comments or the related gameplay docs.
 
 ---
 
-## 6. Testing & Balancing
+## 5. Floor Authoring Notes
 
-- Test new skills in-game to ensure effects and upgrade costs work as intended.
-- Adjust `chance` and stat values for game balance.
+Even if you are not adding new skills, the skill system affects floor design.
+
+Floors can support the system through:
+
+- gem rewards
+- trader stock
+- quests tied to progression pacing
+- late-floor reward structure
+
+Do not design skill-related rewards in isolation from the trader and item economy.
 
 ---
 
-## 7. Submitting New Skills
+## 6. Testing
 
-- Add your skill definition to `skills.js`.
-- Add the skill image to `assets/img/skills/`.
-- Commit and push your changes, then open a Pull Request describing your new skill.
+- test skill acquisition
+- test gacha pool availability
+- test upgrade costs
+- test stat application and removal on equip changes
+- test any new special logic in active gameplay
 

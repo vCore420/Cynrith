@@ -116,7 +116,7 @@ Add a new object to the `WORLD_SPRITES` array:
 
 - [Maps & Tiles Guide](maps_tiles.md)
 - [Content Tracker](content_tracker.md)
-- [World Building](world_building.md)
+- [World Building](world_Building.md)
 
 ---
 
