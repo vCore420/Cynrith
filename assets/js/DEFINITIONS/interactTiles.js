@@ -1393,7 +1393,8 @@ const INTERACTABLE_TILES = [
         persistAfterTrigger: true,
         notification: "Press A to open the Chest",
         dialogue: [
-            "You Find a Old Parcel."
+            "Inside the chest rests an old parcel, wrapped with the care of someone who meant it to survive many years.",
+            "You lift it gently. Even before opening it, it feels like something kept not for utility alone, but for the right moment."
         ],
         rewards: [{ id: "old_parcel", amount: 1 }],
     },
@@ -1416,12 +1417,11 @@ const INTERACTABLE_TILES = [
         persistAfterTrigger: true,
         notification: "Press A to Talk to the Sunny Man.",
         dialogue: [
-            "Hello again!!",
-            "Sorry for dreaming up mirrors that drop you. If you didn't bite, wise paws. If you did, hope you stuck the landing Ha Ha!",
-            "Seriously though, I am sorry for playing tricks, I just like to chomp when I shouldn't!",
-            "I promise, No wise tricks here!",
-            "I too don't want to be kicked out of here, This place is just so great for a cat like me!",
-            "Please take this as an apologie, Just don't tell Eldrin if he comes asking about it!"
+            "Sunny flicks his tail and gives you a look halfway between guilt and pride.",
+            "\"Hello again! No tricks this time, promise. The mirrors were a bit much, even for me.\"",
+            "\"If you did not fall for all of them, wise paws. If you did, well... I hope you landed with style.\"",
+            "\"This floor is simpler. Grass, lanterns, cats, and one extremely well-behaved Sunny Man.\"",
+            "\"Take this, mm? A small apology. And if Eldrin asks, tell him I have been nothing but dignified.\""
         ],
         rewards: [{ id: "red_gem", amount: 1 }]
     },

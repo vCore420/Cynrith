@@ -1364,9 +1364,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Meow!",
-                "Meow meow!",
-                "Meow meow meow!!!"
+                "Mrrp.",
+                "The cat circles your ankles once, then settles as if it has already decided you belong here.",
+                "Prrrp."
             ]
         }
     },
@@ -1386,7 +1386,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Meow!"
+                "Meow.",
+                "It watches you with the calm certainty of a creature that has never once doubted this floor would remain kind.",
+                "Mrrrow."
             ]
         }
     },
@@ -1408,7 +1410,9 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Meow meow!"
+                "Mew.",
+                "The cat stretches in a warm patch of grass and blinks up at you as though rest were a lesson you have been too slow to learn.",
+                "Prrr."
             ]
         }
     },
@@ -1423,28 +1427,25 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Ahh Glad to see a familiar face!",
-                "I’ve been waiting for you. The castle is... different than I remember, but it’s still home.",
-                "You've learnt much by now im sure,",
-                "But there is much to learn still",
-                "The world appers to be.. improving, our surroundings seem to be defferent from before....",
-                "not all that apeares Good means well."
+                "There you are. Come, breathe a little. The Waystation Veil was made for that.",
+                "After Umbracourt, people often arrive here carrying themselves too tightly, as if the mirrors might still be watching.",
+                "This floor asks less of you. It is not empty, and it is not innocent, but it has kept hold of gentleness better than most places in Cynrith.",
+                "The old castle nearby still keeps a few things worth remembering."
             ],
             questGiven: [
-                "Please, Could you grab me the old parcel from my chest in the castle over there.",
-                "I'll explain more when you get back."
+                "Please, bring me the old parcel from the chest in the castle.",
+                "You will know it when you see it. I kept it because some tools should only be given to travelers who have learned the difference between force and care."
             ],
             questIncomplete: [
-                "Please, I'm getting old and those cats keep getting under my feet.",
-                "If I fall these days it may be the last"
+                "No hurry, but do not leave it too long either.",
+                "The Veil is restful, yes, though rest is best when it still remembers what waits beyond it."
             ],
             questComplete: [
-                "Ahh thank you, not much of a cat person myself.",
-                "This you see, is a reminder of what our world was,",
-                "We cant forget where we have come from, otherwise...",
-                "The Great Frature will happen again and we will all be lost to our memoires of now",
-                "See, you MUST carry on, never forggeting where you have come from, and please,",
-                "Remeber what happened, Make sure we are not lost to the frature again..."
+                "Thank you. Yes... this is the one.",
+                "Inside is a better weapon than the sort I trusted you with at the beginning. Not because the old one failed you, but because you have changed since then.",
+                "That is the truth of climbing through Cynrith. You do not outgrow what came before. You carry it, and then you learn what must be added.",
+                "Keep this well. The higher floors ask sharper questions, and sometimes they only listen to answers given with steady hands.",
+                "Remember the path behind you, but do not live facing backward. The Fracture is not avoided by fear alone. It is avoided by people who remember, choose carefully, and keep walking."
             ]
         },
         questId: "eldrin_f6",
@@ -1475,10 +1476,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome to the Waystation, traveler. I have Hard to come by items this low in Cynrith,",
-                "But that's not to say they dont come with high price!",
-                "These Gems aren't easy to get ahold of and make it back this far,",
-                "So Please, No Negotiations!"
+                "Welcome to the Waystation. I trade in the sort of things people realize they needed only after surviving the previous floor.",
+                "Tonics, steadier tools, a little insurance against bad judgment. Nothing flashy, just reliable.",
+                "Do not let the grass and cats fool you into thinking this is an ending. It is only a pause with good manners.",
+                "Take your time looking. A traveler chooses better when they are not being hunted."
             ]
         },
         trader: "trader5"
@@ -1494,10 +1495,10 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "The Lands here are so Lush and Green don't you think?",
-                "It's all been untouched by the fracture and so we havn't seen any mosters here before.",
-                "I like to look after the lands here, there are very few floors left as lush as the Waystation",
-                "Please, Enjoy your time here and relax, the people here are all so lovely too!"
+                "Soft, isn't it? Most people step onto the Veil and only then realize how long they have been bracing for impact.",
+                "The grass stays green because this floor is tended carefully, not because the world forgot to wound it.",
+                "That matters to me. Kindness kept alive on purpose is stronger than comfort that never had to defend itself.",
+                "Walk slowly if you can. The meadow has a way of returning people to themselves."
             ]
         },
     },
@@ -1513,16 +1514,15 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Ah, a fellow fisherman! The waters around here are teeming with life.",
-                "No? fish not your thing?",
-                "Ha Ha Ha Well the cats round here say otherwise!",
-                "I Love to fish here and feed what I catch to all the cats around this floor!",
-                "Its amazing that somehow we are gifted with this peaceful place for them, and us, to all rest!"
+                "Ah, another quiet soul by the water. Good. This floor improves when people stop hurrying through it.",
+                "The pools here are shallow, but they are full of small life. Fish, reeds, bright little ripples, and cats convinced every catch belongs to them by right.",
+                "I do not mind. Feeding them gives the place a rhythm. Cast, wait, share, laugh, repeat. Not every ritual in Cynrith has to be solemn to matter.",
+                "Stay a while if you like. The Veil is one of the few floors where listening to water feels wiser than listening to worry."
             ],
             questComplete: [
-                "Here, someone who takes the time to talk to a rambling old fisherman deserves the thanks,",
-                "Take this, there should be enough there for you and some for the cats too should you choose to share!",
-                "Pleace come back anytime for a tail!"
+                "Here, take some fresh fish with you.",
+                "Enough for a meal, and enough to make you very popular with the local cats if you feel generous.",
+                "Come back whenever you like. A good floor should have at least one person willing to ramble at you peacefully."
             ]
         },
         questId: "finiks_fish",
@@ -1540,13 +1540,11 @@ const NPC_DEFINITIONS = {
         ],
         dialogue: {
             default: [
-                "Welcome Adventure! To The Waystation Veil!",
-                "I am Valkyrie, the Catfolk of the Waystation. I am here to guide you through this peaceful floor,",
-                "I also look after all of the Cats around here, they are all so lovely and I want to make sure they are well fed and cared for!",
-                "Here you will find no harm, this is a peaceful place to rest.",
-                "Some Echos that managed to find their way have come here to rest too, Some believe that they are the protectors of this floor, Others believe its because of the Cats.",
-                "Please, Rest here as long as you need, Let the comfort of this place restore your will and allow you to connect with the memories you've lost,",
-                "So they may never be forgotten."
+                "Welcome to the Waystation Veil, traveler. You have reached a floor that prefers mending to testing.",
+                "I am Valkyrie. I keep watch here, and I keep company with the cats, though truthfully they need far less guidance than most people do.",
+                "Many arrive from harsher places carrying too much noise inside them. The Veil helps with that. A little food, a little grass, a little quiet, and the world sits more gently on the shoulders.",
+                "Even some echoes find their way here. I think the floor gives them room to loosen, the way a tired hand finally unclenches.",
+                "Rest as long as you need. Peace is not weakness in Cynrith. Sometimes it is the only reason the climb remains worth continuing."
             ]
         },
     },
