@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">Cynrith</h1>
-  <p align="center">A mysterious, ever-changing world woven from the dreams and ruins of lost civilizations.</p>
+  <p align="center">A presence-first fantasy RPG about layered worlds, fragile memory, and the quiet things worth carrying forward.</p>
   <p align="center">
     <img alt="Github License" src="https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge">
     <img alt="Github commit activity" src="https://img.shields.io/github/commit-activity/m/vCore420/Cynrith?style=for-the-badge">
@@ -16,9 +16,9 @@
 
 ## Enter the World of Cynrith
 
-Welcome to **Cynrith**, a mysterious, ever-changing world woven from the dreams and ruins of lost civilizations. As you ascend its labyrinthine Floors, you’ll uncover ancient secrets, encounter strange characters and foes, and find your choices echoing through the very fabric of the System. Each Floor offers new lore, challenges, and opportunities to shape your story within a living, ever-expanding game.
+Welcome to **Cynrith**, a mysterious, ever-changing world built floor by floor as a place of memory, fracture, refuge, and return. As you ascend its layered spaces, you’ll uncover small self-contained stories, meet strange characters and recurring echoes, and slowly piece together a deeper truth that bleeds through the world rather than overwhelming it.
 
-Long before the first Floor rose, Cynrith was a single, boundless realm; flourishing with life, magic, and hope. The Architect, neither god nor machine, but something between, watched over this world and gently nudged its people toward greatness. But ambition bred conflict, and in time, the world threatened to spiral into chaos. To save Cynrith from itself, the Architect shattered the world into vertical layers 'Floors' each a memory, a lesson, or a prison. Now, you stand among the few chosen to ascend, discover, and perhaps one day, reunite what was broken.
+Cynrith is designed as an ever-expanding world where each Floor has its own identity, mood, and reason to revisit. The larger story matters, but the game is built around presence first and progression second: places that feel lived in, NPCs who carry emotional weight, and rewards that help the world feel more personal over time.
 
 ---
 
@@ -29,17 +29,32 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - **Dynamic Combat System:**  
   Face a variety of enemies and bosses using real-time movement, attacks, and tactical positioning.
 - **Quest-Driven Exploration:**  
-  Meet unique Characters, unravel their stories, and complete quests that impact your journey and the world.
+  Meet unique characters, unravel floor-specific stories, and complete quests tied to place, memory, and progression.
 - **Rich Worldbuilding:**  
-  Every floor reveals new lore, environmental storytelling, and hidden mysteries to discover.
-- **Relic and Inventory System:**  
-  Find, collect, and use powerful relics—each with their own story and gameplay effect.
+  Every floor reveals new lore, environmental storytelling, and a different angle on Cynrith's deeper story.
+- **Home Plot and Revisit Systems:**  
+  Unlock the Home Plot, collect placeable rewards, build out your own space, and return to discovered Floors through Home travel.
+- **Items, Weapons, and Utility Rewards:**  
+  Find consumables, weapons, quest items, gems, and special-use items that can change systems rather than just stats.
+- **Trader and Economy Loops:**  
+  Discover traders with floor-specific stock, including skill gems, consumables, and Home Plot items.
+- **Skill Progression:**  
+  Build your character through a gacha-based skill system with rarity, upgrades, buffs, drawbacks, and advanced effects.
 - **Multi-Platform Play:**  
   Designed for both desktop and mobile, with intuitive controls and a seamless interface.
 - **Ever-Expanding Story:**  
-  Cynrith is a living world—expect frequent updates, new floors, and evolving lore.
+  Cynrith is intended as a forever-expanding project, with new Floors, side spaces, worldbuilding, and systems added over time.
 - **Atmospheric Visuals:**  
   Hand-crafted maps, evocative environments, and unique character designs bring the world to life.
+
+## Current State
+
+- Floors 1 to 6 are in the game.
+- Floors 1 to 6 have gone through a major dialogue and narrative pass to better fit the current tone of the project.
+- The Home Plot is introduced at the end of Floor 2 and is now part of the game's long-term reward and revisit loop.
+- Floors 2, 3, and 4 now feed Home Plot rewards, with traders also supporting that loop.
+- Floor 5 and Floor 6 dialogue now match the newer narrative direction used across the earlier Floors.
+- The project's story canon and engine docs have been expanded so future floor work stays consistent.
 
 ## Getting Started
 
@@ -70,15 +85,18 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 
 **Completed**
 
-- Floors 1-5 with in depth lore, world building and game play 
+- Floors 1-6 implemented in-game
+- Major narrative and dialogue pass across Floors 1-6
 - Dynamic map loading 
 - Real-time combat, death and respawn system
 - Modular sprite sheet loader
 - Animated, interactable teleport stones and map warping
 - Interactable tiles with rewards for hidden secrets 
 - Usable Items 
+- Weapons and utility item support
 - Player Stats, player buffs and dynamic stat adjustments
 - NPCs and enemies with pathfinding, interactions and triggers
+- Improved forced encounter pathing and prompt handling
 - Quest system with branching lore and dynamic UI
 - Multi types of quest can be given to the player (item collection, enemy defeats, stat gain)
 - Player menu UI with inventory, quests, stats, skills, map and settings
@@ -92,7 +110,9 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 - Forced encounters and event triggers
 - Trader Npc with buy/sell menus
 - World, Dialogue, Player and Combat sounds effects and music
-- Expand documentation on how to creat new floor and other game assets
+- Home Plot system with travel, storage, placement, and interior support
+- Home Plot item rewards and trader support
+- Expanded documentation for floor creation, engine systems, and story canon
 - Installable for mobile devices
 - Interact tiles for interiors/caves
 - Boss battles
@@ -101,17 +121,46 @@ Long before the first Floor rose, Cynrith was a single, boundless realm; flouris
 **To DO**
 
 - Improved assets and polish
-- Currently working on Floor 6 and onveral QOL 
+- Continue expanding new Floors, side spaces, and revisit loops
+- Continue refining Home Plot content and world feel
+- Ongoing QOL and presentation improvements
 
 - Planning to make this a forever expanding project, something i just wanted to have as my own little world! I have tried to make it as modular as i know how to so I can keep expanding the game and world as time goes on!
 </p> 
 </details>
 
 ---
+
+## Documentation
+
+- Story canon: [Cynrith_Story_Core.md](Cynrith_Story_Core.md)
+- Floor workflow: [Floor_Creation_Guide.md](Floor_Creation_Guide.md)
+- Home Plot system: [docs/homePlot.md](docs/homePlot.md)
+- Engine reference: [docs/function_libary.md](docs/function_libary.md)
+- Content planning: [docs/content_tracker.md](docs/content_tracker.md)
+
+---
 <details>
 <summary>Change Logs</summary>
 
 <p>
+
+---
+20/4/26 v1.1.8a
+
+- Floors 5 and 6 dialogue updated to match the newer narrative direction used across the rest of the game.
+- Added a dedicated story core document to keep Cynrith's main narrative references consistent.
+- Expanded engine and world documentation to better support future floor creation and content work.
+
+---
+19/4/26 v1.1.8
+
+- Massive NPC dialogue pass across Floors 1 to 5, shifting the tone toward presence first and progression second.
+- Home Plot introduction now happens at the end of Floor 2.
+- Added Home Plot loot rewards across Floors 2, 3, and 4.
+- Traders on Floors 3 and 4 now support the Home Plot loop with placeable item stock.
+- Improved forced encounter NPC pathing so they no longer get stuck on collision as easily.
+- Removed normal NPC interaction notifications during forced encounters.
 
 ---
 12/4 v1.1.7
@@ -305,6 +354,8 @@ The toolkit streamlines creation, editing, and export of all game definitions an
 Check out the Documentation below for information needed to contribute:
 
 - [vCynrithToolkit](https://vcore420.github.io/vCynrithToolkit/) – **Recommended for all content creation and editing**
+- [Cynrith Story Core](Cynrith_Story_Core.md)
+  _Primary canon reference for Cynrith's core story and floor-story direction._
 - [Roadmap](docs/roadmap.md)  
   _My Current goals, plans, and development roadmap for Cynrith._
 - [Function Library](docs/function_libary.md)  
