@@ -146,6 +146,17 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 <p>
 
 ---
+
+26/4/26 v1.1.8b
+
+- Added a new family of Home Plot items themed for Floors 5 and 6
+- Created interactable tiles on Floors 5 and 6 awarding each new Home Plot item, with custom dialogue and map placements.
+- Fixed Home Plot teleport stone progression: floors now unlock on first entry by calling markFloorVisited at the correct trigger points.
+- Improved trader menu UI: added scroll and max-height to prevent the menu from growing off-screen with long item lists.
+- This brings us back to where we were with building Floor 7, this is the last update for v1.1.8 involving the re-wrok of each floors feel from floors 1-6 and the addition of the home plot system being intergrated with the game and story so far.
+
+---
+
 20/4/26 v1.1.8a
 
 - Floors 5 and 6 dialogue updated to match the newer narrative direction used across the rest of the game.
@@ -153,6 +164,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 - Expanded engine and world documentation to better support future floor creation and content work.
 
 ---
+
 19/4/26 v1.1.8
 
 - Massive NPC dialogue pass across Floors 1 to 5, shifting the tone toward presence first and progression second.
@@ -163,6 +175,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 - Removed normal NPC interaction notifications during forced encounters.
 
 ---
+
 12/4 v1.1.7
 
 - Added Floor 7 setup content and progression hooks (new NPC/trader data and supporting map content)
@@ -189,6 +202,8 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 - Improved placement rules:
   - Prevent placement on player tile
   - Prevent placement on collision/blocked tiles and teleport stone tiles
+
+---
 
 11/3 v1.1.1
 

@@ -57,3 +57,14 @@
 - Core Story md has been made for core references of the story of Cynrith
 
 - Documention about the world of cynrith and the inner workings of the game engine have been updated 
+
+
+# Change Log 26/4/26
+
+- Added a new family of Home Plot items themed for Floors 5 and 6
+
+- Created interactable tiles on Floors 5 and 6 awarding each new Home Plot item, with custom dialogue and map placements.
+
+- Fixed Home Plot teleport stone progression: floors now unlock on first entry by calling markFloorVisited at the correct trigger points.
+
+- Improved trader menu UI: added scroll and max-height to prevent the menu from growing off-screen with long item lists.
