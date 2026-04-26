@@ -67,7 +67,12 @@ const TRADER_DEFINITIONS = {
             { id: "umbra_tonic",         price: 58 }, 
             { id: "clarity_tincture",    price: 60 }, 
             { id: "mirror_tonic",        price: 70 },
-            { id: "blue_gem",            price: 800 }
+            { id: "blue_gem",            price: 800 },
+            { id: "f5_umbra_candle",     price: 35 },
+            { id: "f5_umbra_banner",     price: 50 },
+            { id: "f5_shadow_decanter",  price: 65 },
+            { id: "f5_marked_mirror",    price: 90 },
+            { id: "f5_shadow_sigil",     price: 110 },
         ],
         sell: [
             { id: "glass_shard",     price: 8 },
@@ -87,7 +92,12 @@ const TRADER_DEFINITIONS = {
             { id: "health_buff_small",   price: 7 },
             { id: "blue_gem",            price: 750 },
             { id: "red_gem",             price: 1650 },
-            { id: "pink_gem",            price: 2850 }
+            { id: "pink_gem",            price: 2850 },
+            { id: "f6_veil_waymarker",   price: 22 },
+            { id: "f6_traveler_signpost", price: 20 },
+            { id: "f6_meadow_pine",      price: 26 },
+            { id: "f6_shelter_pine",     price: 48 },
+            { id: "f6_waystation_tower", price: 200 },
         ],
         sell: [
             { id: "umbra_tonic",         price: 25 }, 

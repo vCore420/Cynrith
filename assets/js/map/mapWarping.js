@@ -134,6 +134,7 @@ function warpToMap(mapIndex, spawnType = "spawn", targetPos = null, onWarped) {
                 player.tile.y = spawnY;
             }
 
+            if (typeof markFloorVisited === "function") { markFloorVisited(currentMapIndex); }
             if (typeof spawnCharactersForMap === "function") spawnCharactersForMap(currentMapIndex);
             if (typeof spawnInteractableTilesForMap === "function") spawnInteractableTilesForMap(currentMapIndex);
             if (typeof spawnTriggerTilesForMap === "function") spawnTriggerTilesForMap(currentMapIndex);

@@ -484,6 +484,260 @@ const ITEM_DEFINITIONS = {
         }
     },
 
+    // floor 5 items
+
+        f5_umbra_candle: {
+        id: "f5_umbra_candle",
+        name: "Umbral Candle",
+        description: "A cold blue candle from Umbracourt. Its flame burns with the stillness of a hall that remembers too much.",
+        image: "assets/img/worldSprites/umbra_candle.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/umbra_candle.png",
+            imageW: 768,
+            imageH: 64,
+            rows: 1,
+            cols: 12,
+            animSpeed: 4,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f5_umbra_banner: {
+        id: "f5_umbra_banner",
+        name: "Umbral Banner",
+        description: "A dark hall-banner once hung in Umbracourt. It carries the severe elegance of a place built to judge and record.",
+        image: "assets/img/worldSprites/umbra_banner.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/umbra_banner.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f5_marked_mirror: {
+        id: "f5_marked_mirror",
+        name: "Marked Mirror",
+        description: "A mirror from Umbracourt, silvered with the uneasy sense that it is still deciding what to reflect.",
+        image: "assets/img/quests/mirror.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/quests/mirror.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f5_shadow_sigil: {
+        id: "f5_shadow_sigil",
+        name: "Shadow Sigil",
+        description: "A display sigil patterned after the marks once carried by the Shadowed Hand. It looks orderly in a way that invites distrust.",
+        image: "assets/img/items/command_sigil.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/items/command_sigil.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    f5_shadow_decanter: {
+        id: "f5_shadow_decanter",
+        name: "Shadow Decanter",
+        description: "A narrow glass vessel from Umbracourt, clouded with faint residue as though it once held something meant for ritual rather than comfort.",
+        image: "assets/img/tile/jar-2.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/jar-2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    // floor 6 items
+
+    f6_veil_waymarker: {
+        id: "f6_veil_waymarker",
+        name: "Veil Waymarker",
+        description: "A weathered sign from the Waystation Veil. It gives even a small patch of ground the feeling of a road worth following.",
+        image: "assets/img/worldSprites/sign_3.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/sign_3.png",
+            imageW: 64,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 2
+        }
+    },
+
+    f6_traveler_signpost: {
+        id: "f6_traveler_signpost",
+        name: "Traveler Signpost",
+        description: "A taller signpost once used to guide tired travelers through the meadow paths of the Veil.",
+        image: "assets/img/worldSprites/sign_4.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/sign_4.png",
+            imageW: 64,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 2
+        }
+    },
+
+    f6_meadow_pine: {
+        id: "f6_meadow_pine",
+        name: "Meadow Pine",
+        description: "An evergreen from the quiet edge of the Waystation Veil, shaped by patient wind and dusklight.",
+        image: "assets/img/worldSprites/tree_1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/tree_1.png",
+            imageW: 128,
+            imageH: 192,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 3
+        }
+    },
+
+    f6_shelter_pine: {
+        id: "f6_shelter_pine",
+        name: "Shelter Pine",
+        description: "A broader pine like those that stand watch over the Waystation paths, more sheltering than ornamental.",
+        image: "assets/img/worldSprites/tree_2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/tree_2.png",
+            imageW: 128,
+            imageH: 192,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 3
+        }
+    },
+
+    f6_waystation_tower: {
+        id: "f6_waystation_tower",
+        name: "Waystation Tower",
+        description: "A small blue-stone tower modeled after the quiet keeps seen beyond the meadow. It makes a Home Plot feel watched over rather than walled in.",
+        image: "assets/img/worldSprites/castle.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/worldSprites/castle.png",
+            imageW: 128,
+            imageH: 256,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 1,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 4
+        }
+    },
+    
     // floor 7 items
     
     fence1: {

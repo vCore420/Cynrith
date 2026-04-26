@@ -1116,9 +1116,10 @@ const INTERACTABLE_TILES = [
         notification: "Press A to peer into the mirror.",
         dialogue: [
             "For a moment, you see the foyer, then it fades.",
-            "\"Go back, grow wise, return with steadier hands.\""
+            "\"Go back, grow wise, return with steadier hands.\"",
+            "Something solid remains behind in the glass. You recover a Marked Mirror."
         ],
-        rewards: []
+        rewards: [{ id: "f5_marked_mirror", amount: 2 }]
     },
 
     {
@@ -1134,9 +1135,13 @@ const INTERACTABLE_TILES = [
         notification: "Press A to peer into the mirror.",
         dialogue: [
             "Glass hums like a held breath.",
-            "\"The Shadowed Hand bargained here. Their debt is now yours to weigh.\""
+            "\"The Shadowed Hand bargained here. Their debt is now yours to weigh.\"",
+            "A dead sigil pattern settles out of the reflection. You take it with you."
         ],
-        rewards: [{ id: "memory_shard", amount: 1 }]
+        rewards: [
+            { id: "memory_shard", amount: 1 },
+            { id: "f5_shadow_sigil", amount: 1 }
+        ]
     },
 
     {
@@ -1152,9 +1157,10 @@ const INTERACTABLE_TILES = [
         notification: "Press A to peer into the mirror.",
         dialogue: [
             "You hear a distant choir, off-key and tired.",
-            "\"If a wall breathes, answer softly. If it sighs, run.\""
+            "\"If a wall breathes, answer softly. If it sighs, run.\"",
+            "At the base of the mirror sits a pair of cold blue candles, still burning."
         ],
-        rewards: []
+        rewards: [{ id: "f5_umbra_candle", amount: 2 }]
     },
 
     {
@@ -1187,9 +1193,10 @@ const INTERACTABLE_TILES = [
         persistAfterTrigger: true,
         notification: "Press A to peer into the mirror.",
         dialogue: [
-            "\"We left names etched in obsidian. The mirrors learned them, then made their own.\""
+            "\"We left names etched in obsidian. The mirrors learned them, then made their own.\"",
+            "A folded banner slips free of the reflection, heavy with dust and old ceremony."
         ],
-        rewards: []
+        rewards: [{ id: "f5_umbra_banner", amount: 1 }]
     },
 
     {
@@ -1223,9 +1230,10 @@ const INTERACTABLE_TILES = [
         notification: "Press A to peer into the mirror.",
         dialogue: [
             "A flicker of firelight, then snow.",
-            "\"Some echoes burn, some freeze; both leave glass behind.\""
+            "\"Some echoes burn, some freeze; both leave glass behind.\"",
+            "A narrow glass vessel waits on the other side. You pull it free."
         ],
-        rewards: []
+        rewards: [{ id: "f5_shadow_decanter", amount: 1 }]
     },
 
     {
@@ -1426,6 +1434,103 @@ const INTERACTABLE_TILES = [
         rewards: [{ id: "red_gem", amount: 1 }]
     },
 
+    {
+        id: "veil_waymarker_1",
+        map: 5,
+        x: 4,
+        y: 26,
+        spriteSheet: "assets/img/worldSprites/sign_1.png",
+        imageW: 64,
+        imageH: 128,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 1,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: false,
+        notification: "Press A to read the old signpost.",
+        dialogue: [
+            "The sign leans gently, its paint faded but its purpose clear.",
+            "You brush away some moss and find a Veil Waymarker, still sturdy enough to guide a path."
+        ],
+        rewards: [{ id: "f6_veil_waymarker", amount: 1 }]
+    },
+
+    {
+        id: "traveler_signpost_1",
+        map: 5,
+        x: 27,
+        y: 3,
+        spriteSheet: "assets/img/worldSprites/sign_2.png",
+        imageW: 64,
+        imageH: 128,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: false,
+        notification: "Press A to examine the tall signpost.",
+        dialogue: [
+            "The signpost stands tall, its wood worn smooth by wind and time.",
+            "A small plaque at its base reads: 'For those who wander, rest is a direction too.'",
+            "You recover the Traveler Signpost."
+        ],
+        rewards: [{ id: "f6_traveler_signpost", amount: 1 }]
+    },
+
+    {
+        id: "meadow_pine_1",
+        map: 5,
+        x: 28,
+        y: 32,
+        spriteSheet: "assets/img/worldSprites/tree_1.png",
+        imageW: 129,
+        imageH: 192,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: false,
+        notification: "Press A to rest beneath the pine.",
+        dialogue: [
+            "The pine’s needles whisper in the dusk breeze.",
+            "You gather a Meadow Pine sapling, its roots still holding a bit of meadow soil."
+        ],
+        rewards: [{ id: "f6_meadow_pine", amount: 1 }]
+    },
+
+    {
+        id: "shelter_pine_1",
+        map: 5,
+        x: 3,
+        y: 5,
+        spriteSheet: "assets/img/worldSprites/tree_2.png",
+        imageW: 129,
+        imageH: 192,
+        rows: 1,
+        cols: 1,
+        animSpeed: 0,
+        collision: true,
+        zIndex: 0,
+        animOnTrigger: false,
+        allowRepeat: false,   
+        persistAfterTrigger: false,
+        notification: "Press A to examine the broad pine.",
+        dialogue: [
+            "This pine’s branches spread wide, offering a rare patch of shade.",
+            "You find a Shelter Pine seedling, ready to be planted somewhere safe."
+        ],
+        rewards: [{ id: "f6_shelter_pine", amount: 1 }]
+    },
+
     // Floor 7
 
     {
@@ -1461,7 +1566,7 @@ const INTERACTABLE_TILES = [
         collision: true,
         zIndex: 0,
         animOnTrigger: false,
-        allowRepeat: false,   
+        allowRepeat: true,   
         persistAfterTrigger: true,
         notification: "Press A to Read Sign.",
         dialogue: ["This place doesn't belong to the others.",

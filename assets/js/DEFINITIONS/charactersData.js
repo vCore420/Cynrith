@@ -1875,6 +1875,7 @@ const ENEMY_TYPES = {
         xpGain: 40,
         loot: [
             { item: "maxHealth_buff_small",   chance: 10, amount: 1 },
+            { item: "f5_shadow_decanter", chance: 2, amount: 1 },
             { item: "money",          chance: 30, amount: [6, 12] }
         ],
         spawns: [
@@ -1912,6 +1913,7 @@ const ENEMY_TYPES = {
             { item: "glass_shard",    chance: 40, amount: [2, 3] },
             { item: "echo_fragment",  chance: 40, amount: [1, 2] },
             { item: "memory_shard",   chance: 22, amount: 1 },
+            { item: "f5_marked_mirror", chance: 20, amount: 1 },
             { item: "money",          chance: 100, amount: [60, 120] }
         ],
         spawns: [
@@ -1933,6 +1935,7 @@ const ENEMY_TYPES = {
         loot: [
             { item: "umbra_tonic",   chance: 10, amount: 1 },
             { item: "maxHealth_buff_small", chance: 10, amount: 1 },
+            { item: "f5_umbra_candle", chance: 2, amount: 1 },
             { item: "money",         chance: 60, amount: [6, 10] }
         ],
         spawns: [
@@ -1979,6 +1982,7 @@ const ENEMY_TYPES = {
         xpGain: 200,
         loot: [
             { item: "command_sigil", chance: 100, amount: 1 },
+            { item: "f5_shadow_sigil", chance: 10, amount: 1 },
             { item: "money", chance: 80, amount: [15, 35] }
         ],
         spawns: [
@@ -2000,6 +2004,7 @@ const ENEMY_TYPES = {
         loot: [
             { item: "umbra_tonic",        chance: 10, amount: 1 },
             { item: "def_buff_small",     chance: 10, amount: 1 },
+            { item: "f5_umbra_banner",    chance: 3, amount: 1 },
             { item: "money",              chance: 60, amount: [12, 22] }
         ],
         spawns: [
