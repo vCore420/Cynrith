@@ -383,7 +383,14 @@ Player.prototype = {
                     hitEnemy = true;
                     const dmg = Math.max(1, (this.attack + (weapon.attackBonus || 0)) - char.defense);
                     char.health -= dmg;
-                    showDamagePopup(Math.round(char.x), Math.round(char.y), dmg, "enemy");
+                    showDamagePopup(Math.round(char.x), Math.round(char.y), -dmg, "enemy");
+                    equippedSkills.forEach(skillId => {
+                        if (!skillId) return;
+                        const playerSkill = getPlayerSkill(skillId);
+                        if (SKILL_EFFECTS[skillId]) {
+                            SKILL_EFFECTS[skillId]('onPlayerAttack', { enemy: char, damage: dmg }, playerSkill.level);
+                        }
+                    });
                     if (char.health <= 0) handleEnemyDeath(char);
                 }
             }

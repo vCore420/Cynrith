@@ -1046,7 +1046,7 @@ const ITEM_DEFINITIONS = {
 
     cliff1: {
         id: "cliff1",
-        name: "Cliff Left",
+        name: "Cliff Right",
         description: "A steep cliff face.",
         image: "assets/img/tile/Cliff1.png",
         rarity: "common",
@@ -1096,7 +1096,7 @@ const ITEM_DEFINITIONS = {
 
     cliff3: {
         id: "cliff3",
-        name: "Cliff Right",
+        name: "Cliff Left",
         description: "A steep cliff face.",
         image: "assets/img/tile/Cliff3.png",
         rarity: "common",
@@ -1279,7 +1279,7 @@ const ITEM_DEFINITIONS = {
         rarity: "common",
         stackable: true,
         useable: false,
-        removeable: true
+        removeable: false
     },
 
 

@@ -823,6 +823,10 @@ function equipSkill(skillId) {
     if (idx !== -1) {
         equippedSkills[idx] = skillId;
         applySkillEffect(skillId, 1);
+        const playerSkill = getPlayerSkill(skillId);  // Add this line
+        if (SKILL_EFFECTS[skillId]) {
+            SKILL_EFFECTS[skillId]('onEquip', {}, playerSkill.level);
+        }
         renderSkillsMenu();
         updateRegenEffect();
         updatePlayerMenuStats();
@@ -835,6 +839,10 @@ function equipSkill(skillId) {
 function unequipSkill(slotIndex) {
     const skillId = equippedSkills[slotIndex];
     if (skillId) {
+        const playerSkill = getPlayerSkill(skillId);  // Add this line
+        if (SKILL_EFFECTS[skillId]) {
+            SKILL_EFFECTS[skillId]('onUnequip', {}, playerSkill.level);
+        }
         applySkillEffect(skillId, -1);
         const skillDef = getSkillDef(skillId);
         equippedSkills[slotIndex] = null;

@@ -312,6 +312,14 @@ function handleEnemyDeath(enemy) {
         });
     }
 
+    equippedSkills.forEach(skillId => {
+        if (!skillId) return;
+        const playerSkill = getPlayerSkill(skillId);  // Add this line
+        if (SKILL_EFFECTS[skillId]) {
+            SKILL_EFFECTS[skillId]('onEnemyDefeated', { enemy }, playerSkill.level);
+        }
+    });
+
     if (enemy.isBoss) return;
 
     // Respawn enemy after cooldown at its original spawn

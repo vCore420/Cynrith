@@ -457,7 +457,14 @@ function updateCharacters() {
                         char._attackTimer = Date.now();
                         let dmg = Math.max(1, char.attack - player.getDefence());
                         player.addHealth(-dmg);
-                        showDamagePopup(player.tile.x, player.tile.y, dmg, "player");
+                        equippedSkills.forEach(skillId => {
+                            if (!skillId) return;
+                            const playerSkill = getPlayerSkill(skillId);
+                            if (SKILL_EFFECTS[skillId]) {
+                                SKILL_EFFECTS[skillId]('onPlayerTakeDamage', { enemy: char, damage: dmg }, playerSkill.level);
+                            }
+                        });
+                        showDamagePopup(player.tile.x, player.tile.y, -dmg, "player");
                         if (window.SoundManager) {
                             SoundManager.playEffect("assets/sound/sfx/player/player_hit.mp3");
                         }

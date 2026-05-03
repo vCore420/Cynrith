@@ -6,9 +6,16 @@ let damagePopups = [];
 
 // Damage popup
 function showDamagePopup(x, y, dmg, type = "enemy") {
+    // dmg: positive for healing, negative for damage
+    const isHealing = dmg > 0;
+    const displayDmg = Math.abs(dmg);
+    const sign = isHealing ? "+" : "-";
+
     damagePopups.push({
-        x, y, dmg,
-        type,
+        x, y, 
+        dmg: displayDmg,  // Store absolute value
+        sign,  // "+" or "-"
+        type,  // "enemy" (red), "player" (blue), "heal" (green)
         time: Date.now(),
         duration: 700, // ms
         startY: y,
@@ -37,19 +44,26 @@ function drawDamagePopups() {
         let py = Math.round(popup.y * config.size.tile - viewport.y);
         py -= 22 + slide;
 
-        // Use CSS variables for colors
+        // Define colors
         const colorEnemy = rootStyles.getPropertyValue('--danger-red') || '#e33';
         const colorPlayer = rootStyles.getPropertyValue('--dropdown-btn-use-bg') || '#3af0ff';
+        const colorHeal = '#0f0';  // Green for healing (or use a CSS variable if defined)
+
+        let fillColor;
+        if (popup.type === "enemy") fillColor = colorEnemy;
+        else if (popup.type === "heal") fillColor = colorHeal;
+        else fillColor = colorPlayer;  // Default to player color
 
         context.save();
         context.globalAlpha = popup.opacity;
         context.font = "bold 22px " + (rootStyles.getPropertyValue('--font-playermenu') || 'Arial, sans-serif');
         context.textAlign = "center";
-        context.fillStyle = popup.type === "enemy" ? colorEnemy : colorPlayer;
+        context.fillStyle = fillColor;
         context.strokeStyle = "#fff";
         context.lineWidth = 2;
-        context.strokeText("-" + popup.dmg, px + config.size.char / 2, py);
-        context.fillText("-" + popup.dmg, px + config.size.char / 2, py);
+        const text = popup.sign + popup.dmg;
+        context.strokeText(text, px + config.size.char / 2, py);
+        context.fillText(text, px + config.size.char / 2, py);
         context.restore();
     }
 }

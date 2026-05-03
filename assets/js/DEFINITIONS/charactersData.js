@@ -1556,7 +1556,7 @@ const NPC_DEFINITIONS = {
 
     wharf_market_trader1: {
         id: "wharf_market_trader1",
-        name: "Rein A Wharf Market Trader",
+        name: "Rein, A Wharf Market Trader",
         sprite: "assets/img/npc/npc_f_6.png",
         interactive: true,
         spawns: [
@@ -1573,7 +1573,7 @@ const NPC_DEFINITIONS = {
 
     wharf_market_trader2: {
         id: "wharf_market_trader2",
-        name: "Freya Wharf Markets Grasskeeper",
+        name: "Freya, Wharf Markets Grasskeeper",
         sprite: "assets/img/npc/npc_f_2.png",
         interactive: true,
         spawns: [
@@ -1585,6 +1585,22 @@ const NPC_DEFINITIONS = {
             ]
         },
         trader: "trader7"
+    },
+
+    wharf_market_trader3: {
+        id: "wharf_market_trader3",
+        name: "Link, Wharf Markets Gemstone Vendor",
+        sprite: "assets/img/npc/npc_m_4.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 54, y: 8, wanderArea: { x1: 52, y1: 5, x2: 57, y2: 11 } }
+        ],
+        dialogue: {
+            default: [
+                "Gems, Crystals, and more! I have what you need to make your gear shine!",  
+            ]
+        },
+        trader: "trader8"
     },
 
     

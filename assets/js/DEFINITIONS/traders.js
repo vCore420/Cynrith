@@ -139,6 +139,28 @@ const TRADER_DEFINITIONS = {
             { id: "steps1",   price: 20 },
             { id: "steps2",   price: 20 },
             { id: "steps3",   price: 20 }
+        ],
+        sell: [
+            { id: "twilight_totem",    price: 50 },
+            { id: "fractured_relic_1", price: 200 },
+            { id: "glassberry_tea",    price: 150 }
+        ]
+    },
+
+    trader8: {
+        buy: [
+            { id: "blue_gem",            price: 700 },
+            { id: "red_gem",             price: 1400 },
+            { id: "pink_gem",            price: 2500 },
+        ],
+        sell: [
+            { id: "glass_shard",     price: 18 },
+            { id: "echo_fragment",   price: 18 },
+            { id: "memory_shard",    price: 18 },
+            { id: "choir_fragment",  price: 20 },
+            { id: "slime_ball",      price: 16 },
+            { id: "dewleaf",         price: 24 },
+            { id: "dustroot",        price: 20 }
         ]
     }
 };
