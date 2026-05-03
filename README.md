@@ -145,6 +145,15 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 <p>
 
+
+3/5/26 v1.1.9
+
+- Updated app icon and banner image
+- Expanded Skill system to allow for unique fuctions to be created for each skill
+- New Skills added
+- More Home Plot Items Created
+- More work on floor 7 done
+
 ---
 
 26/4/26 v1.1.8b

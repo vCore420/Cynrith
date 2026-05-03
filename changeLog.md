@@ -68,3 +68,17 @@
 - Fixed Home Plot teleport stone progression: floors now unlock on first entry by calling markFloorVisited at the correct trigger points.
 
 - Improved trader menu UI: added scroll and max-height to prevent the menu from growing off-screen with long item lists.
+
+
+
+# Change Log 3/5/26
+
+- Updated app icon and banner image
+
+- Expanded Skill system to allow for unique fuctions to be created for each skill
+
+- New Skills added
+
+- More Home Plot Items Created
+
+- More work on floor 7 done
