@@ -818,6 +818,382 @@ const ITEM_DEFINITIONS = {
             interiorExitTile: { x: 2, y: 6 }
         }
     },
+
+    grass1: {
+        id: "grass1",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass2: {
+        id: "grass2",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass3: {
+        id: "grass3",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass3.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass3.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass4: {
+        id: "grass4",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass4.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass4.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass5: {
+        id: "grass5",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass5.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass5.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass6: {
+        id: "grass6",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass6.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass6.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass7: {
+        id: "grass7",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass7.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass7.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass8: {
+        id: "grass8",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass8.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass8.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    grass9: {
+        id: "grass9",
+        name: "Grass",
+        description: "A patch of lush green grass.",
+        image: "assets/img/tile/Gass9.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Gass9.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: true,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    cliff1: {
+        id: "cliff1",
+        name: "Cliff Left",
+        description: "A steep cliff face.",
+        image: "assets/img/tile/Cliff1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Cliff1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    cliff2: {
+        id: "cliff2",
+        name: "Cliff Middle",
+        description: "A steep cliff face.",
+        image: "assets/img/tile/Cliff2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Cliff2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    cliff3: {
+        id: "cliff3",
+        name: "Cliff Right",
+        description: "A steep cliff face.",
+        image: "assets/img/tile/Cliff3.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Cliff3.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    steps1: {
+        id: "steps1",
+        name: "Steps Left",
+        description: "A set of stone steps.",
+        image: "assets/img/tile/Steps1.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Steps1.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    steps2: {
+        id: "steps2",
+        name: "Steps Middle",
+        description: "A set of stone steps.",
+        image: "assets/img/tile/Steps2.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Steps2.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
+    steps3: {
+        id: "steps3",
+        name: "Steps Right",
+        description: "A set of stone steps.",
+        image: "assets/img/tile/Steps3.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/Steps3.png",
+            imageW: 64,
+            imageH: 64,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: false,
+            canStackOnPlaced: false,
+            footprintW: 1,
+            footprintH: 1
+        }
+    },
+
     
     // --------------- loot, Drops, Quest Items ---------------
 

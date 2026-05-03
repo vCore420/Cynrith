@@ -122,6 +122,25 @@ const TRADER_DEFINITIONS = {
         ]
     },
 
+    trader7: {
+        buy: [
+            { id: "grass1",   price: 20 },
+            { id: "grass2",   price: 20 },
+            { id: "grass3",   price: 20 },
+            { id: "grass4",   price: 20 },
+            { id: "grass5",   price: 20 },
+            { id: "grass6",   price: 20 },
+            { id: "grass7",   price: 20 },
+            { id: "grass8",   price: 20 },
+            { id: "grass9",   price: 20 },
+            { id: "cliff1",   price: 20 },
+            { id: "cliff2",   price: 20 },
+            { id: "cliff3",   price: 20 },
+            { id: "steps1",   price: 20 },
+            { id: "steps2",   price: 20 },
+            { id: "steps3",   price: 20 }
+        ]
+    }
 };
 
 

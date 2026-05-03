@@ -1571,6 +1571,22 @@ const NPC_DEFINITIONS = {
         trader: "trader6"
     },
 
+    wharf_market_trader2: {
+        id: "wharf_market_trader2",
+        name: "Freya Wharf Markets Grasskeeper",
+        sprite: "assets/img/npc/npc_f_2.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 54, y: 29, wanderArea: { x1: 53, y1: 24, x2: 57, y2: 31 } }
+        ],
+        dialogue: {
+            default: [
+                "Grass, Dirt, Stone, I have what you need to do some landscaping, traveler!",  
+            ]
+        },
+        trader: "trader7"
+    },
+
     
 };
 
