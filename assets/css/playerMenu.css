@@ -9,7 +9,7 @@
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   opacity: 0.8;
   color: var(--dk-txt);
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   border-radius: 4px;
   padding: 12px 20px;
   cursor: pointer;
@@ -43,7 +43,7 @@
   font-family: 'Press Start 2P', var(--font-playermenu);
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   border-radius: 8px;
-  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  box-shadow: 0 8px 48px #82cef544, 0 0 0 4px #82cef522;
   padding: 36px 32px 24px 32px;
   width: 500px;
   min-height: 400px;
@@ -54,7 +54,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  border: 3px solid #3af0ff;
+  border: 3px solid #82cef5;
 }
 
 /* Player Menu Inner Content */
@@ -97,16 +97,16 @@
   font-size: 1.4em;
   background: #8a8e9983;
   color: #fffbe6;
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  box-shadow: 0 2px 12px #82cef544, 0 0 0 2px #82cef522;
   transition: background 0.2s;
 }
 .menu-nav-btn:hover, .menu-nav-btn.active {
   background: #3aefff8f;
   color: #1b3d41;
-  border-color: #3af0ff;
+  border-color: #82cef5;
 }
 
 /* Player Sprite Preview for Player Menu */
@@ -137,7 +137,7 @@
   max-height: 320px;
   overflow-y: auto;
   margin-top: 10px;
-  border: 1px solid #3af0ff55;
+  border: 1px solid #82cef555;
   border-radius: 6px;
   padding: 8px;
   background: #0f1118aa;
@@ -161,7 +161,7 @@
 .stats-head {
   font-weight: bold;
   color: #ffe082;
-  border-bottom: 1px solid #3af0ff88;
+  border-bottom: 1px solid #82cef588;
 }
 
 .stats-name {
@@ -225,7 +225,7 @@
   width: 64px;
   height: 64px;
   background: #8a8e9983;
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   border-radius: 4px;
   position: relative;
   display: flex;
@@ -257,8 +257,8 @@
     padding: 6px 18px;
     margin: 0 4px;
     background: #222335;
-    color: #3af0ff;
-    border: 2px solid #3af0ff;
+    color: #82cef5;
+    border: 2px solid #82cef5;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
@@ -481,18 +481,18 @@
   width: 160px;
   margin-left: 12px;
   height: 22px;
-  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  background: linear-gradient(90deg, #82cef5 0%, #ffe082 100%);
   border-radius: 4px;
   outline: none;
   appearance: none;
-  box-shadow: 0 2px 4px #3af0ff44, 0 0 0 2px #3af0ff22;
+  box-shadow: 0 2px 4px #82cef544, 0 0 0 2px #82cef522;
   transition: background 0.2s;
 }
 
 /* Remove default styling for input[type=range] */
 .settings-slider::-webkit-slider-runnable-track {
   height: 20px;
-  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  background: linear-gradient(90deg, #82cef5 0%, #ffe082 100%);
   border-radius: 4px;
 }
 .settings-slider::-webkit-slider-thumb {
@@ -500,9 +500,9 @@
   width: 20px;
   height: 20px;
   background: #222335;
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   border-radius: 4px;
-  box-shadow: 0 0 4px #3af0ff88;
+  box-shadow: 0 0 4px #82cef588;
   cursor: pointer;
   transition: background 0.2s, border 0.2s;
 }
@@ -515,9 +515,9 @@
   width: 22px;
   height: 22px;
   background: #222335;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 4px;
-  box-shadow: 0 0 8px #3af0ff88;
+  box-shadow: 0 0 8px #82cef588;
   cursor: pointer;
   transition: background 0.2s, border 0.2s;
 }
@@ -530,9 +530,9 @@
   width: 22px;
   height: 22px;
   background: #222335;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 4px;
-  box-shadow: 0 0 8px #3af0ff88;
+  box-shadow: 0 0 8px #82cef588;
   cursor: pointer;
   transition: background 0.2s, border 0.2s;
 }
@@ -543,11 +543,11 @@
 
 .settings-slider:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3af0ff88;
+  box-shadow: 0 0 0 2px #82cef588;
 }
 
 .settings-slider::-ms-fill-lower {
-  background: #3af0ff;
+  background: #82cef5;
   border-radius: 4px;
 }
 .settings-slider::-ms-fill-upper {
@@ -564,7 +564,7 @@
 .settings-slider::-webkit-slider-thumb:hover,
 .settings-slider::-moz-range-thumb:hover,
 .settings-slider::-ms-thumb:hover {
-  background: #3af0ff;
+  background: #82cef5;
   border-color: #ffe082;
 }
 
@@ -588,7 +588,7 @@
   background: #222335;
   border-radius: 4px;
   transition: background 0.2s;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
 }
 .settings-slider-switch:before {
   position: absolute;
@@ -597,7 +597,7 @@
   width: 20px;
   left: 3px;
   bottom: 2px;
-  background: #3af0ff;
+  background: #82cef5;
   border-radius: 4px;
   transition: transform 0.2s;
 }
@@ -607,7 +607,7 @@
   background: #ffe082;
 }
 .settings-slider-switch:active:before {
-  box-shadow: 0 0 8px #3af0ff88;
+  box-shadow: 0 0 8px #82cef588;
 }
 
 /* Map Menu Help Icon */
@@ -638,12 +638,12 @@
   right: 16px;
   background: #222335;
   color: #fffbe6;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 6px;
   padding: 10px 18px;
   font-size: 0.8em;
   font-family: var(--font-playermenu);
-  box-shadow: 0 2px 12px #3af0ff44;
+  box-shadow: 0 2px 12px #82cef544;
   z-index: 50;
   opacity: 0;
   pointer-events: none;
@@ -665,10 +665,10 @@
 
 /* Map Preview Canvas */
 #map-preview-canvas {
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 8px;
   background: #222335;
-  box-shadow: 0 2px 12px #3af0ff44;
+  box-shadow: 0 2px 12px #82cef544;
 }
 
 #skills-menu.menu-page {
@@ -680,7 +680,7 @@
   border-radius: 4px;
   margin: 18px auto;
   padding: 12px 12px;
-  box-shadow: 0 2px 12px #3af0ff22;
+  box-shadow: 0 2px 12px #82cef522;
   width: 60%;
   max-width: 420px;
 }
@@ -697,7 +697,7 @@
   height: 64px;
   background: #2d3038;
   border-radius: 8px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -723,7 +723,7 @@
   height: 56px;
   background: #23243a;
   border-radius: 6px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -750,7 +750,7 @@
   width: 96px;
   height: 96px;
   margin: 18px auto;
-  border: 3px solid #3af0ff;
+  border: 3px solid #82cef5;
   border-radius: 12px;
   background: #23243a;
   display: flex;

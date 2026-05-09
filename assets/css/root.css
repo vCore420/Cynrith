@@ -19,22 +19,22 @@
   /* Title Screen */
   --title-bg: #181a1f;
   --title-header: #ffe082;  
-  --title-header-alt: #3af0ff; 
-  --title-shadow: 0 0 24px #3af0ff, 0 0 8px #fff;
+  --title-header-alt: #82cef5; 
+  --title-shadow: 0 0 24px #82cef5, 0 0 8px #fff;
   --title-btn-bg: #2b3a67;
   --title-btn-text: #f8f8ff;
 
   /* New Game Loading Screen */
   --loading-bg: #101014;
   --loading-text: #f8f8ff;
-  --loading-spinner: #3af0ff;
+  --loading-spinner: #82cef5;
 
   /* Hud */
   --hud-bg: #2e2e38;
   --hud-text: #f8f8ff;
   --hud-border: #44475a;
   --hud-health: #e33;
-  --hud-xp: #3af0ff;
+  --hud-xp: #82cef5;
 
   /* Main Player Menu */
   --menu-bg: #2e2e38;
@@ -61,8 +61,8 @@
   --dropdown-close: #f8f8ff;
   --dropdown-name: #f8f8ff;
   --dropdown-desc: #ffe082;
-  --dropdown-rarity: #3af0ff;
-  --dropdown-btn-use-bg: #3af0ff;
+  --dropdown-rarity: #82cef5;
+  --dropdown-btn-use-bg: #82cef5;
   --dropdown-btn-use-text: #181a1f;
   --dropdown-btn-remove-bg: #c33;
   --dropdown-btn-remove-text: #fff;

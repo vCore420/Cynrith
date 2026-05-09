@@ -12,14 +12,14 @@
 .preload-content {
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   border-radius: 8px;
-  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  box-shadow: 0 8px 48px #82cef544, 0 0 0 4px #82cef522;
   padding: 36px 32px 24px 32px;
   min-width: 320px;
   min-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid #3af0ff;
+  border: 3px solid #82cef5;
 }
 #preload-title {
   margin-top: 0;
@@ -28,7 +28,7 @@
   font-family: 'Press Start 2P';
   font-size: 1.8em;
   letter-spacing: 0.04em;
-  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #82cef5cc;
   text-align: center;
 }
 #preload-bar-container {
@@ -36,14 +36,14 @@
   height: 18px;
   background: #222335;
   border-radius: 4px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   margin-bottom: 18px;
   overflow: hidden;
 }
 #preload-bar {
   width: 0%;
   height: 100%;
-  background: linear-gradient(90deg, #3af0ff 0%, #ffe082 100%);
+  background: linear-gradient(90deg, #82cef5 0%, #ffe082 100%);
   border-radius: 2px;
   transition: width 0.3s;
 }
@@ -117,6 +117,16 @@ body, #title-screen {
   z-index: 32;
 }
 
+/* New Image logo for title screen */
+#title-logo {
+  width: 460px;
+  height: auto;
+  margin-bottom: 40px;
+  margin-right: 20px;
+  filter: drop-shadow(0 0 8px #222a);
+  opacity: 0.85;
+}
+
 /* Title Screen Header */
 #title-screen h1 {
   font-family: 'VT323';
@@ -133,7 +143,7 @@ body, #title-screen {
   z-index: 34;
   text-shadow:
     0 0 30px #181a1f,   
-    0 0 12px #3af0ffcc,   
+    0 0 12px #82cef5cc,   
     0 0 2px #fff,         
     0 0 5px #181a1f; 
   transition: text-shadow 0.4s;
@@ -150,7 +160,7 @@ body, #title-screen {
   height: 18px;
   background: radial-gradient(ellipse at center,
     #fffbe6cc 0%,
-    #3af0ffcc 40%,
+    #82cef5cc 40%,
     #ffe082cc 70%,
     transparent 100%
   );
@@ -173,7 +183,7 @@ body, #title-screen {
   letter-spacing: 0.08em;
   padding: 14px 40px;
   border-radius: 3px; 
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   background: #8a8e9983;
   color: #fffbe6;
   cursor: pointer;
@@ -181,11 +191,11 @@ body, #title-screen {
   z-index: 34;
   margin-bottom: 18px;
   box-shadow:
-    0 0 0 2px #3af0ff44,
+    0 0 0 2px #82cef544,
     0 1px 0 0 #fffbe6;
   text-shadow:
     0 2px 0 #181a1f,
-    0 0 1px #3af0ffcc;
+    0 0 1px #82cef5cc;
   transition:
     background 0.2s,
     color 0.2s,
@@ -198,7 +208,7 @@ body, #title-screen {
   color: #1b3d41;
   box-shadow:
     0 0 0 2px #fffbe6cc,
-    0 2px 0 0 #3af0ff;
+    0 2px 0 0 #82cef5;
   outline: none;
 }
 
@@ -237,7 +247,7 @@ body, #title-screen {
   background: rgba(255,255,255,0.80); 
   box-shadow:
     0 0 8px 2px #fff,
-    0 0 16px 4px #3af0ff,
+    0 0 16px 4px #82cef5,
     0 0 12px 3px #a882ff;
   opacity: 0.5;       
   animation: sparkle-float 3.5s linear infinite;
@@ -272,13 +282,13 @@ body, #title-screen {
     radial-gradient(ellipse at 60% 40%,
       #ffe08244 0%,
       #ffe08222 30%,
-      #3af0ff22 50%,
+      #82cef522 50%,
       #a882ff11 70%,
       transparent 90%,
       transparent 100%
     ),
     radial-gradient(ellipse at 40% 60%,
-      #3af0ff22 0%,
+      #82cef522 0%,
       #ffe08211 50%,
       transparent 90%,
       transparent 100%
@@ -341,7 +351,7 @@ body, #title-screen {
 .char-select-content {
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   border-radius: 3px; 
-  box-shadow: 0 8px 48px #3af0ff44, 0 0 0 4px #3af0ff22;
+  box-shadow: 0 8px 48px #82cef544, 0 0 0 4px #82cef522;
   padding: 36px 32px 24px 32px;
   max-width: 350px;
   min-height: 340px;
@@ -350,7 +360,7 @@ body, #title-screen {
   align-items: center;
   gap: 18px;
   position: relative;
-  border: 3px solid #3af0ff;
+  border: 3px solid #82cef5;
 }
 
 /* Character Selection Close Button */
@@ -373,7 +383,7 @@ body, #title-screen {
   font-family: 'Press Start 2P';
   font-size: 1.8em;
   letter-spacing: 0.08em;
-  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #82cef5cc;
   text-align: center;
   white-space: normal;      
   word-break: break-word;   
@@ -407,12 +417,12 @@ body, #title-screen {
   right: 16px;
   background: #222335;
   color: #fffbe6;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 6px;
   padding: 10px 18px;
   font-size: 0.8em;
   font-family: var(--font-playermenu);
-  box-shadow: 0 2px 12px #3af0ff44;
+  box-shadow: 0 2px 12px #82cef544;
   z-index: 50;
   opacity: 0;
   pointer-events: none;
@@ -430,7 +440,7 @@ body, #title-screen {
   width: 90%;
   padding: 10px 14px;
   border-radius: 3px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   font-size: 1.1em;
   background: #2222228e;
   color: #fffbe6;
@@ -464,7 +474,7 @@ body, #title-screen {
   padding: 8px 12px;
   border-radius: 3px;
   background: #2222228e;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   color: #fff;
   cursor: pointer;
   font-family: 'Press Start 2P';
@@ -480,7 +490,7 @@ body, #title-screen {
 #char-list li:hover {
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   color: #1b3d41;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
 }
 
 /* Character Preview Container */
@@ -493,7 +503,7 @@ body, #title-screen {
   background: #2222228e;
   border-radius: 3px;
   position: relative;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
 }
 
 /* Character Preview Image */
@@ -511,14 +521,14 @@ body, #title-screen {
   margin-top: 18px;
   padding: 12px 36px;
   border-radius: 3px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   color: #1b3d41;
   font-family: 'Press Start 2P';
   font-size: 1.2em;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px #3af0ff22;
+  box-shadow: 0 2px 8px #82cef522;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .confirm-btn:hover {
@@ -549,7 +559,7 @@ body, #title-screen {
   font-family: 'Press Start 2P';
   font-size: 1.8em;
   letter-spacing: 0.08em;
-  text-shadow: 0 2px 0 #181a1f, 0 0 8px #3af0ffcc;
+  text-shadow: 0 2px 0 #181a1f, 0 0 8px #82cef5cc;
   text-align: center;
   white-space: normal;
   word-break: break-word;
@@ -566,7 +576,7 @@ body, #title-screen {
   overflow-y: auto;
   min-width: 220px;
   min-height: 160px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 3px;
   background: #23243acb;
   box-shadow: 0 2px 12px #181a1f11;
@@ -582,7 +592,7 @@ body, #title-screen {
   font-size: 0.6em;
   letter-spacing: 0.06em;
   transition: background 0.2s, color 0.2s;
-  border-bottom: 2px solid #3af0ff22;
+  border-bottom: 2px solid #82cef522;
   margin-bottom: 0;
   position: relative;
 }
@@ -591,9 +601,9 @@ body, #title-screen {
 }
 #save-list li.selected,
 #save-list li:hover {
-  background: linear-gradient(90deg, #23243a 0%, #3af0ff22 100%);
-  border-top: 1px solid #3af0ff;
-  border-bottom: 1px solid #3af0ff;
+  background: linear-gradient(90deg, #23243a 0%, #82cef522 100%);
+  border-top: 1px solid #82cef5;
+  border-bottom: 1px solid #82cef5;
   border-left: none;
   border-right: none;
 }
@@ -661,14 +671,14 @@ body, #title-screen {
   left: 16px;
   width: 36px;
   height: 36px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   border-radius: 6px;
   background: linear-gradient(90deg, #222335 0%, #2a2c44 100%);
-  color: #3af0ff;
+  color: #82cef5;
   font-size: 1.1em;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 0 8px #3af0ff44;
+  box-shadow: 0 0 8px #82cef544;
   transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
   z-index: 46;
 }
@@ -676,7 +686,7 @@ body, #title-screen {
 .load-menu-icon-btn:focus {
   transform: translateY(-1px);
   background: linear-gradient(90deg, #2a2c44 0%, #35385a 100%);
-  box-shadow: 0 0 12px #3af0ff88;
+  box-shadow: 0 0 12px #82cef588;
   outline: none;
 }
 
@@ -691,10 +701,10 @@ body, #title-screen {
 .save-export-icon-btn {
   width: 30px;
   height: 30px;
-  border: 1px solid #3af0ff88;
+  border: 1px solid #82cef588;
   border-radius: 6px;
   background: #1f2235;
-  color: #3af0ff;
+  color: #82cef5;
   font-size: 0.95em;
   cursor: pointer;
   display: inline-flex;
@@ -705,7 +715,7 @@ body, #title-screen {
 .save-export-icon-btn:hover,
 .save-export-icon-btn:focus {
   background: #2a2f4a;
-  border-color: #3af0ff;
+  border-color: #82cef5;
   transform: translateY(-1px);
   outline: none;
 }
@@ -764,8 +774,8 @@ body, #title-screen {
   height: 18px;
   background: #23243a;
   border-radius: 3px; 
-  border: 2px solid #3af0ff;
-  box-shadow: 0 2px 12px #3af0ff44;
+  border: 2px solid #82cef5;
+  box-shadow: 0 2px 12px #82cef544;
   overflow: hidden;
 }
 #loading-bar {
@@ -774,7 +784,7 @@ body, #title-screen {
   background: linear-gradient(90deg, var(--title-header) 0%, var(--title-header-alt) 100%);
   border-radius: 0; 
   box-shadow:
-    0 0 8px #3af0ffcc,
+    0 0 8px #82cef5cc,
     0 2px 0 #fffbe6;
   transition: width 0.6s;
   image-rendering: pixelated;
@@ -869,8 +879,8 @@ body, #title-screen {
     min-height: 120px;
     padding: 18px 8px 12px 8px;
     border-radius: 6px;
-    box-shadow: 0 4px 24px #3af0ff44, 0 0 0 2px #3af0ff22;
-    border: 2px solid #3af0ff;
+    box-shadow: 0 4px 24px #82cef544, 0 0 0 2px #82cef522;
+    border: 2px solid #82cef5;
     background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   }
   #preload-title {
@@ -885,7 +895,7 @@ body, #title-screen {
     max-width: 320px;
     height: 14px;
     border-radius: 3px;
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
     margin-bottom: 12px;
   }
   #preload-bar {
@@ -899,7 +909,7 @@ body, #title-screen {
     padding: 10px 18px;
     margin-top: 18px;
     border-radius: 3px;
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
   }
 
   #title-screen {
@@ -919,11 +929,16 @@ body, #title-screen {
     padding: 24px 0 0 0;
   }
 
+  #title-logo {
+    width: 300px;
+    margin-right: 0px;
+  }
+
   #title-screen h1 {
     font-size: 5.5em;
     margin-bottom: 38px;
     margin-top: 0; 
-    text-shadow: 0 0 16px #181a1f, 0 0 4px #3af0ffcc;
+    text-shadow: 0 0 16px #181a1f, 0 0 4px #82cef5cc;
   }
 
   #title-screen button {
@@ -967,13 +982,13 @@ body, #title-screen {
     border-radius: 4px;
     padding: 6px 14px;
     font-size: 0.6em;
-    box-shadow: 0 1px 6px #3af0ff44;
+    box-shadow: 0 1px 6px #82cef544;
   }
 
   #character-select h2 {
     font-size: 1.6em;
     letter-spacing: 0.1em;
-    text-shadow: 0 1px 0 #181a1f, 0 0 8px #3af0ffcc;        
+    text-shadow: 0 1px 0 #181a1f, 0 0 8px #82cef5cc;        
   }
 
   #char-preview {
@@ -986,7 +1001,7 @@ body, #title-screen {
     padding: 10px 14px;
     font-size: 0.8em;
     letter-spacing: 0.02em;
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
   }
 
   #char-list {
@@ -1002,7 +1017,7 @@ body, #title-screen {
 
   #char-list li {
     padding: 8px 12px;
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
     font-size: 1em;
     letter-spacing: 0.06em;
   }
@@ -1014,7 +1029,7 @@ body, #title-screen {
   }
 
   .confirm-btn {
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
     font-size: 1em;
   }
 
@@ -1026,7 +1041,7 @@ body, #title-screen {
   #load-game-menu h2 {
     font-size: 1.6em;
     letter-spacing: 0.1em;
-    text-shadow: 0 1px 0 #181a1f, 0 0 8px #3af0ffcc;
+    text-shadow: 0 1px 0 #181a1f, 0 0 8px #82cef5cc;
   }
 
   #loadgame-close {

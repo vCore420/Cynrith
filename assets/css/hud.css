@@ -5,8 +5,8 @@ div#log {
     font-size: 12pt;
     color: var(--dk-txt);
     border-radius: 4px;
-    border: 1px solid #3af0ff;
-    box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+    border: 1px solid #82cef5;
+    box-shadow: 0 2px 12px #82cef544, 0 0 0 2px #82cef522;
     opacity: 0.8;
     text-align: left;
     padding: 5px 9px;
@@ -35,7 +35,7 @@ div#log {
   top: 5px;
   background: #22233588;
   border-radius: 50%;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
 }
 #joystick-knob {
   position: absolute;
@@ -43,7 +43,7 @@ div#log {
   height: 60px;
   left: 35px;
   top: 35px;
-  background: #3af0ffcc;
+  background: #82cef5cc;
   border-radius: 50%;
   border: 2px solid #fff;
   touch-action: none;
@@ -70,8 +70,8 @@ div#log {
   font-size: 3em;
   opacity: 0.8;
   background: var(--dk-ctrl);
-  border: 2px solid #3af0ff;
-  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  border: 2px solid #82cef5;
+  box-shadow: 0 2px 12px #82cef544, 0 0 0 2px #82cef522;
   color: var(--dk-txt);
   border-radius: 100%;
   touch-action: none;
@@ -176,7 +176,7 @@ div#log {
     font-family: var(--font-playermenu);
     font-size: 0.75em;
     color: var(--dk-txt, #fff);
-    border: 1px solid #3af0ff;
+    border: 1px solid #82cef5;
     min-height: 38px;
     max-height: 38px;
     opacity: 0.9;
@@ -244,10 +244,10 @@ div#log {
   font-family: "VT323";
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
   border-radius: 3px;
-  border: 2px solid #3af0ff;
+  border: 2px solid #82cef5;
   color: #fffbe6;
   cursor: pointer;
-  box-shadow: 0 2px 12px #3af0ff44, 0 0 0 2px #3af0ff22;
+  box-shadow: 0 2px 12px #82cef544, 0 0 0 2px #82cef522;
   transition: background 0.2s, color 0.2s;
 }
 .death-overlay button:hover {
@@ -271,9 +271,9 @@ div#log {
   max-height: 80vh;
   overflow: auto;
   background: linear-gradient(120deg, #22252c 80%, #222335 100%);
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   border-radius: 8px;
-  box-shadow: 0 4px 22px #3af0ff33;
+  box-shadow: 0 4px 22px #82cef533;
   padding: 14px;
   color: #f1f6ff;
   font-family: var(--font-playermenu);
@@ -297,7 +297,7 @@ div#log {
 
 .homeplot-travel-btn,
 .homeplot-travel-close {
-  border: 1px solid #3af0ff;
+  border: 1px solid #82cef5;
   background: #1d2530;
   color: #eef6ff;
   border-radius: 6px;
@@ -366,7 +366,7 @@ div#log {
     height: 65px;
     margin: 6px;
     font-size: 1.5em;
-    border: 1.4px solid #3af0ff;
+    border: 1.4px solid #82cef5;
   }
 
   #btn-a {
@@ -390,7 +390,7 @@ div#log {
     padding: 1px 6px;
     gap: 8px;
     font-size: 0.65em;
-    border: 1.3px solid #3af0ff;
+    border: 1.3px solid #82cef5;
     min-height: 34px;
     max-height: 34px;
   }
@@ -419,7 +419,7 @@ div#log {
   /* Respawn Button */
   .death-overlay button {
     font-size: 2em;
-    border: 1.5px solid #3af0ff;
+    border: 1.5px solid #82cef5;
   }
 
 }
