@@ -235,7 +235,7 @@ const NPC_DEFINITIONS = {
     deyna_the_chronicler: {
         id: "deyna_the_chronicler",
         name: "Deyna the Chronicler",
-        sprite: "assets/img/npc/npc_f_3.png",
+        sprite: "assets/img/npc/npc_a_3.png",
         interactive: true,
         spawns: [
             { map: 1, x: 16, y: 18, wanderArea: { x1: 13, y1: 10, x2: 28, y2: 28 } }
@@ -334,7 +334,7 @@ const NPC_DEFINITIONS = {
     mynel_resonant: {
     id: "mynel_resonant",
     name: "Mynel the Resonant",
-        sprite: "assets/img/npc/npc_f_1.png",
+        sprite: "assets/img/npc/npc_a_1.png",
         interactive: true,
         spawns: [
             { map: 1, x: 34, y: 6, wanderArea: { x1: 32, y1: 4, x2: 35, y2: 7 } }
@@ -421,7 +421,7 @@ const NPC_DEFINITIONS = {
     sella_anchorkeeper: {
         id: "sella_anchorkeeper",
         name: "Sella the Anchorkeeper",
-        sprite: "assets/img/npc/npc_f_4.png",
+        sprite: "assets/img/npc/npc_a_4.png",
         interactive: true, 
         spawns: [
             { map: 1,  x: 21, y: 11, wanderArea: { x1: 11, y1: 10, x2: 30, y2: 13 } }
@@ -554,7 +554,7 @@ const NPC_DEFINITIONS = {
     sakura_dreamer: {
         id: "sakura_dreamer",
         name: "Sakura the Dreamer",
-        sprite: "assets/img/npc/npc_f_1.png",
+        sprite: "assets/img/npc/npc_a_1.png",
         interactive: true,
         spawns: [
             { map: 2, x: 38, y: 8, wanderArea: { x1: 34, y1: 3, x2: 41, y2: 11 } }
@@ -621,7 +621,7 @@ const NPC_DEFINITIONS = {
     myco_luminous: {
         id: "myco_luminous",
         name: "Myco the Luminous",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_m_8.png",
         interactive: true,
         spawns: [
             { map: 2, x: 33, y: 49, wanderArea: { x1: 29, y1: 40, x2: 40, y2: 56 } }
@@ -694,7 +694,7 @@ const NPC_DEFINITIONS = {
     astra_guide: {
         id: "astra_guide",
         name: "Astra the Guide",
-        sprite: "assets/img/npc/npc_f_1.png",
+        sprite: "assets/img/npc/npc_f_7.png",
         interactive: true,
         spawns: [
             { map: 2, x: 51, y: 54, wanderArea: { x1: 50, y1: 52, x2: 52, y2: 59 } }
@@ -728,7 +728,7 @@ const NPC_DEFINITIONS = {
     lost_adventurer: {
         id: "lost_adventurer",
         name: "Lost Adventurer",
-        sprite: "assets/img/npc/npc_m_5.png",
+        sprite: "assets/img/npc/npc_m_9.png",
         interactive: true,
         spawns: [
             { map: 2, x: 45, y: 27, wanderArea: { x1: 41, y1: 26, x2: 49, y2: 29 } }
@@ -743,7 +743,7 @@ const NPC_DEFINITIONS = {
     fragment_searcher: {
         id: "fragment_searcher",
         name: "Fragment Searcher",
-        sprite: "assets/img/npc/npc_f_1.png",
+        sprite: "assets/img/npc/npc_a_6.png",
         interactive: true,
         spawns: [
             { map: 2, x: 59, y: 32, wanderArea: { x1: 56, y1: 27, x2: 60, y2: 38 } }
@@ -788,7 +788,7 @@ const NPC_DEFINITIONS = {
     cherry_grove_ghost: {
         id: "cherry_grove_ghost",
         name: "Cherry Grove Ghost",
-        sprite: "assets/img/npc/npc_f_1.png",
+        sprite: "assets/img/npc/npc_f_9.png",
         interactive: true,
         spawns: [
             { map: 2, x: 36, y: 18, wanderArea: { x1: 32, y1: 13, x2: 38, y2: 21 } }
@@ -818,7 +818,7 @@ const NPC_DEFINITIONS = {
     forest_watcher: {
         id: "forest_watcher",
         name: "Forest Watcher",
-        sprite: "assets/img/npc/npc_m_1.png",
+        sprite: "assets/img/npc/npc_a_5.png",
         interactive: true,
         spawns: [
             { map: 2, x: 9, y: 59, wanderArea: { x1: 5, y1: 56, x2: 12, y2: 62 } }
@@ -859,7 +859,7 @@ const NPC_DEFINITIONS = {
     spire_gate_merchant: {
         id: "spire_gate_merchant",
         name: "Calyx the Spire Gate Merchant",
-        sprite: "assets/img/npc/npc_f_3.png",
+        sprite: "assets/img/npc/npc_a_3.png",
         interactive: true,
         spawns: [
             { map: 3, x: 36, y: 31, wanderArea: { x1: 34, y1: 28, x2: 38, y2: 33 } }
@@ -960,7 +960,7 @@ const NPC_DEFINITIONS = {
     archivist_venn: {
         id: "archivist_venn",
         name: "Archivist Venn",
-        sprite: "assets/img/npc/npc_m_4.png",
+        sprite: "assets/img/npc/npc_m_9.png",
         interactive: true,
         spawns: [
             { map: 3, x: 73, y: 5, wanderArea: { x1: 67, y1: 2, x2: 77, y2: 10 } }
@@ -1061,7 +1061,7 @@ const NPC_DEFINITIONS = {
     great_hall_scribe: {
         id: "great_hall_scribe",
         name: "Scribe of the Hall",
-        sprite: "assets/img/npc/npc_f_6.png",
+        sprite: "assets/img/npc/npc_a_9.png",
         interactive: true,
         spawns: [
             { map: 3, x: 71, y: 11, wanderArea: { x1: 65, y1: 5, x2: 72, y2: 11 } }
@@ -1144,7 +1144,7 @@ const NPC_DEFINITIONS = {
     kael_mirrorscar: {
         id: "kael_mirrorscar",
         name: "Kael the Mirrorscarred",
-        sprite: "assets/img/npc/npc_m_7.png",
+        sprite: "assets/img/npc/npc_m_8.png",
         interactive: true,
         spawns: [
             { map: 4, x: 48, y: 75, wanderArea: { x1: 35, y1: 61, x2: 49, y2: 78 } }
@@ -1195,7 +1195,7 @@ const NPC_DEFINITIONS = {
     umbra_quartermaster: {
         id: "umbra_quartermaster",
         name: "Rylin the Quartermaster",
-        sprite: "assets/img/npc/npc_m_2.png",
+        sprite: "assets/img/npc/npc_a_2.png",
         interactive: true,
         spawns: [
             { map: 4, x: 75, y: 68, wanderArea: { x1: 71, y1: 69, x2: 77, y2: 69 } }
@@ -1239,7 +1239,7 @@ const NPC_DEFINITIONS = {
     lysa_mirror_scribe: {
         id: "lysa_mirror_scribe",
         name: "Lysa the Mirror Scribe",
-        sprite: "assets/img/npc/npc_f_4.png",
+        sprite: "assets/img/npc/npc_a_4.png",
         interactive: true,
         spawns: [
             { map: 4, x: 64, y: 72, wanderArea: { x1: 51, y1: 70, x2: 77, y2: 78 } }
@@ -1300,7 +1300,7 @@ const NPC_DEFINITIONS = {
     pale_archivist_echo: {
         id: "pale_archivist_echo",
         name: "Pale Archivist (Echo)",
-        sprite: "assets/img/npc/npc_f_7.png",
+        sprite: "assets/img/npc/npc_a_7.png",
         interactive: true,
         spawns: [
             { map: 4, x: 69, y: 12, wanderArea: { x1: 68, y1: 10, x2: 77, y2: 18 } }
@@ -1488,7 +1488,7 @@ const NPC_DEFINITIONS = {
     lelien_the_grass_keeper: {
         id: "lelien_the_grass_keeper",
         name: "Lelien the Grass Keeper",
-        sprite: "assets/img/npc/npc_f_2.png",
+        sprite: "assets/img/npc/npc_a_2.png",
         interactive: true,
         spawns: [
             { map: 5, x: 31, y: 30, wanderArea: { x1: 27, y1: 26, x2: 35, y2: 36 } }
@@ -1506,7 +1506,7 @@ const NPC_DEFINITIONS = {
     finik_the_fisherman: {
         id: "finik_the_fisherman",
         name: "Finik the Fisherman",
-        sprite: "assets/img/npc/npc_m_7.png",
+        sprite: "assets/img/npc/npc_m_8.png",
         interactive: true,
         spawns: [
             { map: 5, x: 32, y: 16, wanderArea: { x1: 31, y1: 16, x2: 33, y2: 18 } },
@@ -1574,7 +1574,7 @@ const NPC_DEFINITIONS = {
     wharf_market_trader2: {
         id: "wharf_market_trader2",
         name: "Freya, Wharf Markets Grasskeeper",
-        sprite: "assets/img/npc/npc_f_2.png",
+        sprite: "assets/img/npc/npc_a_2.png",
         interactive: true,
         spawns: [
             { map: 6, x: 54, y: 29, wanderArea: { x1: 53, y1: 24, x2: 57, y2: 31 } }
