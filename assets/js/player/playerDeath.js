@@ -46,8 +46,8 @@ function showDeathScreen() {
 
 // Respawn Player
 function respawnPlayer() {
-    // Restore half health
-    player.setHealth(Math.ceil(player.getMaxHealth() / 2));
+    // Restore two-thirds health
+    player.setHealth(Math.ceil(player.getMaxHealth() / 3 * 2));
     // Place at map spawn
     if (map.data && map.data.spawn) {
         player.tile.x = map.data.spawn.x;
