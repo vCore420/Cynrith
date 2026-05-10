@@ -154,6 +154,8 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 - Title screen logo created
 - Docs Expanded / Updated
 
+---
+
 3/5/26 v1.1.9
 
 - Updated app icon and banner image
@@ -193,7 +195,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-12/4 v1.1.7
+12/4/26 v1.1.7
 
 - Added Floor 7 setup content and progression hooks (new NPC/trader data and supporting map content)
 - Added Home Plot access flow:
@@ -222,7 +224,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-11/3 v1.1.1
+11/3/26 v1.1.1
 
 - **Floor 6: Waystation Veil & Castle Interior** - New floor with castle interior tiles, new story elements, and familiar faces from previous floors
 - **Settings Persistence** - Fixed player settings (touch controls, log display, volume sliders) not saving/loading properly
@@ -238,7 +240,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-3/2 v1.0.0
+3/2/26 v1.0.0
 
 - Intractable tile mechanics updated, they can now teleport player to different coords on interaction, this works across maps too opening up intractable tiles to more uses. also added the ability to allowing intractable tiles to be re triggered. This will all be first seen in use on floor 5
 - Core Map warping function updated to accept any name or map number, allowing for future dungeon maps to be added - this should work like this for all map referencing across the definitions
@@ -259,7 +261,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-7/9 Beta v0.2.2
+7/9/25 Beta v0.2.2
 
 - Skill system Created: Gatcha system for obtain skills, rarity-based upgrade costs, advanced skill logic (regen, xpGain, resistance)
 - Added skills, with templates for easy future additions.
@@ -274,7 +276,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-6/9 Beta v0.2.1
+6/9/25 Beta v0.2.1
 
 - Player movement fully reworked for WASD keys, with fluent diagonal movement and last-key priority.
 - Action buttons mapped: Enter for interaction, Space for combat, Esc to open/close player menu.
@@ -288,7 +290,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-4/9 Beta v0.2.0
+4/9/25 Beta v0.2.0
 
 - Floor 4 
   - New floor map and tile assets
@@ -324,7 +326,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-28/8 Beta v0.1.3
+28/8/25 Beta v0.1.3
 
 - Added enemy ambient sounds that increase with player distance to them
 - Added sound types to trigger and interactable tiles with loop, ambient and trigger options
@@ -334,7 +336,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
 
-27/8 Beta v0.1.2
+27/8/25 Beta v0.1.2
 
 - Expanded sound system: contextual background music for each map and title screen, with smooth fade transitions.
 - Player movement now triggers ground tile-specific footstep sounds, supporting multi-layer maps and all defined tile types.
@@ -349,7 +351,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
   
-26/8 Beta v0.1.1
+26/8/25 Beta v0.1.1
 
 - Added background music for title screen and each map, with smooth transitions.
 - Introduced modular sound system for music and effects.
@@ -358,7 +360,7 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 ---
   
-23/8 Beta v0.1.0
+23/8/25 Beta v0.1.0
 
 - Added new quest types and improved quest logic (stat tracking, interactTiles, redoable quests)
 - Expanded interactable and trigger tile system (animated tiles, notifications, persistent state)
