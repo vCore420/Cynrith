@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const charConfirmBtn = document.getElementById('char-confirm-btn');
     const charSelectClose = document.getElementById('char-select-close');
     const titleContent = document.querySelector('.title-content');
-    const titleHeader = titleContent.querySelector('h1');
+    const titleHeader = document.querySelector('#title-logo');
 
     // Sprite list 
     const sprites = [
