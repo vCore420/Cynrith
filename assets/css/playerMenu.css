@@ -47,6 +47,7 @@
   padding: 36px 32px 24px 32px;
   width: 500px;
   min-height: 400px;
+  max-height: 85vh;
   color: var(--title-header);
   position: relative;
   text-align: center;
@@ -79,8 +80,8 @@
   justify-content: flex-start;
   align-items: stretch;
   margin-right: 24px;
-  margin-top: 16px;
-  gap: 12px;
+  margin-top: 14px;
+  gap: 8px;
 }
 
 /* Right Side of Player Menu */
@@ -678,8 +679,8 @@
 .skills-block {
   background: #222335;
   border-radius: 4px;
-  margin: 18px auto;
-  padding: 12px 12px;
+  margin: 4px auto;
+  padding: 6px 12px;
   box-shadow: 0 2px 12px #82cef522;
   width: 60%;
   max-width: 420px;
@@ -689,7 +690,7 @@
   display: flex;
   gap: 18px;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 0px;
 }
 
 .skill-slot {
@@ -736,7 +737,9 @@
 }
 
 #spin-skills-btn {
-  margin: 24px auto 0 auto;
+  margin: 2px auto 0 auto;
+  padding: 2px 6px;
+  font-size: 18px;
   display: block;
   width: 180px;
 }
@@ -762,7 +765,11 @@
 #skills-gacha-spin-blue, 
 #skills-gacha-spin-red {
   padding: 12px 24px;
+  max-width: 140px;
+  font-size: 16px;
+  text-align: center;
 }
+
 
 .skill-card.rarity-common    { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(255,255,255,0.12); }
 .skill-card.rarity-rare      { box-shadow: 0 2px 8px rgba(0,0,0,0.22), 0 0 4px 4px rgba(0,180,255,0.18); }
