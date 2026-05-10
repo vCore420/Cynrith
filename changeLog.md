@@ -82,3 +82,14 @@
 - More Home Plot Items Created
 
 - More work on floor 7 done
+
+
+# Change Log 10/5/26
+
+- Player Sprites polished 
+
+- Npc Sprites polished and more were created
+
+- Player menu css adjusted
+
+- Title screen logo created

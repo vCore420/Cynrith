@@ -146,6 +146,14 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 <p>
 
 
+10/5/26 v1.2.0
+
+- Player Sprites polished 
+- Npc Sprites polished and more were created
+- Player menu css adjusted
+- Title screen logo created
+- Docs Expanded / Updated
+
 3/5/26 v1.1.9
 
 - Updated app icon and banner image
