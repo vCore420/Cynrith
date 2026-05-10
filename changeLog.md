@@ -35,6 +35,50 @@
 - World sprites added to floor 5, new enemy sounds added bringing floor 5 to completion
 
 
+# Chnage Log 11/3/26 
+
+- New floor 6 with castle interior tiles, new story elements, and familiar faces from previous floors
+
+- Fixed player settings (touch controls, log display, volume sliders) not saving/loading properly
+
+- Resolved "can't access property 'style'" errors during game load by adding null checks
+
+- Fixed touch controls not restoring visibility properly on game load (joystick was still showing when disabled)
+
+- Corrected method name from setSfxVolume to setEffectVolume for volume slider functionality
+
+- Improved collision detection for world sprites to prevent head clipping using z-index logic
+
+- Updated mini map to display all layers except the top decorative layer for better navigation
+
+- Added version watermark to title screen for better version tracking
+
+- Refactored gameSettings to use window.gameSettings for proper scope and persistence
+
+- Enhanced save data structure to include settings and improved restoration logic
+
+
+# Change Log 12/4/26
+
+- Added Floor 7 setup content and progression hooks (new NPC/trader data and supporting map content)
+
+- Added Home Plot access flow
+
+- Added Home Plot travel system
+
+- Added visited floor tracking and save/load persistence for travel unlocks
+
+- Added first Home Plot customization framework
+
+- Added Home Plot HUD button
+
+- Added Home placeable item definition support in items
+
+- Home placeables now route to Home storage (not normal inventory slots)
+
+- Improved placement rules
+
+
 # Change Log 19/4/26
 
 - Massive change of Npc Dialouge, going for pressents first, progression second type feel - f1 - f5
