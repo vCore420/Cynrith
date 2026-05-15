@@ -145,6 +145,13 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 <p>
 
+15/5/26 v1.2.1
+
+- Temp World Sprite system created
+
+- Rootbound Skill Updated to use this new temp world sprite system to display Vines Sprite upon enemy deaths
+
+---
 
 10/5/26 v1.2.0
 

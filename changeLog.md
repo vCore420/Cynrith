@@ -137,3 +137,10 @@
 - Player menu css adjusted
 
 - Title screen logo created
+
+
+# Change Log 15/5/26
+
+- Temp World Sprite system created, expansion of the current world sprite system to allow for sprites to be called to appear from different areas of the game
+
+- Rootbound Skill Updated to use this new temp world sprite system to display vines upon enemy deaths
