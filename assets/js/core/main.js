@@ -302,6 +302,9 @@ function Loop() {
 
     map.draw();
 
+    // Update temporary sprites
+    if (typeof updateTemporarySprites === "function") updateTemporarySprites();
+
     // Draw world sprites below player
     if (typeof drawWorldSprites === "function") drawWorldSprites(0);
 

@@ -487,6 +487,32 @@ const SKILL_EFFECTS = {
     });
 
     notify(`Rootbound: vines entangle nearby enemies!`, 1200);
+
+    // Spawn visual vines sprite
+    const vinesDef = WORLD_SPRITES.find(s => s.id === "rootbound_vines");
+    if (vinesDef) {
+        if (!_worldSpriteImages[vinesDef.spriteSheet]) {
+            const img = new Image();
+            img.src = vinesDef.spriteSheet;
+            _worldSpriteImages[vinesDef.spriteSheet] = img;
+        }
+        const vinesSprite = {
+            ...vinesDef,
+            x: Math.round(enemy.x),
+            y: Math.round(enemy.y),
+            temporary: true,
+            duration: 120, // 2 seconds at 60fps
+            totalDuration: 120,
+            scale: 0.5,
+            opacity: 1,
+            _frame: 0,
+            _animTick: 0,
+            frameW: Math.floor(vinesDef.imageW / vinesDef.cols),
+            frameH: Math.floor(vinesDef.imageH / vinesDef.rows),
+            frames: vinesDef.cols * vinesDef.rows
+        };
+        activeWorldSprites.push(vinesSprite);
+    }
 }
     // Add more skills here...
 };

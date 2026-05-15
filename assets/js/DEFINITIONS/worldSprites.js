@@ -594,6 +594,21 @@ const WORLD_SPRITES = [
 
 
 
+    // Rootbound Vines - temporary sprite for skill effect
+    {
+        id: "rootbound_vines",   
+        spriteSheet: "assets/img/worldSprites/rootbound_vines.png",  
+        imageW: 64,      
+        imageH: 64,    
+        rows: 1,         
+        cols: 1,         
+        animSpeed: 0,    
+        zIndex: 1,         
+        collision: false  
+    },
+
+
+
 ];
 
 

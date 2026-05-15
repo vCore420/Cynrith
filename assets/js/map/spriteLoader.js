@@ -1,7 +1,9 @@
 //Modular Sprite Sheet Loader
 
 const _worldSpriteImages = {};
-let activeWorldSprites = [];
+window._worldSpriteImages = _worldSpriteImages;
+var activeWorldSprites = [];
+window.activeWorldSprites = activeWorldSprites;
 
 
 function isTileBlockedByWorldSprite(tileX, tileY) {
@@ -73,7 +75,7 @@ function drawWorldSprites(zIndex) {
         }
 
         const img = _worldSpriteImages[s.spriteSheet];
-        if (!img || !img.complete) return;
+        if (!img) return;
 
         // Calculate frame position in sheet (supports single frame)
         const frameIndex = s._frame || 0;
@@ -88,10 +90,34 @@ function drawWorldSprites(zIndex) {
         const offsetY = s.zIndex === 1 ? -16 : 0;
         const py = Math.floor(s.y * config.size.tile - viewport.y - (s.frameH - config.size.tile) + offsetY);
 
+        const scaledW = s.frameW * (s.scale || 1);
+        const scaledH = s.frameH * (s.scale || 1);
+        const centerOffsetX = (s.frameW - scaledW) / 2;
+        const centerOffsetY = (s.frameH - scaledH) / 2;
+
+        context.globalAlpha = s.opacity || 1;
         context.drawImage(
             img,
             sx, sy, s.frameW, s.frameH,
-            px, py, s.frameW, s.frameH
+            px + centerOffsetX, py + centerOffsetY, scaledW, scaledH
         );
+        context.globalAlpha = 1;
     });
+}
+
+function updateTemporarySprites() {
+    for (let i = activeWorldSprites.length - 1; i >= 0; i--) {
+        const s = activeWorldSprites[i];
+        if (s.temporary) {
+            s.duration--;
+            if (s.duration <= 0) {
+                activeWorldSprites.splice(i, 1);
+                continue;
+            }
+            // Update scale and opacity
+            const progress = 1 - (s.duration / s.totalDuration);
+            s.scale = 0.5 + progress * 0.5;
+            s.opacity = 1 - progress; // fade from 1 to 0
+        }
+    }
 }
