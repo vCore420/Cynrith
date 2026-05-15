@@ -76,6 +76,8 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
   <img src="docs/assets/demo6.png" width="480"/>
   <img src="docs/assets/demo7.png" width="480"/>
   <img src="docs/assets/demo8.png" width="480"/>
+  <img src="docs/assets/demo9.png" width="480"/>
+  <img src="docs/assets/demo10.png" width="480"/>
 </p>
 
 <details>
