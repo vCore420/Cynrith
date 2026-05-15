@@ -2057,34 +2057,77 @@ const ENEMY_TYPES = {
             { map: 4, x: 27, y: 4, wanderArea: { x1: 25, y1: 2, x2: 51, y2: 18 } },
         ]
     },
+
+    archipelago_slimes: { 
+        id: "archipelago_slimes",
+        name: "Archipelago Slimes",
+        sprite: "assets/img/enemy/slime_02.png",    
+        moveSpeed: 1.3, 
+        distance: 3, 
+        maxHealth: 220, 
+        attack: 78,
+        defense: 56,
+        speed: 1.3,
+        xpGain: 105,
+        loot: [ 
+            { item: "slime_ball", chance: 40, amount: [1, 6] },
+            { item: "money", chance: 30, amount: [16, 32] }
+        ],
+        spawns: [
+            { map: 6, x: 14, y: 31, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 11, y: 29, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 7, y: 27, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 10, y: 25, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 14, y: 23, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 3, y: 24, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 10, y: 21, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 4, y: 20, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 8, y: 18, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 13, y: 20, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 11, y: 16, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 7, y: 17, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 6, y: 14, wanderArea: { x1: 3, y1: 13, x2: 15, y2: 33 } },
+            { map: 6, x: 33, y: 6, wanderArea: { x1: 32, y1: 6, x2: 36, y2: 9 } },
+            { map: 6, x: 36, y: 8, wanderArea: { x1: 32, y1: 6, x2: 36, y2: 9 } },
+            { map: 6, x: 42, y: 26, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 36, y: 23, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 31, y: 27, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 28, y: 25, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 25, y: 27, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 23, y: 24, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+            { map: 6, x: 44, y: 24, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
+        ]
+    },
 };
 
 /*
 // Enemy Type Template Example
 
 const enemy_template = {
+    
     id: "unique_enemy_id", // Unique string ID for this enemy
-    name: "Enemy Name",
-    sprite: "assets/img/enemy/enemy_01.png", // Path to enemy sprite image
-    spriteWidth: 128,   // source frame width
-    spriteHeight: 128,  // source frame height
-    drawScale: 1.6,     // render bigger on the map
-    isBoss: true,    // wont repsawn after death if boss true, only on map loads
-    moveSpeed: 1.0, // Movement speed
-    distance: 3, // Hostile distance to player
-    maxHealth: 20, // Maximum health
-    attack: 5, // Attack damage
-    defense: 2, // Defense value
-    speed: 1, // Attack speed
-    xpGain: 10, // XP gained when defeated
-    loot: [ // Array of loot drops
-        { item: "item_id", chance: 50, amount: [1, 2] }
-        // Add more loot items as needed
-    ],
-    spawns: [
-        { map: 0, x: 10, y: 10, wanderArea: { x1: 8, y1: 8, x2: 12, y2: 12 } }
-        // Add more spawn locations as needed
-    ]
+        name: "Enemy Name",
+        sprite: "assets/img/enemy/enemy_01.png", // Path to enemy sprite image
+        spriteWidth: 128,   // source frame width
+        spriteHeight: 128,  // source frame height
+        drawScale: 1.6,     // render bigger on the map
+        isBoss: true,    // wont repsawn after death if boss true, only on map loads
+        moveSpeed: 1.0, // Movement speed
+        distance: 3, // Hostile distance to player
+        maxHealth: 20, // Maximum health
+        attack: 5, // Attack damage
+        defense: 2, // Defense value
+        speed: 1, // Attack speed
+        xpGain: 10, // XP gained when defeated
+        loot: [ // Array of loot drops
+            { item: "item_id", chance: 50, amount: [1, 2] }
+            // Add more loot items as needed
+        ],
+        spawns: [
+            { map: 0, x: 10, y: 10, wanderArea: { x1: 8, y1: 8, x2: 12, y2: 12 } }
+            // Add more spawn locations as needed
+        ]
+    },
 };
 
 */
