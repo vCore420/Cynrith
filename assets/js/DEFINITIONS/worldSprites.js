@@ -595,7 +595,7 @@ const WORLD_SPRITES = [
     {
         id: "broken_dock_1",    
         positions: [
-            { map: 6, x: 18, y: 12 }, 
+            { map: 6, x: 18, y: 13 }, 
         ],
         spriteSheet: "assets/img/worldSprites/dock_01.png",  
         imageW: 128,     
