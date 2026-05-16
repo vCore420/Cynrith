@@ -67,6 +67,68 @@ const ITEM_DEFINITIONS = {
         sound: 'atkSpeed.mp3'
     },
 
+    health_buff_large: {
+        id: "health_buff_large",
+        name: "Health Buff - Large",
+        description: "Restores 30 health.",
+        image: "assets/img/items/health_buff_large.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'health.mp3'
+    },
+
+
+    atk_buff_large: {
+        id: "atk_buff_large",
+        name: "Attack Buff - Large",
+        description: "Increases attack damage by 18.",
+        image: "assets/img/items/atk_buff_large.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'atk.mp3'
+    },
+
+
+    def_buff_large: {
+        id: "def_buff_large",
+        name: "Defence Buff - Large",
+        description: "Increases Defence by 15.",
+        image: "assets/img/items/def_buff_large.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'def.mp3'
+    },
+
+    maxHealth_buff_large: {
+        id: "maxHealth_buff_large",
+        name: "Max Health Buff - Large",
+        description: "Increases Max Health by 30.",
+        image: "assets/img/items/maxHealth_buff_large.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'maxHealth.mp3'
+    },
+
+    atkSpeed_buff_large: {
+        id: "atkSpeed_buff_large",
+        name: "Attack Speed Buff - Large",
+        description: "Increases attack speed by 20.",
+        image: "assets/img/items/atkSpeed_buff_large.png",
+        rarity: "epic",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: 'atkSpeed.mp3'
+    },
+
     umbra_tonic: {
         id: "umbra_tonic",
         name: "Umbra Tonic",
