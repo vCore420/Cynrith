@@ -147,6 +147,14 @@ Cynrith is designed as an ever-expanding world where each Floor has its own iden
 
 <p>
 
+16/5/26 v1.2.2
+
+- Some Inventory icon assets polished
+- New Npcs and traders added to floor 7
+- New Buff items, assets and effects created
+
+---
+
 15/5/26 v1.2.1
 
 - Temp World Sprite system created

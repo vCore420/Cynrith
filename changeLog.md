@@ -146,3 +146,12 @@
 - Rootbound Skill Updated to use this new temp world sprite system to display vines upon enemy deaths
 
 - Worked on floor 7, Added first lot of enemys to floor
+
+
+# Change Log 16/5/26
+
+- Some Inventory icon assets polished
+
+- New Npcs and traders added to floor 7
+
+- New Buff items, assets and effects created
