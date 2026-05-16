@@ -1272,6 +1272,31 @@ const ITEM_DEFINITIONS = {
         }
     },
 
+    dock1: {
+        id: "dock1",
+        name: "Broken Dock",
+        description: "A old Broken Wooden Dock.",
+        image: "assets/img/worldSprites/dock_01.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/dock_01.png",
+            imageW: 128,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+
     
     // --------------- loot, Drops, Quest Items ---------------
 

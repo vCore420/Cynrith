@@ -111,14 +111,15 @@ const TRADER_DEFINITIONS = {
 
     trader6: {
         buy: [
-            { id: "inventory_page",   price: 3000 },
-            { id: "home_chair_oak",   price: 100 },
-            { id: "fence1",   price: 100 },
-            { id: "gazebo1",   price: 100 },
-            { id: "home_cabin_1",   price: 500 },
+            { id: "inventory_page",  price: 3000 },
+            { id: "home_chair_oak",  price: 100 },
+            { id: "fence1",          price: 100 },
+            { id: "gazebo1",         price: 100 },
+            { id: "home_cabin_1",    price: 500 },
+            { id: "dock1",           price: 160 },
         ],
         sell: [
-            { id: "umbra_tonic",         price: 35 }
+            { id: "umbra_tonic",     price: 35 }
         ]
     },
 
