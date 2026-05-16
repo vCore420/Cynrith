@@ -162,6 +162,25 @@ const TRADER_DEFINITIONS = {
             { id: "dewleaf",         price: 24 },
             { id: "dustroot",        price: 20 }
         ]
+    },
+
+    trader9: {
+        buy: [
+            { id: "mirror_tonic",         price: 30 },
+            { id: "clarity_tincture",     price: 50 },
+            { id: "umbra_tonic",          price: 50 },
+            { id: "atkSpeed_buff_small",  price: 12 },
+            { id: "maxHealth_buff_small", price: 15 },
+            { id: "def_buff_small",       price: 16 },
+            { id: "atk_buff_small",       price: 16 },
+            { id: "health_buff_small",    price: 5 },
+        ],
+        sell: [
+            { id: "lost_pages",     price: 100 },
+            { id: "bioluminescent_mushroom", price: 60 },
+            { id: "memory_fragment",    price: 40 },
+            { id: "glitch_fragment",  price: 80 },
+        ]
     }
 };
 

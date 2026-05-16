@@ -1603,6 +1603,63 @@ const NPC_DEFINITIONS = {
         trader: "trader8"
     },
 
+    old_renn: {
+        id: "old_renn",
+        name: "Old Renn",
+        sprite: "assets/img/npc/npc_m_4.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 56, y: 16, wanderArea: { x1: 52, y1: 12, x2: 57, y2: 19 } }
+        ],
+        dialogue: {
+            default: [
+                "This market used to sit farther south.",
+                "Or maybe the shoreline changed.",
+                "Hard to tell anymore.",
+                "Places move slowly in Cynrith. Slow enough that folk pretend not to notice.",
+                "But the sea remembers every older shape.",  
+            ]
+        },
+    },
+
+    leth: {
+        id: "leth",
+        name: "Leth",
+        sprite: "assets/img/npc/npc_a_9.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 56, y: 26, wanderArea: { x1: 52, y1: 23, x2: 57, y2: 28 } }
+        ],
+        dialogue: {
+            default: [
+                "I carry messages between the outer islands.",
+                "Mostly trade counts. Sometimes final words.",
+                "You learn quickly not to open sealed letters out here.",
+                "A few came addressed to people who disappeared years ago.",
+                "One came addressed to me." 
+            ]
+        },
+    },
+
+    tomaFen: {
+        id: "tomaFen",
+        name: "Toma Fen",
+        sprite: "assets/img/npc/npc_a_5.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 54, y: 11, wanderArea: { x1: 52, y1: 7, x2: 57, y2: 13 } }
+        ],
+        dialogue: {
+            default: [
+                "Most things lost to the sea return eventually.",
+                "Not always where they were taken from, mind you.",
+                "I've found tools from Floors I've never visited.",
+                "Sometimes names are scratched into them.",
+                "Sometimes the names belong to people still alive."
+            ]
+        },
+        trader: "trader9"
+    },
     
 };
 
