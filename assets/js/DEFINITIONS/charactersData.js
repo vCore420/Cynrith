@@ -1606,7 +1606,7 @@ const NPC_DEFINITIONS = {
     old_renn: {
         id: "old_renn",
         name: "Old Renn",
-        sprite: "assets/img/npc/npc_m_4.png",
+        sprite: "assets/img/npc/npc_m_1.png",
         interactive: true,
         spawns: [
             { map: 6, x: 56, y: 16, wanderArea: { x1: 52, y1: 12, x2: 57, y2: 19 } }
@@ -1660,7 +1660,91 @@ const NPC_DEFINITIONS = {
         },
         trader: "trader9"
     },
+
+    maelin_bridgewright: {
+        id: "maelin_bridgewright",
+        name: "Maelin the Bridgewright",
+        sprite: "assets/img/npc/npc_m_7.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 53, y: 58, wanderArea: { x1: 51, y1: 56, x2: 59, y2: 62 } }
+        ],
+        dialogue: {
+            default: [
+                "I've rebuilt this bridge three times this cycle.",
+                "Not because it breaks. Because it shifts.",
+                "Boards end up longer than they were before. Nails vanish. Rope knots move.",
+                "The sea islands don't stay entirely still in Cynrith. Folk just prefer not to discuss it too loudly."
+            ],
+            questGiven: [
+                "Could you bring me 6 Driftwood Bindings from the shoreline Ghouls nearby?",
+                "The old bridge ropes stopped remembering how to hold tension properly."
+            ],
+            questIncomplete: [
+                "No luck yet?",
+                "Listen for the snapping sounds near the tide pools. The Tidehollows nest there."
+            ],
+            questComplete: [
+                "Good. These should hold awhile longer.",
+                "Funny thing about repairs... eventually you stop asking whether you're restoring something or replacing it piece by piece."
+            ]
+        },
+        questId: "maelin_bridge_repairs",
+        questRedo: true
+    },
     
+    niva_salt_archivist: {
+        id: "niva_salt_archivist",
+        name: "Niva the Salt Archivist",
+        sprite: "assets/img/npc/npc_a_4.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 61, y: 41, wanderArea: { x1: 60, y1: 39, x2: 63, y2: 45 } }
+        ],
+        dialogue: {
+            default: [
+                "The sea preserves strange things.",
+                "Paper rots. Iron rusts. But memory lingers oddly well in salt.",
+                "I collect objects carried ashore after Fracture tides.",
+                "Some still remember who held them last."
+            ],
+            questGiven: [
+                "Please recover 4 Saltbound Keepsakes from the shoreline east of the market.",
+                "Handle them gently. Some relics resist being forgotten harder than people do."
+            ],
+            questIncomplete: [
+                "Not yet?",
+                "Look near collapsed docks and washed up wrecks. The sea returns important things reluctantly."
+            ],
+            questComplete: [
+                "Ah... these still carry warmth.",
+                "That means someone remembered them recently.",
+                "Thank you, with each keepsake we bring this world together a little more.",
+                "Please take these treasures I found along the shore lines."
+            ]
+        },
+        questId: "saltbound_keepsakes",
+        questRedo: false
+    },
+
+    hush_ferryman: {
+        id: "hush_ferryman",
+        name: "Hush the Ferryman",
+        sprite: "assets/img/npc/npc_m_9.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 38, y: 54, wanderArea: { x1: 36, y1: 52, x2: 45, y2: 56 } }
+        ],
+        dialogue: {
+            default: [
+                "Not every crossing in Cynrith moves upward.",
+                "Some only move sideways.",
+                "People vanish between islands sometimes.",
+                "Most assume the sea took them.",
+                "The sea is rarely the thing making decisions."
+            ]
+        }
+    },
 };
 
 

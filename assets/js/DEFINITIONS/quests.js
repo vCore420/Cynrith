@@ -293,6 +293,38 @@ const QUEST_DEFINITIONS = {
         ],
         redoable: false
     },
+
+    // ---------- Floor 7 -----------
+
+    maelin_bridge_repairs: {
+        id: "maelin_bridge_repairs",
+        name: "Repair Maelins Bridge",
+        description: "Collect 6 Driftwood Bindings from the Shoreline Ghouls so Maelin can repair the Bridge",
+        type: "itemCollect",
+        requiredItems: [{ id: "driftwood_binding", amount: 6 }],
+        rewards: [
+            { id: "blue_gem", amount: 1 },
+            { id: "money", amount: 36 },
+            { xp: 240 }
+        ],
+        redoable: true
+    },
+
+    saltbound_keepsakes: {
+        id: "saltbound_keepsakes",
+        name: "Niva's Keepsakes",
+        description: "Collect 4 Saltbound Keepsakes from the east for Niva",
+        type: "itemCollect",
+        requiredItems: [{ id: "saltbound_keepsake", amount: 4 }],
+        rewards: [
+            { id: "atk_buff_large", amount: 1 },
+            { id: "money", amount: 52 },
+            { xp: 220 }
+        ],
+        redoable: false
+    },
+
+
 };
 
 

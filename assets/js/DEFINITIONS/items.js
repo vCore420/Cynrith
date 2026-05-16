@@ -1498,6 +1498,28 @@ const ITEM_DEFINITIONS = {
         useable: true,
         removeable: true,
         sound: 'maxHealth.mp3'
+    },
+
+    driftwood_binding: {
+        id: "driftwood_binding",
+        name: "Driftwood Binding",
+        description: "Binding often found tangled around driftwood that washes up, the Ghouls tend to get to it first.",
+        image: "assets/img/items/driftwood_binding.png",
+        rarity: "common",
+        stackable: true,
+        useable: false,
+        removeable: true,
+    },
+
+    saltbound_keepsake: {
+        id: "saltbound_keepsake",
+        name: "Saltbound Keepsake",
+        description: "A lost Keepsake from a different time thats washed up on the eastern shore.",
+        image: "assets/img/items/saltbound_keepsake.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
     }
 };
 
