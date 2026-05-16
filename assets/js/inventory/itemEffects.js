@@ -21,6 +21,28 @@ const ITEM_EFFECTS = {
         player.addAttackSpeed(10 * amount);
         notify(`Attack Speed increased by ${10 * amount}!`, 1800);
     },
+    health_buff_large: function(player, amount = 1) {
+        const heal = 30 * amount;
+        const before = player.health;
+        player.setHealth(player.health + heal);
+        notify(`Restored ${player.health - before} health!`, 1800);
+    },
+    atk_buff_large: function(player, amount = 1) {
+        player.addAttack(18 * amount);
+        notify(`Attack increased by ${18 * amount}!`, 1800);
+    },
+    def_buff_large: function(player, amount = 1) {
+        player.addDefence(15 * amount);
+        notify(`Defence increased by ${15 * amount}!`, 1800);
+    },
+    maxHealth_buff_large: function(player, amount = 1) {
+        player.addMaxHealth(30 * amount);
+        notify(`Max Health increased by ${30 * amount}!`, 1800);
+    },
+    atkSpeed_buff_large: function(player, amount = 1) {
+        player.addAttackSpeed(20 * amount);
+        notify(`Attack Speed increased by ${20 * amount}!`, 1800);
+    },
     glassberry_tea: function(player, amount = 1) {
         const before = player.health;
         player.setHealth(player.maxHealth);
