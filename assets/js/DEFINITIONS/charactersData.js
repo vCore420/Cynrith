@@ -2239,6 +2239,32 @@ const ENEMY_TYPES = {
             { map: 6, x: 44, y: 24, wanderArea: { x1: 22, y1: 22, x2: 45, y2: 28 } },
         ]
     },
+
+    shoreline_ghoul: {
+    id: "shoreline_ghoul",
+    name: "Shoreline Ghoul",
+    sprite: "assets/img/enemy/orc_03.png",
+    moveSpeed: 1.2,
+    distance: 4,
+    maxHealth: 255,
+    attack: 86,
+    defense: 94,
+    speed: 1.2,
+    xpGain: 122,
+    loot: [
+        { item: "driftwood_binding", chance: 6, amount: [1, 2] },
+        { item: "money", chance: 65, amount: [12, 38] }
+    ],
+    spawns: [
+        { map: 6, x: 14, y: 31, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 30, y: 32, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 23, y: 36, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 27, y: 33, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 31, y: 35, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 37, y: 34, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+        { map: 6, x: 41, y: 35, wanderArea: { x1: 21, y1: 32, x2: 43, y2: 37 } },
+    ]
+},
 };
 
 /*

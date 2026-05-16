@@ -592,9 +592,27 @@ const WORLD_SPRITES = [
         collision: true   
     },
 
+    {
+        id: "broken_dock_1",    
+        positions: [
+            { map: 6, x: 18, y: 12 }, 
+        ],
+        spriteSheet: "assets/img/worldSprites/dock_01.png",  
+        imageW: 128,     
+        imageH: 128,      
+        rows: 1,        
+        cols: 1,          
+        row: 0,           
+        animSpeed: 0,     
+        zIndex: 0,        
+        collision: true   
+    },
 
 
-    // Rootbound Vines - temporary sprite for skill effect
+
+    // ---------- Temp World Sprites -----------
+
+    // Rootbound Vines 
     {
         id: "rootbound_vines",   
         spriteSheet: "assets/img/worldSprites/rootbound_vines.png",  
