@@ -139,6 +139,22 @@ const ITEM_DEFINITIONS = {
         hitSfx: "player/sword_hit.mp3" 
     },
 
+    obsidian_sword: {
+        id: "obsidian_sword",
+        name: "Obsidian_Sword",
+        description: "A Blade Forged from Obsidian, Pack a Strong Blow.",
+        image: "assets/img/items/obsidian_sword.png",
+        rarity: "rare",
+        stackable: false,
+        useable: false,
+        removeable: false,
+        itemType: "weapon",
+        attackBonus: 20,
+        rangeTiles: 3,
+        slashSfx: "player/sword_slash.mp3",
+        hitSfx: "player/sword_hit.mp3" 
+    },
+
 
     // --------------- Currency ---------------
 
