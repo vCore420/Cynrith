@@ -94,6 +94,50 @@ const ITEM_EFFECTS = {
         warpToMap("home_plot0", "spawn");
         notify("This place feels... yours.", 2200);
     },
+    saltbread_loaf: function(player, amount = 1) {
+        const heal = 35 * amount;
+        const before = player.health;
+        player.setHealth(player.health + heal);
+        notify(`Restored ${player.health - before} health!`, 1800);
+    },
+    harbor_stew: function(player, amount = 1) {
+        player.addAttack(22 * amount);
+        notify(`Attack increased by ${22 * amount}!`, 1800);
+    },
+    driftcake: function(player, amount = 1) {
+        player.addDefence(18 * amount);
+        notify(`Defence increased by ${18 * amount}!`, 1800);
+    },
+    emberfish_skewer: function(player, amount = 1) {
+        player.addMaxHealth(32 * amount);
+        notify(`Max Health increased by ${32 * amount}!`, 1800);
+    },
+    seafoam_bun: function(player, amount = 1) {
+        player.addAttackSpeed(24 * amount);
+        notify(`Attack Speed increased by ${24 * amount}!`, 1800);
+    },
+    tidekeeper_tea: function(player, amount = 1) {
+        const heal = 33 * amount;
+        const before = player.health;
+        player.setHealth(player.health + heal);
+        notify(`Restored ${player.health - before} health!`, 1800);
+    },
+    dockhand_rations: function(player, amount = 1) {
+        player.addAttack(21 * amount);
+        notify(`Attack increased by ${21 * amount}!`, 1800);
+    },
+    fogberry_tart: function(player, amount = 1) {
+        player.addDefence(20 * amount);
+        notify(`Defence increased by ${20 * amount}!`, 1800);
+    },
+    wharf_chowder: function(player, amount = 1) {
+        player.addMaxHealth(30 * amount);
+        notify(`Max Health increased by ${30 * amount}!`, 1800);
+    },
+    moonkelp_crackers: function(player, amount = 1) {
+        player.addAttackSpeed(26 * amount);
+        notify(`Attack Speed increased by ${26 * amount}!`, 1800);
+    },
     // Add more item effects here...
 };
 
