@@ -1745,6 +1745,25 @@ const NPC_DEFINITIONS = {
             ]
         }
     },
+
+    marella_the_hearthkeeper: {
+        id: "marella_the_hearthkeeper",
+        name: "Marella the Hearthkeeper",
+        sprite: "assets/img/npc/npc_f_4.png",
+        interactive: true,
+        spawns: [
+            { map: 6, x: 56, y: 31, wanderArea: { x1: 53, y1: 30, x2: 59, y2: 35 } }
+        ],
+        dialogue: {
+            default: [
+                "Come warm yourself a little, traveler. The sea takes enough from people without letting them go hungry too.",
+                "Most folk think strength comes from weapons first. I think it comes from sitting down long enough to remember you are still human.",
+                "The Wharf Market survives because someone keeps the ovens lit, the soup hot, and the tea brewing through the fog.",
+                "Take your time looking. Good food carries people farther than pride ever does."
+            ]
+        },
+        trader: "trader10"
+    },
 };
 
 

@@ -117,6 +117,8 @@ const TRADER_DEFINITIONS = {
             { id: "gazebo1",         price: 100 },
             { id: "home_cabin_1",    price: 500 },
             { id: "dock1",           price: 160 },
+            { id: "dock2",           price: 160 },
+            { id: "dock3",           price: 160 },
         ],
         sell: [
             { id: "umbra_tonic",     price: 35 }
@@ -159,9 +161,6 @@ const TRADER_DEFINITIONS = {
             { id: "echo_fragment",   price: 18 },
             { id: "memory_shard",    price: 18 },
             { id: "choir_fragment",  price: 20 },
-            { id: "slime_ball",      price: 16 },
-            { id: "dewleaf",         price: 24 },
-            { id: "dustroot",        price: 20 }
         ]
     },
 
@@ -186,6 +185,26 @@ const TRADER_DEFINITIONS = {
             { id: "bioluminescent_mushroom", price: 60 },
             { id: "memory_fragment",    price: 40 },
             { id: "glitch_fragment",  price: 80 },
+        ]
+    },
+
+    trader10: {
+        buy: [
+            { id: "saltbread_loaf",     price: 55 },
+            { id: "harbor_stew",        price: 86 },
+            { id: "driftcake",          price: 65 },
+            { id: "emberfish_skewer",   price: 58 },
+            { id: "seafoam_bun",        price: 50 },
+            { id: "tidekeeper_tea",     price: 45 },
+            { id: "dockhand_rations",   price: 40 },
+            { id: "fogberry_tart",      price: 70 },
+            { id: "wharf_chowder",      price: 80 },
+            { id: "moonkelp_crackers",  price: 62 },
+        ],
+        sell: [
+            { id: "slime_ball",      price: 16 },
+            { id: "dewleaf",         price: 24 },
+            { id: "dustroot",        price: 20 }
         ]
     }
 };

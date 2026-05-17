@@ -165,6 +165,128 @@ const ITEM_DEFINITIONS = {
         sound: "atkSpeed.mp3"
     },
 
+
+    // --------------- Meals ----------------
+
+    saltbread_loaf: {
+        id: "saltbread_loaf",
+        name: "Saltbread Loaf",
+        description: "Dense dockside bread baked with sea salt and dried herbs. Restores 35 Health.",
+        image: "assets/img/items/saltbread_loaf.png",
+        rarity: "common",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "health.mp3"
+    },
+
+    harbor_stew: {
+        id: "harbor_stew",
+        name: "Harbor Stew",
+        description: "A thick stew of shoreline fish, roots, and peppergrass served hot from the Wharf Market. Adds 22 Attack",
+        image: "assets/img/items/harbor_stew.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "atk.mp3"
+    },
+
+    driftcake: {
+        id: "driftcake",
+        name: "Driftcake",
+        description: "A sweet sea sponge cake glazed with crystal sugar and citrus peel. Adds 18 Defence",
+        image: "assets/img/items/driftcake.png",
+        rarity: "common",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "def.mp3"
+    },
+
+    emberfish_skewer: {
+        id: "emberfish_skewer",
+        name: "Emberfish Skewer",
+        description: "Fresh fish roasted over open flame until the oils crackle like embers. Adds 32 Max Health",
+        image: "assets/img/items/emberfish_skewer.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "maxHealth.mp3"
+    },
+
+    seafoam_bun: {
+        id: "seafoam_bun",
+        name: "Seafoam Bun",
+        description: "A soft pale bun filled with whipped creamweed and sugared berries. Adds 24 Attack Speed",
+        image: "assets/img/items/seafoam_bun.png",
+        rarity: "common",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "atkSpeed.mp3"
+    },
+
+    tidekeeper_tea: {
+        id: "tidekeeper_tea",
+        name: "Tidekeeper Tea",
+        description: "A calming herbal tea brewed by dockkeepers during long fog-heavy nights. Adds 33 Health",
+        image: "assets/img/items/tidekeeper_tea.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "health.mp3"
+    },
+
+    dockhand_rations: {
+        id: "dockhand_rations",
+        name: "Dockhand Rations",
+        description: "Simple smoked fish, hard bread, and preserved roots wrapped for long bridge crossings. Adds 21 Attack",
+        image: "assets/img/items/dockhand_rations.png",
+        rarity: "common",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "atk.mp3"
+    },
+
+    fogberry_tart: {
+        id: "fogberry_tart",
+        name: "Fogberry Tart",
+        description: "A rich tart baked with pale fogberries that leave a cool sweetness on the tongue. Adds 20 Defence",
+        image: "assets/img/items/fogberry_tart.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "def.mp3"
+    },
+
+    wharf_chowder: {
+        id: "wharf_chowder",
+        name: "Wharf Chowder",
+        description: "Creamy chowder thick with shellfish and tide potatoes. A favorite among bridge workers. Adds 30 Max Health",
+        image: "assets/img/items/wharf_chowder.png",
+        rarity: "rare",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "maxHealth.mp3"
+    },
+
+    moonkelp_crackers: {
+        id: "moonkelp_crackers",
+        name: "Moonkelp Crackers",
+        description: "Thin salted crackers baked with dried moonkelp gathered from shallow tide pools. Adds 26 Attack Speed",
+        image: "assets/img/items/moonkelp_crackers.png",
+        rarity: "common",
+        stackable: true,
+        useable: true,
+        removeable: true,
+        sound: "atkSpeed.mp3"
+    },
     
     // --------------- Weapons ---------------
 
@@ -1274,7 +1396,7 @@ const ITEM_DEFINITIONS = {
 
     dock1: {
         id: "dock1",
-        name: "Broken Dock",
+        name: "Broken Dock 1",
         description: "A old Broken Wooden Dock.",
         image: "assets/img/worldSprites/dock_01.png",
         rarity: "rare",
@@ -1284,6 +1406,56 @@ const ITEM_DEFINITIONS = {
         homePlaceable: true,
         homeDef: {
             spriteSheet: "assets/img/tile/dock_01.png",
+            imageW: 128,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+
+    dock2: {
+        id: "dock2",
+        name: "Broken Dock 2",
+        description: "A old Broken Wooden Dock.",
+        image: "assets/img/worldSprites/dock_02.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/dock_02.png",
+            imageW: 128,
+            imageH: 128,
+            rows: 1,
+            cols: 1,
+            animSpeed: 0,
+            zIndex: 0,
+            collision: true,
+            canStackOnPlaced: false,
+            footprintW: 2,
+            footprintH: 2
+        }
+    },
+
+    dock3: {
+        id: "dock3",
+        name: "Broken Dock 3",
+        description: "A old Broken Wooden Dock.",
+        image: "assets/img/worldSprites/dock_03.png",
+        rarity: "rare",
+        stackable: true,
+        useable: false,
+        removeable: false,
+        homePlaceable: true,
+        homeDef: {
+            spriteSheet: "assets/img/tile/dock_03.png",
             imageW: 128,
             imageH: 128,
             rows: 1,
